@@ -8,7 +8,6 @@ public interface GTconstants {
 	
 	// Relative to sketch folder
 	public final String PDE_TAB_NAME = "gui.pde";
-//	public final String CONFIG_FOLDER = "data" + SLASH + "_gui_builder";
 	public final String CONFIG_FOLDER = "GUI_BUILD_DATA";
 	public final String CONFIG_FILENAME = CONFIG_FOLDER + SLASH + "gui_config.txt";
 	
