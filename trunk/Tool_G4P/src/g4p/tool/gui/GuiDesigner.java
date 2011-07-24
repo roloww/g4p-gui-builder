@@ -17,6 +17,7 @@ import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.propertygrid.CtrlSketchModel;
 import g4p.tool.gui.propertygrid.CtrlSketchView;
 import g4p.tool.gui.propertygrid.Validator;
+import java.awt.Dimension;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
@@ -46,6 +47,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     /** Creates new form GuiDesignFrame */
     public GuiDesigner() {
         initComponents();
+        setPreferredSize(new Dimension(1024,800));
         initWords();
         Validator.restricted = words;
 
@@ -67,7 +69,8 @@ public class GuiDesigner extends javax.swing.JFrame {
         Validator.restricted = words;
 
         initComponents();
-
+        setPreferredSize(new Dimension(1024,800));
+ 
         createDummyStart();
 
         //       setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -96,7 +99,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         treeSketchView = new CtrlSketchView(new CtrlSketchModel(app));
         spTop.setViewportView(treeSketchView);
         tblPropView = new CtrlPropView(new CtrlPropModel(win));
-        sp2.setViewportView(tblPropView);
+        spBot.setViewportView(tblPropView);
     }
 
     /** This method is called from within the constructor to
@@ -109,68 +112,154 @@ public class GuiDesigner extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        jToolBar1 = new javax.swing.JToolBar();
+        btnWinodw = new javax.swing.JButton();
+        btnButton = new javax.swing.JButton();
+        btnLabel = new javax.swing.JButton();
+        btnTextfield = new javax.swing.JButton();
+        btnHorzSlider = new javax.swing.JButton();
+        btnVertSlider = new javax.swing.JButton();
+        btnCoolSlider = new javax.swing.JButton();
+        jSplitPane2 = new javax.swing.JSplitPane();
         panel1 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
         spTop = new javax.swing.JScrollPane();
         panel2 = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
-        sp2 = new javax.swing.JScrollPane();
+        spBot = new javax.swing.JScrollPane();
+        t = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setTitle("GUI Builder");
         setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setName("frmDesigner"); // NOI18N
 
-        jSplitPane1.setDividerLocation(200);
-        jSplitPane1.setDividerSize(10);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jSplitPane1.setPreferredSize(new java.awt.Dimension(200, 825));
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+        jToolBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnWinodw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolWindow.png"))); // NOI18N
+        btnWinodw.setToolTipText("Window");
+        btnWinodw.setFocusable(false);
+        btnWinodw.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnWinodw.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnWinodw);
+
+        btnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolButton.png"))); // NOI18N
+        btnButton.setToolTipText("Button");
+        btnButton.setFocusable(false);
+        btnButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnButton);
+
+        btnLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolLabel.png"))); // NOI18N
+        btnLabel.setToolTipText("Label");
+        btnLabel.setFocusable(false);
+        btnLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLabel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnLabel);
+
+        btnTextfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTextField.png"))); // NOI18N
+        btnTextfield.setToolTipText("Textfield");
+        btnTextfield.setFocusable(false);
+        btnTextfield.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTextfield.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnTextfield);
+
+        btnHorzSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSliderH.png"))); // NOI18N
+        btnHorzSlider.setToolTipText("Slider");
+        btnHorzSlider.setFocusable(false);
+        btnHorzSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHorzSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnHorzSlider);
+
+        btnVertSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSliderV.png"))); // NOI18N
+        btnVertSlider.setToolTipText("Slider");
+        btnVertSlider.setFocusable(false);
+        btnVertSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVertSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnVertSlider);
+
+        btnCoolSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCoolSlider.png"))); // NOI18N
+        btnCoolSlider.setToolTipText("Cool Slider");
+        btnCoolSlider.setFocusable(false);
+        btnCoolSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCoolSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCoolSlider);
+
+        jSplitPane2.setDividerLocation(300);
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setDoubleBuffered(true);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CONTROLS");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel2.setOpaque(true);
+
+        spTop.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spTop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+            .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setTopComponent(panel1);
+        jSplitPane2.setTopComponent(panel1);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PROPERTIES");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
+
+        spBot.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-            .addComponent(sp2, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+            .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sp2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setRightComponent(panel2);
+        jSplitPane2.setRightComponent(panel2);
+
+        t.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 718, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 609, Short.MAX_VALUE)
+        );
+
+        t.addTab("tab1", jPanel1);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -185,16 +274,24 @@ public class GuiDesigner extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(987, Short.MAX_VALUE)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(t, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(t, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                    .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)))
         );
 
         pack();
@@ -212,16 +309,26 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnButton;
+    private javax.swing.JButton btnCoolSlider;
+    private javax.swing.JButton btnHorzSlider;
+    private javax.swing.JButton btnLabel;
+    private javax.swing.JButton btnTextfield;
+    private javax.swing.JButton btnVertSlider;
+    private javax.swing.JButton btnWinodw;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JToolBar jToolBar1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
-    private javax.swing.JScrollPane sp2;
+    private javax.swing.JScrollPane spBot;
     private javax.swing.JScrollPane spTop;
+    private javax.swing.JTabbedPane t;
     // End of variables declaration//GEN-END:variables
 }

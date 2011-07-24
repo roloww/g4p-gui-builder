@@ -422,8 +422,8 @@
                   <stereoType></stereoType>
                   <name>g4p.tool.gui.propertygrid.CtrlSketchModel</name>
                   <constraint>
-                    <x>778</x>
-                    <y>541</y>
+                    <x>719</x>
+                    <y>508</y>
                     <width>-1</width>
                     <height>-1</height>
                   </constraint>
@@ -580,7 +580,7 @@
                         <name>g4p.tool.GTconstants</name>
                         <constraint>
                           <x>374</x>
-                          <y>76</y>
+                          <y>32</y>
                           <width>-1</width>
                           <height>-1</height>
                         </constraint>
@@ -759,7 +759,7 @@
                         <stereoType></stereoType>
                         <name>g4p.tool.gui.propertygrid.CtrlPropView</name>
                         <constraint>
-                          <x>391</x>
+                          <x>355</x>
                           <y>241</y>
                           <width>-1</width>
                           <height>-1</height>
@@ -828,8 +828,8 @@
                               <stereoType></stereoType>
                               <name>g4p.tool.gui.propertygrid.CtrlPropModel</name>
                               <constraint>
-                                <x>766</x>
-                                <y>228</y>
+                                <x>716</x>
+                                <y>235</y>
                                 <width>-1</width>
                                 <height>-1</height>
                               </constraint>
