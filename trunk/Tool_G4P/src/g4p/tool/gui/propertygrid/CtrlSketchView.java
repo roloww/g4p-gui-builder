@@ -30,8 +30,9 @@ public class CtrlSketchView extends JTree {
     protected static Color childBColor = new Color(144, 144, 220);
     protected static Color selFColor = new Color(220, 220, 255);
     protected static Color childFColor = new Color(10, 10, 114);
+ 
     /**
-     * Thi is used to hold copied or cut portions of the tree
+     * This is used to hold copied or cut portions of the tree
      */
     protected DBase clipselected = null;
 
@@ -70,6 +71,7 @@ public class CtrlSketchView extends JTree {
                 ((CtrlSketchModel) treeModel).selected = (DBase) tse.getPath().getLastPathComponent();
                 System.out.println("     Selected     " + ((CtrlSketchModel) treeModel).selected);
                 System.out.println("     Model        " + (((CtrlSketchModel) treeModel).selected).getTableModel());
+                // Send details of the new selection to the property view control (JTable tblPropView)  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 GuiDesigner.tblPropView.setModel(((DBase) ((CtrlSketchModel) treeModel).selected).getTableModel());
                 //repaint();
             }
