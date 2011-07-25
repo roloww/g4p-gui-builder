@@ -4,10 +4,9 @@ public class DButton extends DCoreText {
 	
 	public DButton(){
 		super();
-		allowsChildren = false;
 	}
 	
 	public String toString(){
-		return "Button (" + _1005_name +")";
+		return "Button (" + _0005_name +")";
 	}
 }

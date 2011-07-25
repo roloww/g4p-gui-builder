@@ -85,7 +85,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         w += "transient catch extends int short try char final ";
         w += "interface static void class finally long strictfp ";
         w += "volatile const float native super while ";
-        w += "Sketch_Display ";
+        w += "Sketch_Display SKETCH APPLICATION APPLET ";
         String[] ws = w.split(" ");
         for (String s : ws) {
             words.add(s);
@@ -95,17 +95,14 @@ public class GuiDesigner extends javax.swing.JFrame {
     private CtrlSketchModel gatSimpleSketchModel(){
         CtrlSketchModel m = null;
 
-
-
-
         return m;
     }
     
     private void createDummyStart() {
         DApplication app = new DApplication();
         DSketchWindow win = new DSketchWindow();
-        win._1020_width = 800;
-        win._1021_height = 600;
+        win._0024_width = 800;
+        win._0025_height = 600;
         app.add(win);
         treeSketchView = new CtrlSketchView(new CtrlSketchModel(app));
         spTop.setViewportView(treeSketchView);

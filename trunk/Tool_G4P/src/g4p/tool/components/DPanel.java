@@ -9,6 +9,6 @@ public class DPanel extends DCoreText {
 	}
 
 	public String toString(){
-		return "Panel (" + _1005_name +")";
+		return "Panel (" + _0005_name +")";
 	}
 }

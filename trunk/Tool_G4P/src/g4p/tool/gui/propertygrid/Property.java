@@ -17,6 +17,7 @@ public class Property implements Comparable {
 	public String cellText;
 
 	public boolean allowEdit = true;
+	public boolean show = true;
 	
 	// The validator to use with this property
 	public Validator validator = null;
@@ -46,7 +47,6 @@ public class Property implements Comparable {
 		catch(Exception excp){
 			validator = Validator.getDefaultValidator(fclass);
 		}
-
 		// Get edit status if any
 		try {
 			Field field = fieldFromObject.getClass().getField(cellText + "_edit");
@@ -54,6 +54,14 @@ public class Property implements Comparable {
 		}
 		catch(Exception excp){
 			// Nothing to do but assume the fields is editable
+		}
+		// See if we need to show this property
+		try {
+			Field field = fieldFromObject.getClass().getField(cellText + "_show");
+			show = (Boolean) field.get(fieldFromObject);
+		}
+		catch(Exception excp){
+			// Nothing to do but assume the fields is to be shown
 		}
 
 	}
