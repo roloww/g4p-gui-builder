@@ -2,6 +2,8 @@ package g4p.tool.gui.propertygrid;
 
 import java.lang.reflect.Field;
 
+import processing.app.Editor;
+
 public class Property implements Comparable {
 
 	public Object fieldFromObject;
@@ -14,9 +16,12 @@ public class Property implements Comparable {
 
 	public String cellText;
 
+	public boolean allowEdit = true;
+	
 	// The validator to use with this property
 	public Validator validator = null;
-
+	public CellEditor_Base editor = null;
+	
 	public Property(Object o, Field f){
 		fieldFromObject = o;
 		field = f;
@@ -24,13 +29,31 @@ public class Property implements Comparable {
 		fvalue = this.getFieldValue(fclass, field, fieldFromObject);
 		fieldName = field.getName(); // e.g. _1234_name
 		cellText = fieldName.substring(6);
+		
+		// Get cell editor if any
+		try {
+			Field field = fieldFromObject.getClass().getField(cellText + "_editor");
+			editor = (CellEditor_Base) field.get(fieldFromObject);
+		}
+		catch(Exception excp){
+			// Nothing to do if no editor is specified
+		}
 		// Get validator if any
 		try {
-			Field vf = fieldFromObject.getClass().getField(cellText + "_validator");
-			validator = (Validator) vf.get(fieldFromObject);
+			Field field = fieldFromObject.getClass().getField(cellText + "_validator");
+			validator = (Validator) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
 			validator = Validator.getDefaultValidator(fclass);
+		}
+
+		// Get edit status if any
+		try {
+			Field field = fieldFromObject.getClass().getField(cellText + "_edit");
+			allowEdit = (Boolean) field.get(fieldFromObject);
+		}
+		catch(Exception excp){
+			// Nothing to do but assume the fields is editable
 		}
 
 	}

@@ -69,7 +69,7 @@ public class CtrlPropModel extends AbstractTableModel {
 	}
 
 	public boolean isCellEditable(int row, int col)	{ 
-		return (col > 0) ? true : false; 
+		return (col > 0) ? propData[row].allowEdit : false; 
 	}
 
 

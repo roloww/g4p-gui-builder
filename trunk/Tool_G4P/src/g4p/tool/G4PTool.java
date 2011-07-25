@@ -24,11 +24,7 @@
  */
 package g4p.tool;
 
-import g4p.tool.components.DApplication;
-import g4p.tool.components.DWindow;
 import g4p.tool.gui.GuiDesigner;
-import g4p.tool.gui.propertygrid.CtrlPropModel;
-import g4p.tool.gui.propertygrid.CtrlSketchModel;
 
 import java.io.File;
 import java.io.IOException;

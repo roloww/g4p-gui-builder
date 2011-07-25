@@ -5,17 +5,17 @@ import java.awt.Component;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 
-public class Editor_Boolean extends Editor_Base {
+public class CellEditor_JCheckbox extends CellEditor_Base {
 
-	private static Editor_Boolean instance = null;
+	private static CellEditor_JCheckbox instance = null;
 	
-	public static Editor_Boolean instance(){
+	public static CellEditor_JCheckbox instance(){
 		if(instance == null)
-			instance = new Editor_Boolean();
+			instance = new CellEditor_JCheckbox();
 		return instance;
 	}
 
-	private Editor_Boolean(){
+	private CellEditor_JCheckbox(){
 		makeEditorComponent();
 	}
 
