@@ -11,7 +11,10 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DApplication;
+import g4p.tool.components.DButton;
+import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchWindow;
+import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.propertygrid.CtrlSketchModel;
@@ -100,13 +103,30 @@ public class GuiDesigner extends javax.swing.JFrame {
     
     private void createDummyStart() {
         DApplication app = new DApplication();
-        DSketchWindow win = new DSketchWindow();
-        win._0024_width = 800;
-        win._0025_height = 600;
-        app.add(win);
+        DSketchWindow win1 = new DSketchWindow();
+        win1._0024_width = 800;
+        win1._0025_height = 600;
+        DWindow win2 = new DWindow();
+        win2._0005_name = "wndControl";
+        win2._0024_width = 320;
+        win2._0025_height = 440;
+        DButton btn1 = new DButton();
+        btn1._0005_name = "button1";
+        DButton btn2 = new DButton();
+        btn2._0005_name = "button1";
+        DPanel pnl = new DPanel();
+        pnl._1110_text = "My Panel";
+        pnl._0005_name = "pnlMine";
+        
+        app.add(win1);
+        win1.add(btn1);
+        app.add(win2);
+               win2.add(pnl);
+        pnl.add(btn2);
+        
         treeSketchView = new CtrlSketchView(new CtrlSketchModel(app));
         spTop.setViewportView(treeSketchView);
-        tblPropView = new CtrlPropView(new CtrlPropModel(win));
+        tblPropView = new CtrlPropView(new CtrlPropModel(win1));
         spBot.setViewportView(tblPropView);
     }
 
