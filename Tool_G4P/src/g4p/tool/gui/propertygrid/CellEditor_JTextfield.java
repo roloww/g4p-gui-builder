@@ -10,14 +10,14 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 
-public class Editor_JTextfield extends Editor_Base { 
+public class CellEditor_JTextfield extends CellEditor_Base { 
 
 	// Singleton class stuff
-	private static Editor_JTextfield instance = null;
+	private static CellEditor_JTextfield instance = null;
 
-	public static Editor_JTextfield instance(){
+	public static CellEditor_JTextfield instance(){
 		if(instance == null)
-			instance = new Editor_JTextfield();
+			instance = new CellEditor_JTextfield();
 		System.out.println("===========================================================================================");
 		return instance;
 	}
@@ -43,7 +43,7 @@ public class Editor_JTextfield extends Editor_Base {
 	/**
 	 * Create an integer editor component that accepts any valid integer.
 	 */
-	public Editor_JTextfield() {
+	public CellEditor_JTextfield() {
 		System.out.println("JTextField Editor constructor()");
 		component = new JTextField();
 		component.addKeyListener(new KeyListener(){

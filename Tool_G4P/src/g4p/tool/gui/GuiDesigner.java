@@ -11,12 +11,13 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DApplication;
-import g4p.tool.components.DWindow;
+import g4p.tool.components.DSketchWindow;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.propertygrid.CtrlSketchModel;
 import g4p.tool.gui.propertygrid.CtrlSketchView;
 import g4p.tool.gui.propertygrid.Validator;
+
 import java.awt.Dimension;
 import java.io.File;
 import java.util.HashSet;
@@ -76,7 +77,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         //       setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
     }
 
-    public void initWords() {
+    private void initWords() {
         String w = "abstract continue for new switch assert default ";
         w += "goto package synchronized boolean do if private this ";
         w += "break double implements protected throw byte else ";
@@ -90,9 +91,18 @@ public class GuiDesigner extends javax.swing.JFrame {
         }
     }
 
-    public void createDummyStart() {
+    private CtrlSketchModel gatSimpleSketchModel(){
+        CtrlSketchModel m = null;
+
+
+
+
+        return m;
+    }
+    
+    private void createDummyStart() {
         DApplication app = new DApplication();
-        DWindow win = new DWindow();
+        DSketchWindow win = new DSketchWindow();
         win._1020_width = 800;
         win._1021_height = 600;
         app.add(win);
@@ -114,12 +124,20 @@ public class GuiDesigner extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jToolBar1 = new javax.swing.JToolBar();
         btnWinodw = new javax.swing.JButton();
+        btnPanel = new javax.swing.JButton();
         btnButton = new javax.swing.JButton();
+        btnImgButton = new javax.swing.JButton();
         btnLabel = new javax.swing.JButton();
         btnTextfield = new javax.swing.JButton();
         btnHorzSlider = new javax.swing.JButton();
         btnVertSlider = new javax.swing.JButton();
         btnCoolSlider = new javax.swing.JButton();
+        btnKnob = new javax.swing.JButton();
+        btnCheckbox = new javax.swing.JButton();
+        btnOption = new javax.swing.JButton();
+        btnOptGroup = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         panel1 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
@@ -149,12 +167,26 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnWinodw.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnWinodw);
 
+        btnPanel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolPanel.png"))); // NOI18N
+        btnPanel.setToolTipText("Floating Panel");
+        btnPanel.setFocusable(false);
+        btnPanel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPanel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnPanel);
+
         btnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolButton.png"))); // NOI18N
         btnButton.setToolTipText("Button");
         btnButton.setFocusable(false);
         btnButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnButton);
+
+        btnImgButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolButtonImg.png"))); // NOI18N
+        btnImgButton.setToolTipText("Image Button");
+        btnImgButton.setFocusable(false);
+        btnImgButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImgButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnImgButton);
 
         btnLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolLabel.png"))); // NOI18N
         btnLabel.setToolTipText("Label");
@@ -191,6 +223,48 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnCoolSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btnCoolSlider);
 
+        btnKnob.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolKnob.png"))); // NOI18N
+        btnKnob.setToolTipText("Knob");
+        btnKnob.setFocusable(false);
+        btnKnob.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnKnob.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnKnob);
+
+        btnCheckbox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCheckbox.png"))); // NOI18N
+        btnCheckbox.setToolTipText("Checkbox");
+        btnCheckbox.setFocusable(false);
+        btnCheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnCheckbox);
+
+        btnOption.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolOption.png"))); // NOI18N
+        btnOption.setToolTipText("Option");
+        btnOption.setFocusable(false);
+        btnOption.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOption.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnOption);
+
+        btnOptGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolOptGroup.png"))); // NOI18N
+        btnOptGroup.setToolTipText("Option group");
+        btnOptGroup.setFocusable(false);
+        btnOptGroup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOptGroup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btnOptGroup);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCombo.png"))); // NOI18N
+        jButton1.setToolTipText("Combo Box");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTimer.png"))); // NOI18N
+        jButton2.setToolTipText("Timer");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton2);
+
         jSplitPane2.setDividerLocation(300);
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane2.setDoubleBuffered(true);
@@ -215,7 +289,7 @@ public class GuiDesigner extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(panel1);
@@ -241,7 +315,7 @@ public class GuiDesigner extends javax.swing.JFrame {
             .addGroup(panel2Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE))
+                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(panel2);
@@ -310,13 +384,21 @@ public class GuiDesigner extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnButton;
+    private javax.swing.JButton btnCheckbox;
     private javax.swing.JButton btnCoolSlider;
     private javax.swing.JButton btnHorzSlider;
+    private javax.swing.JButton btnImgButton;
+    private javax.swing.JButton btnKnob;
     private javax.swing.JButton btnLabel;
+    private javax.swing.JButton btnOptGroup;
+    private javax.swing.JButton btnOption;
+    private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnVertSlider;
     private javax.swing.JButton btnWinodw;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
