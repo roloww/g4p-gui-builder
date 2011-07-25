@@ -17,8 +17,8 @@ public class CtrlPropView extends JTable implements TableModelListener {
 	public CtrlPropView(CtrlPropModel m) {
 		super(m);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getColumnModel().getColumn(0).setPreferredWidth(40);
-		getColumnModel().getColumn(1).setPreferredWidth(80);
+//		getColumnModel().getColumn(0).setPreferredWidth(40);
+//		getColumnModel().getColumn(1).setPreferredWidth(80);
 	}
 
 	public String getColumnName(int col) {
