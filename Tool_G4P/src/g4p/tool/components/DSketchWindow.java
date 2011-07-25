@@ -8,7 +8,7 @@ public class DSketchWindow extends DCore {
 	
 	public DSketchWindow(){
 		super();
-		_1005_name = "Main Display";
+		_1005_name = "Sketch_Display";
 		allowsChildren = true;
 	}
 

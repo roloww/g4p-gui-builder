@@ -84,7 +84,8 @@ public class GuiDesigner extends javax.swing.JFrame {
         w += "import public throws case enum instanceof return ";
         w += "transient catch extends int short try char final ";
         w += "interface static void class finally long strictfp ";
-        w += "volatile const float native super while";
+        w += "volatile const float native super while ";
+        w += "Sketch_Display ";
         String[] ws = w.split(" ");
         for (String s : ws) {
             words.add(s);
