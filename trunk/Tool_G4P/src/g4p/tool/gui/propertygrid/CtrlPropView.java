@@ -1,6 +1,7 @@
 package g4p.tool.gui.propertygrid;
 
 import g4p.tool.TestDemo;
+import g4p.tool.components.DBase;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
@@ -10,6 +11,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class CtrlPropView extends JTable implements TableModelListener {
 
+        public DBase cselected = null;
+        
 	public CtrlPropView() {
 		super();
 	}

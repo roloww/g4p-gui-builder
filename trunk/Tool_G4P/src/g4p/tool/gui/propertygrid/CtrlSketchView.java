@@ -68,6 +68,7 @@ public class CtrlSketchView extends JTree {
 
             public void valueChanged(TreeSelectionEvent tse) {
                 System.out.println("Tree Selection Listener  " + tse.getPath());
+                // Remember the selected item
                 ((CtrlSketchModel) treeModel).selected = (DBase) tse.getPath().getLastPathComponent();
                 System.out.println("     Selected     " + ((CtrlSketchModel) treeModel).selected);
                 System.out.println("     Model        " + (((CtrlSketchModel) treeModel).selected).getTableModel());
