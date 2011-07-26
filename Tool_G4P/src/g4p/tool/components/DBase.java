@@ -31,10 +31,10 @@ public abstract class DBase extends DefaultMutableTreeNode {
 	public int 		_0024_width = 100;
 	public int 		_0025_height = 20;
 
+	
 	public DBase(){
 		allowsChildren = false;
 	}
-
 
 	public void setName(String name){
 		_0005_name = name;

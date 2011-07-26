@@ -1,10 +1,11 @@
 package g4p.tool.gui.propertygrid;
 
+import g4p.tool.components.NameGen;
+
 import java.util.Set;
 
 public abstract class Validator {
 
-	public static Set<String> restricted;
 
 	private static Validator_Long defaultLong = new Validator_Long();
 	private static Validator_Integer defaultInt = new Validator_Integer();
@@ -131,7 +132,7 @@ public abstract class Validator {
 				valid = false;
 			else if(uv.contains(" "))
 				valid = false;
-			else if(restricted != null && restricted.contains(uv))
+			else if(NameGen.instance().used(uv))
 				valid = false;
 			if(valid)
 				cellValue = uv;
@@ -139,10 +140,11 @@ public abstract class Validator {
 		}
 
 		public void preEditAction(){
-			restricted.remove(originalValue);
+			NameGen.instance().remove((String) originalValue);
 		}
+		
 		public void postEditAction(){
-			restricted.add((String) cellValue);
+			NameGen.instance().add((String) cellValue);
 		}
 
 	}

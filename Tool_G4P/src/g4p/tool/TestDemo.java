@@ -44,7 +44,6 @@ public class TestDemo extends JFrame{
 		this.add(panel);
 
 		initWords();
-		Validator.restricted = words;
 		makeDataModel();
 
 		paneTable = new JScrollPane(table);

@@ -50,8 +50,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     public GuiDesigner() {
         initComponents();
         setPreferredSize(new Dimension(1024, 800));
-        initWords();
-        Validator.restricted = words;
 
         m = getSimpleSketchModel();
         // Now create GUI
@@ -68,9 +66,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         config = configFile;
         base = editor.getBase();
         sketch = editor.getSketch();
-        initWords();
-        Validator.restricted = words;
-
+ 
         initComponents();
         setPreferredSize(new Dimension(1024, 800));
 
@@ -83,21 +79,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     }
 
     public void makeGUIfromTreeModel(CtrlSketchModel m) {
-    }
-
-    private void initWords() {
-        String w = "abstract continue for new switch assert default ";
-        w += "goto package synchronized boolean do if private this ";
-        w += "break double implements protected throw byte else ";
-        w += "import public throws case enum instanceof return ";
-        w += "transient catch extends int short try char final ";
-        w += "interface static void class finally long strictfp ";
-        w += "volatile const float native super while ";
-        w += "Sketch_Display SKETCH APPLICATION APPLET ";
-        String[] ws = w.split(" ");
-        for (String s : ws) {
-            words.add(s);
-        }
     }
 
     private CtrlSketchModel getSimpleSketchModel() {

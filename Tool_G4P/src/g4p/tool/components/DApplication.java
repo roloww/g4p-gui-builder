@@ -1,6 +1,13 @@
 package g4p.tool.components;
 
-
+/**
+ * This class represents the who;e application. <br>
+ * 
+ * It will be the root node for the tree view and its children should only be windows.
+ * 
+ * @author Peter Lager
+ *
+ */
 public final class DApplication extends DBase {
 
 	public Boolean name_edit = false;
