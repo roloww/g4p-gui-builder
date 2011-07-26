@@ -42,7 +42,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private Sketch sketch;
     private File config;
     private Set<String> words = new HashSet<String>();
-    private CtrlSketchModel m;
+    private CtrlSketchModel tm;
     private CtrlSketchView treeSketchView;
     private CtrlPropModel cpm;
     public static CtrlPropView tblPropView;
@@ -52,9 +52,9 @@ public class GuiDesigner extends javax.swing.JFrame {
         initComponents();
         setPreferredSize(new Dimension(1024, 800));
 
-        m = getSimpleSketchModel();
+        tm = getSimpleSketchModel();
         // Now create GUI
-        createDummyStart(m);
+        makGUIfromTreeModel(tm);
     }
 
     /**
@@ -72,16 +72,17 @@ public class GuiDesigner extends javax.swing.JFrame {
         setPreferredSize(new Dimension(1024, 800));
 
 
-        m = getSimpleSketchModel();
+        tm = getSimpleSketchModel();
         // Now create GUI
-        createDummyStart(m);
+        makGUIfromTreeModel(tm);
 
 //       setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
     }
 
-    public void makeGUIfromTreeModel(CtrlSketchModel m) {
-    }
-
+     /**
+     * This creates a simple tree model that we can use for testing
+     * @return
+     */
     private CtrlSketchModel getSimpleSketchModel() {
         CtrlSketchModel m = null;
         DApplication app = new DApplication();
@@ -95,7 +96,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         DButton btn2 = new DButton();
         DPanel pnl = new DPanel();
         pnl._1110_text = "My Panel";
-
         app.add(win1);
         win1.add(btn1);
         app.add(win2);
@@ -105,13 +105,15 @@ public class GuiDesigner extends javax.swing.JFrame {
         return m;
     }
 
-    private void createDummyStart(CtrlSketchModel m) {
-
+    private void makGUIfromTreeModel(CtrlSketchModel m) {
+    	// Create Tree view
         treeSketchView = new CtrlSketchView(m);
         spTop.setViewportView(treeSketchView);
         System.out.println((DBase) m.getRoot());
+        // Get root and initialise the property view
         tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
         spBot.setViewportView(tblPropView);
+        // Create tabbed pane for each window
     }
 
     /** This method is called from within the constructor to
