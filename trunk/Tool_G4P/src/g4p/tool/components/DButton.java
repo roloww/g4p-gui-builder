@@ -4,6 +4,7 @@ public class DButton extends DCoreText {
 	
 	public DButton(){
 		super();
+		setName(NameGen.instance().getNext("button"));
 	}
 	
 	public String toString(){

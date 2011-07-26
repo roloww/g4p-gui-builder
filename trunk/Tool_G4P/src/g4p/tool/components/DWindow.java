@@ -17,6 +17,7 @@ public final class DWindow extends DBase {
 	public DWindow() {
 		super();
 		allowsChildren = true;
+		setName(NameGen.instance().getNext("window"));
 	}
 
 	public String toString(){
