@@ -11,6 +11,7 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DApplication;
+import g4p.tool.components.DBase;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchWindow;
@@ -88,16 +89,12 @@ public class GuiDesigner extends javax.swing.JFrame {
         win1._0024_width = 800;
         win1._0025_height = 600;
         DWindow win2 = new DWindow();
-        win2._0005_name = "wndControl";
         win2._0024_width = 320;
         win2._0025_height = 440;
         DButton btn1 = new DButton();
-        btn1._0005_name = "button1";
         DButton btn2 = new DButton();
-        btn2._0005_name = "button1";
         DPanel pnl = new DPanel();
         pnl._1110_text = "My Panel";
-        pnl._0005_name = "pnlMine";
 
         app.add(win1);
         win1.add(btn1);
@@ -112,8 +109,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         treeSketchView = new CtrlSketchView(m);
         spTop.setViewportView(treeSketchView);
-        System.out.println((CtrlPropModel) m.getRoot());
-        tblPropView = new CtrlPropView((CtrlPropModel) m.getRoot());
+        System.out.println((DBase) m.getRoot());
+        tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
         spBot.setViewportView(tblPropView);
     }
 
