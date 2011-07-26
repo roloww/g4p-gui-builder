@@ -119,6 +119,7 @@ public abstract class Validator {
 
 		@Override
 		public boolean isValid(Object value) {
+                    System.out.println("Name validator:  isValid()");
 			String uv = value.toString();
 			int vs = value.toString().length();
 			boolean valid = true;

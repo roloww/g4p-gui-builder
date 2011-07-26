@@ -2,6 +2,7 @@ package g4p.tool.gui.propertygrid;
 
 import g4p.tool.TestDemo;
 import g4p.tool.components.DBase;
+import g4p.tool.gui.ClassIcon;
 import g4p.tool.gui.GuiDesigner;
 
 import java.awt.Color;
@@ -13,10 +14,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -61,7 +64,7 @@ public class CtrlSketchView extends JTree {
     private void initialise() {
         // Only allow single nodes to be selected
         getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        setCellRenderer(new DataCellRenderer());
+        setCellRenderer(new DataCellRenderer(null));
 
         // Add tree listener
         addTreeSelectionListener(new TreeSelectionListener() {
@@ -225,35 +228,75 @@ public class CtrlSketchView extends JTree {
         }
     }
 
+    class DataCellRenderer extends DefaultTreeCellRenderer {
+        private Icon cellIcon;
+
+        public DataCellRenderer(Icon icon) {
+            cellIcon = icon;
+        }
+
+        public Component getTreeCellRendererComponent(
+                            JTree tree,
+                            Object value,
+                            boolean sel,
+                            boolean expanded,
+                            boolean leaf,
+                            int row,
+                            boolean hasFocus) {
+
+            super.getTreeCellRendererComponent(
+                            tree, value, sel,
+                            expanded, leaf, row,
+                            hasFocus);
+            cellIcon = ClassIcon.instance().getIcon(value.getClass());
+            setIcon(cellIcon);
+ 
+            return this;
+        }
+
+//        protected boolean isTutorialBook(Object value) {
+//            DefaultMutableTreeNode node =
+//                    (DefaultMutableTreeNode)value;
+//            BookInfo nodeInfo =
+//                    (BookInfo)(node.getUserObject());
+//            String title = nodeInfo.bookName;
+//            if (title.indexOf("Tutorial") >= 0) {
+//                return true;
+//            }
+//
+//            return false;
+//        }
+    }
+
     /**
      * Class to render the tree nodes in the display
      *
      * @author Peter Lager
      *
      */
-    public class DataCellRenderer extends JLabel implements TreeCellRenderer {
-
-        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
-                boolean leaf, int row, boolean hasFocus) {
-
-            String nodeName = null;
-
-            DBase snode = (DBase) ((CtrlSketchModel) tree.getModel()).selected;
-            DBase node = (DBase) value;
-
-            setText(node.toString());
-            setOpaque(true);
-            if (snode == node) {
-                setForeground(selFColor);
-                setBackground(selBColor);
-            } else if (snode != null && snode.isNodeDescendant(node)) {
-                setForeground(childFColor);
-                setBackground(childBColor);
-            } else {
-                setForeground(Color.BLACK);
-                setOpaque(false);
-            }
-            return this;
-        }
-    }
+//    public class DataCellRenderer extends JLabel implements TreeCellRenderer {
+//
+//        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
+//                boolean leaf, int row, boolean hasFocus) {
+//
+//            String nodeName = null;
+//
+//            DBase snode = (DBase) ((CtrlSketchModel) tree.getModel()).selected;
+//            DBase node = (DBase) value;
+//
+//            setText(node.toString());
+//            setOpaque(true);
+//            if (snode == node) {
+//                setForeground(selFColor);
+//                setBackground(selBColor);
+//            } else if (snode != null && snode.isNodeDescendant(node)) {
+//                setForeground(childFColor);
+//                setBackground(childBColor);
+//            } else {
+//                setForeground(Color.BLACK);
+//                setOpaque(false);
+//            }
+//            return this;
+//        }
+//    }
 }
