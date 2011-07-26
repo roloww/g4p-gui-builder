@@ -29,6 +29,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.Icon;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeWillExpandListener;
 
 import processing.app.Base;
 import processing.app.Editor;
