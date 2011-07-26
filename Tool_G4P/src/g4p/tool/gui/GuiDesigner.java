@@ -24,8 +24,11 @@ import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.swing.Icon;
 
 import processing.app.Base;
 import processing.app.Editor;
@@ -41,12 +44,15 @@ public class GuiDesigner extends javax.swing.JFrame {
     private Editor editor;
     private Sketch sketch;
     private File config;
-    private Set<String> words = new HashSet<String>();
+ //   private Set<String> words = new HashSet<String>();
     private CtrlSketchModel tm;
     private CtrlSketchView treeSketchView;
     private CtrlPropModel cpm;
     public static CtrlPropView tblPropView;
 
+ //   private Icon tabIcon = new javax.swing.ImageIcon(getClass().getResource("/g4p/toolWindow.png"));
+    private Icon tabIcon = ClassIcon.instance().getIcon(DWindow.class);
+    
     /** Creates new form GuiDesignFrame */
     public GuiDesigner() {
         initComponents();
@@ -95,7 +101,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         DButton btn1 = new DButton();
         DButton btn2 = new DButton();
         DPanel pnl = new DPanel();
-        pnl._1110_text = "My Panel";
         app.add(win1);
         win1.add(btn1);
         app.add(win2);
@@ -114,7 +119,12 @@ public class GuiDesigner extends javax.swing.JFrame {
         tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
         spBot.setViewportView(tblPropView);
         // Create tabbed pane for each window
-    }
+        Enumeration windows = ((DBase) m.getRoot()).children();
+        while(windows.hasMoreElements()){
+        	DBase win = (DBase) windows.nextElement();
+        	tabWindows.addTab(win.getTitle(), tabIcon, new WindowView(win));
+        }
+     }
 
     /** This method is called from within the constructor to
      * initialize the form.

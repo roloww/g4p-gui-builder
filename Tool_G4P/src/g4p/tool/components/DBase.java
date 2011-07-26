@@ -56,6 +56,24 @@ public abstract class DBase extends DefaultMutableTreeNode {
 		_0025_height = height;
 	}
 	
+	
+	
+	public String getName() { return _0005_name; }
+
+	public int getX() {	return _0020_x;	}
+
+	public int getY() { return _0021_y; }
+
+	public int getWidth() { return _0024_width; }
+
+	public int getHeight() { return _0025_height; }
+
+	public String getText() { return ""; }
+	
+	public String getTitle() { return ""; }
+	
+	
+	
 	public void makeTableModel(){
 		propertyModel = new CtrlPropModel(this);
 	}

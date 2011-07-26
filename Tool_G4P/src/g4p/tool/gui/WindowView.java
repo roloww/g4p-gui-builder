@@ -19,17 +19,14 @@ import javax.swing.JTabbedPane;
 public class WindowView extends JPanel {
 
 	DBase window = null;
-	JTabbedPane pane = null;
 	
 	
-	void WindowView(JTabbedPane pane, DBase window){
+	public WindowView(DBase window){
 		this.window = window;
-		this.pane = pane;
 		
-		pane.addTab("XXX", this);
 		this.setBackground(Color.WHITE);
 		
-		System.out.println("Window " + this.getWidth()+"  "+this.getHeight());
+		System.out.println("Window " + this.getWidth() + "  "+this.getHeight());
 	}
 	
 }

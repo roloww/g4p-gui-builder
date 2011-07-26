@@ -22,6 +22,8 @@ public final class DSketchWindow extends DBase {
 		_0005_name = "Sketch_Display";
 	}
 
+	public String getTitle() { return _0005_name; }
+
 	public String toString(){
 		return "Window (" + _0005_name +")";
 	}
