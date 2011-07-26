@@ -18,8 +18,4 @@ public class DCore extends DBase {
 		super();
 	}
 
-	public String toString(){
-		return "Window (" + _0005_name +")";
-	}
-
 }

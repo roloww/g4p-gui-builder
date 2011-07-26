@@ -26,6 +26,8 @@ public class ClassIcon {
 	private ClassIcon(){
 		icons = new HashMap<Class, Icon>();
 		unknown = new javax.swing.ImageIcon(getClass().getResource("/g4p/toolX.png")); 
+		addElement(DApplication.class, "application.png");
+		addElement(DSketchWindow.class, "toolWindow.png");
 		addElement(DWindow.class, "toolWindow.png");
 		addElement(DPanel.class, "toolPanel.png");
 		addElement(DButton.class, "toolButton.png");

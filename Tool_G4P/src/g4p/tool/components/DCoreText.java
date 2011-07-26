@@ -8,6 +8,5 @@ public class DCoreText extends DCore {
 		super();
 	}
 
-	public String getText() { return _0015_text; }
 	
 }

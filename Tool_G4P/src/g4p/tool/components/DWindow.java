@@ -22,11 +22,5 @@ public final class DWindow extends DBase {
 		setName(NameGen.instance().getNext("window"));
 	}
 
-	public String getTitle(){
-		return _0010_title;
-	}
-	
-	public String toString(){
-		return "Window (" + _0005_name +")";
-	}
+
 }

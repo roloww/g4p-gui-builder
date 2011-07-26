@@ -98,7 +98,7 @@ public abstract class DBase extends DefaultMutableTreeNode {
 
 	
 	public String toString(){
-		return "SKETCH";
+		return _0005_name;
 	}
 	
 }
