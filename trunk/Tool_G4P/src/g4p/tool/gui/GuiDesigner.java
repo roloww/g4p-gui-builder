@@ -125,7 +125,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+//        buttonGroup1 = new javax.swing.ButtonGroup();
         tbarComponents = new javax.swing.JToolBar();
         btnWindow = new javax.swing.JButton();
         btnPanel = new javax.swing.JButton();
@@ -394,7 +394,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnVertSlider;
     private javax.swing.JButton btnWindow;
-    private javax.swing.ButtonGroup buttonGroup1;
+//    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
