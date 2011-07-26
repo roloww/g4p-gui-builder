@@ -18,6 +18,7 @@ public class NameGen {
 	private Set<String> words;
 	
 	private NameGen(){
+		words = new HashSet<String>();
         String w = "abstract continue for new switch assert default ";
         w += "goto package synchronized boolean do if private this ";
         w += "break double implements protected throw byte else ";
@@ -57,7 +58,7 @@ public class NameGen {
 	 * @return
 	 */
 	public String getNext(String name){
-		int nbr = 1;
+		int nbr = 0;
 		do {
 			nbr++;
 		} while(words.contains(name + nbr));
