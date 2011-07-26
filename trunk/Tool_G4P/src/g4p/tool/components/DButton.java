@@ -8,6 +8,6 @@ public class DButton extends DCoreText {
 	}
 	
 	public String toString(){
-		return "Button (" + _0005_name +")";
+		return _0005_name;
 	}
 }

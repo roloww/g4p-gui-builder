@@ -19,13 +19,9 @@ public final class DSketchWindow extends DBase {
 	public DSketchWindow() {
 		super();
 		allowsChildren = true;
-		_0005_name = "Sketch_Display";
+		_0005_name = "Sketch";
 	}
 
 	public String getTitle() { return _0005_name; }
-
-	public String toString(){
-		return "Window (" + _0005_name +")";
-	}
 
 }

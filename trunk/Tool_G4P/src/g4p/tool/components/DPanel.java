@@ -10,11 +10,4 @@ public class DPanel extends DCore {
 		setName(NameGen.instance().getNext("panel"));
 	}
 
-	public String getTitle(){
-		return _0010_title;
-	}
-	
-	public String toString(){
-		return "Panel (" + _0005_name +")";
-	}
 }

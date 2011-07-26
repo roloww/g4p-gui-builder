@@ -110,6 +110,10 @@ public class GuiDesigner extends javax.swing.JFrame {
         return m;
     }
 
+    /**
+     * This method is to prove that the entire GUI can be 
+     * @param m
+     */
     private void makGUIfromTreeModel(CtrlSketchModel m) {
     	// Create Tree view
         treeSketchView = new CtrlSketchView(m);
@@ -119,10 +123,10 @@ public class GuiDesigner extends javax.swing.JFrame {
         tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
         spBot.setViewportView(tblPropView);
         // Create tabbed pane for each window
-        Enumeration windows = ((DBase) m.getRoot()).children();
+        Enumeration<?> windows = ((DBase) m.getRoot()).children();
         while(windows.hasMoreElements()){
         	DBase win = (DBase) windows.nextElement();
-        	tabWindows.addTab(win.getTitle(), tabIcon, new WindowView(win));
+        	tabWindows.addTab(win.getName(), tabIcon, new WindowView(tabWindows, win));
         }
      }
 
@@ -135,7 +139,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-//        buttonGroup1 = new javax.swing.ButtonGroup();
         tbarComponents = new javax.swing.JToolBar();
         btnWindow = new javax.swing.JButton();
         btnPanel = new javax.swing.JButton();
@@ -404,7 +407,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnVertSlider;
     private javax.swing.JButton btnWindow;
-//    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
