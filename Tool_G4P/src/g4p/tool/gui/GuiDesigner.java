@@ -151,7 +151,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         spBot = new javax.swing.JScrollPane();
         tabWindows = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -334,19 +333,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         tabWindows.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
-        );
-
-        tabWindows.addTab("tab1", jPanel1);
-
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -416,7 +402,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private java.awt.Panel panel1;
     private java.awt.Panel panel2;
     private javax.swing.JScrollPane spBot;
