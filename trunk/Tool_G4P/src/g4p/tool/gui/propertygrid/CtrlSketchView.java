@@ -47,10 +47,14 @@ public class CtrlSketchView extends JTree {
 
             public void valueChanged(TreeSelectionEvent tse) {
             	// Update the property view
-                GuiDesigner.tblPropView.setModel( ((DBase) tse.getPath().getLastPathComponent()).getTableModel() );
+         //       GuiDesigner.tblPropView.setModel( ((DBase) tse.getPath().getLastPathComponent()).getTableModel() );
+                GuiDesigner.tblPropView.setModel( ((DBase) getLastSelectedPathComponent()).getTableModel() );
             }
         });
         setEditable(false);
+//        addTreeExpansionListener(this);
+//        addTreeWillExpandListener(this);
+
     }
 
 
