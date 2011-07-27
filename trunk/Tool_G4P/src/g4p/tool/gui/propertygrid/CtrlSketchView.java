@@ -10,7 +10,11 @@ import javax.swing.Icon;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 public class CtrlSketchView extends JTree {
@@ -55,6 +59,12 @@ public class CtrlSketchView extends JTree {
         setEditable(false);
     }
 
+//    public void setSelectedNode(DefaultMutableTreeNode node){
+//    	DefaultTreeModel m = (DefaultTreeModel) getModel();
+//    	TreeNode[] nodes = m.getPathToRoot(node);
+//    	TreePath tp = new TreePath(nodes);
+//    	this.setSelectionPath(tp);
+//    }
 
     /**
      * Class to render the tree nodes in the display
