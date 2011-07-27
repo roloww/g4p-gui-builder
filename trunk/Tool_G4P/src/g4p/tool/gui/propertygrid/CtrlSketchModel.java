@@ -10,12 +10,6 @@ import javax.swing.tree.TreeNode;
 public class CtrlSketchModel extends DefaultTreeModel {
 
 	/**
-	 * Each model has its own selected node which is used in
-	 * copy and paste operations
-	 */
-//	public DBase selected = null;
-
-	/**
 	 * Ctor creates a DataModel object with the given root
 	 * 
 	 * @param root the node that is the top of a tree

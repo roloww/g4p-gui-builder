@@ -14,23 +14,17 @@ import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DPanel;
-import g4p.tool.components.DSketchWindow;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.propertygrid.CtrlSketchModel;
 import g4p.tool.gui.propertygrid.CtrlSketchView;
-import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Dimension;
 import java.io.File;
 import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.swing.Icon;
-import javax.swing.event.TreeExpansionListener;
-import javax.swing.event.TreeWillExpandListener;
 
 import processing.app.Base;
 import processing.app.Editor;
@@ -94,12 +88,12 @@ public class GuiDesigner extends javax.swing.JFrame {
     private CtrlSketchModel getSimpleSketchModel() {
         CtrlSketchModel m = null;
         DApplication app = new DApplication();
-        DSketchWindow win1 = new DSketchWindow();
-        win1._0024_width = 800;
-        win1._0025_height = 600;
-        DWindow win2 = new DWindow();
-        win2._0024_width = 320;
-        win2._0025_height = 440;
+        DWindow win1 = new DWindow(true);
+        win1.set_width(800);
+        win1.set_height(600);
+        DWindow win2 = new DWindow(false);
+        win2.set_width(320);
+        win2.set_height(440);
         DButton btn1 = new DButton();
         DButton btn2 = new DButton();
         DPanel pnl = new DPanel();
@@ -128,7 +122,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         Enumeration<?> windows = ((DBase) m.getRoot()).children();
         while(windows.hasMoreElements()){
         	DBase win = (DBase) windows.nextElement();
-        	tabWindows.addTab(win.getName(), tabIcon, new WindowView(tabWindows, win));
+        	tabWindows.addTab(win.get_name(), tabIcon, new WindowView(tabWindows, win));
         }
      }
 

@@ -7,6 +7,8 @@ package g4p.tool.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Enumeration;
 
 import g4p.tool.components.DBase;
 
@@ -37,6 +39,11 @@ public class WindowView extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+		Graphics2D g2 = (Graphics2D)g;
+		window.draw(g2);
+		Enumeration<?> e = window.children();
+		while(e.hasMoreElements()){
+			((DBase)e.nextElement()).draw(g2);
+		}
 	}
 }

@@ -38,7 +38,9 @@ public class CtrlPropView extends JTable implements TableModelListener {
 
 	public void tableChanged(TableModelEvent e) {
 		super.tableChanged(e);
-		System.out.println("TestDemo \t" + TestDemo.b);
+		
+		// If 
+		System.out.println("Table model changed \t" + e.getFirstRow());
 	}
 
 	public TableCellEditor getCellEditor(int row, int col) {

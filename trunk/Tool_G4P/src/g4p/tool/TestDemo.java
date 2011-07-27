@@ -60,13 +60,13 @@ public class TestDemo extends JFrame{
 
 	private void makeDataModel() {
 		DBase app = new DApplication();
-		DWindow w1 = new DWindow();
-		w1.setName("Main Display");
+		DWindow w1 = new DWindow(true);
+		w1.set_name("Main Display");
 		app.add(w1);
-		DWindow w2 = new DWindow();
-		w2.setName("wndController");
-		w2.setWidth(200);
-		w2.setHeight(400);
+		DWindow w2 = new DWindow(false);
+		w2.set_name("wndController");
+		w2.set_width(200);
+		w2.set_height(400);
 		app.add(w2);
 
 		b = new DButton();

@@ -51,10 +51,10 @@ public abstract class Validator {
 	public static Validator getValidator(String type){
 		if(type.equals("COMPONENT_NAME"))
 			return new Validator_ControlName();
-
 		// 	Gve up and return a default string	
 		return defaultString;
 	}
+	
 	// INSTANCE attributes and methods
 
 	// Should be set to remember the original value before
