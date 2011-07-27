@@ -141,6 +141,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         tbarComponents = new javax.swing.JToolBar();
         btnWindow = new javax.swing.JButton();
         btnPanel = new javax.swing.JButton();
@@ -155,8 +156,8 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnCheckbox = new javax.swing.JButton();
         btnOption = new javax.swing.JButton();
         btnOptGroup = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCombo = new javax.swing.JButton();
+        btnTimer = new javax.swing.JButton();
         splitControl = new javax.swing.JSplitPane();
         panel1 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
@@ -271,19 +272,19 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnOptGroup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         tbarComponents.add(btnOptGroup);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCombo.png"))); // NOI18N
-        jButton1.setToolTipText("Combo Box");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbarComponents.add(jButton1);
+        btnCombo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCombo.png"))); // NOI18N
+        btnCombo.setToolTipText("Combo Box");
+        btnCombo.setFocusable(false);
+        btnCombo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCombo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarComponents.add(btnCombo);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTimer.png"))); // NOI18N
-        jButton2.setToolTipText("Timer");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbarComponents.add(jButton2);
+        btnTimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTimer.png"))); // NOI18N
+        btnTimer.setToolTipText("Timer");
+        btnTimer.setFocusable(false);
+        btnTimer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTimer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarComponents.add(btnTimer);
 
         splitControl.setDividerLocation(300);
         splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -398,6 +399,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnButton;
     private javax.swing.JButton btnCheckbox;
+    private javax.swing.JButton btnCombo;
     private javax.swing.JButton btnCoolSlider;
     private javax.swing.JButton btnHorzSlider;
     private javax.swing.JButton btnImgButton;
@@ -407,10 +409,10 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnOption;
     private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnTextfield;
+    private javax.swing.JButton btnTimer;
     private javax.swing.JButton btnVertSlider;
     private javax.swing.JButton btnWindow;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
