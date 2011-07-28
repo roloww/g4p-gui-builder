@@ -47,7 +47,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private DBase startNode;
 	private CtrlPropModel cpm;
 	public static CtrlPropView tblPropView;
-
+	private TabbedWindows tabWindows;
+	
 	//   private Icon tabIcon = new javax.swing.ImageIcon(getClass().getResource("/g4p/toolWindow.png"));
 	private Icon tabIcon = ClassIcon.instance().getIcon(DWindow.class);
 
@@ -125,6 +126,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 		// Get root and initialise the property view
 		tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
 		spBot.setViewportView(tblPropView);
+		tabWindows = new TabbedWindows();
+		jPanel1.add(tabWindows);
 		// Create tabbed pane for each window
 		Enumeration<?> windows = ((DBase) m.getRoot()).children();
 		while(windows.hasMoreElements()){
