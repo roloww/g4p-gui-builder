@@ -1,8 +1,6 @@
-package g4p.tool.gui.propertygrid;
+package g4p.tool.gui;
 
 import g4p.tool.components.DBase;
-import g4p.tool.gui.ClassIcon;
-import g4p.tool.gui.GuiDesigner;
 
 import java.awt.Component;
 
