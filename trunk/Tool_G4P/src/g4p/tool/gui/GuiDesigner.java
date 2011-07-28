@@ -18,6 +18,7 @@ import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.Enumeration;
@@ -127,7 +128,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 		tblPropView = new CtrlPropView(  ((DBase)m.getRoot()).getTableModel());
 		spBot.setViewportView(tblPropView);
 		tabWindows = new TabbedWindows();
-		jPanel1.add(tabWindows);
+		
+		pnlWindowsView.setLayout(new BorderLayout());
+		
+		pnlWindowsView.add(tabWindows, BorderLayout.CENTER);
 		// Create tabbed pane for each window
 		Enumeration<?> windows = ((DBase) m.getRoot()).children();
 		while(windows.hasMoreElements()){
@@ -189,7 +193,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         pnlPropViiew = new java.awt.Panel();
         jLabel1 = new javax.swing.JLabel();
         spBot = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        pnlWindowsView = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -370,16 +374,18 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         splitControl.setRightComponent(pnlPropViiew);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlWindowsView.setBackground(new java.awt.Color(204, 255, 255));
+        pnlWindowsView.setToolTipText("Winodws Panel");
+        pnlWindowsView.setDoubleBuffered(false);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlWindowsViewLayout = new javax.swing.GroupLayout(pnlWindowsView);
+        pnlWindowsView.setLayout(pnlWindowsViewLayout);
+        pnlWindowsViewLayout.setHorizontalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 719, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlWindowsViewLayout.setVerticalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 614, Short.MAX_VALUE)
         );
 
@@ -400,7 +406,7 @@ public class GuiDesigner extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tbarComponents, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(splitControl, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -413,7 +419,7 @@ public class GuiDesigner extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(11, 11, 11))
                     .addComponent(splitControl, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)))
         );
@@ -455,9 +461,9 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private java.awt.Panel pnlPropViiew;
     private java.awt.Panel pnlTreeView;
+    private javax.swing.JPanel pnlWindowsView;
     private javax.swing.JScrollPane spBot;
     private javax.swing.JScrollPane spTop;
     private javax.swing.JSplitPane splitControl;
