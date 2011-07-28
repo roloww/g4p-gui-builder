@@ -17,8 +17,6 @@ import g4p.tool.components.DPanel;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
-import g4p.tool.gui.propertygrid.CtrlSketchModel;
-import g4p.tool.gui.propertygrid.CtrlSketchView;
 
 import java.awt.Dimension;
 import java.io.File;
