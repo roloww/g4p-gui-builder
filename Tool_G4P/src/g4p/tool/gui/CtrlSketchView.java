@@ -64,6 +64,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
  	@Override
 	public void setSelectedComponent(DBase comp){
+ 		System.out.println("CtrlSketchView  setSelectedComponent");
     	DefaultTreeModel m = (DefaultTreeModel) getModel();
     	TreeNode[] nodes = m.getPathToRoot(comp);
     	TreePath tp = new TreePath(nodes);

@@ -77,6 +77,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 					WindowView winView = tabMap.get(window);
 					if(winView != null)
 						winView.UpdateComponent(comp);
+					tree.setSelectedComponent(comp);
 				}
 			}
 		}
@@ -97,6 +98,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
+		System.out.println("CtrlTabView model                   changed state");
 		CtrlTabView sourceTabbedPane = (CtrlTabView) changeEvent.getSource();
 	    WindowView winView = (WindowView) sourceTabbedPane.getSelectedComponent();
 	    DBase comp = winView.getWindowComponent();
