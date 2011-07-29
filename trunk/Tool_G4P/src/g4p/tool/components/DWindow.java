@@ -53,24 +53,22 @@ public final class DWindow extends DBase {
 	}
 
 	
-	public void draw(Graphics2D g, AffineTransform paf, float scale){
+	public void draw(Graphics2D g, AffineTransform paf){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
-		af.scale(scale,scale);
 		g.setTransform(af);
-		g.setStroke(bs);
 		
+		g.setStroke(bs);
 		g.setColor(fill);
-		g.fillRect(_0020_x, _0021_y, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(stroke);
-		g.drawRect(_0020_x, _0021_y, _0024_width, _0025_height);
+		g.drawRect(0, 0, _0024_width, _0025_height);
 		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g, af, scale);
+			((DBase)e.nextElement()).draw(g, af);
 		}
-
-		g.setTransform(paf); // popMatrix
+		g.setTransform(paf);
 	}
 
 }
