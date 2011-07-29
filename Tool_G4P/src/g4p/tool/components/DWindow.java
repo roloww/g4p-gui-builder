@@ -53,10 +53,10 @@ public final class DWindow extends DBase {
 	}
 
 	
-	public void draw(Graphics2D g, AffineTransform paf){
+	public void draw(Graphics2D g, AffineTransform paf, float scale){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
-		af.scale(_0014_Display_scale/100.0f, _0014_Display_scale/100.0f);
+		af.scale(scale,scale);
 		g.setTransform(af);
 		g.setStroke(bs);
 		
@@ -67,7 +67,7 @@ public final class DWindow extends DBase {
 		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g, af);
+			((DBase)e.nextElement()).draw(g, af, scale);
 		}
 
 		g.setTransform(paf); // popMatrix

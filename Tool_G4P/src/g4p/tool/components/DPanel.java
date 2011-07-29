@@ -23,9 +23,9 @@ public class DPanel extends DCoreText {
 	}
 
 	
-	public void draw(Graphics2D g, AffineTransform paf){
+	public void draw(Graphics2D g, AffineTransform paf, float scale){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0020_x * scale, _0021_y * scale);
 		g.setTransform(af);
 		
 		g.setStroke(bs);
@@ -36,7 +36,7 @@ public class DPanel extends DCoreText {
 		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g, af);
+			((DBase)e.nextElement()).draw(g, af, scale);
 		}
 
 		g.setTransform(paf); // popMatrix

@@ -130,7 +130,7 @@ public abstract class DBase extends DefaultMutableTreeNode {
 	transient protected Color stroke;
 	transient protected Color fill;
 	
-	public void draw(Graphics2D g2, AffineTransform orgAF) {
+	public void draw(Graphics2D g2, AffineTransform orgAF, float scale) {
 	}
 		
 	// ====================================================================================================
