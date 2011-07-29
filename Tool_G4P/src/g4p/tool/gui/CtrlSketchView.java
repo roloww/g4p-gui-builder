@@ -50,8 +50,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
             public void valueChanged(TreeSelectionEvent tse) {
             	DBase sel = (DBase) getLastSelectedPathComponent();
             	// Update the property view
-              	props.showProprtiesFor(sel);
-            	tabs.setSelectedComponent(sel);
+               	tabs.setSelectedComponent(sel);
+                props.showProprtiesFor(sel);
             }
         });
         setEditable(false);
