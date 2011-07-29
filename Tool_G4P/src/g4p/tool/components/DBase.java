@@ -56,6 +56,7 @@ public abstract class DBase extends DefaultMutableTreeNode {
 
 	public DBase(){
 		allowsChildren = false;
+//		System.out.println("\tDBase() ctor");
 	}
 
 	// SETTERS

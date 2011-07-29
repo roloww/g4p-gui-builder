@@ -1,6 +1,7 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DBase;
+import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
 
@@ -8,15 +9,18 @@ import javax.swing.Icon;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-public class CtrlSketchView extends JTree {
+public class CtrlSketchView extends JTree implements ISketchView {
 
+	
+	   private ITabView tabs;
+	   private IPropView props;
+	   
     /**
      * Ctor creates an empty tree;
      *
@@ -26,17 +30,13 @@ public class CtrlSketchView extends JTree {
         initialise();
     }
 
-    /**
-     * Ctor creates a tree with the given data model
-     * @param model
-     */
-    public CtrlSketchView(CtrlSketchModel model) {
-        super(model);
-        initialise();
+    public void setViewLinks(ITabView tabs, IPropView props){
+    	this.tabs = tabs;
+    	this.props = props;
     }
-
+    
     /**
-     * Set the charateristics for the tree
+     * Set the characteristics for the tree
      *
      */
     private void initialise() {
@@ -48,22 +48,58 @@ public class CtrlSketchView extends JTree {
         addTreeSelectionListener(new TreeSelectionListener() {
 
             public void valueChanged(TreeSelectionEvent tse) {
+            	DBase sel = (DBase) getLastSelectedPathComponent();
             	// Update the property view
-         //       GuiDesigner.tblPropView.setModel( ((DBase) tse.getPath().getLastPathComponent()).getTableModel() );
-                GuiDesigner.tblPropView.setModel( ((DBase) getLastSelectedPathComponent()).getTableModel() );
-                System.out.println( ((DBase) getLastSelectedPathComponent()).show() );
+              	props.showProprtiesFor(sel);
+            	tabs.setSelectedComponent(sel);
             }
         });
         setEditable(false);
     }
 
-//    public void setSelectedNode(DefaultMutableTreeNode node){
-//    	DefaultTreeModel m = (DefaultTreeModel) getModel();
-//    	TreeNode[] nodes = m.getPathToRoot(node);
-//    	TreePath tp = new TreePath(nodes);
-//    	this.setSelectionPath(tp);
-//    }
+    // Methods for Interface   ====================================================================================================================
+    
+ 	/* (non-Javadoc)
+	 * @see g4p.tool.gui.ISketchView#setSelectedNode(javax.swing.tree.DefaultMutableTreeNode)
+	 */
+ 	@Override
+	public void setSelectedComponent(DBase comp){
+    	DefaultTreeModel m = (DefaultTreeModel) getModel();
+    	TreeNode[] nodes = m.getPathToRoot(comp);
+    	TreePath tp = new TreePath(nodes);
+    	this.setSelectionPath(tp);
+    }
 
+    /* (non-Javadoc)
+	 * @see g4p.tool.gui.ISketchView#getWindowFor(javax.swing.tree.DefaultMutableTreeNode)
+	 */
+    @Override
+	public DBase getWindowFor(DBase comp){
+    	DefaultTreeModel m = (DefaultTreeModel) getModel();
+    	TreeNode[] nodes = m.getPathToRoot(comp);
+    	for(int i = 0; i < nodes.length; i++)
+    		System.out.print("   " + nodes[i]);
+    	System.out.println();
+    	DBase w =  (DBase) ((nodes.length >= 2) ? nodes[1] : null);
+    	return w;
+    }
+    
+    public DBase getContainerFor(DBase comp){
+    	DefaultTreeModel m = (DefaultTreeModel) getModel();
+    	TreeNode[] nodes = m.getPathToRoot(comp);
+    	DBase c = null;
+    	for(int i = nodes.length - 1; i > 0; i--){
+    		if(nodes[i].getAllowsChildren()){
+    			c = (DBase)nodes[i];
+    			break;
+    		}
+    	}
+    	return c;
+    }
+    
+    // ==================================================================================================================================================
+   
+    
     /**
      * Class to render the tree nodes in the display
      *
@@ -71,6 +107,7 @@ public class CtrlSketchView extends JTree {
      *
      */
     class DataCellRenderer extends DefaultTreeCellRenderer {
+    	
         private Icon cellIcon;
 
         public DataCellRenderer(Icon icon) {

@@ -19,6 +19,7 @@ public class NameGen {
 	
 	private NameGen(){
 		words = new HashSet<String>();
+		// Java keywords
         String w = "abstract continue for new switch assert default ";
         w += "goto package synchronized boolean do if private this ";
         w += "break double implements protected throw byte else ";
@@ -26,7 +27,8 @@ public class NameGen {
         w += "transient catch extends int short try char final ";
         w += "interface static void class finally long strictfp ";
         w += "volatile const float native super while ";
-        w += "Sketch_Display SKETCH APPLICATION APPLET ";
+        // Processing keywords and stuff
+        w += "Sketch_Display SKETCH APPLICATION APPLET draw setup ";
         String[] ws = w.split(" ");
         for (String s : ws) {
             words.add(s);

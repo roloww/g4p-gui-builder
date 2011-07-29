@@ -58,6 +58,7 @@ public class G4PTool implements Tool, GTconstants {
             dframe = new GuiDesigner();
         }
         dframe.setVisible(true);
+        dframe.toFront();
     }
 
     public void run() {
@@ -77,7 +78,7 @@ public class G4PTool implements Tool, GTconstants {
                 sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SLASH + PDE_TAB_NAME));
 
                 // Create data folder if necessary
-                
+
             }
             sketch.prepareDataFolder();
 
@@ -87,7 +88,7 @@ public class G4PTool implements Tool, GTconstants {
                 configFolder.mkdir();
 
                 // See if we have a configuration file if not copy template from tools folder
-                
+
             }
             File configFile = new File(sketchFolder, CONFIG_FILENAME);
             if (!configFile.exists()) {

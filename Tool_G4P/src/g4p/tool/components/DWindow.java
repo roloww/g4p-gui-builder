@@ -36,6 +36,7 @@ public final class DWindow extends DBase {
 		
 		stroke = new Color(128,128,64);
 		fill = new Color(255,255,128);
+//		System.out.println("\tDWindow() ctor");
 	}
 
 	public String get_title(){
