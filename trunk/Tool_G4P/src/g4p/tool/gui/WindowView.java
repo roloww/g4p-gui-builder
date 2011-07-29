@@ -6,6 +6,7 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DBase;
+import g4p.tool.components.DWindow;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -38,7 +39,8 @@ public class WindowView extends JPanel {//implements Comparable{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
 		AffineTransform orgAF = g2.getTransform();
-		window.draw(g2, orgAF);
+		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		window.draw(g2, orgAF, scale);
 		g2.setTransform(orgAF);
 	}
 
