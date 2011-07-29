@@ -14,7 +14,7 @@ public class DPanel extends DCoreText {
 		allowsChildren = true;
 		set_name(NameGen.instance().getNext("panel"));
 //		System.out.println("ctor DPanel()   " + _0005_name);
-		fill = new Color(100,100,255);
+		fill = new Color(192,192,255);
 		fillTitle = new Color(50,50,255);
 	}
 
