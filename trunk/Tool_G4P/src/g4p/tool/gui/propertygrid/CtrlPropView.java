@@ -73,7 +73,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		editor = p.editor;
 		if(editor == null){
 			if (c == int.class || c == Integer.class || c == String.class) {
-				editor = CellEditor_String.instance();
+				editor = CellEditor_JTextfield.instance();
 			}
 			if (c == boolean.class || c == Boolean.class) {
 				editor = CellEditor_Boolean.instance();

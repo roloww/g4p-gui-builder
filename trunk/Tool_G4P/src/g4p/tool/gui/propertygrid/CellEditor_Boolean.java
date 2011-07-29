@@ -21,7 +21,7 @@ public class CellEditor_Boolean extends CellEditor_Base {
 
 	protected JCheckBox component;
 	
-	private void makeEditorComponent(){
+	protected void makeEditorComponent(){
 		component = new JCheckBox();
 		component.setHorizontalAlignment(JCheckBox.CENTER);
 //		component.addItemListener(new ItemListener(){
@@ -31,7 +31,6 @@ public class CellEditor_Boolean extends CellEditor_Base {
 //			}
 //			
 //		});
-	
 	}
 
 	public Component getTableCellEditorComponent(JTable table, Object value,
