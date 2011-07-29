@@ -2,12 +2,21 @@ package g4p.tool.components;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.util.Enumeration;
 
 import g4p.tool.gui.propertygrid.Validator;
 
 public final class DWindow extends DBase {
 
-	public String _0010_title = "Window title";
+	public String 		_0010_title = "Window title";
+	
+	public int 			_0014_Display_scale = 100;
+	public Boolean 		Display_scale_edit = true;
+	public Boolean 		Display_scale_show = true;
+	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 200);
+	
+	private float scale;
 	
 	/**
 	 * Create a Window object
@@ -44,13 +53,24 @@ public final class DWindow extends DBase {
 	}
 
 	
-	public void draw(Graphics2D g){
+	public void draw(Graphics2D g, AffineTransform paf){
+		AffineTransform af = new AffineTransform(paf);
+		af.translate(_0020_x, _0021_y);
+		af.scale(_0014_Display_scale/100.0f, _0014_Display_scale/100.0f);
+		g.setTransform(af);
+		g.setStroke(bs);
+		
 		g.setColor(fill);
 		g.fillRect(_0020_x, _0021_y, _0024_width, _0025_height);
-		g.setColor(fill);
+		g.setColor(stroke);
 		g.drawRect(_0020_x, _0021_y, _0024_width, _0025_height);
 		
-		
+		Enumeration<?> e = children();
+		while(e.hasMoreElements()){
+			((DBase)e.nextElement()).draw(g, af);
+		}
+
+		g.setTransform(paf); // popMatrix
 	}
 
 }

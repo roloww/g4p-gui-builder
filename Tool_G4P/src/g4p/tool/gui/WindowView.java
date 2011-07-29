@@ -10,6 +10,7 @@ import g4p.tool.components.DBase;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
 
 import javax.swing.JPanel;
@@ -36,16 +37,14 @@ public class WindowView extends JPanel {//implements Comparable{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		window.draw(g2);
-		Enumeration<?> e = window.children();
-		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g2);
-		}
+		AffineTransform orgAF = g2.getTransform();
+		window.draw(g2, orgAF);
+		g2.setTransform(orgAF);
 	}
 
 	// A component has been updated
 	public void UpdateComponent(DBase comp) {
-		// TODO Auto-generated method stub
+		comp.update();
 		
 	}
 

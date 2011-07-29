@@ -1,7 +1,11 @@
 package g4p.tool.components;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.RoundRectangle2D;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
@@ -53,12 +57,12 @@ public abstract class DBase extends DefaultMutableTreeNode {
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
 
-
 	public DBase(){
 		allowsChildren = false;
 //		System.out.println("\tDBase() ctor");
 	}
 
+	
 	// SETTERS
 	
 	
@@ -112,31 +116,39 @@ public abstract class DBase extends DefaultMutableTreeNode {
 		return propertyModel;
 	}
 	
-	/** 
-	 * Get the nearest component than can contain other components
-	 * i.e. the nearest GPanel or GWindow
-	 * @return
+	/**
+	 * This method is called when a change is made in the components properties.
 	 */
-	public DBase getContainer(){
-		if(allowsChildren)
-			return this;
-		else
-			return (parent == null) ? null : parent.getContainer();
+	public void update(){
 	}
-
+	
 	// ====================================================================================================
 	
-	protected Color stroke;
-	protected Color fill;
+	// Stuff for drawing
+	transient protected BasicStroke bs = new BasicStroke(2,
+			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+	transient protected Color stroke;
+	transient protected Color fill;
 	
-	public void draw(Graphics2D g){}
+	public void draw(Graphics2D g2, AffineTransform orgAF) {
+	}
+		
+	// ====================================================================================================
 	
+	/**
+	 * Display details - used for debugging only
+	 */
 	public String show(){
 		return Messages.build("{0}  {1} Pos [{2},{3}] Size [{4}, {5}]", this.getClass(), _0005_name, _0020_x, _0021_y, _0024_width, _0025_height);
 	}
 	
+	/**
+	 * Use this to return the name of the component
+	 */
 	public String toString(){
 		return _0005_name;
 	}
-	
+
+
+
 }
