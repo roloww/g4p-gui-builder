@@ -38,9 +38,11 @@ public class WindowView extends JPanel {//implements Comparable{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		AffineTransform orgAF = g2.getTransform();
 		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
-		window.draw(g2, orgAF, scale);
+		AffineTransform orgAF = g2.getTransform();
+		AffineTransform af = new AffineTransform(orgAF);
+		af.scale(scale, scale);
+		window.draw(g2, af);
 		g2.setTransform(orgAF);
 	}
 
