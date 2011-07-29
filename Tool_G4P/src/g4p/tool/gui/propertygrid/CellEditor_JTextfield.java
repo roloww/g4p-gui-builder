@@ -44,7 +44,12 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 * Create an integer editor component that accepts any valid integer.
 	 */
 	public CellEditor_JTextfield() {
-		System.out.println("JTextField Editor constructor()");
+//		System.out.println("JTextField Editor constructor()");
+		makeEditorComponent();
+	}
+
+	@Override
+	protected void makeEditorComponent() {
 		component = new JTextField();
 		component.addKeyListener(new KeyListener(){
 
@@ -58,15 +63,16 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 				isValid(component.getText());
 			}
 		});
+		
 	}
-
+	
 	/**
 	 * See if the user supplied in
 	 * @param vo
 	 * @return
 	 */
 	private boolean isValid(Object vo){
-		System.out.println("JTextField Editor isValid()");
+//		System.out.println("JTextField Editor isValid()");
 		boolean result = (validator == null) ? true : validator.isValid(vo);
 		setValidHint(result);
 		return result;
@@ -77,7 +83,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 * If it is invalid then prevent the focus leaving the component.
 	 */
 	public boolean stopCellEditing() {	
-		System.out.println("JTextField stopCellEditing()");
+//		System.out.println("JTextField stopCellEditing()");
 		boolean valid = isValid(component.getText());
 		if(valid){
 			doneWithEditing();
@@ -111,5 +117,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 		System.out.println("JTextField getCellEditorValue()");
 		return (validator == null) ? new Object() : validator.getCellValue();
 	}
+
+
 
 }

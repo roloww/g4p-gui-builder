@@ -21,7 +21,7 @@ public class CellEditor_JCheckbox extends CellEditor_Base {
 
 	protected JCheckBox component;
 	
-	private void makeEditorComponent(){
+	protected void makeEditorComponent(){
 		component = new JCheckBox();
 		component.setHorizontalAlignment(JCheckBox.CENTER);
 //		component.addItemListener(new ItemListener(){

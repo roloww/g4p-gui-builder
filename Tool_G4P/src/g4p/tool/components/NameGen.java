@@ -3,7 +3,7 @@ package g4p.tool.components;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NameGen {
+public final class NameGen {
 
 	private static NameGen instance;
 	
