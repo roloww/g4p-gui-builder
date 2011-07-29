@@ -6,16 +6,20 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
-public class CtrlPropModel extends AbstractTableModel {
+public class CtrlPropModel extends AbstractTableModel implements TableModel {
 
 	private String[] columnNames = new String[]{"Field", "Value"};
 	private Property[] propData;
-
-	public CtrlPropModel(DBase cl){
+	private DBase owner;
+	
+	public CtrlPropModel(DBase component){
 		super();
-		createProperties(cl);
+		owner = component;
+		createProperties(component);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -36,6 +40,10 @@ public class CtrlPropModel extends AbstractTableModel {
 	}
 
 
+	public DBase getOwner(){
+		return owner;
+	}
+	
 	public int getColumnCount() {
 		return columnNames.length;
 	}

@@ -5,32 +5,28 @@
 
 package g4p.tool.gui;
 
+import g4p.tool.components.DBase;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Enumeration;
 
-import g4p.tool.components.DBase;
-
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 
 /**
  *
  * @author Peter
  */
-public class WindowView extends JPanel {
+public class WindowView extends JPanel {//implements Comparable{
 
 	private DBase window = null;
-	private JTabbedPane pane = null;
+	private ITabView tabCtrl;
 	
-	public WindowView(JTabbedPane pane, DBase window){
-		this.pane = pane;
+	public WindowView(ITabView pane, DBase window){
 		this.window = window;
-		
-		this.setBackground(Color.WHITE);
-		
-		System.out.println("Window " + this.getWidth() + "  "+this.getHeight());
+		this.tabCtrl = pane;
+		this.setBackground(Color.LIGHT_GRAY);
 	}
 	
 	public DBase getWindowComponent(){
@@ -46,4 +42,14 @@ public class WindowView extends JPanel {
 			((DBase)e.nextElement()).draw(g2);
 		}
 	}
+
+	// A component has been updated
+	public void UpdateComponent(DBase comp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+	
 }

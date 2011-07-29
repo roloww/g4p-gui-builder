@@ -6,6 +6,7 @@ public class DPanel extends DCoreText {
 		super();
 		allowsChildren = true;
 		set_name(NameGen.instance().getNext("panel"));
+//		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
 }
