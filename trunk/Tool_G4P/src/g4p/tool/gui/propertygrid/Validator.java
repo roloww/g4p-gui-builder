@@ -2,10 +2,9 @@ package g4p.tool.gui.propertygrid;
 
 import g4p.tool.components.NameGen;
 
-import java.util.Set;
+
 
 public abstract class Validator {
-
 
 	private static Validator_Long defaultLong = new Validator_Long();
 	private static Validator_Integer defaultInt = new Validator_Integer();
@@ -14,6 +13,11 @@ public abstract class Validator {
 	private static Validator_Double defaultDouble = new Validator_Double();
 	private static Validator_String defaultString = new Validator_String();
 
+	/**
+	 * Make sure a validator is always returned
+	 * @param c
+	 * @return
+	 */
 	public static Validator getValidator(Class<?> c, Object ... args){
 		Validator v = null;
 		if(c == short.class || c == Short.class)
@@ -28,11 +32,18 @@ public abstract class Validator {
 			v = new Validator_Double(args);
 		else if(c == String.class)
 			v = new Validator_String(args);
+		else
+			v = new Validator_String(args);
 		return v;
 	}
 
+	/**
+	 * Make sure a validator is always returned
+	 * @param c
+	 * @return
+	 */
 	public static Validator getDefaultValidator(Class<?> c){
-		Validator v = null;
+		Validator v = defaultString;
 		if(c == short.class || c == Short.class)
 			v = defaultShort;
 		else if(c == int.class || c == Integer.class)
@@ -48,13 +59,22 @@ public abstract class Validator {
 		return v;
 	}
 
+	/**
+	 * 
+	 * @param type control string
+	 * @return
+	 */
 	public static Validator getValidator(String type){
-		if(type.equals("COMPONENT_NAME"))
+		if(type.equals("COMPONENT_NAME")){
 			return new Validator_ControlName();
-		// 	Gve up and return a default string	
+		}
+		// 	Give up and return a default string	
 		return defaultString;
 	}
 	
+	// ==============================================================================
+	// ==============================================================================
+
 	// INSTANCE attributes and methods
 
 	// Should be set to remember the original value before
@@ -100,7 +120,7 @@ public abstract class Validator {
 
 	/**
 	 * ====================================================
-	 * Validator for long data type
+	 * Validator for variable and method identifiers
 	 * ====================================================
 	 * @author Peter Lager
 	 */

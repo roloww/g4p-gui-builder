@@ -1,5 +1,8 @@
 package g4p.tool.components;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+
 /**
  * This class represents the who;e application. <br>
  * 
@@ -9,13 +12,21 @@ package g4p.tool.components;
  *
  */
 public final class DApplication extends DBase {
-
+	
 	public Boolean name_edit = false;
 	public Boolean x_show = false;
 	public Boolean y_show = false;
 	public Boolean width_show = false;
 	public Boolean height_show = false;
 	
+//	public String _0010_Colour_scheme = "RED_SCHEME";
+//	public DefaultCellEditor Colour_scheme_editor = new DefaultCellEditor(new JComboBox(ListGen.instance().getModel("COLOUR_SCHEME")));
+//	public CellEditor_Base Colour_scheme_editor = CellEditor_JComboBox.instance();
+//	public TableCellRenderer Colour_scheme_renderer = new DefaultCellRenderer();
+//	public Validator Colour_scheme_validator = Validator.getValidator("COLOUR_SCHEME");
+//	public Boolean Colour_scheme_edit = true;
+//	public Boolean Colour_scheme_show = true;
+
 	/**
 	 * 
 	 */

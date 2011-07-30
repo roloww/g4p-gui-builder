@@ -109,35 +109,28 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 */
 	private CtrlSketchModel getSimpleSketchModel() {
 		CtrlSketchModel m = null;
-		System.out.println("Make app");
 		DApplication app = new DApplication();
-		System.out.println("Make win1");
 		DWindow win1 = new DWindow(true);
 		win1.set_width(800);
 		win1.set_height(600);
-		System.out.println("Make win2");
 		DWindow win2 = new DWindow(false);
 		win2.set_width(320);
 		win2.set_height(440);
-		System.out.println("Make btn1");
 		DButton btn1 = new DButton();
 		btn1.set_x(10);
 		btn1.set_y(30);
 		btn1.set_width(80);
 		btn1.set_height(20);
-		System.out.println("Make btn2");
 		DButton btn2 = new DButton();
 		btn2.set_x(10);
 		btn2.set_y(30);
 		btn2.set_width(80);
 		btn2.set_height(20);
-		System.out.println("Make pnl");
 		DPanel pnl = new DPanel();
 		pnl.set_x(100);
 		pnl.set_y(80);
 		pnl.set_width(160);
 		pnl.set_height(90);
-
 		app.add(win1);
 		win1.add(btn1);
 		app.add(win2);

@@ -25,9 +25,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public abstract class DBase extends DefaultMutableTreeNode {
 
-	// The container this control is in
-	public DBase parent = null;
-
 	transient public CtrlPropModel propertyModel;
 	transient public Property[] propList;
 

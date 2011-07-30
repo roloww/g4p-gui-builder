@@ -1,6 +1,7 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DBase;
+import g4p.tool.components.DPanel;
 import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
@@ -49,6 +50,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 
             public void valueChanged(TreeSelectionEvent tse) {
             	DBase sel = (DBase) getLastSelectedPathComponent();
+            	if(sel instanceof DPanel)
+            		System.out.println("Latest     " + ((DPanel)sel).show());
             	// Update the property view
                	tabs.setSelectedComponent(sel);
                 props.showProprtiesFor(sel);
@@ -64,7 +67,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
  	@Override
 	public void setSelectedComponent(DBase comp){
- 		System.out.println("CtrlSketchView  setSelectedComponent");
+ //		System.out.println("CtrlSketchView  setSelectedComponent");
     	DefaultTreeModel m = (DefaultTreeModel) getModel();
     	TreeNode[] nodes = m.getPathToRoot(comp);
     	TreePath tp = new TreePath(nodes);
@@ -78,9 +81,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	public DBase getWindowFor(DBase comp){
     	DefaultTreeModel m = (DefaultTreeModel) getModel();
     	TreeNode[] nodes = m.getPathToRoot(comp);
-    	for(int i = 0; i < nodes.length; i++)
-    		System.out.print("   " + nodes[i]);
-    	System.out.println();
+//    	for(int i = 0; i < nodes.length; i++)
+//    		System.out.print("   " + nodes[i]);
+//    	System.out.println();
     	DBase w =  (DBase) ((nodes.length >= 2) ? nodes[1] : null);
     	return w;
     }
