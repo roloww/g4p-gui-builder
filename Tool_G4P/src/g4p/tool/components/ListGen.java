@@ -34,6 +34,7 @@ public class ListGen {
 	}
 
 	public DefaultComboBoxModel getModel(String key){
+		System.out.println(lists.get(key));
 		return lists.get(key);
 	}
 }
