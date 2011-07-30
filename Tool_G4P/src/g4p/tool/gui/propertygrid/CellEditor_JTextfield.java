@@ -44,12 +44,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 * Create an integer editor component that accepts any valid integer.
 	 */
 	public CellEditor_JTextfield() {
-//		System.out.println("JTextField Editor constructor()");
-		makeEditorComponent();
-	}
-
-	@Override
-	protected void makeEditorComponent() {
+		//		System.out.println("JTextField Editor constructor()");
 		component = new JTextField();
 		component.addKeyListener(new KeyListener(){
 
@@ -63,16 +58,16 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 				isValid(component.getText());
 			}
 		});
-		
 	}
-	
+
+
 	/**
 	 * See if the user supplied in
 	 * @param vo
 	 * @return
 	 */
 	private boolean isValid(Object vo){
-//		System.out.println("JTextField Editor isValid()");
+		//		System.out.println("JTextField Editor isValid()");
 		boolean result = (validator == null) ? true : validator.isValid(vo);
 		setValidHint(result);
 		return result;
@@ -83,7 +78,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 * If it is invalid then prevent the focus leaving the component.
 	 */
 	public boolean stopCellEditing() {	
-//		System.out.println("JTextField stopCellEditing()");
+		//		System.out.println("JTextField stopCellEditing()");
 		boolean valid = isValid(component.getText());
 		if(valid){
 			doneWithEditing();
@@ -101,8 +96,8 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	public Component getTableCellEditorComponent(JTable table, Object value, 
 			boolean isSelected, int row, int column) {
 		System.out.println("JTextField getTableCellEditorComponent()");
-		if(validator != null)
-			validator.setOriginalValue(value);
+		validator.setOriginalValue(value);
+		validator.preEditAction();
 		component.setBorder(new LineBorder(Color.black));
 		component.setText(value.toString());
 		setValidHint((validator == null) ? true : validator.isValid(value));
@@ -110,12 +105,14 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	}
 
 	/**
-	 * This is called when the editor component looses focus and retrieves the final
+	 * This is called when the editor component loses focus and retrieves the final
 	 * value for the table model
 	 */
 	public Object getCellEditorValue() {
 		System.out.println("JTextField getCellEditorValue()");
-		return (validator == null) ? new Object() : validator.getCellValue();
+		validator.postEditAction();
+		return validator.getCellValue();
+		//		return (validator == null) ? new Object() : validator.getCellValue();
 	}
 
 

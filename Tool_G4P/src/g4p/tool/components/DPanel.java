@@ -1,14 +1,28 @@
 package g4p.tool.components;
 
+import g4p.tool.gui.propertygrid.Renderer_Boolean;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
 
+import javax.swing.table.TableCellRenderer;
+
 public class DPanel extends DCoreText {
 
-	protected Color fillTitle;
 	
+	public Boolean 		_0030_opaque = false;
+	public Boolean 		opaque_edit = true;
+	public Boolean 		opaque_show = true;
+
+	public Boolean 		_0032_collapsed = true;
+	public Boolean 		collapsed_edit = true;
+	public Boolean 		collapsed_show = true;
+//	public TableCellRenderer 		collapsed_renderer = new Renderer_Boolean();;
+
+	protected Color fillTitle;
+
 	public DPanel(){
 		super();
 		allowsChildren = true;
@@ -37,5 +51,7 @@ public class DPanel extends DCoreText {
 		g.setTransform(paf);
 	}
 
-
+	public String show(){
+		return ("Opaque = " + _0030_opaque + "       Collapsed = " + _0032_collapsed);
+	}
 }

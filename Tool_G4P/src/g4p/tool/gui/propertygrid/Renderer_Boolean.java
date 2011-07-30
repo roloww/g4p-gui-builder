@@ -14,8 +14,6 @@ public class Renderer_Boolean extends JCheckBox implements TableCellRenderer {
 
 	private static final Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
-	private Boolean userValue = false;
-
 	public Renderer_Boolean() {
 		super();
 		setHorizontalAlignment(JLabel.CENTER);
@@ -24,27 +22,22 @@ public class Renderer_Boolean extends JCheckBox implements TableCellRenderer {
 
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
-		if (isSelected) {
-			setForeground(table.getSelectionForeground());
-			super.setBackground(table.getSelectionBackground());
-		}
-		else {
-			setForeground(table.getForeground());
-			setBackground(table.getBackground());
-		}
+		
+		setSelected(Boolean.valueOf(value.toString()));
+		setForeground(table.getForeground());
+		setBackground(table.getBackground());
 		try {
-			userValue = Boolean.parseBoolean(value.toString());
-			setSelected((Boolean)userValue);
+			setSelected( Boolean.parseBoolean(value.toString()));
 		} 
 		catch (Exception excp){
 		}
 
-		if (hasFocus) {
-			setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
-		} 
-		else {
+//		if (hasFocus) {
+//			setBorder(UIManager.getBorder("Table.focusCellHighlightBorder"));
+//		} 
+//		else {
 			setBorder(noFocusBorder);
-		}
+//		}
 		return this;
 	}
 

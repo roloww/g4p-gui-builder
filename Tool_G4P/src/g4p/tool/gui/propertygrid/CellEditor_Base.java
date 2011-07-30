@@ -9,5 +9,4 @@ public abstract class CellEditor_Base extends AbstractCellEditor implements Tabl
 	public Validator validator;
 
 	
-	protected abstract void makeEditorComponent();
 }

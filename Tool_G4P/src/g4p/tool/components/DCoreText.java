@@ -9,8 +9,6 @@ public class DCoreText extends DCore {
 	public Boolean 		text_show = true;
 	public Validator 	text_validator = Validator.getDefaultValidator(String.class);
 
-
-
 	public DCoreText(){
 		super();
 //		System.out.println("\tDCoreText() ctor");
