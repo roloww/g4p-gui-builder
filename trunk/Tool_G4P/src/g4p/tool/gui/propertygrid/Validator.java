@@ -1,5 +1,7 @@
 package g4p.tool.gui.propertygrid;
 
+import javax.swing.DefaultComboBoxModel;
+
 import g4p.tool.components.NameGen;
 
 
@@ -117,6 +119,7 @@ public abstract class Validator {
 
 	public void postEditAction(){	}
 	public void preEditAction(){	}
+	public Object getModel(){ return null; }
 
 	/**
 	 * ====================================================
@@ -445,6 +448,45 @@ public abstract class Validator {
 
 		public Object getCellValue() {
 			return (String)cellValue;
+		}
+
+	}
+
+	/**
+	 * ====================================================
+	 * Validator for String data type
+	 * ====================================================
+	 * @author Peter Lager
+	 */
+	static class Validator_List extends Validator{
+
+		DefaultComboBoxModel dcbm;
+		/**
+		 * 
+		 * The length of args should be 2 i.e.
+		 * Integer (min, max)
+		 * @param args
+		 */
+		public Validator_List(Object ... args){
+			if(args.length > 0){
+			}
+		}
+
+		public Object getModel(){ 
+			return dcbm; 
+		}
+
+		/**
+		 * See if the value passed is valid
+		 */
+		@Override
+		public boolean isValid(Object value) {
+			cellValue = value;
+			return true;
+		}
+
+		public Object getCellValue() {
+			return cellValue;
 		}
 
 	}

@@ -44,7 +44,6 @@ public class Property implements Comparable {
 		try {
 			Field field = fieldFromObject.getClass().getField(cellText + "_editor");
 			editor =  (CellEditor_Base) field.get(fieldFromObject);
-//			System.out.println("Found ed " + editor);
 		}
 		catch(Exception excp){
 			// Nothing to do if no editor is specified

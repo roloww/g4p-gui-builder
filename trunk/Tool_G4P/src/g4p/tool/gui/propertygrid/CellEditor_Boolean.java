@@ -1,7 +1,5 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.components.DBase;
-
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,15 +21,12 @@ public class CellEditor_Boolean extends CellEditor_Base {
 
 	protected JCheckBox component;
 
-
 	public CellEditor_Boolean(){
 		component = new JCheckBox();
 		component.setHorizontalAlignment(JCheckBox.CENTER);
-		component.setRequestFocusEnabled(false);
-		
+		component.setRequestFocusEnabled(false);	
 		component.addActionListener(new ActionListener(){
-
-			@Override
+			
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
 			}
@@ -41,23 +36,19 @@ public class CellEditor_Boolean extends CellEditor_Base {
 	
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-		Object b = table.getValueAt(row, column);
-		component.setSelected(Boolean.valueOf(b.toString()));
+		component.setSelected(Boolean.valueOf(value.toString()));
 		System.out.println("JChexkBox getTableCellEditorComponent()   " + value.toString());
-
+		// Prevent cell background flicker
 		TableCellRenderer r = table.getCellRenderer(row, column);
 		Component c = r.getTableCellRendererComponent(table, value, isSelected, isSelected, row, column);
 		if( c!= null){
 			component.setOpaque(true);
 			component.setBackground(c.getBackground());
-			if(c instanceof JComponent){
+			if(c instanceof JComponent)
 				component.setBorder(((JComponent)c).getBorder());
-			}
-			else {
+			else
 				component.setOpaque(false);
-			}
 		}
-		
 		return component;
 	}
 
@@ -66,8 +57,6 @@ public class CellEditor_Boolean extends CellEditor_Base {
 	 * value for the table model
 	 */
 	public Object getCellEditorValue() {
-		System.out.println("Fetch checkbox value "+ Boolean.valueOf(component.isSelected()));
 		return Boolean.valueOf(component.isSelected());
 	}
-
 }
