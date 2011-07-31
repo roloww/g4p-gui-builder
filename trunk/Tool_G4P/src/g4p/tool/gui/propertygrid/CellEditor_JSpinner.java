@@ -36,11 +36,11 @@ public class CellEditor_JSpinner extends CellEditor_Base {
 
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected,
 			int row, int column) {
-		component.setModel((SpinnerModel) validator.getModel());
+//		component.setModel((SpinnerModel) validator.getModel());
 		component.setAlignmentX(JSpinner.LEFT_ALIGNMENT);
 		component.getEditor().setAlignmentX(JComponent.LEFT_ALIGNMENT);
 		System.out.println(value);
-		component.setValue(value);
+		component.setValue(value.toString());
 
 		TableCellRenderer r = table.getCellRenderer(row, column);
 		Component c = r.getTableCellRendererComponent(table, value, isSelected, isSelected, row, column);
