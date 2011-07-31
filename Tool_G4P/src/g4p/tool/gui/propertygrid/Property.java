@@ -22,13 +22,13 @@ public class Property implements Comparable {
 
 	public String cellText;
 
-	public boolean allowEdit = true;
-	public boolean show = true;
 	
 	// The validator to use with this property
 	public Validator validator = null;
 	public CellEditor_Base editor = null;
 	public TableCellRenderer renderer = null;
+	public boolean allowEdit = true;
+	public boolean show = true;
 	
 	public Property(Object o, Field f){
 		fieldFromObject = o;

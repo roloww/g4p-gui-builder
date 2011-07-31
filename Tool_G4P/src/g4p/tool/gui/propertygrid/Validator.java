@@ -74,7 +74,6 @@ public abstract class Validator implements GTconstants {
 		}
 		else if(type == COLOUR_SCHEME){
 			return new Validator_List(ListGen.instance().getComboBoxModel(type));
-//			return new Validator_List(ListGen.instance().getSpinnerModel(type));
 		}
 		// 	Give up and return a default string	
 		return defaultString;
@@ -89,6 +88,8 @@ public abstract class Validator implements GTconstants {
 	// editing should be set by the editor
 	protected Object originalValue;
 
+	protected int errorType = VALID;
+	
 	// Holds the current cell value even if in valid
 	protected Object cellValue;
 
@@ -122,7 +123,10 @@ public abstract class Validator implements GTconstants {
 		this.originalValue = originalValue;
 	}
 
-
+	public int getError(){
+		return errorType;
+	}
+	
 	public void postEditAction(){	}
 	public void preEditAction(){	}
 	public Object getModel(){ return null; }
@@ -135,9 +139,12 @@ public abstract class Validator implements GTconstants {
 	 */
 	static class Validator_ControlName extends Validator {
 
-		private long min = 1;
-		private long max = 1000;
-
+		private int min = 1;
+		private int max = 30;
+		
+		private static String validChars = "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		private static String firstChar = "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		
 		public Validator_ControlName(Object ... args){
 		}
 
@@ -152,23 +159,40 @@ public abstract class Validator implements GTconstants {
 			String uv = value.toString();
 			int vs = value.toString().length();
 			boolean valid = true;
-			if(uv.length() < min)
+			if(uv.length() < min || uv.length() > max){
+				errorType = INVALID_LENGTH;
 				valid = false;
-			else if(uv.length() > max)
+			}
+			else if(NameGen.instance().used(uv)){
+				errorType = UNAVAILABLE;
 				valid = false;
-			else if(uv.charAt(0) < 'a')
-				valid = false;
-			else if(uv.charAt(0) > 'z')
-				valid = false;
-			else if(uv.contains(" "))
-				valid = false;
-			else if(NameGen.instance().used(uv))
-				valid = false;
+			}
+			else {
+				valid = checkCharacters(uv);
+			}
 			if(valid)
 				cellValue = uv;
 			return valid;
 		}
 
+		public boolean checkCharacters(String uv){
+			boolean valid = true;
+			if(!firstChar.contains(uv.substring(0, 1))){
+				errorType = FIRST_CHAR_INVALID;
+				valid = false;
+			}
+			else if(uv.length() > 1){
+				for(int i = 1; i < uv.length(); i++){
+					if(!validChars.contains(uv.substring(i, i+1))){
+						valid = false;
+						errorType = INVALID_CHAR;
+						break;
+					}
+				}
+			}
+			return valid;	
+		}
+		
 		public void preEditAction(){
 			NameGen.instance().remove((String) originalValue);
 		}

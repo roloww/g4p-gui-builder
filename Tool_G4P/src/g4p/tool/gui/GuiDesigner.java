@@ -50,10 +50,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private CtrlTabView tabWindows;
 
 	private DBase startNode;
-	private CtrlPropModel cpm;
 	private CtrlSketchModel tm;
-
-	private Icon unknown;
 
 	/** 
 	 * Creates new form GuiDesignFrame 
@@ -90,6 +87,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		setSelectedComponent(startNode);
 	}
 
+	/**
+	 * A fix since to make it work in Processing
+	 */
 	private void getIcons(){
 		ClassIcon.instance().addElement(DApplication.class, btnWindow.getIcon());
 		ClassIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
