@@ -2,10 +2,13 @@ package g4p.tool.components;
 
 import g4p.tool.gui.propertygrid.CellEditor_Base;
 import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
+import g4p.tool.gui.propertygrid.CellEditor_JSpinner;
+import g4p.tool.gui.propertygrid.CellRender_JComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.table.TableCellRenderer;
 
 /**
  * This class represents the who;e application. <br>
@@ -24,10 +27,13 @@ public final class DApplication extends DBase {
 	public Boolean height_show = false;
 	
 	public String _0010_Colour_scheme = "RED_SCHEME";
-//	public CellEditor_Base Colour_scheme_editor = new DefaultCellEditor(new JComboBox(ListGen.instance().getModel("COLOUR_SCHEME")));
-	public CellEditor_Base Colour_scheme_editor = CellEditor_JComboBox.instance();
-//	public TableCellRenderer Colour_scheme_renderer = new DefaultCellRenderer();
-	public Validator Colour_scheme_validator = Validator.getValidator("COLOUR_SCHEME");
+	
+//	public CellEditor_Base Colour_scheme_editor = CellEditor_JSpinner.instance();
+//	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
+	public CellEditor_Base Colour_scheme_editor = CellEditor_JComboBox.instance(COLOUR_SCHEME);
+	public TableCellRenderer Colour_scheme_renderer = new CellRender_JComboBox(COLOUR_SCHEME);
+//	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
+
 	public Boolean Colour_scheme_edit = true;
 	public Boolean Colour_scheme_show = true;
 

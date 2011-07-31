@@ -16,4 +16,9 @@ public interface GTconstants {
 	public final String G4P_LIB = "guicomponents" + SLASH + "library" + SLASH + "guicomponents.jar";
 
 
+	// Validator constants
+	public final int COMPONENT_NAME = 	0x00000020;
+	public final int COLOUR_SCHEME = 	0x00000021;
+	
+	
 }

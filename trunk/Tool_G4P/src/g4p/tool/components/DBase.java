@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.RectangularShape;
 import java.awt.geom.RoundRectangle2D;
 
+import g4p.tool.GTconstants;
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Property;
@@ -23,7 +24,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @author Peter Lager
  *
  */
-public abstract class DBase extends DefaultMutableTreeNode {
+public abstract class DBase extends DefaultMutableTreeNode implements GTconstants {
 
 	transient public CtrlPropModel propertyModel;
 	transient public Property[] propList;
@@ -32,7 +33,7 @@ public abstract class DBase extends DefaultMutableTreeNode {
 	public String 		_0005_name = "APPLICATION";
 	public Boolean 		name_edit = false;
 	public Boolean 		name_show = true;
-	public Validator 	name_validator = Validator.getValidator("COMPONENT_NAME");
+	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
 	
 	public int 			_0020_x = 0;
 	public Boolean 		x_edit = false;
@@ -54,6 +55,8 @@ public abstract class DBase extends DefaultMutableTreeNode {
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
 
+	
+	
 	public DBase(){
 		allowsChildren = false;
 //		System.out.println("\tDBase() ctor");
@@ -61,7 +64,6 @@ public abstract class DBase extends DefaultMutableTreeNode {
 
 	
 	// SETTERS
-	
 	
 	public void set_name(String name){
 		_0005_name = name;

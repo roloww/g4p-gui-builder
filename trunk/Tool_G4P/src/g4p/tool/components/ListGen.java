@@ -1,10 +1,15 @@
 package g4p.tool.components;
 
+import g4p.tool.GTconstants;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SpinnerListModel;
 
-public class ListGen {
+public class ListGen implements GTconstants {
 
 
 	private static ListGen instance;
@@ -19,22 +24,30 @@ public class ListGen {
 	// ==============================================================
 	// ==============================================================
 
-	private HashMap<String, DefaultComboBoxModel> lists;
+	private HashMap<Integer, DefaultComboBoxModel> cbList;
+	private HashMap<Integer, SpinnerListModel> spList;
 
 	private ListGen(){
-		lists = new HashMap<String, DefaultComboBoxModel>();
-		lists.put("COLOUR_SCHEME", makeColourSchemeSection() );
+		cbList = new HashMap<Integer, DefaultComboBoxModel>();
+		spList = new HashMap<Integer, SpinnerListModel>();
+		makeColourSchemeSelection();
 	}
 
-	private DefaultComboBoxModel makeColourSchemeSection(){
+	private void makeColourSchemeSelection(){
 		String[] s = new String[] { "BLUE_SCHEME", "GREEN_SCHEME", 
 				"RED_SCHEME", "PURPLE_SCHEME", "YELLOW_SCHEME", 
 				"CYAN_SCHEME", "GREY_SCHEME" };
-		return new DefaultComboBoxModel(s);
+		cbList.put(COLOUR_SCHEME,  new DefaultComboBoxModel(s));
+		spList.put(COLOUR_SCHEME, new SpinnerListModel(Arrays.asList(s)));
 	}
 
-	public DefaultComboBoxModel getModel(String key){
-		System.out.println(lists.get(key));
-		return lists.get(key);
+	public DefaultComboBoxModel getComboBoxModel(int key){
+		System.out.println(cbList.get(key));
+		return cbList.get(key);
+	}
+	
+	public SpinnerListModel getSpinnerModel(int key){
+		System.out.println(spList.get(key));
+		return spList.get(key);
 	}
 }

@@ -2,11 +2,13 @@ package g4p.tool.gui.propertygrid;
 
 import javax.swing.DefaultComboBoxModel;
 
+import g4p.tool.GTconstants;
+import g4p.tool.components.ListGen;
 import g4p.tool.components.NameGen;
 
 
 
-public abstract class Validator {
+public abstract class Validator implements GTconstants {
 
 	private static Validator_Long defaultLong = new Validator_Long();
 	private static Validator_Integer defaultInt = new Validator_Integer();
@@ -66,9 +68,13 @@ public abstract class Validator {
 	 * @param type control string
 	 * @return
 	 */
-	public static Validator getValidator(String type){
-		if(type.equals("COMPONENT_NAME")){
+	public static Validator getValidator(int type){
+		if(type == COMPONENT_NAME){
 			return new Validator_ControlName();
+		}
+		else if(type == COLOUR_SCHEME){
+			return new Validator_List(ListGen.instance().getComboBoxModel(type));
+//			return new Validator_List(ListGen.instance().getSpinnerModel(type));
 		}
 		// 	Give up and return a default string	
 		return defaultString;
@@ -460,7 +466,7 @@ public abstract class Validator {
 	 */
 	static class Validator_List extends Validator{
 
-		DefaultComboBoxModel dcbm;
+		Object list;
 		/**
 		 * 
 		 * The length of args should be 2 i.e.
@@ -469,11 +475,13 @@ public abstract class Validator {
 		 */
 		public Validator_List(Object ... args){
 			if(args.length > 0){
+				list = args[0];
 			}
 		}
 
 		public Object getModel(){ 
-			return dcbm; 
+			System.out.println("Sending combo list data " + list);
+			return list; 
 		}
 
 		/**
