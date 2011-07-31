@@ -29,6 +29,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
     public CtrlSketchView() {
         super();
         initialise();
+        this.setRowHeight(24);
     }
 
     public void setViewLinks(ITabView tabs, IPropView props){

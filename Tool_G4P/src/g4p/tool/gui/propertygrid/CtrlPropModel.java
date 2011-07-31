@@ -6,7 +6,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
@@ -71,7 +70,7 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		if(columnIndex == 1){
 			propData[rowIndex].setValue(aValue);
-//			fireTableCellUpdated(rowIndex, columnIndex);
+			fireTableCellUpdated(rowIndex, columnIndex);
 		}
 	}
 

@@ -8,6 +8,7 @@ import g4p.tool.gui.propertygrid.Validator;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -30,8 +31,13 @@ public final class DApplication extends DBase {
 	
 //	public CellEditor_Base Colour_scheme_editor = CellEditor_JSpinner.instance();
 //	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
+	
 	public CellEditor_Base Colour_scheme_editor = CellEditor_JComboBox.instance(COLOUR_SCHEME);
 	public TableCellRenderer Colour_scheme_renderer = new CellRender_JComboBox(COLOUR_SCHEME);
+	
+//	public TableCellEditor Colour_scheme_editor = new DefaultCellEditor(new JComboBox(ListGen.instance().getComboBoxModel(COLOUR_SCHEME)));
+	
+	
 //	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
 
 	public Boolean Colour_scheme_edit = true;

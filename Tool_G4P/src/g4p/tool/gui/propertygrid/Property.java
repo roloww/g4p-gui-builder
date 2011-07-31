@@ -27,7 +27,7 @@ public class Property implements Comparable {
 	
 	// The validator to use with this property
 	public Validator validator = null;
-	public TableCellEditor editor = null;
+	public CellEditor_Base editor = null;
 	public TableCellRenderer renderer = null;
 	
 	public Property(Object o, Field f){
@@ -38,8 +38,6 @@ public class Property implements Comparable {
 		cellText = fieldName.substring(6);
 		
 		fvalue = this.getFieldValue(field, fieldFromObject);
-
-		//		System.out.println("Cell text " + cellText);
 		
 		// Get cell editor if any
 		try {
@@ -47,7 +45,7 @@ public class Property implements Comparable {
 			editor =  (CellEditor_Base) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
-			// Nothing to do if no editor is specified
+			// Nothing to do 
 		}
 		// Get cell renderer if any
 		try {
@@ -55,7 +53,7 @@ public class Property implements Comparable {
 			renderer = (TableCellRenderer) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
-			// Nothing to do if no editor is specified
+			// Nothing to do 
 		}
 		// Get validator if any
 		try {
@@ -90,7 +88,9 @@ public class Property implements Comparable {
 		try {
 			setFieldValue(field, fieldFromObject, fvalue);
 		} catch (IllegalArgumentException e) {
+			System.out.println("IllegalArgumentException:  unable to set a field value for "+ cellText + "   value: "+ fvalue.toString());
 		} catch (IllegalAccessException e) {
+			System.out.println("IllegalAccessException:  unable to set a field value for "+ cellText + "   value: "+ fvalue.toString());
 		}
 	}
 

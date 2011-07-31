@@ -53,33 +53,20 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private CtrlPropModel cpm;
 	private CtrlSketchModel tm;
 
+	private Icon unknown;
+
 	/** 
 	 * Creates new form GuiDesignFrame 
 	 */
 	public GuiDesigner() {
 		initComponents();
-		custonmComponents();
+		customComponents();
 		setPreferredSize(new Dimension(1024, 800));
 
 		tm = getSimpleSketchModel();
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
-	}
-
-	private void custonmComponents() {
-		treeSketchView = new CtrlSketchView();
-		tblPropView = new CtrlPropView();
-		tabWindows = new CtrlTabView();
-
-		spTop.setViewportView(treeSketchView);
-		spBot.setViewportView(tblPropView);
-		pnlWindowsView.setLayout(new BorderLayout());
-		pnlWindowsView.add(tabWindows, BorderLayout.CENTER);
-
-		treeSketchView.setViewLinks(tabWindows, tblPropView);
-		tabWindows.setViewLinks(treeSketchView, tblPropView);
-		tblPropView.setViewLinks(tabWindows, treeSketchView);
 	}
 
 	/**
@@ -94,13 +81,65 @@ public class GuiDesigner extends javax.swing.JFrame {
 		sketch = editor.getSketch();
 
 		initComponents();
-		custonmComponents();
+		customComponents();
 		setPreferredSize(new Dimension(1024, 800));
 
 		tm = getSimpleSketchModel();
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
+	}
+
+	private void getIcons(){
+		ClassIcon.instance().addElement(DApplication.class, btnWindow.getIcon());
+		ClassIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
+		ClassIcon.instance().addElement(DPanel.class, btnPanel.getIcon());
+		ClassIcon.instance().addElement(DButton.class, btnButton.getIcon());
+
+	}
+
+	private void customComponents() {
+		getIcons();
+
+		treeSketchView = new CtrlSketchView();
+		tblPropView = new CtrlPropView();
+		tabWindows = new CtrlTabView();
+
+		spTop.setViewportView(treeSketchView);
+		spBot.setViewportView(tblPropView);
+		pnlWindowsView.setLayout(new BorderLayout());
+		pnlWindowsView.add(tabWindows, BorderLayout.CENTER);
+
+		treeSketchView.setViewLinks(tabWindows, tblPropView);
+		tabWindows.setViewLinks(treeSketchView, tblPropView);
+		tblPropView.setViewLinks(tabWindows, treeSketchView);
+		tblPropView.setFillsViewportHeight(true);
+	}
+
+	/**
+	 * This method is to prove that the entire GUI can be
+	 * created from a Tree data model 
+	 * @param m
+	 */
+	private void makGUIfromTreeModel(CtrlSketchModel m) {
+		// Create Tree view
+		treeSketchView.setModel(m);
+		// Get root and initialise the property view
+		tblPropView.showProprtiesFor(startNode);
+		// Setup window display
+		// Create tabbed pane for each window
+		Enumeration<?> windows = ((DBase) m.getRoot()).children();
+		while(windows.hasMoreElements()){
+			DBase win = (DBase) windows.nextElement();
+			tabWindows.addWindow(win);
+		}
+
+	}
+
+	public void setSelectedComponent(DBase comp){
+		tabWindows.setSelectedComponent(comp);
+		treeSketchView.setSelectedComponent(comp);
+		tblPropView.showProprtiesFor(comp);
 	}
 
 	/**
@@ -141,31 +180,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		return m;
 	}
 
-	/**
-	 * This method is to prove that the entire GUI can be
-	 * created from a Tree data model 
-	 * @param m
-	 */
-	private void makGUIfromTreeModel(CtrlSketchModel m) {
-		// Create Tree view
-		treeSketchView.setModel(m);
-		// Get root and initialise the property view
-		tblPropView.showProprtiesFor(startNode);
-		// Setup window display
-		// Create tabbed pane for each window
-		Enumeration<?> windows = ((DBase) m.getRoot()).children();
-		while(windows.hasMoreElements()){
-			DBase win = (DBase) windows.nextElement();
-			tabWindows.addWindow(win);
-		}
-
-	}
-
-	public void setSelectedComponent(DBase comp){
-		tabWindows.setSelectedComponent(comp);
-		treeSketchView.setSelectedComponent(comp);
-		tblPropView.showProprtiesFor(comp);
-	}
 
 	/** This method is called from within the constructor to
 	 * initialize the form.

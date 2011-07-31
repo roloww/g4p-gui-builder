@@ -4,6 +4,8 @@ import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
 
+import javax.swing.AbstractCellEditor;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -18,7 +20,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	public CtrlPropView() {
 		super();
-		
+		this.setRowHeight(22);
 	}
 
 	public void setViewLinks(ITabView tabs, ISketchView tree){
@@ -66,7 +68,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
 //		CellEditor_Base editor = null;
-		TableCellEditor editor = null;
+		CellEditor_Base editor = null;
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
 		Class<?> c = p.ftype;
@@ -81,26 +83,25 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 				editor = CellEditor_JTextfield.instance();
 			}
 		}
-//		System.out.println("TableCellEditor getCellEditor()     for >>> = " + c);
 		// If we have an editor get any validator specified
-		if (editor != null) {
-//			editor.validator = (p.validator == null) ? Validator.getDefaultValidator(c) : p.validator;
-			return editor;
-		}
-		return super.getCellEditor(row, col);
+		editor.validator = (p.validator == null) ? Validator.getDefaultValidator(c) : p.validator;
+		
+		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}
 
 
 	public TableCellRenderer getCellRenderer(int row, int col) {
 		Property p = (Property) ((CtrlPropModel) getModel()).getPropertyAt(row);
 		Class<?> c = p.ftype;
-			
+		
+//		return super.getDefaultRenderer(c);
 		if (col > 0) {
 			if(p.renderer != null){
 				System.out.println("Got you ");
 				return p.renderer;
 			}
 			if (c == boolean.class || c == Boolean.class) {
+//				return super.getDefaultRenderer(c);
 				return (TableCellRenderer) new Renderer_Boolean();
 			}
 		}

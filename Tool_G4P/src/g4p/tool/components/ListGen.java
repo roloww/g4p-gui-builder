@@ -30,15 +30,23 @@ public class ListGen implements GTconstants {
 	private ListGen(){
 		cbList = new HashMap<Integer, DefaultComboBoxModel>();
 		spList = new HashMap<Integer, SpinnerListModel>();
-		makeColourSchemeSelection();
+		makeColourSchemeSelection(COLOUR_SCHEME);
+		makeCursorShapeSelection(CURSOR_OVER);
 	}
 
-	private void makeColourSchemeSelection(){
+	private void makeColourSchemeSelection(int type){
 		String[] s = new String[] { "BLUE_SCHEME", "GREEN_SCHEME", 
 				"RED_SCHEME", "PURPLE_SCHEME", "YELLOW_SCHEME", 
 				"CYAN_SCHEME", "GREY_SCHEME" };
-		cbList.put(COLOUR_SCHEME,  new DefaultComboBoxModel(s));
-		spList.put(COLOUR_SCHEME, new SpinnerListModel(Arrays.asList(s)));
+		cbList.put(type,  new DefaultComboBoxModel(s));
+		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
+	}
+	
+	private void makeCursorShapeSelection(int type){
+		String[] s = new String[] { "ARROW", "CROSS", 
+				"HAND", "MOVE", "TEXT", "WAIT" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
 	}
 
 	public DefaultComboBoxModel getComboBoxModel(int key){
@@ -50,4 +58,5 @@ public class ListGen implements GTconstants {
 		System.out.println(spList.get(key));
 		return spList.get(key);
 	}
+
 }
