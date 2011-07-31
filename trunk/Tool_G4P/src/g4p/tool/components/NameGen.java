@@ -28,7 +28,45 @@ public final class NameGen {
         w += "interface static void class finally long strictfp ";
         w += "volatile const float native super while ";
         // Processing keywords and stuff
-        w += "Sketch_Display SKETCH APPLICATION APPLET draw setup ";
+        w += "Sketch_Display SKETCH APPLICATION APPLET ";        
+        w += "abs acos alpha ambient ambientLight append applyMatrix ";
+        w += "arc Array arrayCopy ArrayList asin atan atan2 background ";
+        w += "beginCamera beginRaw beginRecord beginShape bezier ";
+        w += "bezierDetail bezierPoint bezierTangent bezierVertex binary ";
+        w += "blend blendColor blue box break brightness BufferedReader ";
+        w += "camera ceil color color colorMode concat constrain copy ";
+        w += "cos createFont createGraphics createImage createInput ";
+        w += "createOutput createReader createWriter cursor curve ";
+        w += "curveDetail curvePoint curveTangent curveTightness ";
+        w += "curveVertex day degrees delay directionalLight dist draw ";
+        w += "ellipse ellipseMode emissive endCamera endRaw endRecord ";
+        w += "endShape exp expand extends fill filter floor focused ";
+        w += "frameCount frameRate frustum get green HashMap height ";
+        w += "hex hint hour hue image imageMode implements import ";
+        w += "int int join key keyCode keyPressed keyPressed keyReleased ";
+        w += "keyTyped lerp lerpColor lightFalloff lights lightSpecular line link ";
+        w += "loadBytes loadFont loadImage loadPixels loadShape loadStrings ";
+        w += "log loop mag map match matchAll max millis min minute ";
+        w += "modelX modelY modelZ month mouseButton mouseClicked ";
+        w += "mouseDragged mouseMoved mousePressed mousePressed ";
+        w += "mouseReleased mouseX mouseY new nf nfc nfp nfs noCursor ";
+        w += "noFill noise noiseDetail noiseSeed noLights noLoop norm normal ";
+        w += "noSmooth noStroke noTint null Object online open ortho param ";
+        w += "perspective PFont PGraphics PImage pixels[] pmouseX pmouseY ";
+        w += "point pointLight popMatrix popStyle pow print printCamera println ";
+        w += "printMatrix printProjection PrintWriter PShape public pushMatrix ";
+        w += "pushStyle PVector quad radians random randomSeed rect rectMode ";
+        w += "red redraw requestImage resetMatrix return reverse rotate ";
+        w += "rotateX rotateY rotateZ round saturation save saveBytes saveFrame ";
+        w += "saveStream saveStrings scale screen screenX screenY screenZ second ";
+        w += "selectFolder selectInput selectOutput set setup shape shapeMode ";
+        w += "shearX shearY shininess shorten sin size smooth sort specular ";
+        w += "sphere sphereDetail splice split splitTokens spotLight sq sqrt status ";
+        w += "str String stroke strokeCap strokeJoin strokeWeight subset tan text ";
+        w += "textAlign textAscent textDescent textFont textLeading textMode ";
+        w += "textSize texture textureMode textWidth this tint translate triangle ";
+        w += "trim true try unbinary unhex updatePixels vertex width XMLElement year ";
+
         String[] ws = w.split(" ");
         for (String s : ws) {
             words.add(s);
