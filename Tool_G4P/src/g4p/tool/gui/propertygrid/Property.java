@@ -5,6 +5,7 @@ import g4p.tool.components.DBase;
 import java.lang.reflect.Field;
 
 import javax.swing.AbstractCellEditor;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 import processing.app.Editor;
@@ -26,7 +27,7 @@ public class Property implements Comparable {
 	
 	// The validator to use with this property
 	public Validator validator = null;
-	public CellEditor_Base editor = null;
+	public TableCellEditor editor = null;
 	public TableCellRenderer renderer = null;
 	
 	public Property(Object o, Field f){
