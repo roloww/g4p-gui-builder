@@ -138,7 +138,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	// ====================================================================================================
 	
 	// Stuff for drawing
-	transient protected BasicStroke bs = new BasicStroke(2,
+	transient protected BasicStroke bs = new BasicStroke(1.1f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 	transient protected Color stroke;
 	transient protected Color fill;

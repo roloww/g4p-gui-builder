@@ -23,8 +23,6 @@ public final class DApplication extends DBase {
 	
 	public String _0010_Colour_scheme = "RED_SCHEME";
 	public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-//	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
-//	public TableCellRenderer Colour_scheme_renderer = new CellRender_JComboBox(COLOUR_SCHEME);
 	public Boolean Colour_scheme_edit = true;
 	public Boolean Colour_scheme_show = true;
 
@@ -35,13 +33,11 @@ public final class DApplication extends DBase {
 
 	public String _0021_Cursor_off = "ARROW";
 	public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
-//	public Validator Cursor_off_validator = Validator.getDefaultValidator(Boolean.class);
 	public Boolean Cursor_off_edit = true;
 	public Boolean Cursor_off_show = false;
 
 	public String _0021_Cursor_over = "HAND";
 	public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
-//	public Validator Cursor_over_validator = Validator.getDefaultValidator(Boolean.class);
 	public Boolean Cursor_over_edit = true;
 	public Boolean Cursor_over_show = false;
 

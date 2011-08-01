@@ -10,7 +10,7 @@ import java.util.Enumeration;
 public class DButton extends DCoreText {
 	
 	transient protected RectangularShape face;
-	transient float mitre = 3.0f;
+	transient float mitre = 10.0f;
 	
 	public DButton(){
 		super();
@@ -25,7 +25,7 @@ public class DButton extends DCoreText {
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
 		
-		((RoundRectangle2D) face).setRoundRect(_0020_x, _0021_y, _0024_width, _0025_height, mitre, mitre);	
+		((RoundRectangle2D) face).setRoundRect(0, 0, _0024_width, _0025_height, mitre, mitre);	
 		g.setStroke(bs);
 		g.setColor(fill);
 		g.fill(face);			
