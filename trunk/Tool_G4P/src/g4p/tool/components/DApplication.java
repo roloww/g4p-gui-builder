@@ -2,14 +2,8 @@ package g4p.tool.components;
 
 import g4p.tool.gui.propertygrid.CellEditor_Base;
 import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
-import g4p.tool.gui.propertygrid.CellEditor_JSpinner;
-import g4p.tool.gui.propertygrid.CellRender_JComboBox;
-import g4p.tool.gui.propertygrid.Validator;
 
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.event.TableModelEvent;
 
 /**
  * This class represents the who;e application. <br>
@@ -28,20 +22,28 @@ public final class DApplication extends DBase {
 	public Boolean height_show = false;
 	
 	public String _0010_Colour_scheme = "RED_SCHEME";
-	
-//	public CellEditor_Base Colour_scheme_editor = CellEditor_JSpinner.instance();
+	public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
 //	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
-	
-	public CellEditor_Base Colour_scheme_editor = CellEditor_JComboBox.instance(COLOUR_SCHEME);
-	public TableCellRenderer Colour_scheme_renderer = new CellRender_JComboBox(COLOUR_SCHEME);
-	
-//	public TableCellEditor Colour_scheme_editor = new DefaultCellEditor(new JComboBox(ListGen.instance().getComboBoxModel(COLOUR_SCHEME)));
-	
-	
-//	public Validator Colour_scheme_validator = Validator.getValidator(COLOUR_SCHEME);
-
+//	public TableCellRenderer Colour_scheme_renderer = new CellRender_JComboBox(COLOUR_SCHEME);
 	public Boolean Colour_scheme_edit = true;
 	public Boolean Colour_scheme_show = true;
+
+	public Boolean _0020_Cursor_changer  = false;
+	public Boolean Cursor_changer_edit = true;
+	public Boolean Cursor_changer_show = true;
+	public String Cursor_changer_updater = "updateCursorChanger";
+
+	public String _0021_Cursor_off = "ARROW";
+	public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
+//	public Validator Cursor_off_validator = Validator.getDefaultValidator(Boolean.class);
+	public Boolean Cursor_off_edit = true;
+	public Boolean Cursor_off_show = false;
+
+	public String _0021_Cursor_over = "HAND";
+	public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
+//	public Validator Cursor_over_validator = Validator.getDefaultValidator(Boolean.class);
+	public Boolean Cursor_over_edit = true;
+	public Boolean Cursor_over_show = false;
 
 	/**
 	 * 
@@ -53,6 +55,14 @@ public final class DApplication extends DBase {
 	}
 
 
+	public void updateCursorChanger(){
+		System.out.println("update cursor changer done  " + _0020_Cursor_changer.toString());
+		Cursor_off_show = _0020_Cursor_changer;
+		Cursor_over_show = _0020_Cursor_changer;
+		propertyModel.createProperties(this);
+		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
+	}
+	
 	public String toString(){
 		return _0005_name;
 	}

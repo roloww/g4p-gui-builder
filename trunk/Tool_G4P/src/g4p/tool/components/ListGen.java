@@ -50,12 +50,10 @@ public class ListGen implements GTconstants {
 	}
 
 	public DefaultComboBoxModel getComboBoxModel(int key){
-		System.out.println(cbList.get(key));
 		return cbList.get(key);
 	}
 	
 	public SpinnerListModel getSpinnerModel(int key){
-		System.out.println(spList.get(key));
 		return spList.get(key);
 	}
 

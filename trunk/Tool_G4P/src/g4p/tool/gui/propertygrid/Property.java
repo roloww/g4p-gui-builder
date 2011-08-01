@@ -1,14 +1,9 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.components.DBase;
-
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
-import javax.swing.AbstractCellEditor;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-
-import processing.app.Editor;
 
 public class Property implements Comparable {
 
@@ -21,7 +16,7 @@ public class Property implements Comparable {
 	public Object fvalue;
 
 	public String cellText;
-
+	public Method updateMethod = null;
 	
 	// The validator to use with this property
 	public Validator validator = null;
@@ -79,6 +74,21 @@ public class Property implements Comparable {
 		catch(Exception excp){
 			// Nothing to do but assume the fields is to be shown
 		}
+		// Method to call if this property changes
+		try {
+			Field field = fieldFromObject.getClass().getField(cellText + "_updater");
+			String methodName =  (String) field.get(fieldFromObject);
+			// We have a method name but do we have the method
+			try {
+				updateMethod = fieldFromObject.getClass().getMethod(methodName, null );
+			}
+			catch(Exception excp0){
+				excp0.printStackTrace();
+			}
+		}
+		catch(Exception excp){
+			// Nothing to do 
+		}
 
 	}
 
@@ -86,7 +96,15 @@ public class Property implements Comparable {
 	public void setValue(Object value){
 		fvalue = value;
 		try {
+			// Attempt to store the value
 			setFieldValue(field, fieldFromObject, fvalue);
+			// If successful attempt to call the updater method if any
+			if(updateMethod != null){
+				try {
+					updateMethod.invoke(fieldFromObject, null);
+				} catch (Exception e) {
+				}
+			}		
 		} catch (IllegalArgumentException e) {
 			System.out.println("IllegalArgumentException:  unable to set a field value for "+ cellText + "   value: "+ fvalue.toString());
 		} catch (IllegalAccessException e) {
@@ -94,17 +112,45 @@ public class Property implements Comparable {
 		}
 	}
 
-
+	/**
+	 * Get the value stored in a field and return it as an Object.
+	 * 
+	 * @param f the field required
+	 * @param obj the object it applies to
+	 * @return
+	 */
 	public Object getFieldValue(Field f, Object obj){
 		Object fvalue;
 		Class<?> c = f.getClass();
-		if(c == boolean.class || c == Boolean.class){
+		if(c == int.class || c == Integer.class){
 			try {
-				System.out.println("Convert field of type "+ c);
+				fvalue = f.getInt(obj);
+			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Integer value for " + cellText);
+				fvalue = new Integer(0);
+			} 
+		}
+		else if(c == float.class || c == Float.class){
+			try {
+				fvalue = f.getFloat(obj);
+			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Float value for " + cellText);
+				fvalue = new Float(0);
+			} 
+		}
+		else if(c == String.class){
+			try {
+				fvalue = f.get(obj).toString();
+			} catch (Exception e) {
+				System.out.println("FAILED to retrieve String value for " + cellText);
+				fvalue = new String("");
+			} 
+		}
+		else if(c == boolean.class || c == Boolean.class){
+			try {
 				fvalue = f.getBoolean(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED Boolean " + cellText);
-				e.printStackTrace();
+				System.out.println("FAILED to retrieve Boolean value for " + cellText);
 				fvalue = new Boolean(false);
 			} 
 		}
@@ -112,35 +158,23 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getShort(obj);
 			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Short value for " + cellText);
 				fvalue = new Short((short) 0);
-			} 
-		}
-		else if(c == int.class || c == Integer.class){
-			try {
-				fvalue = f.getInt(obj);
-			} catch (Exception e) {
-				System.out.println("FAILED Integer " + cellText);
-				fvalue = new Integer(0);
 			} 
 		}
 		else if(c == long.class || c == Long.class){
 			try {
 				fvalue = f.getLong(obj);
 			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Long value for " + cellText);
 				fvalue = new Long(0);
-			} 
-		}
-		else if(c == float.class || c == Float.class){
-			try {
-				fvalue = f.getFloat(obj);
-			} catch (Exception e) {
-				fvalue = new Float(0);
 			} 
 		}
 		else if(c == double.class || c == Double.class){
 			try {
 				fvalue = f.getDouble(obj);
 			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Double value for " + cellText);
 				fvalue = new Double(0);
 			} 
 		}
@@ -148,20 +182,15 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getChar(obj);
 			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Character value for " + cellText);
 				fvalue = new Character(' ');
-			} 
-		}
-		else if(c == String.class){
-			try {
-				fvalue = f.get(obj).toString();
-			} catch (Exception e) {
-				fvalue = new String("");
 			} 
 		}
 		else {
 			try {
 				fvalue = f.get(obj);
 			} catch (Exception e) {
+				System.out.println("FAILED to retrieve Object value for " + cellText);
 				fvalue = new Object();
 			} 
 		}
@@ -169,7 +198,7 @@ public class Property implements Comparable {
 	}
 
 	public void setFieldValue(Field f, Object obj, Object value) throws IllegalArgumentException, IllegalAccessException {
-		System.out.println("Set Field " + field);
+//		System.out.println("Set Field " + field);
 		Class<?> c = f.getClass();
 		if(c == boolean.class || c == Boolean.class)
 			f.setBoolean(obj, Boolean.valueOf(value.toString()));

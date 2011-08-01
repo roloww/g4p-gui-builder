@@ -1,5 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 import g4p.tool.GTconstants;
@@ -75,6 +76,9 @@ public abstract class Validator implements GTconstants {
 		else if(type == COLOUR_SCHEME){
 			return new Validator_List(ListGen.instance().getComboBoxModel(type));
 		}
+		else if(type == CURSOR_OVER){
+			return new Validator_List(ListGen.instance().getComboBoxModel(type));
+		}
 		// 	Give up and return a default string	
 		return defaultString;
 	}
@@ -127,8 +131,8 @@ public abstract class Validator implements GTconstants {
 		return errorType;
 	}
 	
-	public void postEditAction(){	}
-	public void preEditAction(){	}
+	public void postEditAction(Object ...args){	}
+	public void preEditAction(Object ...args){	}
 	public Object getModel(){ return null; }
 
 	/**
@@ -155,7 +159,6 @@ public abstract class Validator implements GTconstants {
 
 		@Override
 		public boolean isValid(Object value) {
-                    System.out.println("Name validator:  isValid()");
 			String uv = value.toString();
 			int vs = value.toString().length();
 			boolean valid = true;
@@ -498,14 +501,14 @@ public abstract class Validator implements GTconstants {
 		 * @param args
 		 */
 		public Validator_List(Object ... args){
-			if(args.length > 0){
-				list = args[0];
-			}
+			list = args[0];
+//			Integer type = (Integer) args[0];
+//			list = ListGen.instance().getComboBoxModel(type);
 		}
 
-		public Object getModel(){ 
-			System.out.println("Sending combo list data " + list);
-			return list; 
+		// The first argument should be the combo box cell editor
+		public void preEditAction(Object ...args){
+			((CellEditor_JComboBox) args[0]).component.setModel((ComboBoxModel) list) ;
 		}
 
 		/**

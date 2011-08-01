@@ -27,7 +27,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public abstract class DBase extends DefaultMutableTreeNode implements GTconstants {
 
 	transient public CtrlPropModel propertyModel;
-	transient public Property[] propList;
+//	transient public Property[] propList;
 
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
@@ -115,23 +115,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 		return propertyModel;
 	}
 	
-	/**
-	 * This method is called when a change is made in the components properties.
-	 */
-	public void update(){
-	}
-	
-	// ====================================================================================================
-	
-	// Stuff for drawing
-	transient protected BasicStroke bs = new BasicStroke(2,
-			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
-	transient protected Color stroke;
-	transient protected Color fill;
-	
-	public void draw(Graphics2D g2, AffineTransform af) {
-	}
-		
 	// ====================================================================================================
 	
 	/**
@@ -147,7 +130,27 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public String toString(){
 		return _0005_name;
 	}
+	
+	
+	// ====================================================================================================
+	// ====================================================================================================
+	// ==========================    Stuff for drawing   ==================================================
+	// ====================================================================================================
+	
+	// Stuff for drawing
+	transient protected BasicStroke bs = new BasicStroke(2,
+			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+	transient protected Color stroke;
+	transient protected Color fill;
+	
+	public void draw(Graphics2D g2, AffineTransform af) {
+	}
 
+	/**
+	 * Call this method when a change is made to the object in the window view.
+	 */
+	public void update(){
+	}
 
 
 }

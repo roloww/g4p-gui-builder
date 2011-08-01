@@ -51,9 +51,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 
             public void valueChanged(TreeSelectionEvent tse) {
             	DBase sel = (DBase) getLastSelectedPathComponent();
-            	if(sel instanceof DPanel)
-            		System.out.println("Latest     " + ((DPanel)sel).show());
-            	// Update the property view
                	tabs.setSelectedComponent(sel);
                 props.showProprtiesFor(sel);
             }
