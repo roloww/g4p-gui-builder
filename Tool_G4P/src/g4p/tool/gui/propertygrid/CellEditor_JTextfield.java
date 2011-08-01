@@ -12,17 +12,6 @@ import javax.swing.border.LineBorder;
 
 public class CellEditor_JTextfield extends CellEditor_Base { 
 
-	// Singleton class stuff
-	private static CellEditor_JTextfield instance = null;
-
-	public static CellEditor_JTextfield instance(){
-		if(instance == null)
-			instance = new CellEditor_JTextfield();
-		System.out.println("===========================================================================================");
-		return instance;
-	}
-
-	// Stuff for edit component
 	protected static JTextField component;
 
 	protected static Color ok = new Color(200,255,200);
@@ -95,7 +84,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 */
 	public Component getTableCellEditorComponent(JTable table, Object value, 
 			boolean isSelected, int row, int column) {
-		System.out.println("JTextField getTableCellEditorComponent()");
+//		System.out.println("JTextField getTableCellEditorComponent()");
 		validator.setOriginalValue(value);
 		validator.preEditAction();
 		component.setBorder(new LineBorder(Color.black));
@@ -109,7 +98,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	 * value for the table model
 	 */
 	public Object getCellEditorValue() {
-		System.out.println("JTextField getCellEditorValue()");
+//		System.out.println("JTextField getCellEditorValue()");
 		validator.postEditAction();
 		return validator.getCellValue();
 		//		return (validator == null) ? new Object() : validator.getCellValue();

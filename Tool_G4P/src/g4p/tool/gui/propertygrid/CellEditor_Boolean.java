@@ -11,14 +11,6 @@ import javax.swing.table.TableCellRenderer;
 
 public class CellEditor_Boolean extends CellEditor_Base {
 
-	private static CellEditor_Boolean instance = null;
-
-	public static CellEditor_Boolean instance(){
-		if(instance == null)
-			instance = new CellEditor_Boolean();
-		return instance;
-	}
-
 	protected JCheckBox component;
 
 	public CellEditor_Boolean(){
@@ -37,7 +29,6 @@ public class CellEditor_Boolean extends CellEditor_Base {
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
 		component.setSelected(Boolean.valueOf(value.toString()));
-		System.out.println("JChexkBox getTableCellEditorComponent()   " + value.toString());
 		// Prevent cell background flicker
 		TableCellRenderer r = table.getCellRenderer(row, column);
 		Component c = r.getTableCellRendererComponent(table, value, isSelected, isSelected, row, column);

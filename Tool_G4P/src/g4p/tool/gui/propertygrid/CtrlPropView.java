@@ -77,15 +77,18 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		editor = p.editor;
 		if(editor == null){
 			if (c == boolean.class || c == Boolean.class) {
-				editor = CellEditor_Boolean.instance();
+				editor = new CellEditor_Boolean();
 			}
 			if (c == int.class || c == Integer.class || c == String.class) {
-				editor = CellEditor_JTextfield.instance();
+				editor = new CellEditor_JTextfield();
 			}
+			p.editor = editor;
 		}
 		// If we have an editor get any validator specified
-		editor.validator = (p.validator == null) ? Validator.getDefaultValidator(c) : p.validator;
-		
+		if(editor != null && v == null){
+			v = (p.validator == null) ? Validator.getDefaultValidator(c) : p.validator;
+			editor.validator = p.validator = v;
+		}
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}
 

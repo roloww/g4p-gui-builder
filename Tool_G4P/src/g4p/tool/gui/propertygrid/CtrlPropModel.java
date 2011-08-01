@@ -58,7 +58,6 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		if(rowIndex >= propData.length || columnIndex > 1)
 			return new String("");
-
 		if(columnIndex == 0)
 			return propData[rowIndex].cellText;
 		else if(propData[rowIndex].fvalue == null)
