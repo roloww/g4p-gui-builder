@@ -85,6 +85,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	public Component getTableCellEditorComponent(JTable table, Object value, 
 			boolean isSelected, int row, int column) {
 //		System.out.println("JTextField getTableCellEditorComponent()");
+		System.out.println("Va;idator " + validator);
 		validator.setOriginalValue(value);
 		validator.preEditAction();
 		component.setBorder(new LineBorder(Color.black));

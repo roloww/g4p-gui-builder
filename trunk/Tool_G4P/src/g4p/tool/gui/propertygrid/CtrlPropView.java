@@ -1,5 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
+import g4p.tool.Messages;
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
@@ -7,6 +8,7 @@ import g4p.tool.gui.ITabView;
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellEditor;
@@ -20,6 +22,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	public CtrlPropView() {
 		super();
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setRowHeight(22);
 	}
 
@@ -72,7 +75,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
 		Class<?> c = p.ftype;
-		Validator v = p.validator;
 		// Get special editor if none then use one based on data type
 		editor = p.editor;
 		if(editor == null){
@@ -84,11 +86,12 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 			}
 			p.editor = editor;
 		}
-		// If we have an editor get any validator specified
-		if(editor != null && v == null){
-			v = (p.validator == null) ? Validator.getDefaultValidator(c) : p.validator;
-			editor.validator = p.validator = v;
-		}
+		// If we have don't have a validator then get one based on the class
+		if(p.validator == null) 
+			 p.validator = Validator.getDefaultValidator(c);
+		if(editor != null)
+			editor.validator = p.validator;
+		Messages.println("{0}  edior {1}    valid {2}", p.cellText, p.editor, p.validator);
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}
 

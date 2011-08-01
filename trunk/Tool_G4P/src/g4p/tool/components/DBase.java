@@ -27,8 +27,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public abstract class DBase extends DefaultMutableTreeNode implements GTconstants {
 
 	transient public CtrlPropModel propertyModel;
-//	transient public Property[] propList;
 
+	// Whether it is selectable in the WindowView
+	// set to false for DOptionGroup and DTimer
+	protected boolean selectable = true;
+	
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
 	public Boolean 		name_edit = false;
@@ -103,7 +106,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	
 	public String get_title() { return ""; }
 	
-	
+	public boolean isSelectable(){
+		return selectable;
+	}
 	
 	public void makeTableModel(){
 		propertyModel = new CtrlPropModel(this);
@@ -152,5 +157,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public void update(){
 	}
 
-
+	public boolean isOver(int x, int y){
+		return (x >= _0020_x && x <= _0020_x + _0024_width 
+				&& y >= _0021_y && y <= _0021_y + _0025_height);
+	}
+	
+	public int getSize(){
+		return _0024_width * _0025_height;
+	}
 }
