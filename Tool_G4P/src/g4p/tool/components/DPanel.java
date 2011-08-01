@@ -42,7 +42,7 @@ public class DPanel extends DCoreText {
 		g.setColor(fill);
 		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(fillTitle);
-		g.fillRect(0, 0, _0024_width, 10);
+		g.fillRect(0, -16, _0024_width, 16);
 		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
