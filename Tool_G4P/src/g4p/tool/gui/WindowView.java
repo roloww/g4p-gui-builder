@@ -140,7 +140,7 @@ public class WindowView extends JPanel implements  MouseListener, MouseMotionLis
 
 	public class MutableDBase{
 		public DBase comp;
-		
+		public int area;
 	}
 	
 }
