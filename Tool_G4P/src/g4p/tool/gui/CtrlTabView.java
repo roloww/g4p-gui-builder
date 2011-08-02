@@ -64,7 +64,9 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	 * @param comp
 	 */
 	public void setSelectedComponent(DBase comp){
+		WindowView winView = null;
 		if(comp instanceof DWindow){
+			winView = tabMap.get(comp); 
 			setSelectedTab(comp);
 		}
 		else {
@@ -74,13 +76,15 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 				// It it was something other than a window update the component
 				// it is selecting
 				if(window != comp){
-					WindowView winView = tabMap.get(window);
+					winView = tabMap.get(window);
 					if(winView != null)
 						winView.UpdateComponent(comp);
 					tree.setSelectedComponent(comp);
 				}
 			}
 		}
+		winView.setSelected(comp);
+		repaint();
 	}
 	
 	/**
@@ -111,7 +115,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	 */
 	@Override
 	public void selectedComponentHasChanged(DBase comp) {
-		// TODO Auto-generated method stub
+		tree.setSelectedComponent(comp);
 		
 	}
 

@@ -15,18 +15,12 @@ import g4p.tool.components.DBase;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DWindow;
-import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.Enumeration;
-
-import javax.swing.Icon;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
 import processing.app.Base;
 import processing.app.Editor;
@@ -58,12 +52,13 @@ public class GuiDesigner extends javax.swing.JFrame {
 	public GuiDesigner() {
 		initComponents();
 		customComponents();
-		setPreferredSize(new Dimension(1024, 800));
+//		setPreferredSize(new Dimension(1024, 800));
 
 		tm = getSimpleSketchModel();
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
+		setPreferredSize(new Dimension(800, 600));
 	}
 
 	/**
@@ -79,7 +74,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 		initComponents();
 		customComponents();
-		setPreferredSize(new Dimension(1024, 800));
+		setPreferredSize(new Dimension(800, 600));
 
 		tm = getSimpleSketchModel();
 		// Now create GUI
@@ -166,7 +161,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		
 		DButton btn2 = new DButton();
 		btn2.set_x(10);
-		btn2.set_y(20);
+		btn2.set_y(0);
 		btn2.set_width(80);
 		btn2.set_height(20);
 		

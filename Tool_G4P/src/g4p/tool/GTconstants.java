@@ -28,4 +28,17 @@ public interface GTconstants {
 	public final int INVALID_CHAR		=	0x00000034;
 	public final int UNAVAILABLE		=	0x00000035;
 	
+	// Window view modes
+	public final int INACTIVE			=	0x00000100;
+	public final int MOVE				=	0x00000101;
+	public final int RESIZE				=	0x00000102;	
+	
+	// Mouse over constants
+	public final int OVER_NONE			=	0x00000000;
+	public final int OVER_COMP			=	0x00000200;
+	public final int OVER_HORZ			=	0x00000201;
+	public final int OVER_VERT			=	0x00000202;
+	public final int OVER_DIAG			=	0x00000203;
+	
+	public final int HANDLE_SIZE		=	5;
 }

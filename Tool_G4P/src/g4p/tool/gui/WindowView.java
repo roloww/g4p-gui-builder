@@ -5,6 +5,7 @@
 
 package g4p.tool.gui;
 
+import g4p.tool.GTconstants;
 import g4p.tool.Messages;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
@@ -24,13 +25,17 @@ import javax.swing.JPanel;
  *
  * @author Peter
  */
-public class WindowView extends JPanel implements  MouseListener, MouseMotionListener {
+public class WindowView extends JPanel 
+implements  MouseListener, MouseMotionListener, GTconstants{
 
 	private DBase window = null;
 	private ITabView tabCtrl;
-	
+
 	private DBase isOver, selected;
-	private int area;
+
+	private MutableDBase mdb = new MutableDBase();
+	
+	private float scale = 1.0f;
 	
 	public WindowView(ITabView pane, DBase window){
 		this.window = window;
@@ -40,11 +45,11 @@ public class WindowView extends JPanel implements  MouseListener, MouseMotionLis
 		addMouseListener(this);
 		addMouseMotionListener(this);
 	}
-	
+
 	public DBase getWindowComponent(){
 		return window;
 	}
-	
+
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
@@ -52,95 +57,119 @@ public class WindowView extends JPanel implements  MouseListener, MouseMotionLis
 		AffineTransform orgAF = g2.getTransform();
 		AffineTransform af = new AffineTransform(orgAF);
 		af.scale(scale, scale);
-		window.draw(g2, af);
+		window.draw(g2, af, selected);
 		g2.setTransform(orgAF);
 	}
 
-	public DBase isOver(int x, int y){
-		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+	public void isOver(MutableDBase m, int x, int y){
+		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
 		int sy = Math.round(y / scale);
-		
-		area = Integer.MAX_VALUE;
-		findIsOver(window);
-		return null;
+		mdb.reset();
+		window.isOver(m, x, y);
 	}
 	
-	private void findIsOver(DBase comp){
-		isOver = null;
-		if(comp.isSelectable() ){
-			int a = comp.get_width() * comp.get_height();
-			if(a < area){
-				area = a;
-				isOver = comp;
+	public void setSelected(DBase comp){
+		selected = comp;
+	}
+	
+	public DBase isOver(int x, int y){
+		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		int sx = Math.round(x / scale);
+		int sy = Math.round(y / scale);
+		mdb.reset();
+		if(window.isOver(sx, sy)){
+			findIsOver(mdb, window, sx, sy);
+		}
+		return (mdb == null) ? null : mdb.comp;
+	}
+
+	private void findIsOver(MutableDBase m, DBase comp, int sx, int sy){
+		if(comp.isSelectable() && comp.isOver(sx, sy)){
+			int a = comp.getSize();
+			if(a < m.area){
+				m.area = a;
+				m.comp = comp;
 			}
 		}
 		Enumeration<?> e = comp.children();
 		while(e.hasMoreElements()){
-			findIsOver((DBase)e.nextElement());
+			findIsOver(m, (DBase)e.nextElement(), sx - comp.get_x(), sy - comp.get_y());
 		}
 	}
-	
+
 	// A component has been updated
 	public void UpdateComponent(DBase comp) {
 		comp.update();
-		
+
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(isOver != selected){
+			selected = isOver;
+			tabCtrl.selectedComponentHasChanged(selected);
+		}	
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+//		isOver = isOver(e.getX(), e.getY());
+//		selected = isOver;
+//		tabCtrl.selectedComponentHasChanged(selected);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
+
+
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		Messages.println("Mouse at [{0}, {1}]", e.getX(), e.getY());
-		isOver(e.getX(), e.getY());
-	//	if(isOver != null)
-			System.out.println(isOver);
+		System.out.print(Messages.build("Mouse at [{0}, {1}]", e.getX(), e.getY()));
+		System.out.println(" :: " + isOver(e.getX(), e.getY()));
+		isOver = isOver(e.getX(), e.getY());
 	}
 
 
-//	Cursor cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
-//	setCursor(cursor);
+	//	Cursor cursor = Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR);
+	//	setCursor(cursor);
 
-	public class MutableDBase{
-		public DBase comp;
-		public int area;
+	public static class MutableDBase{
+		public DBase comp = null;
+		public int area = Integer.MAX_VALUE;
+
+		public MutableDBase(){	}
+		
+		public void reset(){
+			comp = null;
+			area = Integer.MAX_VALUE;
+		}
+		
+		public void reset(DBase comp){
+			this.comp = comp;
+			area = comp.getSize();
+		}
 	}
-	
 }

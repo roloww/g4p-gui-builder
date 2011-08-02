@@ -20,7 +20,7 @@ public class DButton extends DCoreText {
 		face = new RoundRectangle2D.Float(0, 0, 10, 10, 2, 2);
 	}
 	
-	public void draw(Graphics2D g, AffineTransform paf){
+	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
@@ -31,6 +31,8 @@ public class DButton extends DCoreText {
 		g.fill(face);			
 		g.setColor(stroke);
 		g.draw(face);			
+		if(this == selected)
+			drawSelector(g);
 
 		g.setTransform(paf);
 	}

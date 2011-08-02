@@ -6,7 +6,7 @@ package g4p.tool;
 
 /**
  *
- * @author Peter
+ * @author Peter Lager
  */
 public class TestTool_01 {
 
