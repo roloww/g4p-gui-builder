@@ -17,12 +17,6 @@ public interface ITabView {
 	 * @return
 	 */
 	public abstract boolean deleteWindow(DBase window);
-
-	/**
-	 * Select selected tab and update name if required
-	 * @param window
-	 */
-//	public abstract void setSelectedTab(DBase window);
 	
 	/** 
 	 * Change the selected tab to the window with this control
@@ -30,7 +24,9 @@ public interface ITabView {
 	 */
 	public abstract void setSelectedComponent(DBase comp);
 
-	
+	/**
+	 * Called when window name is changed in property view
+	 */
 	public void updateTabName();
 
 	public void repaint();

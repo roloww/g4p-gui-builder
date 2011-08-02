@@ -12,7 +12,7 @@ public class DCore extends DBase {
 		x_show = y_show = true;	
 		width_edit = height_edit = true;
 		width_show = height_show = true;
-
+		
 		allowsChildren = false;
 	}
 

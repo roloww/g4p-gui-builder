@@ -24,6 +24,7 @@ public final class DWindow extends DBase {
 	 */
 	public DWindow(boolean mainSketch) {
 		super();
+		draggable = false;
 		allowsChildren = true;
 		if(mainSketch){
 			_0005_name = "Sketch";
@@ -53,7 +54,7 @@ public final class DWindow extends DBase {
 	}
 
 	
-	public void draw(Graphics2D g, AffineTransform paf){
+	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
@@ -63,10 +64,12 @@ public final class DWindow extends DBase {
 		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(stroke);
 		g.drawRect(0, 0, _0024_width, _0025_height);
+		if(this == selected)
+			drawSelector(g);
 		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g, af);
+			((DBase)e.nextElement()).draw(g, af, selected);
 		}
 		g.setTransform(paf);
 	}

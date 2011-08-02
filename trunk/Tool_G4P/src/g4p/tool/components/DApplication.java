@@ -47,6 +47,7 @@ public final class DApplication extends DBase {
 	public DApplication() {
 		super();
 		selectable = false;
+		draggable = false;
 		allowsChildren = true;
 		_0005_name = "APPLICATION";
 	}

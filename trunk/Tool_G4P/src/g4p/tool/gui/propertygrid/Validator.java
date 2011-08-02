@@ -196,11 +196,13 @@ public abstract class Validator implements GTconstants {
 			return valid;	
 		}
 		
-		public void preEditAction(){
+		public void preEditAction(Object ...args){
+			System.out.println("ControlName PRE removing "+originalValue);
 			NameGen.instance().remove((String) originalValue);
 		}
 		
-		public void postEditAction(){
+		public void postEditAction(Object ...args){
+			System.out.println("ControlName POST");
 			NameGen.instance().add((String) cellValue);
 		}
 

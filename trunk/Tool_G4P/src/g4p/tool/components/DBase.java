@@ -9,6 +9,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import g4p.tool.GTconstants;
 import g4p.tool.Messages;
+import g4p.tool.gui.WindowView.MutableDBase;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Property;
 import g4p.tool.gui.propertygrid.Validator;
@@ -31,6 +32,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	// Whether it is selectable in the WindowView
 	// set to false for DOptionGroup and DTimer
 	protected boolean selectable = true;
+	
+	protected boolean draggable = true;
 	
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
@@ -145,10 +148,13 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	// Stuff for drawing
 	transient protected BasicStroke bs = new BasicStroke(1.1f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+
+	transient protected BasicStroke selStroke = new BasicStroke(1.3f,
+			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 	transient protected Color stroke;
 	transient protected Color fill;
 	
-	public void draw(Graphics2D g2, AffineTransform af) {
+	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
 
 	/**
@@ -157,6 +163,38 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public void update(){
 	}
 
+	public void drawSelector(Graphics2D g){
+		g.setStroke(bs);
+		g.setColor(Color.red);
+		g.drawRect(0, 0,_0024_width, _0025_height);
+		
+		drawHandle(g, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2);
+		drawHandle(g, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE);
+		drawHandle(g, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE);	
+	}
+	
+	protected void drawHandle(Graphics2D g, int x, int y){
+		g.setColor(Color.white);
+		g.fillRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
+		g.setColor(Color.red);
+		g.drawRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
+	}
+	
+	public void isOver(MutableDBase m, int x, int y) {
+		if(selectable){
+			x -= _0020_x;
+			y -= _0021_y;
+			if(isOverRectangle(x, y, 0, 0, _0024_width, _0025_height)){
+				
+			}
+		}
+		
+	}
+	
+	private boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
+		
+		return false;
+	}
 	public boolean isOver(int x, int y){
 		return (x >= _0020_x && x <= _0020_x + _0024_width 
 				&& y >= _0021_y && y <= _0021_y + _0025_height);
@@ -165,4 +203,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public int getSize(){
 		return _0024_width * _0025_height;
 	}
+
+
+
 }
