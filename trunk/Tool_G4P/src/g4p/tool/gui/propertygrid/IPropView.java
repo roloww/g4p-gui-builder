@@ -5,5 +5,7 @@ import g4p.tool.components.DBase;
 public interface IPropView {
 
 	public abstract void showProprtiesFor(DBase comp);
+	
+	public abstract void modelHasBeenChanged();
 
 }

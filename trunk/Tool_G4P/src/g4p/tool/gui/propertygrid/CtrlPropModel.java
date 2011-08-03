@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
@@ -60,10 +61,7 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 			return new String("");
 		if(columnIndex == 0)
 			return propData[rowIndex].cellText;
-		else if(propData[rowIndex].fvalue == null)
-			return "";
-		else 
-			return propData[rowIndex].fvalue;
+		return propData[rowIndex].getValue();
 	}
 
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
@@ -81,5 +79,9 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 		return (col > 0) ? propData[row].allowEdit : false; 
 	}
 
+	public void modelChangedInGUI(){
+		System.out.println("CtrlPropModel ::  modelChangedInGUI");
+		this.fireTableChanged(new TableModelEvent(this));
+	}
 
 }

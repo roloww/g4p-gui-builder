@@ -1,13 +1,11 @@
 package g4p.tool.components;
 
-import g4p.tool.gui.propertygrid.Renderer_Boolean;
+import g4p.tool.gui.WindowView.MutableDBase;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
-
-import javax.swing.table.TableCellRenderer;
 
 public class DPanel extends DCoreText {
 
@@ -53,12 +51,6 @@ public class DPanel extends DCoreText {
 		g.setTransform(paf);
 	}
 
-//	public void drawSelector(Graphics2D g){
-//		g.setStroke(bs);
-//		g.setColor(Color.red);
-//		g.drawRect(0, -TAB_HEIGHT,_0024_width, _0025_height + TAB_HEIGHT);			
-//
-//	}
 	public void drawSelector(Graphics2D g){
 		g.setStroke(bs);
 		g.setColor(Color.red);
@@ -67,6 +59,31 @@ public class DPanel extends DCoreText {
 		drawHandle(g, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2);
 		drawHandle(g, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE);
 		drawHandle(g, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE);	
+	}
+
+	public void isOver(MutableDBase m, int x, int y) {
+		if(selectable){
+			x -= _0020_x;
+			y -= _0021_y;
+			//
+			if(getSize() < m.area && isOverRectangle(x, y, 0, - TAB_HEIGHT, _0024_width, _0025_height + TAB_HEIGHT)){			
+				m.selID = OVER_COMP;
+				m.comp = this;
+				m.area = getSize();
+				if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
+					m.selID = OVER_HORZ;
+				else if(isOverRectangle(x,y, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+					m.selID = OVER_VERT;
+				else if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+					m.selID = OVER_DIAG;
+			}
+		}
+		if(this.allowsChildren){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).isOver(m, x, y);
+			}
+		}
 	}
 
 	/**

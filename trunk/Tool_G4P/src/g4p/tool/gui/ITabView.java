@@ -32,10 +32,18 @@ public interface ITabView {
 	public void repaint();
 	
 	/**
-	 * This method should be called by the WindowView when the selected
-	 * component has changed from form display. 
+	 * This method should be called by the WindowView when a 
+	 * different component has been selected. 
 	 * 
 	 * @param comp the new component selected
 	 */
-	public abstract void selectedComponentHasChanged(DBase comp);
+	public abstract void componentHasBeenSelected(DBase comp);
+	
+	/**
+	 * The size or position of the component has changed
+	 * @param comp
+	 */
+	public abstract void selectedComponentPropertyChange(DBase comp);
+	
+	
 }

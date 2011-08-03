@@ -30,6 +30,7 @@ public interface GTconstants {
 	
 	// Window view modes
 	public final int INACTIVE			=	0x00000100;
+	public final int ACTIVE				=	0x00000101;
 	public final int MOVE				=	0x00000101;
 	public final int RESIZE				=	0x00000102;	
 	

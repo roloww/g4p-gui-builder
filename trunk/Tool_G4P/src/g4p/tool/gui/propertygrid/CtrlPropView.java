@@ -4,9 +4,7 @@ import g4p.tool.Messages;
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
-
-import javax.swing.AbstractCellEditor;
-import javax.swing.DefaultCellEditor;
+import javax.swing.table.*;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
@@ -113,4 +111,12 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		}
 		return super.getCellRenderer(row, col);
 	}
+
+	@Override
+	public void modelHasBeenChanged() {
+		System.out.println("CtrlPropView ::  modelHasBeenChanged");
+		((CtrlPropModel)getModel()).modelChangedInGUI();
+	}
+
+	
 }

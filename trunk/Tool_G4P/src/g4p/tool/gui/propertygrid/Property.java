@@ -13,7 +13,7 @@ public class Property implements Comparable {
 	public Class<?> ftype;
 	// Includes ordering key
 	public String fieldName;
-	public Object fvalue;
+//	public Object fvalue;
 
 	public String cellText;
 	public Method updateMethod = null;
@@ -32,7 +32,7 @@ public class Property implements Comparable {
 		fieldName = field.getName(); // e.g. _1234_name
 		cellText = fieldName.substring(6);
 		
-		fvalue = this.getFieldValue(field, fieldFromObject);
+//		fvalue = this.getFieldValue(field, fieldFromObject);
 		
 		// Get cell editor if any
 		try {
@@ -89,27 +89,11 @@ public class Property implements Comparable {
 		catch(Exception excp){
 			// Nothing to do 
 		}
-
 	}
 
-	// Called when table cell loses focus
-	public void setValue(Object value){
-		fvalue = value;
-		try {
-			// Attempt to store the value
-			setFieldValue(field, fieldFromObject, fvalue);
-			// If successful attempt to call the updater method if any
-			if(updateMethod != null){
-				try {
-					updateMethod.invoke(fieldFromObject, null);
-				} catch (Exception e) {
-				}
-			}		
-		} catch (IllegalArgumentException e) {
-			System.out.println("IllegalArgumentException:  unable to set a field value for "+ cellText + "   value: "+ fvalue.toString());
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException:  unable to set a field value for "+ cellText + "   value: "+ fvalue.toString());
-		}
+
+	public Object getValue(){
+		return getFieldValue(field, fieldFromObject);
 	}
 
 	/**
@@ -196,6 +180,26 @@ public class Property implements Comparable {
 		}
 		return fvalue;
 	}
+	// Called when table cell loses focus
+	public void setValue(Object value){
+//		fvalue = value;
+		try {
+			// Attempt to store the value
+			setFieldValue(field, fieldFromObject, value);
+//			setFieldValue(field, fieldFromObject, fvalue);
+			// If successful attempt to call the updater method if any
+			if(updateMethod != null){
+				try {
+					updateMethod.invoke(fieldFromObject, null);
+				} catch (Exception e) {
+				}
+			}		
+		} catch (IllegalArgumentException e) {
+			System.out.println("IllegalArgumentException:  unable to set a field value for "+ cellText + "   value: "+ value.toString());
+		} catch (IllegalAccessException e) {
+			System.out.println("IllegalAccessException:  unable to set a field value for "+ cellText + "   value: "+ value.toString());
+		}
+	}
 
 	public void setFieldValue(Field f, Object obj, Object value) throws IllegalArgumentException, IllegalAccessException {
 //		System.out.println("Set Field " + field);
@@ -214,11 +218,6 @@ public class Property implements Comparable {
 			f.set(obj, (String)value);
 		else 
 			f.set(obj, value);
-	}
-
-
-	public Object getValue(){
-		return fvalue;
 	}
 
 	public int compareTo(Object o) {
