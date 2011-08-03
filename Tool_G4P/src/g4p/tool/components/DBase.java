@@ -1,18 +1,16 @@
 package g4p.tool.components;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.RoundRectangle2D;
-
 import g4p.tool.GTconstants;
 import g4p.tool.Messages;
 import g4p.tool.gui.WindowView.MutableDBase;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
-import g4p.tool.gui.propertygrid.Property;
 import g4p.tool.gui.propertygrid.Validator;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.util.Enumeration;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
@@ -32,20 +30,20 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	// Whether it is selectable in the WindowView
 	// set to false for DOptionGroup and DTimer
 	protected boolean selectable = true;
-	
-	protected boolean draggable = true;
-	
+	protected boolean resizeable = true;
+	protected boolean moveable = true;
+
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
 	public Boolean 		name_edit = false;
 	public Boolean 		name_show = true;
 	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
-	
+
 	public int 			_0020_x = 0;
 	public Boolean 		x_edit = false;
 	public Boolean 		x_show = false;
 	public Validator 	x_validator = Validator.getValidator(int.class, -9999, 9999);
-	
+
 	public int 			_0021_y = 0;
 	public Boolean 		y_edit = false;
 	public Boolean 		y_show = false;
@@ -61,40 +59,40 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
 
-	
-	
+
+
 	public DBase(){
 		allowsChildren = false;
-//		System.out.println("\tDBase() ctor");
+		//		System.out.println("\tDBase() ctor");
 	}
 
-	
+
 	// SETTERS
-	
+
 	public void set_name(String name){
 		_0005_name = name;
 	}
-	
+
 	public void set_x(int x){
 		_0020_x = x;
 	}
-	
+
 	public void set_y(int y){
 		_0021_y = y;
 	}
-	
+
 	public void set_width(int width){
 		_0024_width = width;
 	}
-	
+
 	public void set_height(int height){
 		_0025_height = height;
 	}
-	
-	
+
+
 	// GETTERS
-			
-			
+
+
 	public String get_name() { return _0005_name; }
 
 	public int get_x() {	return _0020_x;	}
@@ -106,45 +104,53 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	public int get_height() { return _0025_height; }
 
 	public String get_text() { return ""; }
-	
+
 	public String get_title() { return ""; }
-	
+
 	public boolean isSelectable(){
 		return selectable;
+	}
+
+	public boolean isResizeable(){
+		return this.resizeable;
+	}
+	
+	public boolean isMoveable(){
+		return moveable;
 	}
 	
 	public void makeTableModel(){
 		propertyModel = new CtrlPropModel(this);
 	}
-	
+
 	public CtrlPropModel getTableModel(){
 		if(propertyModel == null)
 			makeTableModel();
 		return propertyModel;
 	}
-	
+
 	// ====================================================================================================
-	
+
 	/**
 	 * Display details - used for debugging only
 	 */
 	public String show(){
 		return Messages.build("{0}  {1} Pos [{2},{3}] Size [{4}, {5}]", this.getClass(), _0005_name, _0020_x, _0021_y, _0024_width, _0025_height);
 	}
-	
+
 	/**
 	 * Use this to return the name of the component
 	 */
 	public String toString(){
 		return _0005_name;
 	}
-	
-	
+
+
 	// ====================================================================================================
 	// ====================================================================================================
 	// ==========================    Stuff for drawing   ==================================================
 	// ====================================================================================================
-	
+
 	// Stuff for drawing
 	transient protected BasicStroke bs = new BasicStroke(1.1f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
@@ -153,10 +159,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 	transient protected Color stroke;
 	transient protected Color fill;
-	
+
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
-
+	
 	/**
 	 * Call this method when a change is made to the object in the window view.
 	 */
@@ -167,39 +173,53 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 		g.setStroke(bs);
 		g.setColor(Color.red);
 		g.drawRect(0, 0,_0024_width, _0025_height);
-		
+
 		drawHandle(g, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2);
 		drawHandle(g, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE);
 		drawHandle(g, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE);	
 	}
-	
+
 	protected void drawHandle(Graphics2D g, int x, int y){
 		g.setColor(Color.white);
 		g.fillRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
 		g.setColor(Color.red);
 		g.drawRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
 	}
-	
+
 	public void isOver(MutableDBase m, int x, int y) {
 		if(selectable){
 			x -= _0020_x;
 			y -= _0021_y;
-			if(isOverRectangle(x, y, 0, 0, _0024_width, _0025_height)){
-				
+			//
+			if(getSize() < m.area && isOverRectangle(x, y, 0, 0, _0024_width, _0025_height)){			
+				m.selID = OVER_COMP;
+				m.comp = this;
+				m.area = getSize();
+				if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
+					m.selID = OVER_HORZ;
+				else if(isOverRectangle(x,y, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+					m.selID = OVER_VERT;
+				else if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+					m.selID = OVER_DIAG;
 			}
 		}
-		
+		if(this.allowsChildren){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).isOver(m, x, y);
+			}
+		}
 	}
-	
-	private boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
-		
-		return false;
+
+	protected boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
+		return px >= x && px <= x + w && py >= y && py <= y + h;
 	}
-	public boolean isOver(int x, int y){
-		return (x >= _0020_x && x <= _0020_x + _0024_width 
-				&& y >= _0021_y && y <= _0021_y + _0025_height);
-	}
-	
+
+//	public boolean isOver(int x, int y){
+//		return (x >= _0020_x && x <= _0020_x + _0024_width 
+//				&& y >= _0021_y && y <= _0021_y + _0025_height);
+//	}
+
 	public int getSize(){
 		return _0024_width * _0025_height;
 	}

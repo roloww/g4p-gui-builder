@@ -24,7 +24,9 @@ public final class DWindow extends DBase {
 	 */
 	public DWindow(boolean mainSketch) {
 		super();
-		draggable = false;
+		selectable = true;
+		resizeable = true;
+		moveable = false;
 		allowsChildren = true;
 		if(mainSketch){
 			_0005_name = "Sketch";
