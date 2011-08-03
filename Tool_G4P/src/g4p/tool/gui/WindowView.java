@@ -28,12 +28,12 @@ import javax.swing.JPanel;
 public class WindowView extends JPanel 
 implements  MouseListener, MouseMotionListener, GTconstants {
 
-	private DBase window = null;
 	private ITabView tabCtrl;
 
+	private DBase window = null;
 	private DBase selected;
 
-	private MutableDBase mdb = new MutableDBase();
+	private MutableDBase selInfo = new MutableDBase();
 
 	private float scale = 1.0f;
 	private int startX, startY;
@@ -68,7 +68,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
 		int sy = Math.round(y / scale);
-		mdb.reset();
+		selInfo.reset();
 		window.isOver(m, sx, sy);
 		if(m.comp != null){
 			m.orgX = m.comp.get_x();
@@ -84,8 +84,8 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(mdb.comp != selected){
-			selected = mdb.comp;
+		if(selInfo.comp != selected){
+			selected = selInfo.comp;
 			tabCtrl.componentHasBeenSelected(selected);
 		}	
 	}
@@ -94,9 +94,9 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	public void mousePressed(MouseEvent e) {
 		startX = e.getX();
 		startY = e.getY();
-		isOver(mdb, startX, startY);
-		if(mdb.comp != null && mdb.comp.isSelectable()){
-			selected = mdb.comp;
+		isOver(selInfo, startX, startY);
+		if(selInfo.comp != null && selInfo.comp.isSelectable()){
+			selected = selInfo.comp;
 			tabCtrl.componentHasBeenSelected(selected);
 		}
 	}
@@ -116,36 +116,40 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(mdb.comp != null && mdb.comp.isResizeable()){
+		if(selInfo.comp != null && selInfo.comp.isResizeable()){
 			deltaX = Math.round((e.getX() - startX) / scale);
 			deltaY = Math.round((e.getY() - startY) / scale);
-			if(mdb.comp.isResizeable()){
-				switch(mdb.selID){
+			if(selInfo.comp.isResizeable()){
+				switch(selInfo.selID){
 				case OVER_HORZ:
 					setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-					mdb.comp.set_width(mdb.orgW + deltaX);
+					selInfo.comp.set_width(selInfo.orgW + deltaX);
 					break;
 				case OVER_VERT:
 					setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-					mdb.comp.set_height(mdb.orgH + deltaY);
+					selInfo.comp.set_height(selInfo.orgH + deltaY);
 					break;
 				case OVER_DIAG:
 					setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-					mdb.comp.set_width(mdb.orgW + deltaX);
-					mdb.comp.set_height(mdb.orgH + deltaY);
+					selInfo.comp.set_width(selInfo.orgW + deltaX);
+					selInfo.comp.set_height(selInfo.orgH + deltaY);
 					break;
 				}
 			}
-			if(mdb.comp.isMoveable() && mdb.selID == OVER_COMP){
+			if(selInfo.comp.isMoveable() && selInfo.selID == OVER_COMP){
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-				mdb.comp.set_x(mdb.orgX + deltaX);
-				mdb.comp.set_y(mdb.orgY + deltaY);
+				selInfo.comp.set_x(selInfo.orgX + deltaX);
+				selInfo.comp.set_y(selInfo.orgY + deltaY);
 			}
-			tabCtrl.selectedComponentPropertyChange(mdb.comp);
+			tabCtrl.selectedComponentPropertyChange(selInfo.comp);
 			repaint();
 		}
 	}
 
+	private int snapValue(int nbr, int gridSize){
+		return gridSize * Math.round(((float)nbr)/((float)gridSize));
+	}
+	
 	@Override
 	public void mouseMoved(MouseEvent e) {
 	}
