@@ -1,7 +1,7 @@
 package g4p.tool.components;
 
+@SuppressWarnings("serial")
 public class DSliderInteger extends DCore {
-
 
 	public int 			_0040_value = 50;
 	public Boolean 		value_edit = true;

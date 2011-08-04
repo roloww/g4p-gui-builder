@@ -6,7 +6,6 @@ import g4p.tool.gui.WindowView.MutableDBase;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Validator;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -24,6 +23,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @author Peter Lager
  *
  */
+@SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, GTconstants {
 
 	transient public CtrlPropModel propertyModel;

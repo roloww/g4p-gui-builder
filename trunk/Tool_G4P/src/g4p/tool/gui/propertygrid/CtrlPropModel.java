@@ -10,6 +10,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
+@SuppressWarnings("serial")
 public class CtrlPropModel extends AbstractTableModel implements TableModel {
 
 	private String[] columnNames = new String[]{"Field", "Value"};

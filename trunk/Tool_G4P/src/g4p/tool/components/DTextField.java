@@ -3,6 +3,7 @@ package g4p.tool.components;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+@SuppressWarnings("serial")
 public class DTextField extends DCoreText {
 
 	public Boolean 		_0030_multiline = false;

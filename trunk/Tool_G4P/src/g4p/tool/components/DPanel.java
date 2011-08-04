@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
 
+@SuppressWarnings("serial")
 public class DPanel extends DCoreText {
 
 	final protected static int TAB_HEIGHT = 16;

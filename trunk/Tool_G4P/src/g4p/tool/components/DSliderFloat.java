@@ -1,6 +1,7 @@
 package g4p.tool.components;
 
 
+@SuppressWarnings("serial")
 public class DSliderFloat extends DCore {
 
 	public Float 		_0040_value = 50.0f;

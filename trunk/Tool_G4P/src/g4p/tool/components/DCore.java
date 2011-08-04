@@ -1,5 +1,6 @@
 package g4p.tool.components;
 
+@SuppressWarnings("serial")
 public class DCore extends DBase {
 
 	public DCore(){

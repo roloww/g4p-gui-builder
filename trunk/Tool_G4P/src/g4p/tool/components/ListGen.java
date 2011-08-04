@@ -2,7 +2,6 @@ package g4p.tool.components;
 
 import g4p.tool.GTconstants;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 

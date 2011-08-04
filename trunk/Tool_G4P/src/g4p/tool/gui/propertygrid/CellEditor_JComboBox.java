@@ -11,6 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class CellEditor_JComboBox extends CellEditor_Base {
 
 	protected JComboBox component;
@@ -22,7 +23,6 @@ public class CellEditor_JComboBox extends CellEditor_Base {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JComboBox cb = (JComboBox)e.getSource();
 				fireEditingStopped();				
 			}
 

@@ -1,7 +1,6 @@
 package g4p.tool.gui;
 
 import g4p.tool.components.DBase;
-import g4p.tool.components.DPanel;
 import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
@@ -16,6 +15,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+@SuppressWarnings("serial")
 public class CtrlSketchView extends JTree implements ISketchView {
 
 	

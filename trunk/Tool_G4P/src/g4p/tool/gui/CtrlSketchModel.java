@@ -5,6 +5,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
 
+@SuppressWarnings("serial")
 public class CtrlSketchModel extends DefaultTreeModel {
 
 	/**

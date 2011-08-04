@@ -1,12 +1,12 @@
 package g4p.tool.components;
 
-import java.awt.Color;
+import g4p.tool.gui.propertygrid.Validator;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
 
-import g4p.tool.gui.propertygrid.Validator;
-
+@SuppressWarnings("serial")
 public final class DWindow extends DBase {
 
 	public String 		_0010_title = "Window title";
@@ -15,8 +15,6 @@ public final class DWindow extends DBase {
 	public Boolean 		Display_scale_edit = true;
 	public Boolean 		Display_scale_show = true;
 	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 200);
-	
-	private float scale;
 	
 	/**
 	 * Create a Window object

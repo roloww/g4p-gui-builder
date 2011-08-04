@@ -1,12 +1,11 @@
 package g4p.tool.components;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.RectangularShape;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Enumeration;
 
+@SuppressWarnings("serial")
 public class DButton extends DCoreText {
 	
 	transient protected RectangularShape face;
