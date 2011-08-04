@@ -16,7 +16,7 @@ public class CellEditor_JComboBox extends CellEditor_Base {
 	protected JComboBox component;
 
 	public CellEditor_JComboBox(int type){
-		System.out.println("Creating JComboBox editor");
+//		System.out.println("Creating JComboBox editor");
 		component = new JComboBox(ListGen.instance().getComboBoxModel(type));
 		component.addActionListener(new ActionListener(){
 

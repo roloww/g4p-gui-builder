@@ -122,15 +122,12 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	@Override
 	public void componentHasBeenSelected(DBase comp) {
 		if(comp != null)
-			tree.setSelectedComponent(comp);
-		
+			tree.setSelectedComponent(comp);		
 	}
 
 	@Override
 	public void selectedComponentPropertyChange(DBase comp) {
-		System.out.println("CtrlTabView ::  selectedComponentPropertyChange");
-			props.modelHasBeenChanged();
-		
+		props.modelHasBeenChanged();
 	}
 
 }

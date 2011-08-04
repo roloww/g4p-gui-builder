@@ -2,8 +2,6 @@ package g4p.tool.components;
 
 public class DCore extends DBase {
 
-	
-	
 	public DCore(){
 		super();
 //		System.out.println("\tDCore) ctor");

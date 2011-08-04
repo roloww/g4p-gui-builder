@@ -30,6 +30,9 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 
 	private ITabView tabCtrl;
 
+	private static int gridSize = 5;
+	private static Color gridCol = new Color(32,64,32);
+	
 	private DBase window = null;
 	private DBase selected;
 
@@ -44,6 +47,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		this.window = window;
 		this.tabCtrl = pane;
 		this.setBackground(new Color(255,255,255));
+		setFont(displayFont);
 		this.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -59,11 +63,22 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		AffineTransform orgAF = g2.getTransform();
 		AffineTransform af = new AffineTransform(orgAF);
+		g2.setStroke(stdStroke);
 		af.scale(scale, scale);
+		drawGrid(g2, gridSize);
 		window.draw(g2, af, selected);
 		g2.setTransform(orgAF);
 	}
 
+	private void drawGrid(Graphics2D g, int gs){
+		int w = getWidth();
+		int h = getHeight();
+		g.setColor(gridCol);
+		for(int i = 0; i < h; i += gs)
+			for(int j = 0; j < w; j += gs)
+				g.fillOval(j, i, 1, 1);	
+	}
+	
 	public void isOver(MutableDBase m, int x, int y){
 		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
@@ -123,23 +138,23 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 				switch(selInfo.selID){
 				case OVER_HORZ:
 					setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-					selInfo.comp.set_width(selInfo.orgW + deltaX);
+					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX, gridSize));
 					break;
 				case OVER_VERT:
 					setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-					selInfo.comp.set_height(selInfo.orgH + deltaY);
+					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY, gridSize));
 					break;
 				case OVER_DIAG:
 					setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-					selInfo.comp.set_width(selInfo.orgW + deltaX);
-					selInfo.comp.set_height(selInfo.orgH + deltaY);
+					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX, gridSize));
+					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY, gridSize));
 					break;
 				}
 			}
 			if(selInfo.comp.isMoveable() && selInfo.selID == OVER_COMP){
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-				selInfo.comp.set_x(selInfo.orgX + deltaX);
-				selInfo.comp.set_y(selInfo.orgY + deltaY);
+				selInfo.comp.set_x(snapValue(selInfo.orgX + deltaX, gridSize));
+				selInfo.comp.set_y(snapValue(selInfo.orgY + deltaY, gridSize));
 			}
 			tabCtrl.selectedComponentPropertyChange(selInfo.comp);
 			repaint();
@@ -147,7 +162,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	}
 
 	private int snapValue(int nbr, int gridSize){
-		return gridSize * Math.round(((float)nbr)/((float)gridSize));
+		return (gridSize != 1) ? gridSize * Math.round(((float)nbr)/((float)gridSize)) : nbr;
 	}
 	
 	@Override

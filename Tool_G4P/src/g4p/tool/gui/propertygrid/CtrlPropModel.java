@@ -80,7 +80,6 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	}
 
 	public void modelChangedInGUI(){
-		System.out.println("CtrlPropModel ::  modelChangedInGUI");
 		this.fireTableChanged(new TableModelEvent(this));
 	}
 
