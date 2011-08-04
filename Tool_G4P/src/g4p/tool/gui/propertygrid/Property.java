@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("unchecked")
 public class Property implements Comparable {
 
 	public Object fieldFromObject;

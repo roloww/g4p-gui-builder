@@ -6,13 +6,15 @@ import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
 import javax.swing.event.TableModelEvent;
 
 /**
- * This class represents the who;e application. <br>
+ * This class represents the whole Processing sketch. <br>
  * 
- * It will be the root node for the tree view and its children should only be windows.
+ * It will be the root node for the tree view and its children 
+ * should only be windows.
  * 
  * @author Peter Lager
  *
  */
+@SuppressWarnings("serial")
 public final class DApplication extends DBase {
 	
 	public Boolean name_edit = false;

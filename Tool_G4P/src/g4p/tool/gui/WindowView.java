@@ -25,6 +25,7 @@ import javax.swing.JPanel;
  *
  * @author Peter
  */
+@SuppressWarnings("serial")
 public class WindowView extends JPanel 
 implements  MouseListener, MouseMotionListener, GTconstants {
 

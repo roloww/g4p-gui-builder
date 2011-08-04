@@ -5,6 +5,7 @@ import g4p.tool.gui.propertygrid.Validator;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+@SuppressWarnings("serial")
 public class DKnob extends DSliderFloat {
 	
 	public int 			_0032_dial_start_angle = 0;

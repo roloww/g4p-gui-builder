@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 
+@SuppressWarnings("serial")
 public class CellEditor_JTextfield extends CellEditor_Base { 
 
 	protected static JTextField component;

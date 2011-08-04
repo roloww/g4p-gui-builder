@@ -35,6 +35,7 @@ import processing.app.Sketch;
  *
  * @author Peter Lager
  */
+@SuppressWarnings("serial")
 public class GuiDesigner extends javax.swing.JFrame {
 
 	private Base base;

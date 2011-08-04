@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class CellEditor_Boolean extends CellEditor_Base {
 
 	protected JCheckBox component;

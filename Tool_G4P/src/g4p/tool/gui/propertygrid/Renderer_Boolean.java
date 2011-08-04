@@ -5,11 +5,11 @@ import java.awt.Component;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings("serial")
 public class Renderer_Boolean extends JCheckBox implements TableCellRenderer {
 
 	private static final Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);

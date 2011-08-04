@@ -1,11 +1,10 @@
 package g4p.tool.gui.propertygrid;
 
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-
 import g4p.tool.GTconstants;
 import g4p.tool.components.ListGen;
 import g4p.tool.components.NameGen;
+
+import javax.swing.ComboBoxModel;
 
 
 

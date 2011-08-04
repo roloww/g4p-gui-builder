@@ -1,6 +1,5 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.Messages;
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
@@ -12,6 +11,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+@SuppressWarnings({ "serial", "unused" })
 public class CtrlPropView extends JTable implements TableModelListener, IPropView {
 
 	private ITabView tabs;

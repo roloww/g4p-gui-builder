@@ -2,6 +2,7 @@ package g4p.tool.components;
 
 import g4p.tool.gui.propertygrid.Validator;
 
+@SuppressWarnings("serial")
 public class DCoreText extends DCore {
 
 	public String 		_0015_text = "Display text";
