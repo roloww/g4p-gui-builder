@@ -15,9 +15,9 @@ public class DButton extends DCoreText {
 	public DButton(){
 		super();
 		set_name(NameGen.instance().getNext("button"));
-		fill = new Color(100,100,255);
-		stroke = Color.black;
-		face = new RoundRectangle2D.Float(0, 0, 10, 10, 2, 2);
+		_0024_width = 80;
+		_0025_height = 20;
+		face = new RoundRectangle2D.Float(0, 0, _0024_width, _0025_height, mitre, mitre);
 	}
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
@@ -26,11 +26,12 @@ public class DButton extends DCoreText {
 		g.setTransform(af);
 		
 		((RoundRectangle2D) face).setRoundRect(0, 0, _0024_width, _0025_height, mitre, mitre);	
-		g.setStroke(bs);
-		g.setColor(fill);
+		g.setStroke(stdStroke);
+		g.setColor(back100);
 		g.fill(face);			
-		g.setColor(stroke);
-		g.draw(face);			
+		g.setColor(blackEdge);
+		g.draw(face);
+		g.drawString(this._0005_name, 6, _0025_height/2 +4 );
 		if(this == selected)
 			drawSelector(g);
 

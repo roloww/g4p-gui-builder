@@ -18,17 +18,12 @@ public class DPanel extends DCoreText {
 	public Boolean 		_0032_collapsed = true;
 	public Boolean 		collapsed_edit = true;
 	public Boolean 		collapsed_show = true;
-//	public TableCellRenderer 		collapsed_renderer = new Renderer_Boolean();;
-
-	protected Color fillTitle;
 
 	public DPanel(){
 		super();
 		allowsChildren = true;
 		set_name(NameGen.instance().getNext("panel"));
 //		System.out.println("ctor DPanel()   " + _0005_name);
-		fill = new Color(192,192,255);
-		fillTitle = new Color(50,50,255);
 	}
 
 	
@@ -37,11 +32,13 @@ public class DPanel extends DCoreText {
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
 		
-		g.setStroke(bs);
-		g.setColor(fill);
+		g.setStroke(stdStroke);
+		g.setColor(solidCompBack);
 		g.fillRect(0, 0, _0024_width, _0025_height);
-		g.setColor(fillTitle);
+		g.setColor(pnlTabCol);
 		g.fillRect(0, -TAB_HEIGHT, _0024_width, TAB_HEIGHT);
+		g.setColor(blackEdge);
+		g.drawString(_0005_name, 2, -4);
 		if(this == selected)
 			drawSelector(g);
 		Enumeration<?> e = children();
@@ -52,7 +49,7 @@ public class DPanel extends DCoreText {
 	}
 
 	public void drawSelector(Graphics2D g){
-		g.setStroke(bs);
+		g.setStroke(stdStroke);
 		g.setColor(Color.red);
 		g.drawRect(0, -TAB_HEIGHT,_0024_width, _0025_height + TAB_HEIGHT);
 		

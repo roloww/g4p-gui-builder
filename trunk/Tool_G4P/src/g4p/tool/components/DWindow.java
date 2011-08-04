@@ -46,8 +46,8 @@ public final class DWindow extends DBase {
 		width_edit = height_edit = true;
 		width_show = height_show = true;
 		
-		stroke = new Color(128,128,64);
-		fill = new Color(255,255,128);
+//		stroke = new Color(128,128,64);
+//		fill = new Color(255,255,128);
 //		System.out.println("\tDWindow() ctor");
 	}
 
@@ -61,10 +61,10 @@ public final class DWindow extends DBase {
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
 		
-		g.setStroke(bs);
-		g.setColor(fill);
+		g.setStroke(stdStroke);
+		g.setColor(winBack);
 		g.fillRect(0, 0, _0024_width, _0025_height);
-		g.setColor(stroke);
+		g.setColor(blackEdge);
 		g.drawRect(0, 0, _0024_width, _0025_height);
 		if(this == selected)
 			drawSelector(g);

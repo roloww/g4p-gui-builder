@@ -82,6 +82,9 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 			if (c == int.class || c == Integer.class || c == String.class) {
 				editor = new CellEditor_JTextfield();
 			}
+			if (c == float.class || c == Float.class) {
+				editor = new CellEditor_JTextfield();
+			}
 			p.editor = editor;
 		}
 		// If we have don't have a validator then get one based on the class
@@ -89,7 +92,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 			 p.validator = Validator.getDefaultValidator(c);
 		if(editor != null)
 			editor.validator = p.validator;
-		Messages.println("{0}  edior {1}    valid {2}", p.cellText, p.editor, p.validator);
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}
 
@@ -97,15 +99,12 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	public TableCellRenderer getCellRenderer(int row, int col) {
 		Property p = (Property) ((CtrlPropModel) getModel()).getPropertyAt(row);
 		Class<?> c = p.ftype;
-		
-//		return super.getDefaultRenderer(c);
+
 		if (col > 0) {
 			if(p.renderer != null){
-				System.out.println("Got you ");
 				return p.renderer;
 			}
 			if (c == boolean.class || c == Boolean.class) {
-//				return super.getDefaultRenderer(c);
 				return (TableCellRenderer) new Renderer_Boolean();
 			}
 		}
@@ -114,7 +113,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	@Override
 	public void modelHasBeenChanged() {
-		System.out.println("CtrlPropView ::  modelHasBeenChanged");
 		((CtrlPropModel)getModel()).modelChangedInGUI();
 	}
 

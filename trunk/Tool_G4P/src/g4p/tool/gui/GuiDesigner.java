@@ -13,7 +13,12 @@ package g4p.tool.gui;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DButton;
+import g4p.tool.components.DHorzSlider;
+import g4p.tool.components.DKnob;
+import g4p.tool.components.DLabel;
 import g4p.tool.components.DPanel;
+import g4p.tool.components.DTextField;
+import g4p.tool.components.DVertSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 
@@ -37,7 +42,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private Sketch sketch;
 	private File config;
 
-	//   private Set<String> words = new HashSet<String>();
 
 	private CtrlSketchView treeSketchView;
 	private CtrlPropView tblPropView;
@@ -161,7 +165,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		
 		DButton btn2 = new DButton();
 		btn2.set_x(10);
-		btn2.set_y(0);
+		btn2.set_y(12);
 		btn2.set_width(80);
 		btn2.set_height(20);
 		
@@ -171,8 +175,35 @@ public class GuiDesigner extends javax.swing.JFrame {
 		pnl.set_width(140);
 		pnl.set_height(80);
 		
+		DLabel lbl1 = new DLabel();
+		lbl1.set_x(220);
+		lbl1.set_y(100);
+		
+		DTextField txf1 = new DTextField();
+		txf1.set_x(230);
+		txf1.set_y(50);
+		
+		DKnob knb1 = new DKnob();
+		knb1.set_x(130);
+		knb1.set_y(50);
+
+		DHorzSlider hsdr1 = new DHorzSlider();
+		hsdr1.set_x(40);
+		hsdr1.set_y(10);
+		
+		DVertSlider vsdr1 = new DVertSlider();
+		vsdr1.set_x(10);
+		vsdr1.set_y(10);
+		
+		// Build sketch GUI
 		app.add(win1);
 		win1.add(btn1);
+		win1.add(lbl1);
+		win1.add(txf1);
+		win1.add(knb1);
+		win1.add(hsdr1);
+		win1.add(vsdr1);
+		
 		app.add(win2);
 		win2.add(pnl);
 		pnl.add(btn2);

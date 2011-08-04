@@ -10,6 +10,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.Serializable;
 import java.util.Enumeration;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -23,7 +24,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @author Peter Lager
  *
  */
-public abstract class DBase extends DefaultMutableTreeNode implements GTconstants {
+public abstract class DBase extends DefaultMutableTreeNode implements Serializable, GTconstants {
 
 	transient public CtrlPropModel propertyModel;
 
@@ -95,7 +96,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 
 	public String get_name() { return _0005_name; }
 
-	public int get_x() {	return _0020_x;	}
+	public int get_x() { return _0020_x;	}
 
 	public int get_y() { return _0021_y; }
 
@@ -152,13 +153,13 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	// ====================================================================================================
 
 	// Stuff for drawing
-	transient protected BasicStroke bs = new BasicStroke(1.1f,
-			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+//	transient protected BasicStroke bs = new BasicStroke(1.1f,
+//			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 
-	transient protected BasicStroke selStroke = new BasicStroke(1.3f,
-			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
-	transient protected Color stroke;
-	transient protected Color fill;
+//	transient protected BasicStroke selStroke = new BasicStroke(1.3f,
+//			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+//	transient protected Color stroke;
+//	transient protected Color fill;
 
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
@@ -170,7 +171,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	}
 
 	public void drawSelector(Graphics2D g){
-		g.setStroke(bs);
+		g.setStroke(stdStroke);
 		g.setColor(Color.red);
 		g.drawRect(0, 0,_0024_width, _0025_height);
 
@@ -214,11 +215,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements GTconstant
 	protected boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
 		return px >= x && px <= x + w && py >= y && py <= y + h;
 	}
-
-//	public boolean isOver(int x, int y){
-//		return (x >= _0020_x && x <= _0020_x + _0024_width 
-//				&& y >= _0021_y && y <= _0021_y + _0025_height);
-//	}
 
 	public int getSize(){
 		return _0024_width * _0025_height;
