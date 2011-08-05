@@ -47,7 +47,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private CtrlSketchView treeSketchView;
 	private CtrlPropView tblPropView;
 	private CtrlTabView tabWindows;
-
+	private GuiControl guiControl;
+	
 	private DBase startNode;
 	private CtrlSketchModel tm;
 
@@ -57,13 +58,12 @@ public class GuiDesigner extends javax.swing.JFrame {
 	public GuiDesigner() {
 		initComponents();
 		customComponents();
-//		setPreferredSize(new Dimension(1024, 800));
+		setPreferredSize(new Dimension(800, 600));
 
 		tm = getSimpleSketchModel();
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
-		setPreferredSize(new Dimension(800, 600));
 	}
 
 	/**
@@ -102,7 +102,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ClassIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
 		ClassIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
 
-
 //		btnCheckbox;
 //		btnCombo;
 //		btnImgButton;
@@ -110,7 +109,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 //		btnOption;
 //		btnTimer;
 //		btnCoolSlider;
-
 	}
 
 	private void customComponents() {
@@ -119,7 +117,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 		treeSketchView = new CtrlSketchView();
 		tblPropView = new CtrlPropView();
 		tabWindows = new CtrlTabView();
-
+		guiControl =  new GuiControl(tabWindows, treeSketchView, tblPropView);
+		
 		spTop.setViewportView(treeSketchView);
 		spBot.setViewportView(tblPropView);
 		pnlWindowsView.setLayout(new BorderLayout());
