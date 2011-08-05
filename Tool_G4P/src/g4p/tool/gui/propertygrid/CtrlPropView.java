@@ -1,15 +1,11 @@
 package g4p.tool.gui.propertygrid;
 
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
-import g4p.tool.*;
-import javax.swing.table.*;
+
+import java.awt.event.MouseEvent;
+
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
