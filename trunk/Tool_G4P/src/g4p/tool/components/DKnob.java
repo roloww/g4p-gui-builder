@@ -9,11 +9,15 @@ import java.awt.geom.AffineTransform;
 public class DKnob extends DSliderFloat {
 	
 	public int 			_0032_dial_start_angle = 0;
+	public String		dial_start_angle_label = "Dial starts at angle";
+	public String		dial_start_angle_tooltip = "0-360 degrees";
 	public Boolean 		dial_start_angle_edit = true;
 	public Boolean 		dial_start_angle_show = true;
 	public Validator 	dial_start_angle_validator = Validator.getValidator(int.class, 0, 360);
 
 	public int 			_0033_dial_end_angle = 0;
+	public String		dial_end_angle_label = "Dial ends at angle";
+	public String		dial_end_angle_tooltip = "0-360 degrees";
 	public Boolean 		dial_end_angle_edit = true;
 	public Boolean 		dial_end_angle_show = true;
 	public Validator 	dial_end_angle_validator = Validator.getValidator(int.class, 0, 360);

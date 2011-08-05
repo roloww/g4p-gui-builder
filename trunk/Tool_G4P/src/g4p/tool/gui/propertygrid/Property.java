@@ -6,17 +6,16 @@ import java.lang.reflect.Method;
 import javax.swing.table.TableCellRenderer;
 
 @SuppressWarnings("unchecked")
-public class Property implements Comparable {
+public final class Property implements Comparable {
 
 	public Object fieldFromObject;
 	public Field field;
-	// Class name without package or primitive data type
-	public Class<?> ftype;
 	// Includes ordering key
 	public String fieldName;
-//	public Object fvalue;
-
-	public String cellText;
+	public String shortFieldName;
+	public String cellLabel;
+	public String tooltip = null;
+	
 	public Method updateMethod = null;
 	
 	// The validator to use with this property
@@ -29,15 +28,21 @@ public class Property implements Comparable {
 	public Property(Object o, Field f){
 		fieldFromObject = o;
 		field = f;
-		ftype = f.getType();
 		fieldName = field.getName(); // e.g. _1234_name
-		cellText = fieldName.substring(6);
+		shortFieldName = fieldName.substring(6);
+		cellLabel = shortFieldName;
 		
-//		fvalue = this.getFieldValue(field, fieldFromObject);
-		
+		// Get cell label text if any
+		try {
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_label");
+			cellLabel =  (String) field.get(fieldFromObject);
+		}
+		catch(Exception excp){
+			// Nothing to do 
+		}
 		// Get cell editor if any
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_editor");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_editor");
 			editor =  (CellEditor_Base) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
@@ -45,23 +50,31 @@ public class Property implements Comparable {
 		}
 		// Get cell renderer if any
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_renderer");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_renderer");
 			renderer = (TableCellRenderer) field.get(fieldFromObject);
+		}
+		catch(Exception excp){
+			// Nothing to do 
+		}
+		// Get cell tooltip text if any
+		try {
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_tooltip");
+			tooltip =  (String) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
 			// Nothing to do 
 		}
 		// Get validator if any
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_validator");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_validator");
 			validator = (Validator) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
-			validator = Validator.getDefaultValidator(ftype);
+			validator = Validator.getDefaultValidator(field.getType());
 		}
 		// Get edit status if any
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_edit");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_edit");
 			allowEdit = (Boolean) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
@@ -69,7 +82,7 @@ public class Property implements Comparable {
 		}
 		// See if we need to show this property
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_show");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_show");
 			show = (Boolean) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
@@ -77,21 +90,20 @@ public class Property implements Comparable {
 		}
 		// Method to call if this property changes
 		try {
-			Field field = fieldFromObject.getClass().getField(cellText + "_updater");
+			Field field = fieldFromObject.getClass().getField(shortFieldName + "_updater");
 			String methodName =  (String) field.get(fieldFromObject);
 			// We have a method name but do we have the method
 			try {
-				updateMethod = fieldFromObject.getClass().getMethod(methodName, null );
+				updateMethod = fieldFromObject.getClass().getMethod(methodName, (Class<?>[]) null );
 			}
-			catch(Exception excp0){
-				excp0.printStackTrace();
+			catch(Exception excp){
+				excp.printStackTrace();
 			}
 		}
 		catch(Exception excp){
 			// Nothing to do 
 		}
 	}
-
 
 	public Object getValue(){
 		return getFieldValue(field, fieldFromObject);
@@ -104,14 +116,14 @@ public class Property implements Comparable {
 	 * @param obj the object it applies to
 	 * @return
 	 */
-	public Object getFieldValue(Field f, Object obj){
+	private Object getFieldValue(Field f, Object obj){
 		Object fvalue;
 		Class<?> c = f.getClass();
 		if(c == int.class || c == Integer.class){
 			try {
 				fvalue = f.getInt(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Integer value for " + cellText);
+				System.out.println("FAILED to retrieve Integer value for " + shortFieldName);
 				fvalue = new Integer(0);
 			} 
 		}
@@ -119,7 +131,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getFloat(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Float value for " + cellText);
+				System.out.println("FAILED to retrieve Float value for " + shortFieldName);
 				fvalue = new Float(0);
 			} 
 		}
@@ -127,7 +139,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.get(obj).toString();
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve String value for " + cellText);
+				System.out.println("FAILED to retrieve String value for " + shortFieldName);
 				fvalue = new String("");
 			} 
 		}
@@ -135,7 +147,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getBoolean(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Boolean value for " + cellText);
+				System.out.println("FAILED to retrieve Boolean value for " + shortFieldName);
 				fvalue = new Boolean(false);
 			} 
 		}
@@ -143,7 +155,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getShort(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Short value for " + cellText);
+				System.out.println("FAILED to retrieve Short value for " + shortFieldName);
 				fvalue = new Short((short) 0);
 			} 
 		}
@@ -151,7 +163,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getLong(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Long value for " + cellText);
+				System.out.println("FAILED to retrieve Long value for " + shortFieldName);
 				fvalue = new Long(0);
 			} 
 		}
@@ -159,7 +171,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getDouble(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Double value for " + cellText);
+				System.out.println("FAILED to retrieve Double value for " + shortFieldName);
 				fvalue = new Double(0);
 			} 
 		}
@@ -167,7 +179,7 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.getChar(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Character value for " + cellText);
+				System.out.println("FAILED to retrieve Character value for " + shortFieldName);
 				fvalue = new Character(' ');
 			} 
 		}
@@ -175,35 +187,33 @@ public class Property implements Comparable {
 			try {
 				fvalue = f.get(obj);
 			} catch (Exception e) {
-				System.out.println("FAILED to retrieve Object value for " + cellText);
+				System.out.println("FAILED to retrieve Object value for " + shortFieldName);
 				fvalue = new Object();
 			} 
 		}
 		return fvalue;
 	}
+
 	// Called when table cell loses focus
 	public void setValue(Object value){
-//		fvalue = value;
 		try {
 			// Attempt to store the value
 			setFieldValue(field, fieldFromObject, value);
-//			setFieldValue(field, fieldFromObject, fvalue);
 			// If successful attempt to call the updater method if any
 			if(updateMethod != null){
 				try {
-					updateMethod.invoke(fieldFromObject, null);
+					updateMethod.invoke(fieldFromObject, (Object[]) null);
 				} catch (Exception e) {
 				}
 			}		
 		} catch (IllegalArgumentException e) {
-			System.out.println("IllegalArgumentException:  unable to set a field value for "+ cellText + "   value: "+ value.toString());
+			System.out.println("IllegalArgumentException:  unable to set a field value for "+ shortFieldName + "   value: "+ value.toString());
 		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException:  unable to set a field value for "+ cellText + "   value: "+ value.toString());
+			System.out.println("IllegalAccessException:  unable to set a field value for "+ shortFieldName + "   value: "+ value.toString());
 		}
 	}
 
-	public void setFieldValue(Field f, Object obj, Object value) throws IllegalArgumentException, IllegalAccessException {
-//		System.out.println("Set Field " + field);
+	private void setFieldValue(Field f, Object obj, Object value) throws IllegalArgumentException, IllegalAccessException {
 		Class<?> c = f.getClass();
 		if(c == boolean.class || c == Boolean.class)
 			f.setBoolean(obj, Boolean.valueOf(value.toString()));

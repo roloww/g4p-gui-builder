@@ -95,6 +95,21 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ClassIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
 		ClassIcon.instance().addElement(DPanel.class, btnPanel.getIcon());
 		ClassIcon.instance().addElement(DButton.class, btnButton.getIcon());
+		ClassIcon.instance().addElement(DLabel.class, btnLabel.getIcon());
+		ClassIcon.instance().addElement(DHorzSlider.class, btnHorzSlider.getIcon());
+		ClassIcon.instance().addElement(DVertSlider.class, btnVertSlider.getIcon());
+		ClassIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
+		ClassIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
+		ClassIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
+
+
+//		btnCheckbox;
+//		btnCombo;
+//		btnImgButton;
+//		btnOptGroup;
+//		btnOption;
+//		btnTimer;
+//		btnCoolSlider;
 
 	}
 

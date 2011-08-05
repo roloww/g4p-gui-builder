@@ -8,7 +8,7 @@ public class DVertSlider extends DSliderInteger {
 
 	public DVertSlider(){
 		super();
-		set_name(NameGen.instance().getNext("label"));
+		set_name(NameGen.instance().getNext("slider"));
 		_0024_width = 12;
 		_0025_height = 100;
 	}

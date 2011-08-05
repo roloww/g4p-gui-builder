@@ -159,7 +159,6 @@ public abstract class Validator implements GTconstants {
 		@Override
 		public boolean isValid(Object value) {
 			String uv = value.toString();
-			int vs = value.toString().length();
 			boolean valid = true;
 			if(uv.length() < min || uv.length() > max){
 				errorType = INVALID_LENGTH;
@@ -179,6 +178,7 @@ public abstract class Validator implements GTconstants {
 
 		public boolean checkCharacters(String uv){
 			boolean valid = true;
+			//char[] ca = uv.toCharArray();
 			if(!firstChar.contains(uv.substring(0, 1))){
 				errorType = FIRST_CHAR_INVALID;
 				valid = false;

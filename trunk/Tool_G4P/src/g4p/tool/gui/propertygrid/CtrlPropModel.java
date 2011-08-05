@@ -13,13 +13,12 @@ import javax.swing.table.TableModel;
 @SuppressWarnings("serial")
 public class CtrlPropModel extends AbstractTableModel implements TableModel {
 
-	private String[] columnNames = new String[]{"Field", "Value"};
+	private String[] columnNames = new String[]{"Property", "Value"};
 	private Property[] propData;
-	private DBase owner;
+	
 	
 	public CtrlPropModel(DBase component){
 		super();
-		owner = component;
 		createProperties(component);
 	}
 
@@ -39,11 +38,6 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 		Collections.sort(props);
 		propData = props.toArray(new Property[props.size()]);
 	}
-
-
-	public DBase getOwner(){
-		return owner;
-	}
 	
 	public int getColumnCount() {
 		return columnNames.length;
@@ -58,10 +52,10 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		if(rowIndex >= propData.length || columnIndex > 1)
-			return new String("");
+//		if(rowIndex >= propData.length || columnIndex > 1)
+//			return new String("");
 		if(columnIndex == 0)
-			return propData[rowIndex].cellText;
+			return propData[rowIndex].cellLabel;
 		return propData[rowIndex].getValue();
 	}
 

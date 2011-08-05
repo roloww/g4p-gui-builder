@@ -52,7 +52,8 @@ public final class DApplication extends DBase {
 		resizeable = false;
 		moveable = false;
 		allowsChildren = true;
-		_0005_name = "APPLICATION";
+		_0005_name = "SKETCH";
+		name_label = "PROCCESSING";
 	}
 
 

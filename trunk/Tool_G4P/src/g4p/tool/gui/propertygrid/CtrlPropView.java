@@ -1,8 +1,14 @@
 package g4p.tool.gui.propertygrid;
 
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
+import g4p.tool.*;
 import javax.swing.table.*;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -22,6 +28,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		super();
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setRowHeight(22);
+		setTableHeader(null); // hides column names
 	}
 
 	public void setViewLinks(ITabView tabs, ISketchView tree){
@@ -51,13 +58,12 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		if(e.getType() == TableModelEvent.UPDATE){
 			int row = e.getFirstRow();
 			if(row >= 0){
-				String rowLabelText = (String) getModel().getValueAt(row, 0);
-				if(rowLabelText.equalsIgnoreCase("name")){
+				String fieldName = ((CtrlPropModel) getModel()).getPropertyAt(row).fieldName;
+				// See if we have to update the tab names
+				if(fieldName.equalsIgnoreCase(DBase.COMP_NAME_PROPERTY))
 					tabs.updateTabName();
-				}
-				else {
+				else 
 					tabs.repaint();
-				}
 			}
 		}
 	}
@@ -68,11 +74,11 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 * If no editor avaialble use default editor and renderer
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
-//		CellEditor_Base editor = null;
+		//		CellEditor_Base editor = null;
 		CellEditor_Base editor = null;
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
-		Class<?> c = p.ftype;
+		Class<?> c = p.field.getType(); // p.fieldType;
 		// Get special editor if none then use one based on data type
 		editor = p.editor;
 		if(editor == null){
@@ -89,7 +95,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		}
 		// If we have don't have a validator then get one based on the class
 		if(p.validator == null) 
-			 p.validator = Validator.getDefaultValidator(c);
+			p.validator = Validator.getDefaultValidator(c);
 		if(editor != null)
 			editor.validator = p.validator;
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
@@ -98,7 +104,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	public TableCellRenderer getCellRenderer(int row, int col) {
 		Property p = (Property) ((CtrlPropModel) getModel()).getPropertyAt(row);
-		Class<?> c = p.ftype;
+		Class<?> c = p.field.getType();
 
 		if (col > 0) {
 			if(p.renderer != null){
@@ -116,5 +122,16 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		((CtrlPropModel)getModel()).modelChangedInGUI();
 	}
 
-	
+	public String getToolTipText(MouseEvent e) {
+		String tip = null;
+		int row = rowAtPoint(e.getPoint());
+
+		if(row != -1){
+			tip = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row)).tooltip;
+		}
+		return tip;
+	}
+
+
+
 }
