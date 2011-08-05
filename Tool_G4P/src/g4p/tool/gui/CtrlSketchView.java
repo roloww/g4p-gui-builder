@@ -136,4 +136,16 @@ public class CtrlSketchView extends JTree implements ISketchView {
         }
     }
 
+	@Override
+	public void addComponent(DBase comp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeComponent(DBase comp) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

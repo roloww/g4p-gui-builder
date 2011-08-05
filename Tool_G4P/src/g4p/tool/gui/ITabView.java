@@ -46,4 +46,6 @@ public interface ITabView {
 	public abstract void selectedComponentPropertyChange(DBase comp);
 	
 	
+	public abstract void sizeWindowToFit();
+	
 }

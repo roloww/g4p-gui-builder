@@ -98,6 +98,15 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		selected = comp;
 	}
 
+	
+	/**
+	 * @param scale the scale to set
+	 */
+	public void setScale(float scale) {
+		this.scale = scale;
+//		tabCtrl.selectedComponentPropertyChange(selInfo.comp);
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(selInfo.comp != selected){
