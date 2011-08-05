@@ -13,6 +13,7 @@ public class DTextField extends DCoreText {
 	public DTextField(){
 		super();
 		set_name(NameGen.instance().getNext("textfield"));
+		text_tooltip = "initial text";
 		_0024_width = 80;
 		_0025_height = 20;
 	}

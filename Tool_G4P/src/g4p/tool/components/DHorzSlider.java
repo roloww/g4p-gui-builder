@@ -8,7 +8,7 @@ public class DHorzSlider extends DSliderInteger {
 
 	public DHorzSlider(){
 		super();
-		set_name(NameGen.instance().getNext("label"));
+		set_name(NameGen.instance().getNext("slider"));
 		_0024_width = 100;
 		_0025_height = 12;
 	}

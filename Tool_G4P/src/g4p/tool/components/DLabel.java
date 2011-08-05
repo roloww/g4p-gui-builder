@@ -12,6 +12,7 @@ public class DLabel extends DCoreText {
 		set_name(NameGen.instance().getNext("label"));
 		_0024_width = 80;
 		_0025_height = 20;
+		_0015_text = "My label";
 	}
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){

@@ -10,7 +10,10 @@ public class DCore extends DBase {
 		resizeable = true;
 		moveable = true;
 
+		name_label = "Variable name";
+		name_tooltip = "Java naming rules apply";
 		name_edit = true;
+		
 		x_edit = y_edit = true;
 		x_show = y_show = true;	
 		width_edit = height_edit = true;

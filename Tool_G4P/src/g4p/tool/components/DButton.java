@@ -16,6 +16,7 @@ public class DButton extends DCoreText {
 		set_name(NameGen.instance().getNext("button"));
 		_0024_width = 80;
 		_0025_height = 20;
+		text_tooltip = "text to show on button";
 		face = new RoundRectangle2D.Float(0, 0, _0024_width, _0025_height, mitre, mitre);
 	}
 	

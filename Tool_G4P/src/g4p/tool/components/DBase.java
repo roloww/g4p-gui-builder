@@ -26,6 +26,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 @SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, GTconstants {
 
+	public static final String COMP_NAME_PROPERTY = "_0005_name";
+	
 	transient public CtrlPropModel propertyModel;
 
 	// Whether it is selectable in the WindowView
@@ -36,26 +38,36 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
+	public String 		name_label = "Variable Name";
+	public String 		name_tooltip = null;
 	public Boolean 		name_edit = false;
 	public Boolean 		name_show = true;
 	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
 
 	public int 			_0020_x = 0;
+	public String 		x_label = "X";
+	public String 		x_tooltip = "pixels";
 	public Boolean 		x_edit = false;
 	public Boolean 		x_show = false;
 	public Validator 	x_validator = Validator.getValidator(int.class, -9999, 9999);
 
 	public int 			_0021_y = 0;
+	public String 		y_label = "Y";
+	public String 		y_tooltip = "pixels";
 	public Boolean 		y_edit = false;
 	public Boolean 		y_show = false;
 	public Validator 	y_validator = x_validator;
 
 	public int 			_0024_width = 0;
+	public String 		width_label = "Width";
+	public String 		width_tooltip = "pixels";
 	public Boolean 		width_edit = false;
 	public Boolean 		width_show = false;
 	public Validator 	width_validator = Validator.getValidator(int.class, 10, 999);
 
 	public int 			_0025_height = 0;
+	public String 		height_label = "Height";
+	public String 		height_tooltip = "pixels";
 	public Boolean 		height_edit = false;
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
