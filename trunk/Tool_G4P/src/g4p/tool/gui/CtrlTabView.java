@@ -131,4 +131,15 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		props.modelHasBeenChanged();
 	}
 
+	@Override
+	public void sizeWindowToFit() {
+		WindowView winView = (WindowView) this.getSelectedComponent();
+		DWindow window = (DWindow) winView.getWindowComponent();
+		
+		float scale = 0.9f * Math.min(((float) getWidth())/window.get_width(),
+				((float) getHeight())/window.get_height());
+		winView.setScale(scale);
+		winView.repaint();
+	}
+
 }
