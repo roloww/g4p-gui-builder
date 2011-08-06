@@ -142,4 +142,20 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		winView.repaint();
 	}
 
+	@Override
+	public void gridSize(int gsize) {
+		WindowView.gridSize = gsize;		
+	}
+
+	@Override
+	public void showGrid(boolean show) {
+		WindowView.showGrid = show;		
+	}
+
+	@Override
+	public void snapToGrid(boolean snap) {
+		WindowView.snapToGrid = snap;		
+	}
+
+	
 }
