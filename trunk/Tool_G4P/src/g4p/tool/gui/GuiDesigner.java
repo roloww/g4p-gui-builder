@@ -589,7 +589,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         jMenu2.add(mitemScaleWindow);
         jMenu2.add(jSeparator1);
 
-        mitemSnapToGrid.setSelected(true);
         mitemSnapToGrid.setText("Snap to grid");
         mitemSnapToGrid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -598,7 +597,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         jMenu2.add(mitemSnapToGrid);
 
-        mitemShowGrid.setSelected(true);
         mitemShowGrid.setText("Show grid");
         mitemShowGrid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -608,7 +606,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         jMenu2.add(mitemShowGrid);
 
         bgGridSize.add(mitemGS4);
-        mitemGS4.setSelected(true);
         mitemGS4.setText("4px");
         mitemGS4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -627,6 +624,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         jMenu2.add(mitemGS5);
 
         bgGridSize.add(mitemGS8);
+        mitemGS8.setSelected(true);
         mitemGS8.setText("8px");
         mitemGS8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
