@@ -15,14 +15,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Window"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu2ActionPerformed"/>
-          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="mitemScaleWindow">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Scale window to fit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mitemScaleWindowActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -85,6 +85,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="10px"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mitemGS10ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
