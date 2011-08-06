@@ -21,14 +21,13 @@ public class GuiControl {
 	}
 
 	public boolean addComponent(DBase comp){
-		System.out.println("Adding "+ comp);
-
+		tree.addComponent(comp);
 		return true;
 	}
 
 	public boolean removeComponent(){
 		System.out.println("Trashcan selected ");
-
+		tree.removeComponent();
 		return true;
 	}
 

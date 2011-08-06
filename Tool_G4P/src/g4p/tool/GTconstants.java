@@ -60,6 +60,7 @@ public interface GTconstants {
 	public final Color winBack = new Color(0,255,0,60);
 	
 	public final Color blackEdge = Color.black;
+	public final Color greenEdge = new Color(0,64,0,60);
 
 	public final Color solidCompBack = new Color(192,192,255);
 	public final Color back100 = new Color(100,100,255);

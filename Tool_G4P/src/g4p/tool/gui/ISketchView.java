@@ -35,7 +35,8 @@ public interface ISketchView {
 	 */
 	public abstract DBase getContainerFor(DBase comp);
 	
+	public abstract DBase getRoot();
 	public abstract void addComponent(DBase comp);
-	public abstract void removeComponent(DBase comp);
+	public abstract void removeComponent();
 	
 }
