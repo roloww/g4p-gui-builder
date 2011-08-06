@@ -4,6 +4,7 @@ import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.IPropView;
 
+import java.awt.Graphics;
 import java.util.HashMap;
 
 import javax.swing.JTabbedPane;
@@ -29,6 +30,10 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		this.props = props;
 	}
 
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		getSelectedComponent().repaint();
+	}
 	/* (non-Javadoc)
 	 * @see g4p.tool.gui.IWindowView#addWindow(g4p.tool.components.DBase)
 	 */
@@ -127,7 +132,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	}
 
 	@Override
-	public void componentPropertyChange(DBase comp) {
+	public void componentChangedInGUI(DBase comp) {
 		props.modelHasBeenChanged();
 	}
 
@@ -156,5 +161,6 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		repaint();
 	}
 
+	
 	
 }

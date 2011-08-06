@@ -40,10 +40,11 @@ public interface ITabView {
 	public abstract void componentHasBeenSelected(DBase comp);
 	
 	/**
-	 * The size or position of the component has changed
+	 * The size or position of the component has changed in
+	 * the GUI tab using the mouse.
 	 * @param comp
 	 */
-	public abstract void componentPropertyChange(DBase comp);
+	public abstract void componentChangedInGUI(DBase comp);
 	
 	
 	public abstract void scaleWindowToFit();

@@ -92,7 +92,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 //			System.out.print("   " + nodes[i]);
 //		System.out.println("\n");
 		DBase w =  (DBase) ((nodes != null && nodes.length >= 2) ? nodes[1] : null);
-		Messages.println("{0} is window for {1}", w, comp);
 		return w;
 	}
 

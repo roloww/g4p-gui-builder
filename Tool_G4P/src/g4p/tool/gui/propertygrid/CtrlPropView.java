@@ -55,12 +55,8 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		if(e.getType() == TableModelEvent.UPDATE){
 			int row = e.getFirstRow();
 			if(row >= 0){
-				String fieldName = ((CtrlPropModel) getModel()).getPropertyAt(row).fieldName;
-				// See if we have to update the tab names
-				if(fieldName.equalsIgnoreCase(DBase.COMP_NAME_PROPERTY))
-					tabs.updateTabName();
-				else 
-					tabs.repaint();
+				tabs.updateTabName();
+				tabs.repaint();
 			}
 		}
 	}
