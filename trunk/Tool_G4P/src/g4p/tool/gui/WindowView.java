@@ -78,11 +78,20 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	private void drawGrid(Graphics2D g, int gs, float scale){
 		int w = getWidth();
 		int h = getHeight();
-		int step = Math.round(gs * scale);
 		g.setColor(gridCol);
-		for(int i = 0; i < h; i += step)
-			for(int j = 0; j < w; j += step)
-				g.fillOval(j, i, 1, 1);	
+		int x = 0, y = 0;
+		int nx = 0, ny = 0;
+		while(y < h){
+			x = 0;
+			nx = 0;
+			while(x < w){
+				g.fillOval(x, y, 1, 1);
+				nx++;
+				x = Math.round(nx * gs * scale);
+			}
+			ny++;
+			y = Math.round(ny * gs * scale);
+		}					
 	}
 	
 	public void isOver(MutableDBase m, int x, int y){
@@ -108,11 +117,11 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	 * @param scale the scale to set
 	 */
 	public void scaleWindowToFit(int w, int h) {
-		int scale = Math.round(90.0f * Math.min(((float) w)/window.get_width(),
+		int scale = Math.round(95.0f * Math.min(((float) w)/window.get_width(),
 				((float) h)/window.get_height()));
 		((DWindow)window)._0014_Display_scale = scale;
 		repaint();
-		tabCtrl.componentPropertyChange(window);
+		tabCtrl.componentChangedInGUI(window);
 	}
 
 	@Override
@@ -175,7 +184,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 				selInfo.comp.set_x(snapValue(selInfo.orgX + deltaX));
 				selInfo.comp.set_y(snapValue(selInfo.orgY + deltaY));
 			}
-			tabCtrl.componentPropertyChange(selInfo.comp);
+			tabCtrl.componentChangedInGUI(selInfo.comp);
 			repaint();
 		}
 	}

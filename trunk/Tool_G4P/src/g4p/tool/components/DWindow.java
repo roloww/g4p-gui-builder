@@ -13,9 +13,10 @@ public final class DWindow extends DBase {
 	public String 		title_label = "Title text";
 	
 	public int 			_0014_Display_scale = 100;
+	public String		Display_scale_label = "Scale (%)";
 	public Boolean 		Display_scale_edit = true;
 	public Boolean 		Display_scale_show = true;
-	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 200);
+	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 300);
 	
 	/**
 	 * Create a Window object

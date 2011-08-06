@@ -61,7 +61,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		customComponents();
 		setPreferredSize(new Dimension(800, 600));
 
-		tm = getSimpleSketchModel();
+//		tm = getSimpleSketchModel();
+		tm = getBaseSketchModel();	
+		
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
@@ -82,7 +84,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		customComponents();
 		setPreferredSize(new Dimension(800, 600));
 
-		tm = getSimpleSketchModel();
+//		tm = getSimpleSketchModel();
+		tm = getBaseSketchModel();	
+
 		// Now create GUI
 		makGUIfromTreeModel(tm);
 		setSelectedComponent(startNode);
@@ -155,6 +159,25 @@ public class GuiDesigner extends javax.swing.JFrame {
 		tabWindows.setSelectedComponent(comp);
 		treeSketchView.setSelectedComponent(comp);
 		tblPropView.showProprtiesFor(comp);
+	}
+
+	/**
+	 * Create a blank sketch
+	 * @return
+	 */
+	private CtrlSketchModel getBaseSketchModel() {
+		CtrlSketchModel m = null;
+		DApplication app = new DApplication();
+		
+		DWindow win1 = new DWindow(true);
+		win1.set_width(400);
+		win1.set_height(300);
+		
+		app.add(win1);
+
+		m = new CtrlSketchModel(app);
+		startNode = win1;
+		return m;
 	}
 
 	/**
@@ -761,7 +784,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         }//GEN-LAST:event_mitemGS8ActionPerformed
 
         private void mitemGS10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS10ActionPerformed
-            guiControl.setGridSize(8);
+            guiControl.setGridSize(10);
         }//GEN-LAST:event_mitemGS10ActionPerformed
 
         private void mitemScaleWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScaleWindowActionPerformed
