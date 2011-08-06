@@ -65,7 +65,7 @@ public final class DWindow extends DBase {
 		g.setStroke(stdStroke);
 		g.setColor(winBack);
 		g.fillRect(0, 0, _0024_width, _0025_height);
-		g.setColor(blackEdge);
+		g.setColor(greenEdge);
 		g.drawRect(0, 0, _0024_width, _0025_height);
 		if(this == selected)
 			drawSelector(g);

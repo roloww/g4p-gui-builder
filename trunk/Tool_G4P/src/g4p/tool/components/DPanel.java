@@ -27,6 +27,8 @@ public class DPanel extends DCoreText {
 		_0015_text = "My panel";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
+		_0024_width = 100;
+		_0025_height = 60;
 //		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
