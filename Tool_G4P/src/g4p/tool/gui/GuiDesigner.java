@@ -501,7 +501,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarControls.setFloatable(false);
         tbarControls.setRollover(true);
 
-        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin..png"))); // NOI18N
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin.png"))); // NOI18N
         btnRemove.setText("Remove");
         btnRemove.setFocusable(false);
         btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
