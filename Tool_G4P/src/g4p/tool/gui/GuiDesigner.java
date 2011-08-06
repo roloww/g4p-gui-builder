@@ -738,7 +738,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         }//GEN-LAST:event_mitemGS5ActionPerformed
 
         private void mitemGS8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS8ActionPerformed
-            guiControl.setGridSize(6);
+            guiControl.setGridSize(8);
         }//GEN-LAST:event_mitemGS8ActionPerformed
 
 	/**

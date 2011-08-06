@@ -46,7 +46,7 @@ public interface ITabView {
 	public abstract void selectedComponentPropertyChange(DBase comp);
 	
 	
-	public abstract void sizeWindowToFit();
+	public abstract void scaleWindowToFit();
 	
 	public abstract void showGrid(boolean show);
 	public abstract void snapToGrid(boolean snap);
