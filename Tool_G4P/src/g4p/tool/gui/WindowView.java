@@ -70,17 +70,18 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		g2.setStroke(stdStroke);
 		af.scale(scale, scale);
 		if(showGrid)
-			drawGrid(g2, gridSize);
+			drawGrid(g2, gridSize, scale);
 		window.draw(g2, af, selected);
 		g2.setTransform(orgAF);
 	}
 
-	private void drawGrid(Graphics2D g, int gs){
+	private void drawGrid(Graphics2D g, int gs, float scale){
 		int w = getWidth();
 		int h = getHeight();
+		int step = Math.round(gs * scale);
 		g.setColor(gridCol);
-		for(int i = 0; i < h; i += gs)
-			for(int j = 0; j < w; j += gs)
+		for(int i = 0; i < h; i += step)
+			for(int j = 0; j < w; j += step)
 				g.fillOval(j, i, 1, 1);	
 	}
 	
