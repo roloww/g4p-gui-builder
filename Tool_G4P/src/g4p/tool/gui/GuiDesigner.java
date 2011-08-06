@@ -255,6 +255,8 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnOptGroup = new javax.swing.JButton();
         btnCombo = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnScale = new javax.swing.JButton();
         splitControl = new javax.swing.JSplitPane();
         pnlTreeView = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
@@ -467,6 +469,23 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnTimer);
 
+        jSeparator2.setPreferredSize(new java.awt.Dimension(50, 0));
+        jSeparator2.setRequestFocusEnabled(false);
+        jSeparator2.setSeparatorSize(new java.awt.Dimension(50, 0));
+        tbarComponents.add(jSeparator2);
+
+        btnScale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize.png"))); // NOI18N
+        btnScale.setToolTipText("Scale to fit");
+        btnScale.setFocusable(false);
+        btnScale.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnScale.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnScale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnScaleActionPerformed(evt);
+            }
+        });
+        tbarComponents.add(btnScale);
+
         splitControl.setDividerLocation(300);
         splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         splitControl.setDoubleBuffered(true);
@@ -560,6 +579,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         jMenu2.setText("Window");
 
+        mitemScaleWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize.png"))); // NOI18N
         mitemScaleWindow.setText("Scale window to fit");
         mitemScaleWindow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -750,6 +770,10 @@ public class GuiDesigner extends javax.swing.JFrame {
             guiControl.makeWindowSizeToFit();
         }//GEN-LAST:event_mitemScaleWindowActionPerformed
 
+        private void btnScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScaleActionPerformed
+            guiControl.makeWindowSizeToFit();
+        }//GEN-LAST:event_btnScaleActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -777,6 +801,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnOption;
     private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnScale;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnTimer;
     private javax.swing.JButton btnVertSlider;
@@ -787,6 +812,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JRadioButtonMenuItem mitemGS10;
     private javax.swing.JRadioButtonMenuItem mitemGS4;
     private javax.swing.JRadioButtonMenuItem mitemGS5;
