@@ -132,7 +132,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	}
 
 	@Override
-	public void sizeWindowToFit() {
+	public void scaleWindowToFit() {
 		WindowView winView = (WindowView) this.getSelectedComponent();
 		DWindow window = (DWindow) winView.getWindowComponent();
 		
@@ -144,17 +144,21 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 
 	@Override
 	public void gridSize(int gsize) {
-		WindowView.gridSize = gsize;		
+		System.out.println("New grid size "+gsize);
+		WindowView.gridSize = gsize;
+		repaint();
 	}
 
 	@Override
 	public void showGrid(boolean show) {
 		WindowView.showGrid = show;		
+		repaint();
 	}
 
 	@Override
 	public void snapToGrid(boolean snap) {
 		WindowView.snapToGrid = snap;		
+		repaint();
 	}
 
 	

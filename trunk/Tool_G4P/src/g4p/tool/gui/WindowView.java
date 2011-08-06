@@ -69,7 +69,8 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 		AffineTransform af = new AffineTransform(orgAF);
 		g2.setStroke(stdStroke);
 		af.scale(scale, scale);
-		drawGrid(g2, gridSize);
+		if(showGrid)
+			drawGrid(g2, gridSize);
 		window.draw(g2, af, selected);
 		g2.setTransform(orgAF);
 	}
@@ -151,31 +152,31 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 				switch(selInfo.selID){
 				case OVER_HORZ:
 					setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX, gridSize));
+					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX));
 					break;
 				case OVER_VERT:
 					setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY, gridSize));
+					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY));
 					break;
 				case OVER_DIAG:
 					setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX, gridSize));
-					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY, gridSize));
+					selInfo.comp.set_width(snapValue(selInfo.orgW + deltaX));
+					selInfo.comp.set_height(snapValue(selInfo.orgH + deltaY));
 					break;
 				}
 			}
 			if(selInfo.comp.isMoveable() && selInfo.selID == OVER_COMP){
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-				selInfo.comp.set_x(snapValue(selInfo.orgX + deltaX, gridSize));
-				selInfo.comp.set_y(snapValue(selInfo.orgY + deltaY, gridSize));
+				selInfo.comp.set_x(snapValue(selInfo.orgX + deltaX));
+				selInfo.comp.set_y(snapValue(selInfo.orgY + deltaY));
 			}
 			tabCtrl.selectedComponentPropertyChange(selInfo.comp);
 			repaint();
 		}
 	}
 
-	private int snapValue(int nbr, int gridSize){
-		return (gridSize != 1) ? gridSize * Math.round(((float)nbr)/((float)gridSize)) : nbr;
+	private int snapValue(int nbr){
+		return (snapToGrid) ? gridSize * Math.round(((float)nbr)/((float)gridSize)) : nbr;
 	}
 	
 	@Override

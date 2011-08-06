@@ -7,7 +7,7 @@ public class GuiControl {
 	private ITabView tabs;
 	private ISketchView tree;
 	private IPropView props;
-	
+
 	/**
 	 * @param tabs
 	 * @param tree
@@ -22,32 +22,29 @@ public class GuiControl {
 
 	public boolean addComponent(DBase comp){
 		System.out.println("Adding "+ comp);
-		
+
 		return true;
 	}
 
 	public boolean removeComponent(){
 		System.out.println("Trashcan selected ");
-		
+
 		return true;
 	}
 
-        public void makeWindowSizeToFit(){
-            
-        }
-        
-        public void showGrid(boolean show){
-            
-        }
-        public void snapGrid(boolean snap){
-            
-        }
-        
-        public void useGrid(boolean use){
-            
-        }
-        
-        public void setGridSize(int gs){
-            
-        }
+	public void makeWindowSizeToFit(){
+		tabs.scaleWindowToFit();
+	}
+
+	public void showGrid(boolean show){
+		tabs.showGrid(show);
+	}
+
+	public void snapGrid(boolean snap){
+		tabs.snapToGrid(snap);
+	}
+
+	public void setGridSize(int gs){
+		tabs.gridSize(gs);
+	}
 }
