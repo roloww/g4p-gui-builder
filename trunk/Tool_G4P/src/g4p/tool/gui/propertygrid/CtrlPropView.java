@@ -1,5 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
+import g4p.tool.Messages;
 import g4p.tool.components.DBase;
 import g4p.tool.gui.ISketchView;
 import g4p.tool.gui.ITabView;
@@ -97,7 +98,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}
 
-
 	public TableCellRenderer getCellRenderer(int row, int col) {
 		Property p = (Property) ((CtrlPropModel) getModel()).getPropertyAt(row);
 		Class<?> c = p.field.getType();
@@ -106,8 +106,9 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 			if(p.renderer != null){
 				return p.renderer;
 			}
-			if (c == boolean.class || c == Boolean.class) {
-				return (TableCellRenderer) new Renderer_Boolean();
+			else if (c == boolean.class || c == Boolean.class) {
+				p.renderer =  (TableCellRenderer) new Renderer_Boolean();
+				return p.renderer;
 			}
 		}
 		return super.getCellRenderer(row, col);
@@ -121,13 +122,11 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	public String getToolTipText(MouseEvent e) {
 		String tip = null;
 		int row = rowAtPoint(e.getPoint());
-
 		if(row != -1){
 			tip = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row)).tooltip;
+			Messages.println("Row {0}  ::  {1}", row, tip);
 		}
 		return tip;
 	}
-
-
 
 }

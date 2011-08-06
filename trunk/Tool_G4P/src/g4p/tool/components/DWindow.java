@@ -51,10 +51,12 @@ public final class DWindow extends DBase {
 		width_show = height_show = true;
 	}
 
-	public String get_title(){
+    @Override
+ 	public String get_title(){
 		return _0010_title;
 	}
 
+    @Override
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);

@@ -31,7 +31,10 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 
 	private ITabView tabCtrl;
 
-	private static int gridSize = 5;
+	public static int gridSize = 4;
+	public static boolean showGrid;
+	public static boolean snapToGrid;
+	
 	private static Color gridCol = new Color(32,64,32);
 	
 	private DBase window = null;
