@@ -392,7 +392,7 @@
         <Component class="javax.swing.JButton" name="btnScale">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/g4p/toolResize.png"/>
+              <Image iconType="3" name="/g4p/toolResize2.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Scale to fit"/>
             <Property name="focusable" type="boolean" value="false"/>

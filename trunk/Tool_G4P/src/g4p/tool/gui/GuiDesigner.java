@@ -474,7 +474,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         jSeparator2.setSeparatorSize(new java.awt.Dimension(50, 0));
         tbarComponents.add(jSeparator2);
 
-        btnScale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize.png"))); // NOI18N
+        btnScale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize2.png"))); // NOI18N
         btnScale.setToolTipText("Scale to fit");
         btnScale.setFocusable(false);
         btnScale.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
