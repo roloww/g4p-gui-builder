@@ -559,13 +559,13 @@ public class GuiDesigner extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Window");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
 
         mitemScaleWindow.setText("Scale window to fit");
+        mitemScaleWindow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitemScaleWindowActionPerformed(evt);
+            }
+        });
         jMenu2.add(mitemScaleWindow);
         jMenu2.add(jSeparator1);
 
@@ -617,6 +617,11 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         bgGridSize.add(mitemGS10);
         mitemGS10.setText("10px");
+        mitemGS10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitemGS10ActionPerformed(evt);
+            }
+        });
         jMenu2.add(mitemGS10);
 
         jMenuBar1.add(jMenu2);
@@ -725,10 +730,6 @@ public class GuiDesigner extends javax.swing.JFrame {
            guiControl.showGrid(((JCheckBoxMenuItem)evt.getSource()).isSelected());
         }//GEN-LAST:event_mitemShowGridActionPerformed
 
-        private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-            // TODO add your handling code here:
-        }//GEN-LAST:event_jMenu2ActionPerformed
-
         private void mitemGS4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS4ActionPerformed
            guiControl.setGridSize(4);
         }//GEN-LAST:event_mitemGS4ActionPerformed
@@ -740,6 +741,14 @@ public class GuiDesigner extends javax.swing.JFrame {
         private void mitemGS8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS8ActionPerformed
             guiControl.setGridSize(8);
         }//GEN-LAST:event_mitemGS8ActionPerformed
+
+        private void mitemGS10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS10ActionPerformed
+            guiControl.setGridSize(8);
+        }//GEN-LAST:event_mitemGS10ActionPerformed
+
+        private void mitemScaleWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScaleWindowActionPerformed
+            guiControl.makeWindowSizeToFit();
+        }//GEN-LAST:event_mitemScaleWindowActionPerformed
 
 	/**
 	 * @param args the command line arguments
