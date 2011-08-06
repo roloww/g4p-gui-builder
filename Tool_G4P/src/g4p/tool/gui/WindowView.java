@@ -42,7 +42,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 
 	private MutableDBase selInfo = new MutableDBase();
 
-	private float scale = 1.0f;
+//	private float scale = 1.0f;
 	private int startX, startY;
 	private int deltaX, deltaY;
 
@@ -64,7 +64,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		AffineTransform orgAF = g2.getTransform();
 		AffineTransform af = new AffineTransform(orgAF);
 		g2.setStroke(stdStroke);
@@ -85,7 +85,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	}
 	
 	public void isOver(MutableDBase m, int x, int y){
-		scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
 		int sy = Math.round(y / scale);
 		selInfo.reset();
@@ -106,9 +106,12 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	/**
 	 * @param scale the scale to set
 	 */
-	public void setScale(float scale) {
-		this.scale = scale;
-//		tabCtrl.selectedComponentPropertyChange(selInfo.comp);
+	public void scaleWindowToFit(int w, int h) {
+		int scale = Math.round(90.0f * Math.min(((float) w)/window.get_width(),
+				((float) h)/window.get_height()));
+		((DWindow)window)._0014_Display_scale = scale;
+		repaint();
+		tabCtrl.componentPropertyChange(window);
 	}
 
 	@Override
@@ -146,6 +149,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if(selInfo.comp != null && selInfo.comp.isResizeable()){
+			float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 			deltaX = Math.round((e.getX() - startX) / scale);
 			deltaY = Math.round((e.getY() - startY) / scale);
 			if(selInfo.comp.isResizeable()){
@@ -170,7 +174,7 @@ implements  MouseListener, MouseMotionListener, GTconstants {
 				selInfo.comp.set_x(snapValue(selInfo.orgX + deltaX));
 				selInfo.comp.set_y(snapValue(selInfo.orgY + deltaY));
 			}
-			tabCtrl.selectedComponentPropertyChange(selInfo.comp);
+			tabCtrl.componentPropertyChange(selInfo.comp);
 			repaint();
 		}
 	}

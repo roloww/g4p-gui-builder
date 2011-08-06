@@ -43,7 +43,7 @@ public interface ITabView {
 	 * The size or position of the component has changed
 	 * @param comp
 	 */
-	public abstract void selectedComponentPropertyChange(DBase comp);
+	public abstract void componentPropertyChange(DBase comp);
 	
 	
 	public abstract void scaleWindowToFit();
