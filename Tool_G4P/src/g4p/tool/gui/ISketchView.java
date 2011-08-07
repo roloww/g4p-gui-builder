@@ -1,5 +1,9 @@
 package g4p.tool.gui;
 
+import java.io.File;
+
+import javax.swing.tree.DefaultTreeModel;
+
 import g4p.tool.components.DBase;
 
 /** 
@@ -36,7 +40,13 @@ public interface ISketchView {
 	public abstract DBase getContainerFor(DBase comp);
 	
 	public abstract DBase getRoot();
-	public abstract void addComponent(DBase comp);
-	public abstract void removeComponent();
 	
+	public abstract void addComponent(DBase comp);
+	
+	public void removeComponent();
+	
+	public void saveModel(File file);
+	
+	public DefaultTreeModel loadModel(File file);
+
 }

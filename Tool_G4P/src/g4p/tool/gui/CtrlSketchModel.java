@@ -1,12 +1,14 @@
 package g4p.tool.gui;
 
+import java.io.Serializable;
+
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
 
 @SuppressWarnings("serial")
-public class CtrlSketchModel extends DefaultTreeModel {
+public class CtrlSketchModel extends DefaultTreeModel implements Serializable {
 
 	/**
 	 * Ctor creates a DataModel object with the given root

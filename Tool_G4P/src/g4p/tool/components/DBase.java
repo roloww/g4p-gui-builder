@@ -1,7 +1,8 @@
 package g4p.tool.components;
 
-import g4p.tool.GTconstants;
 import g4p.tool.Messages;
+import g4p.tool.TDataConstants;
+import g4p.tool.TGuiConstants;
 import g4p.tool.gui.WindowView.MutableDBase;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Validator;
@@ -24,7 +25,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  *
  */
 @SuppressWarnings("serial")
-public abstract class DBase extends DefaultMutableTreeNode implements Serializable, GTconstants {
+public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TGuiConstants {
 
 	public static final String COMP_NAME_PROPERTY = "_0005_name";
 	

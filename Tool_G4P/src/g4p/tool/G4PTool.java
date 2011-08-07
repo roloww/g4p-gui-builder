@@ -38,7 +38,7 @@ import processing.app.tools.Tool;
  * @author Peter Lager
  *
  */
-public class G4PTool implements Tool, GTconstants {
+public class G4PTool implements Tool, TFileConstants {
 
     // Keep track of the editor using this sketch
     private processing.app.Editor editor;

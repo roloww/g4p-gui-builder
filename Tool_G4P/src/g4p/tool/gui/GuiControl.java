@@ -6,6 +6,7 @@ public class GuiControl {
 
 	private ITabView tabs;
 	private ISketchView tree;
+	@SuppressWarnings("unused")
 	private IPropView props;
 
 	/**

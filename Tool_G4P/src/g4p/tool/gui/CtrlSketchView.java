@@ -1,6 +1,5 @@
 package g4p.tool.gui;
 
-import g4p.tool.Messages;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DOption;
@@ -10,6 +9,12 @@ import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
@@ -18,7 +23,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -88,9 +92,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	public DBase getWindowFor(DBase comp){
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
 		TreeNode[] nodes = m.getPathToRoot(comp);
-//		for(int i = 0; i < nodes.length; i++)
-//			System.out.print("   " + nodes[i]);
-//		System.out.println("\n");
+		//		for(int i = 0; i < nodes.length; i++)
+		//			System.out.print("   " + nodes[i]);
+		//		System.out.println("\n");
 		DBase w =  (DBase) ((nodes != null && nodes.length >= 2) ? nodes[1] : null);
 		return w;
 	}
@@ -205,6 +209,47 @@ public class CtrlSketchView extends JTree implements ISketchView {
 
 			return this;
 		}
+	}
+
+	/**
+	 * Save the data model to disk
+	 * 
+	 * @param file
+	 */
+	public void saveModel(File file){
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject( (CtrlSketchModel) treeModel);
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Load the data model from file and if successful attach it to 
+	 * this tree and if a node was selected when saved ractivate it
+	 *  
+	 * @param file
+	 */
+	public DefaultTreeModel loadModel(File file){
+		DefaultTreeModel dm = null;
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			dm = (DefaultTreeModel) ois.readObject();
+			fis.close();
+			if(dm != null){
+				setModel(dm);
+				setSelectedComponent((DBase)dm.getRoot());
+			};
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return dm;
 	}
 
 
