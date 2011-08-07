@@ -31,8 +31,8 @@ public final class DWindow extends DBase {
 		if(mainSketch){
 			_0005_name = "Main window";
 			name_label = "SKETCH";
-			_0024_width = 800;
-			_0025_height = 600;
+			_0024_width = 480;
+			_0025_height = 320;
 			
 			_0010_title = "My sketch title";
 		}
@@ -42,7 +42,7 @@ public final class DWindow extends DBase {
 			name_edit = true;
 			x_edit = y_edit = true;
 			x_show = y_show = true;	
-			_0024_width = 200;
+			_0024_width = 240;
 			_0025_height = 120;
 			
 			_0010_title = "My window title";
