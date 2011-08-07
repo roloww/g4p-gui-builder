@@ -38,7 +38,8 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 */
 	@Override
 	public void showProprtiesFor(DBase comp){
-		setModel(comp.getTableModel());
+		if(comp != null)
+			setModel(comp.getTableModel());
 	}
 
 

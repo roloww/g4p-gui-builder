@@ -240,10 +240,10 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			dm = (DefaultTreeModel) ois.readObject();
 			fis.close();
-			if(dm != null){
-				setModel(dm);
-				setSelectedComponent((DBase)dm.getRoot());
-			};
+//			if(dm != null){
+//				setModel(dm);
+//				setSelectedComponent((DBase)dm.getRoot());
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

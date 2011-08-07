@@ -79,7 +79,7 @@ public class G4PTool implements Tool, TFileConstants {
 		if (dframe == null) {
 			// If the gui.pde tab does not exist create one
 			if (!guiTabExists(sketch)) {
-				sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SLASH + PDE_TAB_NAME));
+				sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME));
 
 				// Create data folder if necessary
 
@@ -94,10 +94,10 @@ public class G4PTool implements Tool, TFileConstants {
 				// See if we have a configuration file if not copy template from tools folder
 
 			}
-			File configFile = new File(sketchFolder, CONFIG_FILENAME);
+			File configFile = new File(sketchFolder, CONFIG_FILE);
 			if (!configFile.exists()) {
 				try {
-					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SLASH + PDE_TAB_NAME);
+					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
 					Base.copyFile(configFileTemplate, configFile);
 				} catch (IOException e) {
 					Base.showWarning("GUI Builder error", "Unable to create the GUI config file", null);
@@ -105,8 +105,8 @@ public class G4PTool implements Tool, TFileConstants {
 				}
 				// Copy the readme file ignore any failure
 				try {
-					File readmeSRC = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SLASH + "readme.txt");
-					File readmeDST = new File(sketchFolder, CONFIG_FOLDER + SLASH + "readme.txt");
+					File readmeSRC = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + "readme.txt");
+					File readmeDST = new File(sketchFolder, CONFIG_FOLDER + SEP + "readme.txt");
 					Base.copyFile(readmeSRC, readmeDST);
 				} catch (IOException e) {
 				}
