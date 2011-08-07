@@ -3,6 +3,7 @@ package g4p.tool.gui;
 import java.io.File;
 
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
 
 import g4p.tool.components.DBase;
 
@@ -43,10 +44,12 @@ public interface ISketchView {
 	
 	public abstract void addComponent(DBase comp);
 	
-	public void removeComponent();
+	public abstract void removeComponent();
 	
-	public void saveModel(File file);
+	public abstract void saveModel(File file);
 	
-	public DefaultTreeModel loadModel(File file);
+	public abstract DefaultTreeModel loadModel(File file);
 
+
+	public abstract void setModel(TreeModel m);
 }
