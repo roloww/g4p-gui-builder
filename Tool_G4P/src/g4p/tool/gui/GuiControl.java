@@ -119,8 +119,6 @@ public class GuiControl implements TFileConstants {
 		DBase app = (DBase) m.getRoot();
 		DBase mainDisplay = (DBase) app.getChildAt(0);
 		// Get root and initialise the property view
-		props.showProprtiesFor(mainDisplay);
-		tree.setSelectedComponent(mainDisplay);
 		// Setup window display
 		// Create tabbed pane for each window
 		Enumeration<?> windows = ((DBase) m.getRoot()).children();
@@ -128,6 +126,9 @@ public class GuiControl implements TFileConstants {
 			DBase win = (DBase) windows.nextElement();
 			tabs.addWindow(win);
 		}
+		props.showProprtiesFor(mainDisplay);
+		tree.setSelectedComponent(mainDisplay);
+		tabs.setSelectedComponent(mainDisplay);
 	}
 
 	/**
