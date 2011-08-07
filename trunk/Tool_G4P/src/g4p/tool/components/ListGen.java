@@ -1,6 +1,6 @@
 package g4p.tool.components;
 
-import g4p.tool.GTconstants;
+import g4p.tool.TDataConstants;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerListModel;
 
-public class ListGen implements GTconstants {
+public class ListGen implements TDataConstants {
 
 
 	private static ListGen instance;

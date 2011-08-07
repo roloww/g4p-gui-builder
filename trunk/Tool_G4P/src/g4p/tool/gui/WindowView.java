@@ -5,8 +5,8 @@
 
 package g4p.tool.gui;
 
-import g4p.tool.GTconstants;
 import g4p.tool.Messages;
+import g4p.tool.TGuiConstants;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
 
@@ -27,7 +27,7 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class WindowView extends JPanel 
-implements  MouseListener, MouseMotionListener, GTconstants {
+implements  MouseListener, MouseMotionListener, TGuiConstants {
 
 	private ITabView tabCtrl;
 

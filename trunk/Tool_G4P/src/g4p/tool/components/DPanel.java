@@ -12,13 +12,9 @@ public class DPanel extends DCoreText {
 
 	final protected static int TAB_HEIGHT = 16;
 	
-	public Boolean 		_0030_opaque = false;
+	public Boolean 		_0030_opaque = true;
 	public Boolean 		opaque_edit = true;
 	public Boolean 		opaque_show = true;
-
-	public Boolean 		_0032_collapsed = true;
-	public Boolean 		collapsed_edit = true;
-	public Boolean 		collapsed_show = true;
 
 	public DPanel(){
 		super();
@@ -97,7 +93,4 @@ public class DPanel extends DCoreText {
 				&& y >= _0021_y - TAB_HEIGHT && y <= _0021_y + _0025_height);
 	}
 
-	public String show(){
-		return ("Opaque = " + _0030_opaque + "       Collapsed = " + _0032_collapsed);
-	}
 }

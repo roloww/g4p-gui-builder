@@ -1,6 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.GTconstants;
+import g4p.tool.TDataConstants;
 import g4p.tool.components.ListGen;
 import g4p.tool.components.NameGen;
 
@@ -8,7 +8,7 @@ import javax.swing.ComboBoxModel;
 
 
 
-public abstract class Validator implements GTconstants {
+public abstract class Validator implements TDataConstants {
 
 	private static Validator_Long defaultLong = new Validator_Long();
 	private static Validator_Integer defaultInt = new Validator_Integer();
