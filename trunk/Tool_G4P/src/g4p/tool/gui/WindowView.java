@@ -117,7 +117,7 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	 * @param scale the scale to set
 	 */
 	public void scaleWindowToFit(int w, int h) {
-		int scale = Math.round(95.0f * Math.min(((float) w)/window.get_width(),
+		int scale = Math.round(92.0f * Math.min(((float) w)/window.get_width(),
 				((float) h)/window.get_height()));
 		((DWindow)window)._0014_Display_scale = scale;
 		repaint();

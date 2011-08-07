@@ -17,6 +17,8 @@ public interface ITabView {
 	 * @return
 	 */
 	public abstract boolean deleteWindow(DBase window);
+
+	public void deleteAllWindows();
 	
 	/** 
 	 * Change the selected tab to the window with this control

@@ -116,9 +116,11 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	public void stateChanged(ChangeEvent e) {
 		CtrlTabView sourceTabbedPane = (CtrlTabView) changeEvent.getSource();
 	    WindowView winView = (WindowView) sourceTabbedPane.getSelectedComponent();
-	    DBase comp = winView.getWindowComponent();
-		props.showProprtiesFor(comp);
-		tree.setSelectedComponent(comp);
+	    if(winView != null){
+	    	DBase comp = winView.getWindowComponent();
+	    	props.showProprtiesFor(comp);
+	    	tree.setSelectedComponent(comp);
+	    }
 	}
 
 	/**
@@ -158,6 +160,12 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	public void setSnapToGrid(boolean snap) {
 		WindowView.snapToGrid = snap;		
 		repaint();
+	}
+
+	@Override
+	public void deleteAllWindows() {
+		this.removeAll();
+		
 	}
 
 	

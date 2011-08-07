@@ -1,11 +1,13 @@
 package g4p.tool.gui.propertygrid;
 
+import java.io.Serializable;
+
 import javax.swing.AbstractCellEditor;
 import javax.swing.plaf.UIResource;
 import javax.swing.table.TableCellEditor;
 
 @SuppressWarnings("serial")
-public abstract class CellEditor_Base extends AbstractCellEditor implements TableCellEditor, UIResource {
+public abstract class CellEditor_Base extends AbstractCellEditor implements Serializable, TableCellEditor, UIResource {
 
 	
 	// Validation object 

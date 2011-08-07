@@ -165,15 +165,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ==========================    Stuff for drawing   ==================================================
 	// ====================================================================================================
 
-	// Stuff for drawing
-//	transient protected BasicStroke bs = new BasicStroke(1.1f,
-//			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
-
-//	transient protected BasicStroke selStroke = new BasicStroke(1.3f,
-//			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
-//	transient protected Color stroke;
-//	transient protected Color fill;
-
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
 	
