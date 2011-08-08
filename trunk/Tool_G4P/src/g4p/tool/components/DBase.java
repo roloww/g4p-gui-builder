@@ -227,7 +227,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	protected boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
-		return px >= x && px <= x + w && py >= y && py <= y + h;
+		return px >= x && px < x + w && py >= y && py < y + h;
 	}
 
 	public int getSize(){

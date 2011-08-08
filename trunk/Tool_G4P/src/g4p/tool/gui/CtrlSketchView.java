@@ -4,6 +4,7 @@ import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DOption;
 import g4p.tool.components.DOptionGroup;
+import g4p.tool.components.DPanel;
 import g4p.tool.components.DTimer;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.IPropView;
@@ -88,7 +89,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	/* (non-Javadoc)
 	 * @see g4p.tool.gui.ISketchView#getWindowFor(javax.swing.tree.DefaultMutableTreeNode)
 	 */
-	@Override
 	public DBase getWindowFor(DBase comp){
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
 		TreeNode[] nodes = m.getPathToRoot(comp);
@@ -99,13 +99,29 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		return w;
 	}
 
-	public DBase getContainerFor(DBase comp){
+	public DBase getOptionGroupFor(DBase comp){
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
 		DBase c = null;
 		TreeNode[] nodes = m.getPathToRoot(comp);
 		if(nodes != null){
 			for(int i = nodes.length - 1; i > 0; i--){
-				if(nodes[i].getAllowsChildren()){
+				if(nodes[i] instanceof DOptionGroup){
+					c = (DBase)nodes[i];
+					break;
+				}
+			}
+		}
+		return c;
+	}
+	
+	// Get the first
+	public DBase getGuiContainerFor(DBase comp){
+		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		DBase c = null;
+		TreeNode[] nodes = m.getPathToRoot(comp);
+		if(nodes != null){
+			for(int i = nodes.length - 1; i > 0; i--){
+				if(nodes[i].getAllowsChildren() && nodes[i] instanceof DWindow || nodes[i] instanceof DPanel){
 					c = (DBase)nodes[i];
 					break;
 				}
@@ -114,6 +130,12 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		return c;
 	}
 
+	/**
+	 * Certain rules must apply
+	 * 1) All window components are added to the application node (root)
+	 * 2) In general all controls are added to a window
+	 * 3) Option buttons must be added to an option group component
+	 */
 	@Override
 	public void addComponent(DBase comp) {
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
@@ -122,20 +144,30 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			m.insertNodeInto(comp, r, r.getChildCount());
 			tabs.addWindow(comp);
 			setSelectedComponent(comp);
-			//			repaint();
+//			repaint();
 		}
 		else if(comp instanceof DTimer){
 			// add to active window
 		}
 		else if(comp instanceof DOptionGroup){
-			// add to active window
+			DBase selected = (DBase) getLastSelectedPathComponent();
+			DBase window = getGuiContainerFor(selected);
+			if(window != null){
+				m.insertNodeInto(comp, window, window.getChildCount());
+				setSelectedComponent(comp);
+			}
 		}
 		else if(comp instanceof DOption){
-			// add to option group
+			DBase selected = (DBase) getLastSelectedPathComponent();
+			DBase opg = getOptionGroupFor(selected);
+			if(opg != null){
+				m.insertNodeInto(comp, opg, opg.getChildCount());				
+				setSelectedComponent(comp);
+			}
 		}
 		else {
 			DBase selected = (DBase) getLastSelectedPathComponent();
-			DBase window = getContainerFor(selected);
+			DBase window = getGuiContainerFor(selected);
 			if(window != null){
 				comp.set_x( (window.get_width() - comp.get_width())/ 2);
 				comp.set_y( (window.get_height() - comp.get_height())/ 2);

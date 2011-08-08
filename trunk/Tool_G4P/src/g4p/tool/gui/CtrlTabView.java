@@ -71,7 +71,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	 */
 	public void setSelectedComponent(DBase comp){
 		// Clear current selection
-		WindowView winView = (WindowView) this.getSelectedComponent();
+		WindowView winView = (WindowView) getSelectedComponent();
 		if(winView != null)
 			winView.setSelected(null);
 		winView = null;
@@ -82,7 +82,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		}
 		else {
 			DBase window = tree.getWindowFor(comp);
-			if(window != null && window instanceof DWindow){
+			if(window != null ){													// && window instanceof DWindow ???????
 				setSelectedTab(window);
 				// It it was something other than a window update the component
 				// it is selecting

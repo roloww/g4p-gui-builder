@@ -38,7 +38,7 @@ public interface ISketchView {
 	 * @param comp
 	 * @return
 	 */
-	public abstract DBase getContainerFor(DBase comp);
+//	public abstract DBase getContainerFor(DBase comp);
 	
 	public abstract DBase getRoot();
 	
