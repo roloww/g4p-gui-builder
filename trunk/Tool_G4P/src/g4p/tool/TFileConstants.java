@@ -18,8 +18,4 @@ public interface TFileConstants {
 	public final String G4P_TOOL_DATA_FOLDER 	= "tools" + SEP + "##name##" + SEP + "data";
 	public final String G4P_LIB 				= "guicomponents" + SEP + "library" + SEP + "guicomponents.jar";
 
-
-	
-
-    
 }
