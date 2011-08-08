@@ -15,4 +15,7 @@ public class DCoreSelectable extends DCore {
 		_0025_height = 20;
 	}
 	
+	public void setSelected(boolean selected){
+		_0050_selected = selected;
+	}
 }

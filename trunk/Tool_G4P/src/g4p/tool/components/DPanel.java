@@ -35,7 +35,10 @@ public class DPanel extends DCoreText {
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
-		g.setColor(solidCompBack);
+		if(_0030_opaque)
+			g.setColor(pnlBackOpaque);
+		else
+			g.setColor(pnlBackClear);
 		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(pnlTabCol);
 		g.fillRect(0, -TAB_HEIGHT, _0024_width, TAB_HEIGHT);

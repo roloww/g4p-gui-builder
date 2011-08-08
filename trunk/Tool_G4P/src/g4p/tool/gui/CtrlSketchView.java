@@ -159,8 +159,11 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		}
 		else if(comp instanceof DOption){
 			DBase selected = (DBase) getLastSelectedPathComponent();
+			DBase window = getGuiContainerFor(selected);
 			DBase opg = getOptionGroupFor(selected);
-			if(opg != null){
+			if(window != null && opg != null){
+				comp.set_x( (window.get_width() - comp.get_width())/ 2);
+				comp.set_y( (window.get_height() - comp.get_height())/ 2);
 				m.insertNodeInto(comp, opg, opg.getChildCount());				
 				setSelectedComponent(comp);
 			}
@@ -173,8 +176,13 @@ public class CtrlSketchView extends JTree implements ISketchView {
 				comp.set_y( (window.get_height() - comp.get_height())/ 2);
 				m.insertNodeInto(comp, window, window.getChildCount());
 				setSelectedComponent(comp);
-			}	    	
+			}
 		}
+		
+		//	
+		// need to remove name from name gen list
+		//			 display an error message
+
 	}
 
 	@Override

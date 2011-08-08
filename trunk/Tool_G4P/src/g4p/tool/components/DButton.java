@@ -29,7 +29,7 @@ public class DButton extends DCoreText {
 
 		((RoundRectangle2D) face).setRoundRect(0, 0, _0024_width, _0025_height, mitre, mitre);	
 		g.setStroke(stdStroke);
-		g.setColor(back100);
+		g.setColor(btnBack);
 		g.fill(face);			
 		g.setColor(blackEdge);
 		g.draw(face);
