@@ -10,6 +10,9 @@ import g4p.tool.gui.propertygrid.Validator;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.RoundRectangle2D;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Enumeration;
 
@@ -143,6 +146,13 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return propertyModel;
 	}
 
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		NameGen.instance().add(_0005_name);
+	}
+	
 	// ====================================================================================================
 
 	/**
