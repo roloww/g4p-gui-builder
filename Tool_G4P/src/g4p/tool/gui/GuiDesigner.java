@@ -13,9 +13,12 @@ package g4p.tool.gui;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DButton;
+import g4p.tool.components.DCheckbox;
 import g4p.tool.components.DHorzSlider;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
+import g4p.tool.components.DOption;
+import g4p.tool.components.DOptionGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DVertSlider;
@@ -692,15 +695,15 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnKnobActionPerformed
 
 	private void btnCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckboxActionPerformed
-		showWarning("GUI Builder warning", "Image buttons not yet available", null);
+		guiControl.addComponent(new DCheckbox());
 	}//GEN-LAST:event_btnCheckboxActionPerformed
 
 	private void btnOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOptionActionPerformed
-		showWarning("GUI Builder warning", "Option buttons not yet available", null);
+		guiControl.addComponent(new DOption());
 	}//GEN-LAST:event_btnOptionActionPerformed
 
 	private void btnOptGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOptGroupActionPerformed
-		showWarning("GUI Builder warning", "Option groups  not yet available", null);
+		guiControl.addComponent(new DOptionGroup());
 	}//GEN-LAST:event_btnOptGroupActionPerformed
 
 	private void btnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComboActionPerformed

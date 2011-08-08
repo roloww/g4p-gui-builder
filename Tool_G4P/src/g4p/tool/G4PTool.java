@@ -94,7 +94,7 @@ public class G4PTool implements Tool, TFileConstants {
 				// See if we have a configuration file if not copy template from tools folder
 
 			}
-			File configFile = new File(sketchFolder, CONFIG_FILE);
+			File configFile = new File(sketchFolder, CONFIG_FILENAME);
 			if (!configFile.exists()) {
 				try {
 					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
