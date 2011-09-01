@@ -51,6 +51,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private static GuiDesigner instance = null;
 
+	private static boolean warningOn = false;
+	
 	/**
 	 * This is provided because the GuiDesigner window is specified as 
 	 * always-on-top and this conflicts with using a new Frame with
@@ -64,6 +66,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 * @param e option exception
 	 */
 	public static void showWarning(String title, String message, Exception e) {
+		warningOn = true;
 		if (title == null || title.equals("")) 
 			title = "Warning";
 		if (instance == null) {
@@ -73,6 +76,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(instance, message, title,
 					JOptionPane.WARNING_MESSAGE);
 		}
+		warningOn = false;
 		if (e != null) e.printStackTrace();
 	}
 
@@ -177,8 +181,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowDeactivated(WindowEvent e) {
 				System.out.println("DEACTIVATED");
-				setExtendedState(ICONIFIED);
-
+				if(!warningOn){
+					setExtendedState(ICONIFIED);
+					return;
+				}
 			}
 
 		};
