@@ -29,6 +29,8 @@ import g4p.tool.gui.GuiDesigner;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JFrame;
+
 import processing.app.Base;
 import processing.app.Sketch;
 import processing.app.tools.Tool;
@@ -116,6 +118,7 @@ public class G4PTool implements Tool, TFileConstants {
 		} 
 		else {
 			dframe.setVisible(true);
+			dframe.setExtendedState(JFrame.NORMAL);
 			dframe.toFront();
 		}
 		System.out.println("GUI builder tool for G4P.  \n   ##name## ##version## by ##author##");
