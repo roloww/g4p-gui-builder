@@ -67,8 +67,18 @@ public class GuiControl implements TFileConstants {
 		tabs.setGridSize(gs);
 	}
 	
+	public void getEventCode(){
+		
+	}
 	
-	public void loadGuiCode() {
+	private void createEventCode(){
+		
+	}
+	
+	/**
+	 * This method loads the serialised GUI layout (tree model)
+	 */
+	public void loadGuiLayout() {
 		DefaultTreeModel dm = null;
 	   	File file;
 		if(editor == null){
@@ -83,11 +93,13 @@ public class GuiControl implements TFileConstants {
 		if(dm != null)
 			this.makGUIfromTreeModel((CtrlSketchModel) dm);
 		else
-			this.initModel();
-			
+			this.initModel();		
 	}
 	
-    public void saveGuiCode() {
+	/**
+	 * This saves the GUI (tree) model) layout using serialisation.
+	 */
+    public void saveGuiLayout() {
     	File file;
 		if(editor == null){
 			file = new File(MODEL_FILENAME);

@@ -812,11 +812,11 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnScaleActionPerformed
 
 	private void mitemLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemLoadActionPerformed
-		guiControl.loadGuiCode();
+		guiControl.loadGuiLayout();
 	}//GEN-LAST:event_mitemLoadActionPerformed
 
 	private void mitemSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemSaveActionPerformed
-		guiControl.saveGuiCode();
+		guiControl.saveGuiLayout();
 	}//GEN-LAST:event_mitemSaveActionPerformed
 
 	private void mitemGenCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGenCodeActionPerformed
