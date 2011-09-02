@@ -18,10 +18,10 @@ import java.util.Enumeration;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- * This class is used to represent none visual components that can containing
+ * This class is used to represent non-visual components that can containing
  * other components.
  * 
- * This class is used to represent the SKERTCH application and GOptionGroup
+ * This class is used to represent the SKETCH application and GOptionGroup
  * 
  * @author Peter Lager
  *
@@ -29,7 +29,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 @SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TGuiConstants {
 
-	public static final String COMP_NAME_PROPERTY = "_0005_name";
+//	public static final String COMP_NAME_PROPERTY = "_0005_name";
 	
 	transient public CtrlPropModel propertyModel;
 
@@ -39,6 +39,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected boolean resizeable = true;
 	protected boolean moveable = true;
 
+	public String eventCode = "";
+	public String componentClass = "";
+	
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
@@ -75,11 +78,17 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
 
+	public String		_0101_eventHandler = "Event handler";
+	public String 		eventHandler_label = "Event method name";
+	public String 		eventHandler_tooltip = "unique name for event handler method";
+	public Boolean 		eventHandler_edit = false;
+	public Boolean 		eventHandler_show = false;
+	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
+
 
 
 	public DBase(){
 		allowsChildren = false;
-		//		System.out.println("\tDBase() ctor");
 	}
 
 
@@ -105,7 +114,14 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		_0025_height = height;
 	}
 
-
+	public void set_event_name(String e_name){
+		_0101_eventHandler = e_name;
+	}
+	
+	public void set_code(String code){
+		eventCode = code;
+	}
+	
 	// GETTERS
 
 
@@ -123,6 +139,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String get_title() { return ""; }
 
+	public String get_event_name(){	return _0101_eventHandler; }
+
+	public String get_code(){ return eventCode; }
+	
 	public boolean isSelectable(){
 		return selectable;
 	}
@@ -145,13 +165,24 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return propertyModel;
 	}
 
+	public String get_declaration(){
+		return componentClass + " " + _0005_name+ "; ";
+	}
+	
+	public String get_event_header(){
+		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, componentClass.substring(1).toLowerCase(), _0005_name).replace('[', '{');
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0101_eventHandler);
 	}
 	
+	// ====================================================================================================
+	// ====================================================================================================
 	// ====================================================================================================
 
 	/**
@@ -217,7 +248,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 					m.selID = OVER_DIAG;
 			}
 		}
-		if(this.allowsChildren){
+		if(allowsChildren){
 			Enumeration<?> e = children();
 			while(e.hasMoreElements()){
 				((DBase)e.nextElement()).isOver(m, x, y);
@@ -233,6 +264,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return _0024_width * _0025_height;
 	}
 
-
+	
 
 }

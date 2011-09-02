@@ -11,14 +11,14 @@ public class DCore extends DBase {
 		moveable = true;
 
 		name_label = "Variable name";
-		name_tooltip = "Java naming rules apply";
+		name_tooltip = "Use Java naming rules";
 		name_edit = true;
 		
 		x_edit = y_edit = true;
 		x_show = y_show = true;	
 		width_edit = height_edit = true;
 		width_show = height_show = true;
-		
+		eventHandler_edit = eventHandler_show = true;
 		allowsChildren = false;
 	}
 

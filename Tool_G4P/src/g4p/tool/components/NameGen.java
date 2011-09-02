@@ -14,7 +14,6 @@ public final class NameGen {
 		return instance;
 	}
 	
-	
 	private Set<String> words;
 	
 	private NameGen(){
