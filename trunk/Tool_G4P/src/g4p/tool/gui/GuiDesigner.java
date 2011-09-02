@@ -157,7 +157,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowIconified(WindowEvent e) {
 				System.out.println("ICONIFIED");
-
+				setVisible(false);
 			}
 
 			/**

@@ -14,9 +14,11 @@ public interface TDataConstants {
 	public final int INVALID_CHAR		=	0x00000034;
 	public final int UNAVAILABLE		=	0x00000035;
 	
-	// 0 = event method name  :  1 = parameter type :  2 = parameter name : 3 =  component name/ID
-	public final String METHOD_START_1	= "void {0}({1} {2}) [ //_CODE_:{3}:";
-	// 0 = component name/ID
-	public final String METHOD_END 		= "] //_CODE_:{0}:";
+	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
+	public final String METHOD_START_1	= "void {0}({1} {2}) [ //_CODE_:{3}:{4}:";
+	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  parameter type/name : 3/4 =  component name/id
+	public final String METHOD_START_2	= "void {0}({1} {2}, {3} {4}) [ //_CODE_:{5}:{6}:";
+	// 0 = component name  : 1 = id
+	public final String METHOD_END 		= "] //_CODE_:{0}:{1}:";
 
 }
