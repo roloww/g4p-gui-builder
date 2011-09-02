@@ -88,6 +88,8 @@ public class GuiControl implements TFileConstants {
 			file = new File(editor.getSketch().getFolder(), MODEL_FILENAME);
 		}
 		if(file.exists()){
+			NameGen.instance().reset();
+			IdGen.instance().reset();
 			dm = tree.loadModel(file);
 		}
 		if(dm != null)

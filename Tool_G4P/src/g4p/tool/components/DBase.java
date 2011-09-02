@@ -42,6 +42,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public String eventCode = "";
 	public String componentClass = "";
 	
+	protected Integer id = null;
+	
 	// Important attributes
 	public String 		_0005_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
@@ -89,6 +91,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public DBase(){
 		allowsChildren = false;
+		id = IdGen.instance().getNext();
 	}
 
 
@@ -170,7 +173,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 	
 	public String get_event_header(){
-		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, componentClass.substring(1).toLowerCase(), _0005_name).replace('[', '{');
+		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, componentClass.substring(1).toLowerCase(), _0005_name, id.toString()).replace('[', '{');
 	}
 	
 	private void readObject(ObjectInputStream in)
@@ -179,6 +182,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
+		IdGen.instance().add(id);
 	}
 	
 	// ====================================================================================================

@@ -18,6 +18,50 @@ public final class NameGen {
 	
 	private NameGen(){
 		words = new HashSet<String>();
+		addReservedWords();
+	}
+	
+	/**
+	 * See if a name is reserved
+	 * @param name
+	 * @return
+	 */
+	public boolean used(String name){
+		return words.contains(name);
+	}
+
+	public void add(String name){
+		words.add(name);
+		System.out.println("Name: " + name + "   ADDED size= " + words.size());
+	}
+	
+	public void remove(String name){
+		words.remove(name);
+	}
+	
+	public void reset(){
+		words.clear();
+		addReservedWords();
+	}
+	
+	/**
+	 * Get the next available name-number combination and add it to 
+	 * the reserved list.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public String getNext(String name){
+		int nbr = 0;
+		do {
+			nbr++;
+		} while(words.contains(name + nbr));
+		name = name + nbr;
+		words.add(name);
+		return name;
+	}
+	
+	private void addReservedWords(){
 		// Java keywords
         String w = "abstract continue for new switch assert default ";
         w += "goto package synchronized boolean do if private this ";
@@ -71,38 +115,6 @@ public final class NameGen {
             words.add(s);
         }
 	}
-	
-	/**
-	 * See if a name is reserved
-	 * @param name
-	 * @return
-	 */
-	public boolean used(String name){
-		return words.contains(name);
-	}
+ 
 
-	public void add(String name){
-		words.add(name);
-	}
-	
-	public void remove(String name){
-		words.remove(name);
-	}
-	
-	/**
-	 * Get the next available name-number combination and add it to 
-	 * the reserved list.
-	 * 
-	 * @param name
-	 * @return
-	 */
-	public String getNext(String name){
-		int nbr = 0;
-		do {
-			nbr++;
-		} while(words.contains(name + nbr));
-		name = name + nbr;
-		words.add(name);
-		return name;
-	}
 }
