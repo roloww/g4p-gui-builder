@@ -8,7 +8,9 @@ public class DVertSlider extends DSliderInteger {
 
 	public DVertSlider(){
 		super();
+		componentClass = "GVertSlider";
 		set_name(NameGen.instance().getNext("slider"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
 		_0024_width = 12;
 		_0025_height = 100;
 	}

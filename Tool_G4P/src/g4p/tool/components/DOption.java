@@ -1,5 +1,7 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
@@ -10,9 +12,16 @@ public class DOption extends DCoreSelectable {
 
 	public DOption(){
 		super();
+		componentClass = "GOption";
 		set_name(NameGen.instance().getNext("option"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
 	}
 	
+	public String get_event_header(){
+		String pname = componentClass.substring(1).toLowerCase();
+		return Messages.build(METHOD_START_2, _0101_eventHandler, componentClass, pname + "1", pname + "2", _0005_name, id.toString()).replace('[', '{');
+	}
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
@@ -31,7 +40,7 @@ public class DOption extends DCoreSelectable {
 
 		if(_0050_selected){
 			g.setColor(optDot);
-			g.fillOval(10, (_0025_height - DOTSIZE/2)/2, DOTSIZE/2, DOTSIZE/2);
+			g.fillOval(3 + (_0025_height - DOTSIZE)/2, (_0025_height - DOTSIZE/2)/2, DOTSIZE/2, DOTSIZE/2);
 		}
 		
 		g.setColor(blackEdge);

@@ -8,7 +8,9 @@ public class DHorzSlider extends DSliderInteger {
 
 	public DHorzSlider(){
 		super();
+		componentClass = "GHorzSlider";
 		set_name(NameGen.instance().getNext("slider"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
 		_0024_width = 100;
 		_0025_height = 12;
 	}
@@ -18,7 +20,6 @@ public class DHorzSlider extends DSliderInteger {
 		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
 		
-//		g.setStroke(stdStroke);
 		g.setColor(sdrBack);
 		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(sdrThumb);

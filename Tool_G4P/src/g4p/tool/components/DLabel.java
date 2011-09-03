@@ -9,10 +9,12 @@ public class DLabel extends DCoreText {
 	
 	public DLabel(){
 		super();
+		componentClass = "GLabel";
 		set_name(NameGen.instance().getNext("label"));
 		_0024_width = 80;
 		_0025_height = 20;
 		_0015_text = "My label";
+		eventHandler_edit = eventHandler_show = false;
 	}
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
