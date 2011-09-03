@@ -34,13 +34,15 @@ public class DOption extends DCoreSelectable {
 		g.drawRect(0, 0, _0024_width, _0025_height);
 		
 		g.setColor(optFill);
-		g.fillOval(3, (_0025_height - DOTSIZE)/2, DOTSIZE, DOTSIZE);
+		int top = (_0025_height - DOT_EDGE)/2;
+		g.fillOval(3, top, DOT_EDGE, DOT_EDGE);
 		g.setColor(blackEdge);
-		g.drawOval(3, (_0025_height - DOTSIZE)/2, DOTSIZE, DOTSIZE);
+		g.drawOval(3, top, DOT_EDGE, DOT_EDGE);
 
 		if(_0050_selected){
+			int offset = (DOT_EDGE - DOT_SOLID)/2;
 			g.setColor(optDot);
-			g.fillOval(3 + (_0025_height - DOTSIZE)/2, (_0025_height - DOTSIZE/2)/2, DOTSIZE/2, DOTSIZE/2);
+			g.fillOval(3 + offset, top + offset, DOT_SOLID, DOT_SOLID);
 		}
 		
 		g.setColor(blackEdge);

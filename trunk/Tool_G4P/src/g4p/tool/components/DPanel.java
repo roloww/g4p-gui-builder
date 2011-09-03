@@ -18,8 +18,10 @@ public class DPanel extends DCoreText {
 
 	public DPanel(){
 		super();
-		allowsChildren = true;
+		componentClass = "GPanel";
 		set_name(NameGen.instance().getNext("panel"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
+		allowsChildren = true;
 		_0015_text = "My panel";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
