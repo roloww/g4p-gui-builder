@@ -25,7 +25,9 @@ public class DKnob extends DSliderFloat {
 
 	public DKnob(){
 		super();
+		componentClass = "GKnob";
 		set_name(NameGen.instance().getNext("knob"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Turn"));
 		_0024_width = 40;
 		_0025_height = 40;
 	}

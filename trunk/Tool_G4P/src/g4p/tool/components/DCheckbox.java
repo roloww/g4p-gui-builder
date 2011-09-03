@@ -8,7 +8,9 @@ public class DCheckbox extends DCoreSelectable{
 	
 	public DCheckbox(){
 		super();
+		componentClass = "GCheckbox";
 		set_name(NameGen.instance().getNext("checkbox"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
 	}
 
 	

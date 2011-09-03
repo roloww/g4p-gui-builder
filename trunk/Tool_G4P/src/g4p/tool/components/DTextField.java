@@ -12,7 +12,9 @@ public class DTextField extends DCoreText {
 
 	public DTextField(){
 		super();
+		componentClass = "GTextField";
 		set_name(NameGen.instance().getNext("textfield"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Enter"));
 		text_tooltip = "initial text";
 		_0024_width = 80;
 		_0025_height = 20;

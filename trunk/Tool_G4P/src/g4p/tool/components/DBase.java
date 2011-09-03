@@ -176,6 +176,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, componentClass.substring(1).toLowerCase(), _0005_name, id.toString()).replace('[', '{');
 	}
 	
+	public String get_event_end(){
+		return Messages.build(METHOD_END, _0005_name, id.toString()).replace(']', '}');
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
