@@ -211,6 +211,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ClassIcon.instance().addElement(DWSlider.class, btnCoolSlider.getIcon());
 		ClassIcon.instance().addElement(DImageButton.class, btnImgButton.getIcon());
 		ClassIcon.instance().addElement(DCombo.class, btnCombo.getIcon());
+		ClassIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
 	}
 
 	private void initCustomComponents() {

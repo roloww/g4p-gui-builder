@@ -57,7 +57,8 @@ public interface TGuiConstants {
     public final Color optEdge			= Color.black;
     public final Color optFill			= Color.white;
     public final Color optDot			= new Color(64,64,160);
-    public final int DOTSIZE	=	10; 
+    public final int DOT_EDGE			=	10; 
+    public final int DOT_SOLID			=	6; 
     
     public final Color cboxBack			= lblBack;
     public final Color cboxEdge			= Color.black;
