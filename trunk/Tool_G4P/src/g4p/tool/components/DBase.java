@@ -191,6 +191,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return Messages.build(METHOD_END, _0005_name, id.toString()).replace(']', '}');
 	}
 	
+	public String getCode(DBase parent){ return ""; }
 	
 	// ====================================================================================================
 	// ====================================================================================================

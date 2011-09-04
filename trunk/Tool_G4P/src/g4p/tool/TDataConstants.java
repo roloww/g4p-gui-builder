@@ -65,6 +65,8 @@ public interface TDataConstants {
 	public final String CODE_GOPTION		=	"  println(\"{0} - option selected\");";
 	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded\");";
 	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield\");";
+
+	public final String INDENT				=	"  ";
 	
 	
 }

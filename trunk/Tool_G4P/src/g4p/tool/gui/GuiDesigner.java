@@ -14,9 +14,8 @@ import g4p.tool.components.DApplication;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DCheckbox;
 import g4p.tool.components.DCombo;
-import g4p.tool.components.DImageButton;
-import g4p.tool.components.DWSlider;
 import g4p.tool.components.DHorzSlider;
+import g4p.tool.components.DImageButton;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
 import g4p.tool.components.DOption;
@@ -25,6 +24,7 @@ import g4p.tool.components.DPanel;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
 import g4p.tool.components.DVertSlider;
+import g4p.tool.components.DWSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 
@@ -33,14 +33,11 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
 
-import processing.app.Base;
 import processing.app.Editor;
-import processing.app.Sketch;
 
 /**
  *
@@ -130,7 +127,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * The close operation can be overridden at this point.
 			 */
 			public void windowClosing(WindowEvent e) {
-				System.out.println("CLOSING");
+				//System.out.println("CLOSING");
 				dispose();              	
 			}
 
@@ -138,14 +135,14 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window has been closed.
 			 */
 			public void windowClosed(WindowEvent e) {
-				System.out.println("CLOSED");
+				//System.out.println("CLOSED");
 			}
 
 			/**
 			 * Invoked when a window is iconified.
 			 */
 			public void windowIconified(WindowEvent e) {
-				System.out.println("ICONIFIED");
+				//System.out.println("ICONIFIED");
 				setVisible(false);
 			}
 
@@ -153,7 +150,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-iconified.
 			 */
 			public void windowDeiconified(WindowEvent e) {
-				System.out.println("DEICONIFIED");
+				//System.out.println("DEICONIFIED");
 
 			}
 
@@ -161,7 +158,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-				System.out.println("ACTIVATED");
+				//System.out.println("ACTIVATED");
 				setExtendedState(NORMAL);
 			}
 
@@ -169,7 +166,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-				System.out.println("DEACTIVATED");
+				//System.out.println("DEACTIVATED");
 				if(!warningOn){
 					setExtendedState(ICONIFIED);
 					return;

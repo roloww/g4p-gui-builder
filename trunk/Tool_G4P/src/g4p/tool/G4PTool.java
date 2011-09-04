@@ -27,7 +27,6 @@ package g4p.tool;
 import g4p.tool.gui.GuiDesigner;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -80,12 +79,9 @@ public class G4PTool implements Tool, TFileConstants {
 		}
 		// The tool is not open so create the designer window
 		if (dframe == null) {
-			// If the gui.pde tab does not exist create one
+			// If the gui.pde tab does not exist create it
 			if (!guiTabExists(sketch)) {
 				sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME));
-
-				
-
 			}
 			// Create data folder if necessary
 			sketch.prepareDataFolder();
@@ -97,14 +93,13 @@ public class G4PTool implements Tool, TFileConstants {
 			}
 			
 			dframe = new GuiDesigner(editor);
+			System.out.println("##name## Version ##version## created by ##author##");
 		} 
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
 		dframe.setVisible(true);
 		dframe.setExtendedState(JFrame.NORMAL);
 		dframe.toFront();
-
-		System.out.println("##name## Version ##version## created by ##author##");
 	}
 
 	/**

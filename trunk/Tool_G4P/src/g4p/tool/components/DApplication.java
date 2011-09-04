@@ -1,5 +1,6 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.CellEditor_Base;
 import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
 
@@ -33,12 +34,12 @@ public final class DApplication extends DBase {
 	public Boolean Cursor_changer_show = true;
 	public String Cursor_changer_updater = "updateCursorChanger";
 
-	public String _0021_Cursor_off = "ARROW";
+	public String _0022_Cursor_off = "ARROW";
 	public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
 	public Boolean Cursor_off_edit = true;
 	public Boolean Cursor_off_show = false;
 
-	public String _0021_Cursor_over = "HAND";
+	public String _0023_Cursor_over = "HAND";
 	public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
 	public Boolean Cursor_over_edit = true;
 	public Boolean Cursor_over_show = false;
@@ -56,6 +57,15 @@ public final class DApplication extends DBase {
 		name_label = "PROCCESSING";
 	}
 
+	public String getCode(DBase parent){ 
+		StringBuilder sb = new StringBuilder();
+		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0010_Colour_scheme));
+		if(_0020_Cursor_changer) {
+			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0022_Cursor_off, _0023_Cursor_over));
+			sb.append("  G4P.setMouseOverEnabled(true);\n");
+		}
+		return new String(sb);
+	}
 
 	public void updateCursorChanger(){
 		System.out.println("update cursor changer done  " + _0020_Cursor_changer.toString());
@@ -65,6 +75,7 @@ public final class DApplication extends DBase {
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
 	
+
 	public String toString(){
 		return _0005_name;
 	}
