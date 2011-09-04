@@ -49,7 +49,6 @@ public class GuiControl implements TFileConstants {
 			guiPdeBase = base.loadFile(new File(fname));
 			System.out.println(guiPdeBase);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
