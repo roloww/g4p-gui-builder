@@ -113,14 +113,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 * Keep a reference to the editor
 	 * @param theEditor
 	 */
-	public GuiDesigner(Editor theEditor, File configFile) {
+	public GuiDesigner(Editor theEditor) {
 		instance = this;
 
 		editor = theEditor;
-//		config = configFile;
-//		base = editor.getBase();
-//		sketch = editor.getSketch();
-
 		initComponents();
 		initCustomComponents();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);

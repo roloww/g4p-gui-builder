@@ -78,6 +78,7 @@ public class G4PTool implements Tool, TFileConstants {
 			Base.showWarning("GUI Builder error", "This tool needs the G4P library to be installed.\nGet G4P from http://code.google.com/p/gui4processing/downloads", null);
 			return;
 		}
+		// The tool is not open so create the designer window
 		if (dframe == null) {
 			// If the gui.pde tab does not exist create one
 			if (!guiTabExists(sketch)) {
@@ -88,42 +89,22 @@ public class G4PTool implements Tool, TFileConstants {
 			}
 			// Create data folder if necessary
 			sketch.prepareDataFolder();
-			File configFile = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
 			
-//			// See if there is a sub-folder in the data folder called '_gui_builder' stuff
-//			File configFolder = new File(sketchFolder, CONFIG_FOLDER);
-//			if (!configFolder.exists()) {
-//				configFolder.mkdir();
-//
-//				// See if we have a configuration file if not copy template from tools folder
-//
-//			}
-//			File configFile = new File(sketchFolder, CONFIG_FILENAME);
-//			if (!configFile.exists()) {
-//				try {
-//					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
-//					Base.copyFile(configFileTemplate, configFile);
-//				} catch (IOException e) {
-//					Base.showWarning("GUI Builder error", "Unable to create the GUI config file", null);
-//					return;
-//				}
-//				// Copy the readme file ignore any failure
-//				try {
-//					File readmeSRC = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + "readme.txt");
-//					File readmeDST = new File(sketchFolder, CONFIG_FOLDER + SEP + "readme.txt");
-//					Base.copyFile(readmeSRC, readmeDST);
-//				} catch (IOException e) {
-//				}
-//			}
-			dframe = new GuiDesigner(editor, configFile);
-			dframe.setVisible(true);
+			// See if there is a sub-folder in the data folder called '_gui_builder' stuff
+			File configFolder = new File(sketchFolder, CONFIG_FOLDER);
+			if (!configFolder.exists()) {
+				configFolder.mkdir();
+			}
+			
+			dframe = new GuiDesigner(editor);
 		} 
-		else {
-			dframe.setVisible(true);
-			dframe.setExtendedState(JFrame.NORMAL);
-			dframe.toFront();
-		}
-		System.out.println("GUI builder tool for G4P.  \n   ##name## ##version## by ##author##");
+		// Design window exists so make visible, open to normal size
+		// and bring to front.
+		dframe.setVisible(true);
+		dframe.setExtendedState(JFrame.NORMAL);
+		dframe.toFront();
+
+		System.out.println("##name## Version ##version## created by ##author##");
 	}
 
 	/**
