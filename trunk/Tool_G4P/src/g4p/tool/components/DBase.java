@@ -39,8 +39,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected boolean resizeable = true;
 	protected boolean moveable = true;
 
-	public String eventCode = "";
 	public String componentClass = "";
+
+	transient public String eventCode = "";
 	
 	protected Integer id = null;
 	
@@ -121,12 +122,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		_0101_eventHandler = e_name;
 	}
 	
-	public void set_code(String code){
+	public void set_event_code(String code){
 		eventCode = code;
 	}
 	
 	// GETTERS
-
 
 	public String get_name() { return _0005_name; }
 
@@ -144,7 +144,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String get_event_name(){	return _0101_eventHandler; }
 
-	public String get_code(){ return eventCode; }
 	
 	public boolean isSelectable(){
 		return selectable;
@@ -168,6 +167,18 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return propertyModel;
 	}
 
+	// ====================================================================================================
+	// ====================================================================================================
+	// =======================   Stuff for code generation   ==============================================
+	// ====================================================================================================
+	
+	public String get_event_code(){ 
+		if(eventCode.equals(""))
+			return Messages.build(CODE_ANY, _0005_name, componentClass);
+		else
+			return eventCode; 
+	}
+
 	public String get_declaration(){
 		return componentClass + " " + _0005_name+ "; ";
 	}
@@ -180,6 +191,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return Messages.build(METHOD_END, _0005_name, id.toString()).replace(']', '}');
 	}
 	
+	
+	// ====================================================================================================
+	// ====================================================================================================
+	// =======================   Stuff for code serialisation   ===========================================
+	// ====================================================================================================
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
@@ -191,6 +208,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	
 	// ====================================================================================================
 	// ====================================================================================================
+	// ==========================    Stuff for debugging   ================================================
 	// ====================================================================================================
 
 	/**
@@ -243,7 +261,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		if(selectable){
 			x -= _0020_x;
 			y -= _0021_y;
-			//
+			
 			if(getSize() < m.area && isOverRectangle(x, y, 0, 0, _0024_width, _0025_height)){			
 				m.selID = OVER_COMP;
 				m.comp = this;

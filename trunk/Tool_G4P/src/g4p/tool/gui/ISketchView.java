@@ -50,6 +50,5 @@ public interface ISketchView {
 	
 	public abstract DefaultTreeModel loadModel(File file);
 
-
 	public abstract void setModel(TreeModel m);
 }

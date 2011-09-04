@@ -1,6 +1,16 @@
 package g4p.tool.gui;
 
+import g4p.tool.TFileConstants;
+import g4p.tool.components.DApplication;
+import g4p.tool.components.DBase;
+import g4p.tool.components.DWindow;
+import g4p.tool.components.IdGen;
+import g4p.tool.components.NameGen;
+import g4p.tool.gui.propertygrid.IPropView;
+
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.DefaultTreeModel;
@@ -9,21 +19,17 @@ import javax.swing.tree.TreeModel;
 import processing.app.Base;
 import processing.app.Editor;
 import processing.app.Sketch;
-import g4p.tool.TFileConstants;
-import g4p.tool.gui.propertygrid.IPropView;
-import g4p.tool.components.*;
+import processing.app.SketchCode;
 
 public class GuiControl implements TFileConstants {
 
 	private Editor editor = null;
-	private Base base = null;
-	private Sketch sketch;
-	
+
 	private ITabView tabs;
 	private ISketchView tree;
-	@SuppressWarnings("unused")
 	private IPropView props;
 
+	private String guiPdeBase = "";
 	
 	/**
 	 * @param tabs
@@ -33,11 +39,20 @@ public class GuiControl implements TFileConstants {
 	public GuiControl(Editor editor, ITabView tabs, ISketchView tree, IPropView props) {
 		super();
 		this.editor = editor;
-		if(editor != null)
-			base = editor.getBase();
 		this.tabs = tabs;
 		this.tree = tree;
 		this.props = props;
+		Base base = editor.getBase();
+		String fname = base.getSketchbookFolder() + SEP + GUI_PDE_BASE;
+		System.out.println(fname);
+		try {
+			guiPdeBase = base.loadFile(new File(fname));
+			System.out.println(guiPdeBase);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public boolean addComponent(DBase comp){
@@ -66,21 +81,66 @@ public class GuiControl implements TFileConstants {
 	public void setGridSize(int gs){
 		tabs.setGridSize(gs);
 	}
-	
-	public void getEventCode(){
-		
+
+	public void captureCode(){
+
+	}
+
+	public void generateCode(){
+		String code = "my first program\n\tquarks\n\t2011";
+		Sketch sketch = editor.getSketch();
+		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
+		int gui_tab_index = sketch.getCodeIndex(gui_tab);
+		sketch.setCurrentCode(gui_tab_index);
+		// Generate code here then save using editor.
+		editor.setText(code);
+		try {
+			gui_tab.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private void createEventCode(){
+	private String makeGuiCode(){
+		String code = "";
+		ArrayList<String> declarations;
+		ArrayList<String> definitions;
 		
+		
+		
+		return code;
 	}
 	
+	private SketchCode getTab(Sketch s, String tabName){
+		SketchCode[] tabs = s.getCode();
+		SketchCode gui = null;
+		for(SketchCode sc : tabs){
+			if(sc.getPrettyName().equals(tabName)){
+				gui = sc;
+				break;
+			}
+		}
+		return gui;
+	}
+
+	private int getTabIndex(Sketch s, String tabName){
+		SketchCode[] tabs = s.getCode();
+		int index = -1;
+		for(int i = 0; i < tabs.length; i++){
+			if(tabs[i].getPrettyName().equals(tabName)){
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+
 	/**
 	 * This method loads the serialised GUI layout (tree model)
 	 */
 	public void loadGuiLayout() {
 		DefaultTreeModel dm = null;
-	   	File file;
+		File file;
 		if(editor == null){
 			file = new File(MODEL_FILENAME);
 		}
@@ -97,12 +157,12 @@ public class GuiControl implements TFileConstants {
 		else
 			this.initModel();		
 	}
-	
+
 	/**
 	 * This saves the GUI (tree) model) layout using serialisation.
 	 */
-    public void saveGuiLayout() {
-    	File file;
+	public void saveGuiLayout() {
+		File file;
 		if(editor == null){
 			file = new File(MODEL_FILENAME);
 		}
@@ -112,14 +172,14 @@ public class GuiControl implements TFileConstants {
 		tree.saveModel(file);
 	}
 
-    
-    /**
-     * Temporary setup for testing purposes
-     */
-    public void initModel(){
-    	makGUIfromTreeModel(getBaseSketchModel());
-    }
-    
+
+	/**
+	 * Temporary setup for testing purposes
+	 */
+	public void initModel(){
+		makGUIfromTreeModel(getBaseSketchModel());
+	}
+
 	/**
 	 * This method is to prove that the entire GUI can be
 	 * created from a Tree data model 

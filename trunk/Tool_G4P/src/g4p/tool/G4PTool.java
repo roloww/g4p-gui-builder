@@ -83,36 +83,38 @@ public class G4PTool implements Tool, TFileConstants {
 			if (!guiTabExists(sketch)) {
 				sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME));
 
-				// Create data folder if necessary
+				
 
 			}
+			// Create data folder if necessary
 			sketch.prepareDataFolder();
-
-			// See if there is a sub-folder in the data folder called '_gui_builder' stuff
-			File configFolder = new File(sketchFolder, CONFIG_FOLDER);
-			if (!configFolder.exists()) {
-				configFolder.mkdir();
-
-				// See if we have a configuration file if not copy template from tools folder
-
-			}
-			File configFile = new File(sketchFolder, CONFIG_FILENAME);
-			if (!configFile.exists()) {
-				try {
-					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
-					Base.copyFile(configFileTemplate, configFile);
-				} catch (IOException e) {
-					Base.showWarning("GUI Builder error", "Unable to create the GUI config file", null);
-					return;
-				}
-				// Copy the readme file ignore any failure
-				try {
-					File readmeSRC = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + "readme.txt");
-					File readmeDST = new File(sketchFolder, CONFIG_FOLDER + SEP + "readme.txt");
-					Base.copyFile(readmeSRC, readmeDST);
-				} catch (IOException e) {
-				}
-			}
+			File configFile = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
+			
+//			// See if there is a sub-folder in the data folder called '_gui_builder' stuff
+//			File configFolder = new File(sketchFolder, CONFIG_FOLDER);
+//			if (!configFolder.exists()) {
+//				configFolder.mkdir();
+//
+//				// See if we have a configuration file if not copy template from tools folder
+//
+//			}
+//			File configFile = new File(sketchFolder, CONFIG_FILENAME);
+//			if (!configFile.exists()) {
+//				try {
+//					File configFileTemplate = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME);
+//					Base.copyFile(configFileTemplate, configFile);
+//				} catch (IOException e) {
+//					Base.showWarning("GUI Builder error", "Unable to create the GUI config file", null);
+//					return;
+//				}
+//				// Copy the readme file ignore any failure
+//				try {
+//					File readmeSRC = new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + "readme.txt");
+//					File readmeDST = new File(sketchFolder, CONFIG_FOLDER + SEP + "readme.txt");
+//					Base.copyFile(readmeSRC, readmeDST);
+//				} catch (IOException e) {
+//				}
+//			}
 			dframe = new GuiDesigner(editor, configFile);
 			dframe.setVisible(true);
 		} 
