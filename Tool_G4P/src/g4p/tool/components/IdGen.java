@@ -31,7 +31,6 @@ public class IdGen {
 
 	public void add(Integer id){
 		ids.add(id);
-		System.out.println("ID " + id + "   ADDED size= " + ids.size());
 	}
 	
 	public void remove(Integer id){
@@ -45,10 +44,9 @@ public class IdGen {
 	public Integer getNext(){
 		Integer id;
 		do{
-			id = new Integer((int) (Math.random() * (high - low) + low));
+			id = new Integer((int) (rnd.nextFloat() * (high - low) + low));
 		} while(ids.contains(id));
 		ids.add(id);
-		System.out.println("ID " + id + "   created " + ids.size());
 		return id;
 	}
 	
