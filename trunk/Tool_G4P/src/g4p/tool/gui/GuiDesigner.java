@@ -90,9 +90,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private CtrlTabView tabWindows;
 	private GuiControl guiControl;
 
-//	private DBase startNode;
-//	private CtrlSketchModel tm;
-
 
 	/** 
 	 * Creates new form GuiDesignFrame 
@@ -127,7 +124,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private void createWindowAdapter(){
 		winAdapt = new WindowAdapter(){
-
 
 			/**
 			 * Invoked when a window is in the process of being closed.
