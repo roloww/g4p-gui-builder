@@ -82,10 +82,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private WindowListener winAdapt;
 
-	private Base base;
 	private Editor editor = null;
-	private Sketch sketch;
-	private File config;
 
 
 	private CtrlSketchView treeSketchView;
@@ -120,9 +117,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		instance = this;
 
 		editor = theEditor;
-		config = configFile;
-		base = editor.getBase();
-		sketch = editor.getSketch();
+//		config = configFile;
+//		base = editor.getBase();
+//		sketch = editor.getSketch();
 
 		initComponents();
 		initCustomComponents();
@@ -821,7 +818,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_mitemSaveActionPerformed
 
 	private void mitemGenCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGenCodeActionPerformed
-		// TODO add your handling code here:
+		guiControl.generateCode();
 	}//GEN-LAST:event_mitemGenCodeActionPerformed
 
 	private void mitemGetUserCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGetUserCodeActionPerformed

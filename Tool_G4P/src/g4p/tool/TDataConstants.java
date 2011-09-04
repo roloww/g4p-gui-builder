@@ -59,16 +59,12 @@ public interface TDataConstants {
 	 * Default test code patterns
 	 */
 	
+	public final String CODE_ANY			=	"  println(\"{0} - {1} event occured\");";
 	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked\");";
 	public final String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected\");";
 	public final String CODE_GOPTION		=	"  println(\"{0} - option selected\");";
 	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded\");";
-	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed\");";
-	
-	
-	
-	
-	
+	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield\");";
 	
 	
 }
