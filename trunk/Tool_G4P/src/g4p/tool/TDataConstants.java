@@ -16,6 +16,10 @@ public interface TDataConstants {
 	public final int INVALID_CHAR		=	0x00000034;
 	public final int UNAVAILABLE		=	0x00000035;
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Event handler method patterns
+	 */
+	
 	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
 	public final String METHOD_START_1	= "void {0}({1} {2}) [ //_CODE_:{3}:{4}:";
 	
@@ -25,26 +29,46 @@ public interface TDataConstants {
 	// 0 = component name  : 1 = id
 	public final String METHOD_END 		= "] //_CODE_:{0}:{1}:";
 
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Constructor patterns
+	 */
+	
 	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height){
-	public final String CTOR_GBUTTON_1	=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6});";
+	public final String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6});";
 	
 	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height){
-	public final String CTOR_GBUTTON_2	=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});";
+	public final String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});";
 	
 	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height){
-	public final String CTOR_GBUTTON_3	=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});";
+	public final String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});";
 	
 	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width){
-	public final String CTOR_GCHECKBOX	=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});";
+	public final String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});";
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
-	public final String CTOR_GOPTION	=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});";
+	public final String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});";
 
 	//		GPanel(PApplet theApplet, String text, int x, int y, int width, int height){
-	public final String CTOR_GPANEL	=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5});";
+	public final String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5});";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
-	public final String CTOR_GTEXTFIELD	=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});";
+	public final String CTOR_GTEXTFIELD		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});";
 
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Default test code patterns
+	 */
+	
+	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked\");";
+	public final String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected\");";
+	public final String CODE_GOPTION		=	"  println(\"{0} - option selected\");";
+	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded\");";
+	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed\");";
+	
+	
+	
+	
+	
+	
 	
 }
