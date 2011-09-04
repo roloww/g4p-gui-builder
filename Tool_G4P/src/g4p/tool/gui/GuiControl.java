@@ -43,15 +43,15 @@ public class GuiControl implements TFileConstants {
 		this.tree = tree;
 		this.props = props;
 		Base base = editor.getBase();
-		String fname = base.getSketchbookFolder() + SEP + GUI_PDE_BASE;
-		System.out.println(fname);
+//		String fname = base.getSketchbookFolder() + SEP + GUI_PDE_BASE;
+//		System.out.println(fname);
 		try {
-			guiPdeBase = base.loadFile(new File(fname));
+			File f = new File(base.getSketchbookFolder() + SEP + GUI_PDE_BASE);
+			guiPdeBase = base.loadFile(f);
 			System.out.println(guiPdeBase);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	public boolean addComponent(DBase comp){
