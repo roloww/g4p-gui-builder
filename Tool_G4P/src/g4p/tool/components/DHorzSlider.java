@@ -22,7 +22,7 @@ public class DHorzSlider extends DSliderInteger {
 		g.setTransform(af);
 		
 		g.setColor(sdrBack);
-		g.drawRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(sdrThumb);
 		g.fillRect(_0024_width/2 - 5, 0, 10, _0025_height);
 		
