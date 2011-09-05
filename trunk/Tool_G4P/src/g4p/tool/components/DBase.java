@@ -18,10 +18,9 @@ import java.util.Enumeration;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- * This class is used to represent non-visual components that can containing
+ * This class is used to represent non-visual components that do not contain
  * other components.
  * 
- * This class is used to represent the SKETCH application and GOptionGroup
  * 
  * @author Peter Lager
  *
@@ -88,12 +87,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
 
 
-
 	public DBase(){
 		allowsChildren = false;
 		id = IdGen.instance().getNext();
 	}
 
+	
 	// ====================================================================================================
 	// ====================================================================================================
 	// =======================   Stuff for code generation   ==============================================
@@ -120,7 +119,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	
 	public String getCode(DBase parent){ return ""; }
 
-
 	
 	// ====================================================================================================
 	// ====================================================================================================
@@ -128,8 +126,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ====================================================================================================
 
 	private void readObject(ObjectInputStream in)
-	throws IOException, ClassNotFoundException
-	{
+	throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
@@ -217,6 +214,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return px >= x && px < x + w && py >= y && py < y + h;
 	}
 
+	
 	// ====================================================================================================
 	// ====================================================================================================
 	// =============================   Setters and getters   ==============================================
@@ -294,7 +292,5 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public int getSize(){
 		return _0024_width * _0025_height;
 	}
-
 	
-
 }
