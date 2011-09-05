@@ -196,16 +196,17 @@ public class CtrlSketchView extends JTree implements ISketchView {
 				return;
 			}
 			tabs.deleteWindow(comp);
-			m.removeNodeFromParent(comp);
-			NameGen.instance().remove(comp.get_name());
-			IdGen.instance().remove(comp.get_id());
-			setSelectedComponent((DBase) r);
-			return;
+//			m.removeNodeFromParent(comp);
+//			NameGen.instance().remove(comp.get_name());
+//			NameGen.instance().remove(comp.get_event_name());
+//			IdGen.instance().remove(comp.get_id());
+//			setSelectedComponent((DBase) r);
+//			return;
 		}
 		DefaultMutableTreeNode p = (DefaultMutableTreeNode) comp.getParent();
 		m.removeNodeFromParent(comp);
-		comp.get_name();
-		NameGen.instance().remove(comp.get_name());
+		NameGen.instance().remove(comp.get_name());			
+		NameGen.instance().remove(comp.get_event_name());
 		IdGen.instance().remove(comp.get_id());
 		setSelectedComponent((DBase) p);
 	}
