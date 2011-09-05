@@ -50,7 +50,7 @@ public class CellEditor_JComboBox extends CellEditor_Base {
 
 	@Override
 	public Object getCellEditorValue() {
-		return (String)component.getSelectedItem().toString();
+		return component.getSelectedItem().toString();
 	}
 
 }

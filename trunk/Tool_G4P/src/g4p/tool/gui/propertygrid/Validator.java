@@ -78,7 +78,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 		else if(type == COLOUR_SCHEME){
 			return new Validator_List(ListGen.instance().getComboBoxModel(type));
 		}
-		else if(type == CURSOR_OVER){
+		else if(type == CURSOR_CHANGER){
 			return new Validator_List(ListGen.instance().getComboBoxModel(type));
 		}
 		// 	Give up and return a default string	

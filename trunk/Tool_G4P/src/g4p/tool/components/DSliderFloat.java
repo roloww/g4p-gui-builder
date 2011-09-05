@@ -21,5 +21,7 @@ public class DSliderFloat extends DCore {
 	public String 		max_tooltip = "largest value slider can return";
 	public Boolean 		max_edit = true;
 	public Boolean 		max_show = true;
+	
+
 
 }

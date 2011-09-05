@@ -735,7 +735,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnVertSliderActionPerformed
 
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed
-		showWarning("GUI Builder warning", "Cool sliders not yet available", null);            
+		guiControl.addComponent(new DWSlider());
 	}//GEN-LAST:event_btnCoolSliderActionPerformed
 
 	private void btnKnobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKnobActionPerformed
