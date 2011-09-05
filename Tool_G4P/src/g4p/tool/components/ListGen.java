@@ -2,11 +2,9 @@ package g4p.tool.components;
 
 import g4p.tool.TDataConstants;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.SpinnerListModel;
 
 public class ListGen implements TDataConstants {
 
@@ -24,36 +22,45 @@ public class ListGen implements TDataConstants {
 	// ==============================================================
 
 	private HashMap<Integer, DefaultComboBoxModel> cbList;
-	private HashMap<Integer, SpinnerListModel> spList;
+//	private HashMap<Integer, SpinnerListModel> spList;
 
 	private ListGen(){
 		cbList = new HashMap<Integer, DefaultComboBoxModel>();
-		spList = new HashMap<Integer, SpinnerListModel>();
+//		spList = new HashMap<Integer, SpinnerListModel>();
 		makeColourSchemeSelection(COLOUR_SCHEME);
-		makeCursorShapeSelection(CURSOR_OVER);
+		makeCursorShapeSelection(CURSOR_CHANGER);
+		makeGWSliderSkinSelection(SLIDER_SKIN);
 	}
-
+	
 	private void makeColourSchemeSelection(int type){
 		String[] s = new String[] { "BLUE_SCHEME", "GREEN_SCHEME", 
 				"RED_SCHEME", "PURPLE_SCHEME", "YELLOW_SCHEME", 
 				"CYAN_SCHEME", "GREY_SCHEME" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
-		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
+//		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
 	}
 	
 	private void makeCursorShapeSelection(int type){
 		String[] s = new String[] { "ARROW", "CROSS", 
 				"HAND", "MOVE", "TEXT", "WAIT" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
-		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
+//		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
 	}
 
+	private void makeGWSliderSkinSelection(int type){
+		String[] s = new String[] { "gwSlider", "blue18px", 
+				"green_red20px", "purple18px", "red_yellow18px" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+//		spList.put(type, new SpinnerListModel(Arrays.asList(s)));
+	}
+
+	
 	public DefaultComboBoxModel getComboBoxModel(int key){
 		return cbList.get(key);
 	}
 	
-	public SpinnerListModel getSpinnerModel(int key){
-		return spList.get(key);
-	}
+//	public SpinnerListModel getSpinnerModel(int key){
+//		return spList.get(key);
+//	}
 
 }

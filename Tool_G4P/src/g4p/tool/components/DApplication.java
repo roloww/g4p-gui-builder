@@ -27,7 +27,7 @@ public final class DApplication extends DBase {
 	public Boolean width_show = false;
 	public Boolean height_show = false;
 	
-	public String _0010_Colour_scheme = "RED_SCHEME";
+	public String _0010_Colour_scheme = "BLUE_SCHEME";
 	transient public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
 	public Boolean Colour_scheme_edit = true;
 	public Boolean Colour_scheme_show = true;
@@ -38,12 +38,12 @@ public final class DApplication extends DBase {
 	public String Cursor_changer_updater = "updateCursorChanger";
 
 	public String _0022_Cursor_off = "ARROW";
-	transient public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
+	transient public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
 	public Boolean Cursor_off_edit = true;
 	public Boolean Cursor_off_show = false;
 
-	public String _0023_Cursor_over = "HAND";
-	transient public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
+	public String _0023_Cursor_over = "CROSS";
+	transient public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
 	public Boolean Cursor_over_edit = true;
 	public Boolean Cursor_over_show = false;
 
@@ -86,8 +86,8 @@ public final class DApplication extends DBase {
 		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
 		Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-		Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
-		Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
+		Cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+		Cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
 	}
 
 	public String toString(){
