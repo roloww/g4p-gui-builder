@@ -142,6 +142,7 @@ public class GuiControl implements TFileConstants {
 		return gui;
 	}
 
+	@SuppressWarnings("unused")
 	private int getTabIndex(Sketch s, String tabName){
 		SketchCode[] tabs = s.getCode();
 		int index = -1;

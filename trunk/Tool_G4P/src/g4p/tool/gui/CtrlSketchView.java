@@ -7,6 +7,8 @@ import g4p.tool.components.DOptionGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DTimer;
 import g4p.tool.components.DWindow;
+import g4p.tool.components.IdGen;
+import g4p.tool.components.NameGen;
 import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
@@ -113,7 +115,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		}
 		return c;
 	}
-	
+
 	// Get the first
 	public DBase getGuiContainerFor(DBase comp){
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
@@ -144,7 +146,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			m.insertNodeInto(comp, r, r.getChildCount());
 			tabs.addWindow(comp);
 			setSelectedComponent(comp);
-//			repaint();
+			//			repaint();
 		}
 		else if(comp instanceof DTimer){
 			// add to active window
@@ -178,11 +180,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 				setSelectedComponent(comp);
 			}
 		}
-		
-		//	
-		// need to remove name from name gen list
-		//			 display an error message
-
 	}
 
 	@Override
@@ -200,12 +197,17 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			}
 			tabs.deleteWindow(comp);
 			m.removeNodeFromParent(comp);
+			NameGen.instance().remove(comp.get_name());
+			IdGen.instance().remove(comp.get_id());
 			setSelectedComponent((DBase) r);
 			return;
 		}
 		DefaultMutableTreeNode p = (DefaultMutableTreeNode) comp.getParent();
-		setSelectedComponent((DBase) p);
 		m.removeNodeFromParent(comp);
+		comp.get_name();
+		NameGen.instance().remove(comp.get_name());
+		IdGen.instance().remove(comp.get_id());
+		setSelectedComponent((DBase) p);
 	}
 
 	@Override
@@ -280,10 +282,10 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			dm = (DefaultTreeModel) ois.readObject();
 			fis.close();
-//			if(dm != null){
-//				setModel(dm);
-//				setSelectedComponent((DBase)dm.getRoot());
-//			}
+			//			if(dm != null){
+			//				setModel(dm);
+			//				setSelectedComponent((DBase)dm.getRoot());
+			//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

@@ -16,26 +16,30 @@ public class ClassIcon {
 		return instance;
 	}
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	private HashMap<Class, Icon> icons = null;
 	
 	private Icon unknown = null;
 	
-	@SuppressWarnings("rawtypes")
+
+	@SuppressWarnings("unchecked")
 	private ClassIcon(){
 		icons = new HashMap<Class, Icon>();
 	}
 	
-	@SuppressWarnings({ "unused", "rawtypes" })
+	
+	@SuppressWarnings({ "unused", "unchecked" })
 	private void addElement(Class c, String fname){
 		icons.put(c, new javax.swing.ImageIcon(getClass().getResource("/g4p/" + fname)));
 	}
 	
-	public void addElement(@SuppressWarnings("rawtypes") Class c, Icon icon){
+	@SuppressWarnings("unchecked")
+	public void addElement(Class c, Icon icon){
 		icons.put(c, icon);
 	}
 	
-	public Icon getIcon(@SuppressWarnings("rawtypes") Class c){
+	@SuppressWarnings("unchecked")
+	public Icon getIcon(Class c){
 		Icon icon = icons.get(c);
 		return (icon == null) ? unknown : icon;
 	}
