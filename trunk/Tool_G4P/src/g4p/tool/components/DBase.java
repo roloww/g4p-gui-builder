@@ -45,7 +45,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	
 	protected Integer id = null;
 	
-	// Important attributes
 	public String 		_0005_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
 	public String 		name_tooltip = null;
@@ -95,80 +94,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		id = IdGen.instance().getNext();
 	}
 
-
-	// SETTERS
-
-	public void set_name(String name){
-		_0005_name = name;
-	}
-
-	public void set_x(int x){
-		_0020_x = x;
-	}
-
-	public void set_y(int y){
-		_0021_y = y;
-	}
-
-	public void set_width(int width){
-		_0024_width = width;
-	}
-
-	public void set_height(int height){
-		_0025_height = height;
-	}
-
-	public void set_event_name(String e_name){
-		_0101_eventHandler = e_name;
-	}
-	
-	public void set_event_code(String code){
-		eventCode = code;
-	}
-	
-	// GETTERS
-
-	public String get_name() { return _0005_name; }
-	
-	public Integer get_id() { return id; }
-
-	public int get_x() { return _0020_x;	}
-
-	public int get_y() { return _0021_y; }
-
-	public int get_width() { return _0024_width; }
-
-	public int get_height() { return _0025_height; }
-
-	public String get_text() { return ""; }
-
-	public String get_title() { return ""; }
-
-	public String get_event_name(){	return _0101_eventHandler; }
-
-	
-	public boolean isSelectable(){
-		return selectable;
-	}
-
-	public boolean isResizeable(){
-		return this.resizeable;
-	}
-	
-	public boolean isMoveable(){
-		return moveable;
-	}
-	
-	public void makeTableModel(){
-		propertyModel = new CtrlPropModel(this);
-	}
-
-	public CtrlPropModel getTableModel(){
-		if(propertyModel == null)
-			makeTableModel();
-		return propertyModel;
-	}
-
 	// ====================================================================================================
 	// ====================================================================================================
 	// =======================   Stuff for code generation   ==============================================
@@ -194,6 +119,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 	
 	public String getCode(DBase parent){ return ""; }
+
+
 	
 	// ====================================================================================================
 	// ====================================================================================================
@@ -288,6 +215,80 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	protected boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
 		return px >= x && px < x + w && py >= y && py < y + h;
+	}
+
+	// ====================================================================================================
+	// ====================================================================================================
+	// =============================   Setters and getters   ==============================================
+	// ====================================================================================================
+
+	public void set_name(String name){
+		_0005_name = name;
+	}
+
+	public void set_x(int x){
+		_0020_x = x;
+	}
+
+	public void set_y(int y){
+		_0021_y = y;
+	}
+
+	public void set_width(int width){
+		_0024_width = width;
+	}
+
+	public void set_height(int height){
+		_0025_height = height;
+	}
+
+	public void set_event_name(String e_name){
+		_0101_eventHandler = e_name;
+	}
+	
+	public void set_event_code(String code){
+		eventCode = code;
+	}
+	
+	public String get_name() { return _0005_name; }
+	
+	public Integer get_id() { return id; }
+
+	public int get_x() { return _0020_x;	}
+
+	public int get_y() { return _0021_y; }
+
+	public int get_width() { return _0024_width; }
+
+	public int get_height() { return _0025_height; }
+
+	public String get_text() { return ""; }
+
+	public String get_title() { return ""; }
+
+	public String get_event_name(){	return _0101_eventHandler; }
+
+	
+	public boolean isSelectable(){
+		return selectable;
+	}
+
+	public boolean isResizeable(){
+		return this.resizeable;
+	}
+	
+	public boolean isMoveable(){
+		return moveable;
+	}
+	
+	public void makeTableModel(){
+		propertyModel = new CtrlPropModel(this);
+	}
+
+	public CtrlPropModel getTableModel(){
+		if(propertyModel == null)
+			makeTableModel();
+		return propertyModel;
 	}
 
 	public int getSize(){
