@@ -1,5 +1,5 @@
 /**
- * you can put a one sentence description of your tool here.
+ * GUI form designer for G4P.
  *
  * ##copyright##
  *

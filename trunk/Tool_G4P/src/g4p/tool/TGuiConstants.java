@@ -53,9 +53,9 @@ public interface TGuiConstants {
     public final Color sdrBack 			= new Color(240,240,255);
     public final Color sdrThumb			= new Color(128,128,255);
     
-    public final Color csdrBack			= new Color(0,0,0, 32);
-    public final Color csdrBorder		= new Color(0,0,0, 64);
-    public final Color csdrSlideBack	= new Color(200, 200, 200);
+    public final Color csdrBack			= new Color(0,0,0, 8);
+    public final Color csdrBorder		= new Color(0,0,0, 32);
+    public final Color csdrSlideBack	= new Color(220, 220, 220);
     public final Color csdrSlideBorder	= new Color(64, 64, 64);
     public final Color csdrThumb		= new Color(255,255,0);
     
