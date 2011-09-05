@@ -129,6 +129,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// GETTERS
 
 	public String get_name() { return _0005_name; }
+	
+	public Integer get_id() { return id; }
 
 	public int get_x() { return _0020_x;	}
 
@@ -206,6 +208,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
 	}
+	
 	
 	// ====================================================================================================
 	// ====================================================================================================
