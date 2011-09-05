@@ -10,6 +10,7 @@ import javax.swing.ComboBoxModel;
 
 
 
+@SuppressWarnings("serial")
 public abstract class Validator implements TDataConstants, Serializable {
 
 	private static Validator_Long defaultLong = new Validator_Long();
