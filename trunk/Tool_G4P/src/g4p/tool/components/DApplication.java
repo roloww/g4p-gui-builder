@@ -1,5 +1,8 @@
 package g4p.tool.components;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.CellEditor_Base;
 import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
@@ -25,7 +28,7 @@ public final class DApplication extends DBase {
 	public Boolean height_show = false;
 	
 	public String _0010_Colour_scheme = "RED_SCHEME";
-	public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+	transient public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
 	public Boolean Colour_scheme_edit = true;
 	public Boolean Colour_scheme_show = true;
 
@@ -35,12 +38,12 @@ public final class DApplication extends DBase {
 	public String Cursor_changer_updater = "updateCursorChanger";
 
 	public String _0022_Cursor_off = "ARROW";
-	public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
+	transient public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
 	public Boolean Cursor_off_edit = true;
 	public Boolean Cursor_off_show = false;
 
 	public String _0023_Cursor_over = "HAND";
-	public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
+	transient public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
 	public Boolean Cursor_over_edit = true;
 	public Boolean Cursor_over_show = false;
 
@@ -75,6 +78,17 @@ public final class DApplication extends DBase {
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
 	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0101_eventHandler);
+		IdGen.instance().add(id);
+		Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+		Cursor_off_editor = new CellEditor_JComboBox(CURSOR_OVER);
+		Cursor_over_editor = new CellEditor_JComboBox(CURSOR_OVER);
+	}
 
 	public String toString(){
 		return _0005_name;

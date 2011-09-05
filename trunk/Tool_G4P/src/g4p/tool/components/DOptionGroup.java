@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
 
+@SuppressWarnings("serial")
 public class DOptionGroup extends DBase {
 
 	
