@@ -150,6 +150,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		}
 		else if(comp instanceof DTimer){
 			// add to active window
+			DBase window = (DBase) r.getChildAt(0);
+			m.insertNodeInto(comp, window, window.getChildCount());
+			setSelectedComponent(comp);			
 		}
 		else if(comp instanceof DOptionGroup){
 			DBase selected = (DBase) getLastSelectedPathComponent();
@@ -157,6 +160,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			if(window != null){
 				m.insertNodeInto(comp, window, window.getChildCount());
 				setSelectedComponent(comp);
+			}
+			else {
+				undoComponent(comp);
 			}
 		}
 		else if(comp instanceof DOption){
@@ -166,8 +172,13 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			if(window != null && opg != null){
 				comp.set_x( (window.get_width() - comp.get_width())/ 2);
 				comp.set_y( (window.get_height() - comp.get_height())/ 2);
-				m.insertNodeInto(comp, opg, opg.getChildCount());				
+				if(opg.getChildCount() == 0)
+					((DOption)comp)._0050_selected = true;
+				m.insertNodeInto(comp, opg, opg.getChildCount());
 				setSelectedComponent(comp);
+			}
+			else {
+				undoComponent(comp);
 			}
 		}
 		else {
@@ -195,6 +206,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 				System.out.println("Main sketch do not delete");
 				return;
 			}
+			// Remove window from tab view
 			tabs.deleteWindow(comp);
 //			m.removeNodeFromParent(comp);
 //			NameGen.instance().remove(comp.get_name());
@@ -203,14 +215,23 @@ public class CtrlSketchView extends JTree implements ISketchView {
 //			setSelectedComponent((DBase) r);
 //			return;
 		}
+		// Component is valid for removal
 		DefaultMutableTreeNode p = (DefaultMutableTreeNode) comp.getParent();
 		m.removeNodeFromParent(comp);
-		NameGen.instance().remove(comp.get_name());			
-		NameGen.instance().remove(comp.get_event_name());
-		IdGen.instance().remove(comp.get_id());
+		undoComponent(comp);
 		setSelectedComponent((DBase) p);
 	}
 
+	/**
+	 * Release component id, name and event name
+	 * @param comp
+	 */
+	private void undoComponent(DBase comp){
+		NameGen.instance().remove(comp.get_name());			
+		NameGen.instance().remove(comp.get_event_name());
+		IdGen.instance().remove(comp.get_id());
+	}
+	
 	@Override
 	public DBase getRoot() {
 		return (DBase) getModel().getRoot();
