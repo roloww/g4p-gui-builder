@@ -6,7 +6,7 @@ import g4p.tool.gui.propertygrid.Validator;
 public class DCoreText extends DCore {
 
 	public String 		_0015_text = "";
-	public String 		text_label = "Text to display";
+	public String 		text_label = "Initial text";
 	public String 		text_tooltip = "display text";
 	public Boolean 		text_edit = true;
 	public Boolean 		text_show = true;

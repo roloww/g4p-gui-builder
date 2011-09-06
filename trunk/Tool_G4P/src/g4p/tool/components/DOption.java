@@ -13,6 +13,7 @@ public class DOption extends DCoreSelectable {
 
 	public DOption(){
 		super();
+		text_label = "Option display text";
 		componentClass = "GOption";
 		set_name(NameGen.instance().getNext("option"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));

@@ -1,7 +1,7 @@
 package g4p.tool.components;
 
 @SuppressWarnings("serial")
-public class DCoreSelectable extends DCore {
+public class DCoreSelectable extends DCoreText {
 
 	
 	public Boolean _0050_selected  = false;
