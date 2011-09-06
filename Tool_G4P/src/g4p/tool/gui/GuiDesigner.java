@@ -759,7 +759,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnComboActionPerformed
 
 	private void btnTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimerActionPerformed
-		showWarning("GUI Builder warning", "Timers not yet available", null);
+		guiControl.addComponent(new DTimer());
 	}//GEN-LAST:event_btnTimerActionPerformed
 
 	private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
