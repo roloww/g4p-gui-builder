@@ -19,11 +19,11 @@ public final class DWindow extends DBase {
 	public String 		_0010_title = "";
 	public String 		title_label = "Title text";
 	
-	public String _0011_renderer = "JAVA2D";
-	public String renderer_label = "Renderer";
+	public String 		_0011_renderer = "JAVA2D";
+	public String 		renderer_label = "Renderer";
 	transient public CellEditor_Base renderer_editor = new CellEditor_JComboBox(RENDERER);
-	public Boolean renderer_edit = false;
-	public Boolean renderer_show = false;
+	public Boolean 		renderer_edit = false;
+	public Boolean 		renderer_show = false;
 
 	
 	public int 			_0014_Display_scale = 100;
@@ -101,8 +101,8 @@ public final class DWindow extends DBase {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
-		NameGen.instance().add(_0101_eventHandler);
-		IdGen.instance().add(id);
+//		NameGen.instance().add(_0101_eventHandler);
+//		IdGen.instance().add(id);
 		renderer_editor = new CellEditor_JComboBox(RENDERER);
 	}
 

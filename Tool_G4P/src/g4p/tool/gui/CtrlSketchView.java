@@ -296,6 +296,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
 	public DefaultTreeModel loadModel(File file){
 		DefaultTreeModel dm = null;
+		System.out.println("Load model");
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
