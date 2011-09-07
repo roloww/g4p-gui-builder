@@ -83,7 +83,7 @@ public final class DApplication extends DBase {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
-		NameGen.instance().add(_0101_eventHandler);
+//		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
 		Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
 		Cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
