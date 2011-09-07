@@ -1,6 +1,7 @@
 package g4p.tool.gui;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -51,4 +52,13 @@ public interface ISketchView {
 	public abstract DefaultTreeModel loadModel(File file);
 
 	public abstract void setModel(TreeModel m);
+	
+	public abstract void generateDeclarations(ArrayList<String> lines);
+	
+	public abstract void generateEvtMethods(ArrayList<String> lines);
+	
+	public abstract void generateCreateMethod(ArrayList<String> lines);
+	
+	public abstract void generateAddToWin(ArrayList<String> lines);
+	
 }

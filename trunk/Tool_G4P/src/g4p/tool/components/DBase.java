@@ -13,6 +13,7 @@ import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -40,8 +41,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String componentClass = "";
 
-	transient public String eventCode = "";
-	
 	protected Integer id = null;
 	
 	public String 		_0005_name = "APPLICATION";
@@ -93,37 +92,91 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	
-	// ====================================================================================================
-	// ====================================================================================================
-	// =======================   Stuff for code generation   ==============================================
-	// ====================================================================================================
+	// ==========================================================================
+	// ==========================================================================
+	// ===============   Stuff for code generation   ============================
+	// ==========================================================================
 	
-	public String get_event_code(){ 
-		if(eventCode.equals(""))
+	public void make_declaration(ArrayList<String> lines){
+		String decl = get_declaration();
+		if(decl != null)
+			lines.add(get_declaration());
+		if(allowsChildren){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).make_declaration(lines);
+			}
+		}		
+	}
+
+	/**
+	 * Where components are in secondary windows.
+	 */
+	public String get_add_to_window(DBase window){
+		return Messages.build(ADD_TO_WINDOW, _0005_name);
+	}
+	
+	/**
+	 * Get the declaration for this control
+	 */
+	public String get_declaration(){
+		return null;
+	}
+
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_create_code(){
+		return null;
+	}
+	
+	/** get the event method for this control
+	 * 
+	 * @return
+	 */
+	public String get_event_method(){
+		String ec = get_event_header() + get_event_code() + get_event_end();
+		return ec;
+	}
+	
+	/**
+	 * Get the event code if none then return generic message
+	 * @param code
+	 * @return
+	 */
+	protected String get_event_code(){ 
+		String ev_code = Code.instance().get(id);
+		if(ev_code == null)
 			return Messages.build(CODE_ANY, _0005_name, componentClass);
 		else
-			return eventCode; 
+			return ev_code; 
 	}
 
-	public String get_declaration(){
-		return componentClass + " " + _0005_name+ "; ";
+	/**
+	 * Get the event header
+	 * @return
+	 */
+	protected String get_event_header(){
+		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, 
+				componentClass.substring(1).toLowerCase(), 
+				_0005_name, id.toString()).replace('[', '{');
 	}
 	
-	public String get_event_header(){
-		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, componentClass.substring(1).toLowerCase(), _0005_name, id.toString()).replace('[', '{');
+	/**
+	 * Get the event method end with tag
+	 * @return
+	 */
+	protected String get_event_end(){
+		return Messages.build(METHOD_END, _0005_name, 
+				id.toString()).replace(']', '}');
 	}
 	
-	public String get_event_end(){
-		return Messages.build(METHOD_END, _0005_name, id.toString()).replace(']', '}');
-	}
 	
-	public String getCode(DBase parent){ return ""; }
-
-	
-	// ====================================================================================================
-	// ====================================================================================================
-	// =======================   Stuff for code serialisation   ===========================================
-	// ====================================================================================================
+	// ==========================================================================
+	// ==========================================================================
+	// =================   Stuff for code serialisation   =======================
+	// ==========================================================================
 
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException {
@@ -134,10 +187,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 	
 	
-	// ====================================================================================================
-	// ====================================================================================================
-	// ==========================    Stuff for debugging   ================================================
-	// ====================================================================================================
+	// ==========================================================================
+	// ==========================================================================
+	// =================    Stuff for debugging   ===============================
+	// ==========================================================================
 
 	/**
 	 * Display details - used for debugging only
@@ -154,10 +207,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 
-	// ====================================================================================================
-	// ====================================================================================================
-	// ==========================    Stuff for drawing   ==================================================
-	// ====================================================================================================
+	// ==========================================================================
+	// ==========================================================================
+	// =================    Stuff for drawing   =================================
+	// ==========================================================================
 
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
@@ -215,10 +268,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	
-	// ====================================================================================================
-	// ====================================================================================================
-	// =============================   Setters and getters   ==============================================
-	// ====================================================================================================
+	// ==========================================================================
+	// ==========================================================================
+	// ==================   Setters and getters   ===============================
+	// ==========================================================================
 
 	public void set_name(String name){
 		_0005_name = name;
@@ -242,10 +295,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public void set_event_name(String e_name){
 		_0101_eventHandler = e_name;
-	}
-	
-	public void set_event_code(String code){
-		eventCode = code;
 	}
 	
 	public String get_name() { return _0005_name; }
