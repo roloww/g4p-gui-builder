@@ -1,16 +1,30 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+import g4p.tool.gui.propertygrid.CellEditor_Base;
+import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
 public final class DWindow extends DBase {
 
+	public boolean 		mainSketch = false;
+	
 	public String 		_0010_title = "";
 	public String 		title_label = "Title text";
+	
+	public String _0011_renderer = "JAVA2D";
+	public String renderer_label = "Renderer";
+	transient public CellEditor_Base renderer_editor = new CellEditor_JComboBox(RENDERER);
+	public Boolean renderer_edit = false;
+	public Boolean renderer_show = false;
+
 	
 	public int 			_0014_Display_scale = 100;
 	public String		Display_scale_label = "Scale (%)";
@@ -28,6 +42,9 @@ public final class DWindow extends DBase {
 		resizeable = true;
 		moveable = false;
 		allowsChildren = true;
+		componentClass = "GWindow";
+		this.mainSketch = mainSketch;
+		
 		if(mainSketch){
 			_0005_name = "Main window";
 			name_label = "SKETCH";
@@ -46,6 +63,7 @@ public final class DWindow extends DBase {
 			_0025_height = 120;
 			
 			_0010_title = "My window title";
+			renderer_edit = renderer_show = true;
 		}
 		_0010_title = "Frame title text";
 		width_edit = height_edit = true;
@@ -56,6 +74,38 @@ public final class DWindow extends DBase {
  	public String get_title(){
 		return _0010_title;
 	}
+
+	/**
+	 * Get the declaration for this control
+	 */
+	public String get_declaration(){
+		if(mainSketch)
+			return null;
+		else
+			return componentClass + " " + _0005_name+ ";\n";
+	}
+
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_create_code(){
+		if(mainSketch)
+			return null;
+		else
+			return Messages.build("", componentClass + " " + _0005_name);
+	}
+	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0101_eventHandler);
+		IdGen.instance().add(id);
+		renderer_editor = new CellEditor_JComboBox(RENDERER);
+	}
+
 
     @Override
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){

@@ -18,6 +18,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
@@ -238,42 +240,37 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	}
 
 
-	// ==================================================================================================================================================
-
-
-	/**
-	 * Class to render the tree nodes in the display
-	 *
-	 * @author Peter Lager
-	 *
-	 */
-	class DataCellRenderer extends DefaultTreeCellRenderer {
-
-		private Icon cellIcon;
-
-		public DataCellRenderer(Icon icon) {
-			cellIcon = icon;
-		}
-
-		public Component getTreeCellRendererComponent(
-				JTree tree,
-				Object value,
-				boolean sel,
-				boolean expanded,
-				boolean leaf,
-				int row,
-				boolean hasFocus) {
-
-			super.getTreeCellRendererComponent(
-					tree, value, sel,
-					expanded, leaf, row,
-					hasFocus);
-			cellIcon = ClassIcon.instance().getIcon(value.getClass());
-			setIcon(cellIcon);
-
-			return this;
-		}
+	@Override
+	public void generateDeclarations(ArrayList<String> lines) {
+		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		DBase r = (DBase) m.getRoot();
+		r.make_declaration(lines);
 	}
+
+	@Override
+	public void generateEvtMethods(ArrayList<String> lines) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void generateCreateMethod(ArrayList<String> lines) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	@Override
+	public void generateAddToWin(ArrayList<String> lines) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// ==========================================================================
+	// ==========================================================================
+	// ======================   Load / save routines   ==========================
+	// ==========================================================================
+
 
 	/**
 	 * Save the data model to disk
@@ -316,5 +313,38 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		return dm;
 	}
 
+	/**
+	 * Class to render the tree nodes in the display
+	 *
+	 * @author Peter Lager
+	 *
+	 */
+	class DataCellRenderer extends DefaultTreeCellRenderer {
+
+		private Icon cellIcon;
+
+		public DataCellRenderer(Icon icon) {
+			cellIcon = icon;
+		}
+
+		public Component getTreeCellRendererComponent(
+				JTree tree,
+				Object value,
+				boolean sel,
+				boolean expanded,
+				boolean leaf,
+				int row,
+				boolean hasFocus) {
+
+			super.getTreeCellRendererComponent(
+					tree, value, sel,
+					expanded, leaf, row,
+					hasFocus);
+			cellIcon = ClassIcon.instance().getIcon(value.getClass());
+			setIcon(cellIcon);
+
+			return this;
+		}
+	}
 
 }
