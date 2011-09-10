@@ -33,27 +33,32 @@ public interface TDataConstants {
 
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Constructor patterns
+	 * Creator patterns
 	 */
 
-	// 		GWindow(PApplet theApplet, String name, int x, int y, int w, int h, boolean noFrame, String mode) {
+	// 		GWindow(PApplet theApplet, String name, int x, int y, int w, int h, boolean noFrame, String mode)
 	public final String CTOR_WINDOW_1		=	"  {0} = new GWindow({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
 	
-	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height){
+	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height)
 	public final String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
 	
-	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height){
+	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height)
 	public final String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
 	
-	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height){
+	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height)
 	public final String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
 	
-	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width){
+	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width)
 	public final String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
 	public final String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});\n";
-
+	public final String ADD_OPTION			=	"  {0}.addOption({1});\n";
+	public final String SEL_OPTION			=	"  {0}.setSelected({1});\n";
+	//		GOptionGroup()
+	public final String CTOR_GOPTIONGROUP	=	"  {0} = new GOptionGroup();\n";
+	
+	
 	//		GPanel(PApplet theApplet, String text, int x, int y, int width, int height){
 	public final String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5});\n";
 
