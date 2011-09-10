@@ -124,15 +124,17 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		sketch.setCurrentCode(gui_tab_index);
 		// Generate code here then save using editor.
 		code = makeGuiCode();
+		// Set the tab cose and save it
 		gui_tab.setProgram(code);
-		editor.setText(code);
-		editor.setSelection(0, 0);
-		editor.repaint();
 		try {
 			gui_tab.save();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// Set the code to show in the editor
+		editor.setText(code);
+		editor.setSelection(0, 0);
+		editor.repaint();
 	}
 
 	private String makeGuiCode(){
@@ -156,7 +158,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		tree.generateCreator(compCreators);
 		tree.generateAddToWin(addToWin);
 
-		DBase app = tree.getRoot();
+//		DBase app = tree.getRoot();
 
 		// Close the create method
 		compCreators.addAll(addToWin);
