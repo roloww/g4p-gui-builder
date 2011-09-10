@@ -811,7 +811,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_mitemGenCodeActionPerformed
 
 	private void mitemGetUserCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGetUserCodeActionPerformed
-		// TODO add your handling code here:
+		guiControl.captureCode();
 	}//GEN-LAST:event_mitemGetUserCodeActionPerformed
 
 	/**

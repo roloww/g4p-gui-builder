@@ -103,6 +103,7 @@ public class GuiControl implements TFileConstants {
 		sketch.setCurrentCode(gui_tab_index);
 		// Generate code here then save using editor.
 		code = makeGuiCode();
+		gui_tab.setProgram(code);
 		editor.setText(code);
 		editor.setSelection(0, 0);
 		editor.repaint();
