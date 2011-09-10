@@ -17,10 +17,10 @@ public class Test implements TDataConstants {
 		DTextField txf = new DTextField();
 		DKnob knb = new DKnob();
 
-		System.out.println(op.get_event_method());
-		System.out.println(btn.get_event_method());
-		System.out.println(txf.get_event_method());
-		System.out.println(knb.get_event_method());
+		System.out.println(op.get_event_definition());
+		System.out.println(btn.get_event_definition());
+		System.out.println(txf.get_event_definition());
+		System.out.println(knb.get_event_definition());
 		
 		System.out.println();
 		

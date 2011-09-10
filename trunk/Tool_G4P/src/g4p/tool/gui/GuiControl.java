@@ -1,6 +1,8 @@
 package g4p.tool.gui;
 
+import g4p.tool.TDataConstants;
 import g4p.tool.TFileConstants;
+import g4p.tool.components.Code;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
@@ -12,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -22,7 +26,7 @@ import processing.app.Sketch;
 import processing.app.SketchCode;
 import processing.core.PApplet;
 
-public class GuiControl implements TFileConstants {
+public class GuiControl implements TFileConstants, TDataConstants {
 
 	private Editor editor = null;
 
@@ -32,6 +36,9 @@ public class GuiControl implements TFileConstants {
 
 	private String guiPdeBase = "";
 
+	private Pattern p;
+	private Matcher m;
+	
 	/**
 	 * @param tabs
 	 * @param tree
@@ -51,6 +58,7 @@ public class GuiControl implements TFileConstants {
 				e.printStackTrace();
 			}
 		}
+		p = Pattern.compile(CODE_TAG, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	}
 
 	public boolean addComponent(DBase comp){
@@ -80,7 +88,6 @@ public class GuiControl implements TFileConstants {
 	}
 
 	public void captureCode(){
-		String code;
 		Sketch sketch = editor.getSketch();
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
@@ -90,9 +97,23 @@ public class GuiControl implements TFileConstants {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		code = gui_tab.getProgram();
+		String code = gui_tab.getProgram();
+		p.matcher(code);
+		m = p.matcher(code);
+		ArrayList<CodeTag> tags = new ArrayList<CodeTag>();
+		while(m.find()){
+			String[] sa = m.group().split(":");
+			tags.add(new CodeTag(sa[2], m.start(), m.end()));
+		}
+		// Validate tags???
+		Code.instance().reset();
+		for(int t = 0; t < tags.size(); t += 2){
+			String snippet = code.substring(tags.get(t).e + 1, tags.get(t+1).s - 3);
+			Code.instance().add(tags.get(t).id, snippet);
+		}
 		System.out.println("\nCODE  \n");
-		System.out.println(code);
+		
+		
 	}
 
 	public void generateCode(){
@@ -274,7 +295,22 @@ public class GuiControl implements TFileConstants {
 		return m;
 	}
 
-
+	public class CodeTag {
+		public Integer id;
+		public int s, e;
+		
+		/**
+		 * @param name
+		 * @param s
+		 * @param e
+		 */
+		public CodeTag(String name, Integer s, Integer e) {
+			super();
+			this.id = Integer.parseInt(name);
+			this.s = s;
+			this.e = e;
+		}
+	} // End of code tag class
 
 
 }

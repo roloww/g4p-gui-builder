@@ -19,17 +19,26 @@ public interface TDataConstants {
 	public final int UNAVAILABLE		=	0x00000035;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	 * Capture code pattern
+	 */
+	
+	public final String CODE_TAG		=	"(//_CODE_:.*:\\d{6}:)";
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Event handler method patterns
 	 */
 	
+	//	public void addEventHandler(Object obj, String methodName){
+	public final String ADD_HANDLER		=	"  {0}.addEventHandler({1}, \"{2}\");\n";
+	
 	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
-	public final String METHOD_START_1	= "void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
+	public final String METHOD_START_1	=	"void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
 	
 	// 0 = event method name  :  1/2 = parameter type/name : 1/3 =  parameter type/name : 4/5 =  component name/id	
-	public final String METHOD_START_2	= "void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
+	public final String METHOD_START_2	=	"void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
 	
 	// 0 = component name  : 1 = id
-	public final String METHOD_END 		= "] //_CODE_:{0}:{1}:\n\n";
+	public final String METHOD_END 		=	"] //_CODE_:{0}:{1}:\n\n";
 
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

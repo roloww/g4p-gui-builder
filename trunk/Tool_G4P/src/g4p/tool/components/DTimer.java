@@ -3,7 +3,7 @@ package g4p.tool.components;
 import g4p.tool.gui.propertygrid.Validator;
 
 @SuppressWarnings("serial")
-public class DTimer extends DBase {
+public class DTimer extends DCore {
 
 	public int 			_0075_interval = 20;
 	public String 		interval_label = "Interval (ms)";
