@@ -57,7 +57,7 @@ public interface ISketchView {
 	
 	public abstract void generateEvtMethods(ArrayList<String> lines);
 	
-	public abstract void generateCreateMethod(ArrayList<String> lines);
+	public abstract void generateCreator(ArrayList<String> lines);
 	
 	public abstract void generateAddToWin(ArrayList<String> lines);
 	

@@ -254,9 +254,10 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	}
 
 	@Override
-	public void generateCreateMethod(ArrayList<String> lines) {
-		// TODO Auto-generated method stub
-		
+	public void generateCreator(ArrayList<String> lines) {
+		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		DBase r = (DBase) m.getRoot();
+		r.make_creator(lines, null);
 	}
 
 	
