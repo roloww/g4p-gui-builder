@@ -97,6 +97,18 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ===============   Stuff for code generation   ============================
 	// ==========================================================================
 	
+	public void make_event_method(ArrayList<String> lines){
+		String methodDef = get_event_definition();
+		if(methodDef != null)
+			lines.add(methodDef);
+		if(allowsChildren){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).make_event_method(lines);
+			}
+		}		
+	}
+
 	public void make_declaration(ArrayList<String> lines){
 		String decl = get_declaration();
 		if(decl != null)
@@ -146,9 +158,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * 
 	 * @return
 	 */
-	public String get_event_method(){
-		String ec = get_event_header() + get_event_code() + get_event_end();
-		return ec;
+	public String get_event_definition(){
+		return null;
 	}
 	
 	/**
@@ -157,11 +168,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_code(){ 
-		String ev_code = Code.instance().get(id);
-		if(ev_code == null)
-			return Messages.build(CODE_ANY, _0005_name, componentClass);
-		else
-			return ev_code; 
+		return ""; 
 	}
 
 	/**
@@ -169,9 +176,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_header(){
-		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, 
-				componentClass.substring(1).toLowerCase(), 
-				_0005_name, id.toString()).replace('[', '{');
+		return null;
 	}
 	
 	/**
@@ -179,8 +184,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_end(){
-		return Messages.build(METHOD_END, _0005_name, 
-				id.toString()).replace(']', '}');
+		return null;
 	}
 	
 	
