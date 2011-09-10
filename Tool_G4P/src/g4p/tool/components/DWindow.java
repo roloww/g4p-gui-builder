@@ -89,7 +89,7 @@ public final class DWindow extends DBase {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_create_code(){
+	public String get_creator(){
 		if(mainSketch)
 			return null;
 		else
