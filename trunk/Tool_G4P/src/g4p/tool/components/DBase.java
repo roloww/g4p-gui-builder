@@ -100,7 +100,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public void make_declaration(ArrayList<String> lines){
 		String decl = get_declaration();
 		if(decl != null)
-			lines.add(get_declaration());
+			lines.add(decl);
 		if(allowsChildren){
 			Enumeration<?> e = children();
 			while(e.hasMoreElements()){
@@ -109,6 +109,17 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}		
 	}
 
+	public void make_creator(ArrayList<String> lines, DBase parent){
+		String ccode = get_creator(parent);
+		if(ccode != null)
+			lines.add(ccode);
+		if(allowsChildren){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).make_creator(lines, this);
+			}
+		}				
+	}
 	/**
 	 * Where components are in secondary windows.
 	 */
@@ -127,7 +138,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_create_code(){
+	public String get_creator(DBase parent){
 		return null;
 	}
 	

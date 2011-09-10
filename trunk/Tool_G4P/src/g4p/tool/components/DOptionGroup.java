@@ -1,5 +1,7 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.util.Enumeration;
@@ -14,6 +16,7 @@ public class DOptionGroup extends DBase {
 		resizeable = false;
 		moveable = false;
 
+		componentClass = "GOptionGroup";
 		set_name(NameGen.instance().getNext("optGroup"));
 		name_label = "Variable name";
 		name_tooltip = "Java naming rules apply";
@@ -22,6 +25,17 @@ public class DOptionGroup extends DBase {
 		allowsChildren = true;
 	}
 	
+	public String get_creator(DBase parent){
+		return Messages.build(CTOR_GOPTIONGROUP, _0005_name);
+	}
+
+	/**
+	 * Get the declaration for this control
+	 */
+	public String get_declaration(){
+		return componentClass + " " + _0005_name+ "; ";
+	}
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		Enumeration<?> e = children();

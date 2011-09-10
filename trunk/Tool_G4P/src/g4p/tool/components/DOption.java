@@ -40,22 +40,33 @@ public class DOption extends DCoreSelectable {
 		g.fillOval(3, top, DOT_EDGE, DOT_EDGE);
 		g.setColor(blackEdge);
 		g.drawOval(3, top, DOT_EDGE, DOT_EDGE);
-
 		if(_0050_selected){
 			int offset = (DOT_EDGE - DOT_SOLID)/2;
 			g.setColor(optDot);
 			g.fillOval(3 + offset, top + offset, DOT_SOLID, DOT_SOLID);
 		}
-		
 		g.setColor(blackEdge);
-		
 		g.drawString(_0005_name, 20, _0025_height/2 +4 );
-
+		
 		if(this == selected)
 			drawSelector(g);
 		g.setTransform(paf);
 	}
 
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		String c = Messages.build(CTOR_GOPTION, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, _0024_width);
+		c += Messages.build(ADD_OPTION, parent._0005_name, _0005_name);
+		if(_0050_selected)
+			c += Messages.build(SEL_OPTION, _0005_name, "true");
+		return c;
+	}
+
+	
 	public void selectionChanged(){
 		// test to see if this object has been selected
 		// and if so deselect all then select this

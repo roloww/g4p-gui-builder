@@ -24,6 +24,7 @@ public class DTimer extends DBase {
 		resizeable = false;
 		moveable = false;
 		
+		componentClass = "GTimer";
 		set_name(NameGen.instance().getNext("timer"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Action"));
 
@@ -33,6 +34,12 @@ public class DTimer extends DBase {
 		eventHandler_edit = eventHandler_show = true;		
 	}
 
-	
+	/**
+	 * Get the declaration for this control
+	 */
+	public String get_declaration(){
+		return componentClass + " " + _0005_name+ "; ";
+	}
+
 	
 }

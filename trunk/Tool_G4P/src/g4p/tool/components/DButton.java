@@ -1,5 +1,7 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.RectangularShape;
@@ -41,6 +43,17 @@ public class DButton extends DCoreText {
 
 		g.setTransform(paf);
 	}
+
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		return Messages.build(CTOR_GBUTTON_1, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, 
+				_0024_width, _0025_height);
+	}
+	
 
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException

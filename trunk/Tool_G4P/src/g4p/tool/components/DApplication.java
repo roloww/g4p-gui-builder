@@ -60,7 +60,7 @@ public final class DApplication extends DBase {
 		name_label = "PROCCESSING";
 	}
 
-	public String getCode(DBase parent){ 
+	public String get_creator(DBase parent){ 
 		StringBuilder sb = new StringBuilder();
 		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0010_Colour_scheme));
 		if(_0020_Cursor_changer) {
