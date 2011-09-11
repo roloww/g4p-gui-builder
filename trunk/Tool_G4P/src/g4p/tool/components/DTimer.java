@@ -38,8 +38,7 @@ public class DTimer extends DCore {
 	 * Get the declaration for this control
 	 */
 	public String get_declaration(){
-		return componentClass + " " + _0005_name+ "; ";
+		return componentClass + " " + _0005_name+ ";\n";
 	}
-
 	
 }

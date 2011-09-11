@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTable;
@@ -14,24 +15,29 @@ import javax.swing.table.TableCellRenderer;
 @SuppressWarnings("serial")
 public class CellEditor_JComboBox extends CellEditor_Base {
 
-	protected JComboBox component;
+	protected static JComboBox component = null;
 
 	public CellEditor_JComboBox(int type){
 //		System.out.println("Creating JComboBox editor");
-		component = new JComboBox(ListGen.instance().getComboBoxModel(type));
-		component.addActionListener(new ActionListener(){
+		validator = Validator.getValidator(type);
+		if(component == null){
+			component = new JComboBox(ListGen.instance().getComboBoxModel(type));
+			component.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				fireEditingStopped();				
-			}
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					fireEditingStopped();				
+				}
 
-		});
+			});
+		}
 	}
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
+//		component.setModel((ComboBoxModel) validator.getModel());
+		validator.preEditAction(this);
 		component.setSelectedItem(value.toString());
 		TableCellRenderer r = table.getCellRenderer(row, column);
 		Component c = r.getTableCellRendererComponent(table, value, isSelected, isSelected, row, column);

@@ -1,10 +1,12 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
 import g4p.tool.gui.WindowView.MutableDBase;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
@@ -22,7 +24,7 @@ public class DPanel extends DCoreText {
 		set_name(NameGen.instance().getNext("panel"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		allowsChildren = true;
-		_0015_text = "My panel";
+		_0015_text = "Tab bar text";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
 		_0024_width = 100;
@@ -30,7 +32,35 @@ public class DPanel extends DCoreText {
 //		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
-	
+	public String get_creator(DBase parent){
+		String s;
+		s = Messages.build(CTOR_GPANEL, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		return s;
+	}
+
+	public void make_creator(ArrayList<String> lines, DBase parent){
+		DBase comp;
+		Enumeration<?> e;
+		String ccode = get_creator(parent);
+		if(ccode != null && !ccode.equals(""))
+			lines.add(ccode);
+		if(allowsChildren){
+			e = children();
+			while(e.hasMoreElements()){
+				comp = (DBase)e.nextElement();
+				comp.make_creator(lines, this);
+			}
+			e = children();
+			while(e.hasMoreElements()){
+				comp = (DBase)e.nextElement();
+				if(!(comp instanceof DOptionGroup))
+					lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+			}
+		}				
+	}
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);

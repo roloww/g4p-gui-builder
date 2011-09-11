@@ -20,6 +20,7 @@ public class DButton extends DCoreText {
 		componentClass = "GButton";
 		set_name(NameGen.instance().getNext("button"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
+		_0015_text = "Button face text";
 		_0024_width = 80;
 		_0025_height = 20;
 		text_tooltip = "text to show on button";

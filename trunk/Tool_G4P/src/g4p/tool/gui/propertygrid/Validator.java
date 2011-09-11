@@ -7,6 +7,7 @@ import g4p.tool.components.ListGen;
 import g4p.tool.components.NameGen;
 
 import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 
 
 
@@ -67,24 +68,25 @@ public abstract class Validator implements TDataConstants, Serializable {
 	}
 
 	/**
-	 * 
+	 * Create a validator for a JComboBox
 	 * @param type control string
 	 * @return
 	 */
 	public static Validator getValidator(int type){
-		if(type == COMPONENT_NAME){
-			return new Validator_ControlName();
+		Validator v = defaultString;
+		switch(type){
+		case COMPONENT_NAME:
+			v = new Validator_ControlName();
+			break;
+		case COLOUR_SCHEME:
+		case CURSOR_CHANGER:
+		case RENDERER:
+			v = new Validator_Combo(ListGen.instance().getComboBoxModel(type));
+			break;
 		}
-		else if(type == COLOUR_SCHEME){
-			return new Validator_List(ListGen.instance().getComboBoxModel(type));
-		}
-		else if(type == CURSOR_CHANGER){
-			return new Validator_List(ListGen.instance().getComboBoxModel(type));
-		}
-		// 	Give up and return a default string	
-		return defaultString;
+		return v;
 	}
-	
+
 	// ==============================================================================
 	// ==============================================================================
 
@@ -135,7 +137,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 	
 	public void postEditAction(Object ...args){	}
 	public void preEditAction(Object ...args){	}
-	public Object getModel(){ return null; }
+//	public Object getModel(){ return null; }
 
 	/**
 	 * ====================================================
@@ -495,26 +497,24 @@ public abstract class Validator implements TDataConstants, Serializable {
 	 * ====================================================
 	 * @author Peter Lager
 	 */
-	static class Validator_List extends Validator{
+	static class Validator_Combo extends Validator{
 
-		Object list;
+		DefaultComboBoxModel list;
 		/**
 		 * 
 		 * The length of args should be 2 i.e.
 		 * Integer (min, max)
 		 * @param args
 		 */
-		public Validator_List(Object ... args){
-			list = args[0];
-//			Integer type = (Integer) args[0];
-//			list = ListGen.instance().getComboBoxModel(type);
+		public Validator_Combo(Object ... args){
+			list = (DefaultComboBoxModel) args[0];
 		}
 
 		// The first argument should be the combo box cell editor
 		public void preEditAction(Object ...args){
-			((CellEditor_JComboBox) args[0]).component.setModel((ComboBoxModel) list) ;
+			CellEditor_JComboBox.component.setModel((ComboBoxModel) list) ;
 		}
-
+	
 		/**
 		 * See if the value passed is valid
 		 */

@@ -39,7 +39,6 @@ public interface ISketchView {
 	 * @param comp
 	 * @return
 	 */
-//	public abstract DBase getContainerFor(DBase comp);
 	
 	public abstract DBase getRoot();
 	
@@ -59,6 +58,6 @@ public interface ISketchView {
 	
 	public abstract void generateCreator(ArrayList<String> lines);
 	
-	public abstract void generateAddToWin(ArrayList<String> lines);
+//	public abstract void generateAddToWin(ArrayList<String> lines);
 	
 }

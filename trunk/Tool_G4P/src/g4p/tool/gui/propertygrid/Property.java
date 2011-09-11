@@ -70,7 +70,7 @@ public final class Property implements Comparable {
 			validator = (Validator) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
-			validator = Validator.getDefaultValidator(field.getType());
+			// validator = Validator.getDefaultValidator(field.getType());
 		}
 		// Get edit status if any
 		try {

@@ -97,6 +97,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ===============   Stuff for code generation   ============================
 	// ==========================================================================
 	
+	/**
+	 * Recursive function to get the event method
+	 * 
+	 * @param lines
+	 */
 	public void make_event_method(ArrayList<String> lines){
 		String methodDef = get_event_definition();
 		if(methodDef != null)
@@ -109,6 +114,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}		
 	}
 
+	/**
+	 * Recursive function to get the variable declaration.
+	 * 
+	 * @param lines
+	 */
 	public void make_declaration(ArrayList<String> lines){
 		String decl = get_declaration();
 		if(decl != null)
@@ -121,22 +131,34 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}		
 	}
 
+	/**
+	 * Recursive function to first get the creator code for this
+	 * component then repeat for any children. <br>
+	 * This method is overridden in DWindow, DPanel and DOptionGroup.
+	 * 
+	 * @param lines
+	 * @param parent
+	 */
 	public void make_creator(ArrayList<String> lines, DBase parent){
+		DBase comp;
+		Enumeration<?> e;
 		String ccode = get_creator(parent);
-		if(ccode != null)
+		if(ccode != null && !ccode.equals(""))
 			lines.add(ccode);
 		if(allowsChildren){
-			Enumeration<?> e = children();
+			e = children();
 			while(e.hasMoreElements()){
-				((DBase)e.nextElement()).make_creator(lines, this);
+				comp = (DBase)e.nextElement();
+				comp.make_creator(lines, this);
 			}
 		}				
 	}
+	
 	/**
 	 * Where components are in secondary windows.
 	 */
 	public String get_add_to_window(DBase window){
-		return Messages.build(ADD_TO_WINDOW, _0005_name);
+		return null; //Messages.build(ADD_TO_WINDOW, _0005_name);
 	}
 	
 	/**

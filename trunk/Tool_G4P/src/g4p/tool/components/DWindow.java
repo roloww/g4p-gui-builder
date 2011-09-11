@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
@@ -89,13 +90,38 @@ public final class DWindow extends DBase {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(){
+	public String get_creator(DBase parent){
 		if(mainSketch)
 			return null;
 		else
-			return Messages.build("", componentClass + " " + _0005_name);
+			return Messages.build(CTOR_WINDOW_1, _0005_name, "this", _0010_title, _0020_x, _0021_y, _0024_width, _0025_height, false, _0011_renderer);
 	}
 	
+	public void make_creator(ArrayList<String> lines, DBase parent){
+		DBase comp;
+		Enumeration<?> e;
+		String ccode = get_creator(parent);
+		if(ccode != null && !ccode.equals(""))
+			lines.add(ccode);
+		if(allowsChildren){
+			e = children();
+			while(e.hasMoreElements()){
+				comp = (DBase)e.nextElement();
+				if(mainSketch)
+					comp.make_creator(lines, null);
+				else
+					comp.make_creator(lines, this);
+			}
+			if(!mainSketch){
+				e = children();
+				while(e.hasMoreElements()){
+					comp = (DBase)e.nextElement();
+					lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+				}
+			}
+		}				
+	}
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{

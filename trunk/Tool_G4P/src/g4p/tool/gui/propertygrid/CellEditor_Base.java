@@ -11,7 +11,7 @@ public abstract class CellEditor_Base extends AbstractCellEditor implements Tabl
 
 	
 	// Validation object 
-	public Validator validator;
+	public Validator validator = null;
 
 	
 }
