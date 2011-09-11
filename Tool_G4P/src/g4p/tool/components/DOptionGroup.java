@@ -4,6 +4,7 @@ import g4p.tool.Messages;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
@@ -27,6 +28,28 @@ public class DOptionGroup extends DBase {
 	
 	public String get_creator(DBase parent){
 		return Messages.build(CTOR_GOPTIONGROUP, _0005_name);
+	}
+
+	public void make_creator(ArrayList<String> lines, DBase parent){
+		DOption comp;
+		Enumeration<?> e;
+		String ccode = get_creator(parent);
+		if(ccode != null && !ccode.equals(""))
+			lines.add(ccode);
+		if(allowsChildren){
+			e = children();
+			while(e.hasMoreElements()){
+				comp = (DOption)e.nextElement();
+				comp.make_creator(lines, this);
+			}
+			if(parent != null){
+				e = children();
+				while(e.hasMoreElements()){
+					comp = (DOption)e.nextElement();
+					lines.add(Messages.build(ADD_A_CHILD, parent._0005_name, comp._0005_name));
+				}
+			}
+		}				
 	}
 
 	/**

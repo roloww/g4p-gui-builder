@@ -1,7 +1,5 @@
 package g4p.tool;
 
-import processing.core.PApplet;
-
 public interface TDataConstants {
 
 	// Validator constants
@@ -64,12 +62,13 @@ public interface TDataConstants {
 	public final String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});\n";
 	public final String ADD_OPTION			=	"  {0}.addOption({1});\n";
 	public final String SEL_OPTION			=	"  {0}.setSelected({1});\n";
+	
 	//		GOptionGroup()
 	public final String CTOR_GOPTIONGROUP	=	"  {0} = new GOptionGroup();\n";
 	
 	
 	//		GPanel(PApplet theApplet, String text, int x, int y, int width, int height){
-	public final String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5});\n";
+	public final String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
 	public final String CTOR_GTEXTFIELD		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
@@ -91,7 +90,9 @@ public interface TDataConstants {
 	 * Add to window pattern
 	 */
 	
-	//  0 = window name  :  1 = control name
-	public final String ADD_TO_WINDOW		= "  {0}.add({1});\n";
+//	//  0 = window name  :  1 = control name
+//	public final String ADD_TO_WINDOW		= "  {0}.add({1});\n";
+	//  0 = parent name  :  1 = control name
+	public final String ADD_A_CHILD		= "  {0}.add({1});\n";
 	
 }

@@ -66,6 +66,7 @@ public final class DApplication extends DBase {
 		if(_0020_Cursor_changer) {
 			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0022_Cursor_off, _0023_Cursor_over));
 			sb.append("  G4P.setMouseOverEnabled(true);\n");
+			sb.append("  G4P.messagesEnabled(false);\n");
 		}
 		return new String(sb);
 	}

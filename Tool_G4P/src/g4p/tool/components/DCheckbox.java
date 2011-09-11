@@ -13,6 +13,7 @@ public class DCheckbox extends DCoreSelectable{
 		text_label = "Checkbox display text";
 		set_name(NameGen.instance().getNext("checkbox"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
+		_0015_text = "Checkbox text";
 	}
 
 	

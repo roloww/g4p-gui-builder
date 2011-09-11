@@ -68,7 +68,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 * If no editor avaialble use default editor and renderer
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
-		//		CellEditor_Base editor = null;
 		CellEditor_Base editor = null;
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
@@ -90,7 +89,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		// If we have don't have a validator then get one based on the class
 		if(p.validator == null) 
 			p.validator = Validator.getDefaultValidator(c);
-		if(editor != null)
+		if(editor != null && editor.validator == null)
 			editor.validator = p.validator;
 		return (editor == null) ? super.getCellEditor(row, col) : editor;
 	}

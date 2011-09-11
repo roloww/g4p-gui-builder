@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.swing.Icon;
 import javax.swing.JTree;
@@ -151,9 +150,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			//			repaint();
 		}
 		else if(comp instanceof DTimer){
-			// add to active window
-			DBase window = (DBase) r.getChildAt(0);
-			m.insertNodeInto(comp, window, window.getChildCount());
+			// always add to root
+			// DBase window = (DBase) r.getChildAt(0);
+			m.insertNodeInto(comp, r, r.getChildCount());
 			setSelectedComponent(comp);			
 		}
 		else if(comp instanceof DOptionGroup){
@@ -257,16 +256,17 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	@Override
 	public void generateCreator(ArrayList<String> lines) {
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		// Start with application
 		DBase r = (DBase) m.getRoot();
 		r.make_creator(lines, null);
 	}
 
 	
-	@Override
-	public void generateAddToWin(ArrayList<String> lines) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void generateAddToWin(ArrayList<String> lines) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	// ==========================================================================
 	// ==========================================================================
@@ -298,16 +298,11 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
 	public DefaultTreeModel loadModel(File file){
 		DefaultTreeModel dm = null;
-		System.out.println("Load model");
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			dm = (DefaultTreeModel) ois.readObject();
 			fis.close();
-			//			if(dm != null){
-			//				setModel(dm);
-			//				setSelectedComponent((DBase)dm.getRoot());
-			//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
