@@ -86,7 +86,8 @@ public class G4PTool implements Tool, TFileConstants {
 			// Create data folder if necessary
 			sketch.prepareDataFolder();
 			
-			// See if there is a sub-folder in the data folder called '_gui_builder' stuff
+			// Create a sub-folder called 'GUI_BUILDER_DATA' inside the sketch folder if
+			// it doesn't already exist
 			File configFolder = new File(sketchFolder, CONFIG_FOLDER);
 			if (!configFolder.exists()) {
 				configFolder.mkdir();

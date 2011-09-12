@@ -154,12 +154,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}				
 	}
 	
-	/**
-	 * Where components are in secondary windows.
-	 */
-	public String get_add_to_window(DBase window){
-		return null; //Messages.build(ADD_TO_WINDOW, _0005_name);
-	}
+//	/**
+//	 * Where components are in secondary windows.
+//	 */
+//	public String get_add_to_window(DBase window){
+//		return null; //Messages.build(ADD_TO_WINDOW, _0005_name);
+//	}
 	
 	/**
 	 * Get the declaration for this control
