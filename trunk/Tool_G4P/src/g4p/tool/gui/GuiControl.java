@@ -90,14 +90,27 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void captureCode(){
 		Sketch sketch = editor.getSketch();
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
+//		try {
+//			gui_tab.load();
+//		} catch (IOException e1) {
+//			System.out.println("CAPTURE unable to load code");
+//			e1.printStackTrace();
+//		}
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
 		sketch.setCurrentCode(gui_tab_index);
+//		String code = gui_tab.getProgram();
+		String code = editor.getText();
+		gui_tab.setProgram(code);
+//		if(codeP.equalsIgnoreCase(code))
+//			System.out.println("Different");
 		try {
 			gui_tab.save();
 		} catch (IOException e) {
+			System.out.println("CAPTURE unable to save code");
 			e.printStackTrace();
 		}
-		String code = gui_tab.getProgram();
+
+		System.out.println("Program length " + code.length() + "\n");
 		p.matcher(code);
 		m = p.matcher(code);
 		ArrayList<CodeTag> tags = new ArrayList<CodeTag>();
@@ -106,13 +119,12 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			tags.add(new CodeTag(sa[2], m.start(), m.end()));
 		}
 		// Validate tags???
+		System.out.println("\nCODE CAPTURED \n");
 		Code.instance().reset();
 		for(int t = 0; t < tags.size(); t += 2){
-			String snippet = code.substring(tags.get(t).e + 1, tags.get(t+1).s - 3);
+			String snippet = code.substring(tags.get(t).e + 1, tags.get(t+1).s - 2);
 			Code.instance().add(tags.get(t).id, snippet);
 		}
-		System.out.println("\nCODE  \n");
-		
 		
 	}
 
@@ -124,24 +136,24 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		sketch.setCurrentCode(gui_tab_index);
 		// Generate code here then save using editor.
 		code = makeGuiCode();
-		// Set the tab cose and save it
+		// Set the tab code and save it
 		gui_tab.setProgram(code);
+		// Set the code to show in the editor
+		editor.setText(code);
+		editor.setSelection(0, 0);
+		editor.repaint();
+		// Save the generated code
 		try {
 			gui_tab.save();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// Set the code to show in the editor
-		editor.setText(code);
-		editor.setSelection(0, 0);
-		editor.repaint();
 	}
 
 	private String makeGuiCode(){
 		String code = "";
 		ArrayList<String> evtMethods = new ArrayList<String>();	
 		ArrayList<String> compCreators = new ArrayList<String>();
-		ArrayList<String> addToWin = new ArrayList<String>();
 		ArrayList<String> compDecs = new ArrayList<String>();
 
 		evtMethods.add(guiPdeBase);
@@ -156,12 +168,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		tree.generateDeclarations(compDecs);
 		tree.generateEvtMethods(evtMethods);
 		tree.generateCreator(compCreators);
-//		tree.generateAddToWin(addToWin);
-
-//		DBase app = tree.getRoot();
 
 		// Close the create method
-		compCreators.addAll(addToWin);
 		compCreators.add("}\n\n");
 		
 		// Build up full sketch code
