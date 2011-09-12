@@ -127,7 +127,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * The close operation can be overridden at this point.
 			 */
 			public void windowClosing(WindowEvent e) {
-				//System.out.println("CLOSING");
+				System.out.println("CLOSING");
 				dispose();              	
 			}
 
@@ -135,14 +135,14 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window has been closed.
 			 */
 			public void windowClosed(WindowEvent e) {
-				//System.out.println("CLOSED");
+				System.out.println("CLOSED");
 			}
 
 			/**
 			 * Invoked when a window is iconified.
 			 */
 			public void windowIconified(WindowEvent e) {
-				//System.out.println("ICONIFIED");
+				System.out.println("ICONIFIED");
 				setVisible(false);
 			}
 
@@ -150,7 +150,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-iconified.
 			 */
 			public void windowDeiconified(WindowEvent e) {
-				//System.out.println("DEICONIFIED");
+				System.out.println("DEICONIFIED");
 
 			}
 
@@ -158,7 +158,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-				//System.out.println("ACTIVATED");
+				System.out.println("ACTIVATED");
+				System.out.println("GUI control \n"+guiControl);
 				setExtendedState(NORMAL);
 			}
 
@@ -166,11 +167,11 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-				//System.out.println("DEACTIVATED");
-				if(!warningOn){
-					setExtendedState(ICONIFIED);
-					return;
-				}
+				System.out.println("DEACTIVATED");
+//				if(!warningOn){
+//					setExtendedState(ICONIFIED);
+//					return;
+//				}
 			}
 
 		};
@@ -278,7 +279,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("GUI Builder");
-        setAlwaysOnTop(true);
         setBackground(new java.awt.Color(255, 255, 255));
         setName("frmDesigner"); // NOI18N
 
