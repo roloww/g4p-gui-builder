@@ -7,7 +7,7 @@ import java.util.Set;
 public class IdGen {
 
 	private static IdGen instance;
-	private static int low  = 100000;
+	private static int low  = 200000;
 	private static int high = 999999;
 	private static Random rnd;
 	
