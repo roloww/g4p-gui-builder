@@ -63,7 +63,7 @@ public class G4PTool implements Tool, TFileConstants {
 	}
 
 	/**
-	 * This is executed everytime we launch the tool using the menu item in Processing IDE
+	 * This is executed every time we launch the tool using the menu item in Processing IDE
 	 * 
 	 */
 	public void run() {
