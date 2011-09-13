@@ -10,6 +10,7 @@ import g4p.tool.components.IdGen;
 import g4p.tool.components.NameGen;
 import g4p.tool.gui.propertygrid.IPropView;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -242,7 +243,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(dm != null)
 			this.makGUIfromTreeModel((CtrlSketchModel) dm);
 		else
-			this.initModel();		
+			this.initModel(new Dimension(480,320));		
 	}
 
 	/**
@@ -263,9 +264,10 @@ public class GuiControl implements TFileConstants, TDataConstants {
 
 	/**
 	 * Temporary setup for testing purposes
+	 * @param size 
 	 */
-	public void initModel(){
-		makGUIfromTreeModel(getBaseSketchModel());
+	public void initModel(Dimension size){
+		makGUIfromTreeModel(getBaseSketchModel(size));
 	}
 
 	/**
@@ -297,10 +299,12 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * Create a blank sketch
 	 * @return
 	 */
-	private CtrlSketchModel getBaseSketchModel() {
+	private CtrlSketchModel getBaseSketchModel(Dimension size) {
 		CtrlSketchModel m = null;
 		DApplication app = new DApplication();
 		DWindow win1 = new DWindow(true);
+		win1._0024_width = size.width;
+		win1._0025_height = size.height;
 		app.add(win1);
 		m = new CtrlSketchModel(app);
 		return m;
