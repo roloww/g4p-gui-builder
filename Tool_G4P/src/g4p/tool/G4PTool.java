@@ -76,12 +76,11 @@ public class G4PTool implements Tool, TFileConstants {
 
 		// Provide a warning if G4P is not loaded
 		if (!g4pJarExists(base.getSketchbookLibrariesFolder())) {
-			Base.showWarning("GUI Builder error", "This tool needs the G4P library to be installed.\nGet G4P from http://code.google.com/p/gui4processing/downloads", null);
+			Base.showWarning("GUI Builder error", "Although you can use this tool the sketch created will not \nwork because the G4P library needs to be installed.\nSee G4P at http://www.lagers.org.uk/g4p/", null);
 			// return;
 		}
 		// The tool is not open so create the designer window
 		if (dframe == null) {
-			Dimension d = getAppletSize(sketch);
 			// If the gui.pde tab does not exist create it
 			if (!guiTabExists(sketch)) {
 				sketch.addFile(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + PDE_TAB_NAME));
@@ -95,12 +94,10 @@ public class G4PTool implements Tool, TFileConstants {
 			if (!configFolder.exists()) {
 				configFolder.mkdir();
 			}
-			
-			dframe = new GuiDesigner(editor, d);
+			dframe = new GuiDesigner(editor);
 			System.out.println("##name## Version ##version## created by ##author##");
 		} 
 		else {
-			
 			System.out.println("FOUND  " + System.currentTimeMillis());
 
 		}
@@ -111,39 +108,39 @@ public class G4PTool implements Tool, TFileConstants {
 		dframe.toFront();
 	}
 
-	/**
-	 * I have shamelessly taken this code from ProcessingJS by florian jenett
-	 * 
-	 * @param sketch
-	 * @return
-	 */
-	private Dimension getAppletSize(Sketch sketch){	
-		Dimension size = null;
-		String sizeRegex = "(?:^|\\s|;)size\\s*\\(\\s*(\\S+)\\s*,\\s*(\\d+),?\\s*([^\\)]*)\\s*\\)";
-		int wide, high;
-		String scrubbed = processing.mode.java.JavaBuild.scrubComments( sketch.getCode(0).getProgram() );
-		String[] matches = PApplet.match( scrubbed, sizeRegex );
-
-		if ( matches != null )
-		{
-			try	{
-				wide = Integer.parseInt(matches[1]);
-				high = Integer.parseInt(matches[2]);
-				size = new Dimension(wide, high);
-			} catch (NumberFormatException e) {
-				// found a reference to size, but it didn't
-				// seem to contain numbers
-				final String message =
-					"The size of this sketch could not automatically be\n" +
-					"determined from your code. You'll have to edit the\n" +
-					"HTML file to set the size of the applet.";
-
-				Base.showWarning("Could not find applet size", message, null);
-				size = new Dimension(480, 320);
-			}
-		} // else no size() command found
-		return size;
-	}
+//	/**
+//	 * I have shamelessly taken this code from ProcessingJS by florian jenett
+//	 * 
+//	 * @param sketch
+//	 * @return
+//	 */
+//	private Dimension getAppletSize(Sketch sketch){	
+//		Dimension size = null;
+//		String sizeRegex = "(?:^|\\s|;)size\\s*\\(\\s*(\\S+)\\s*,\\s*(\\d+),?\\s*([^\\)]*)\\s*\\)";
+//		int wide, high;
+//		String scrubbed = processing.mode.java.JavaBuild.scrubComments( sketch.getCode(0).getProgram() );
+//		String[] matches = PApplet.match( scrubbed, sizeRegex );
+//
+//		if ( matches != null )
+//		{
+//			try	{
+//				wide = Integer.parseInt(matches[1]);
+//				high = Integer.parseInt(matches[2]);
+//				size = new Dimension(wide, high);
+//			} catch (NumberFormatException e) {
+//				// found a reference to size, but it didn't
+//				// seem to contain numbers
+////				final String message =
+////					"The size of this sketch could not automatically be\n" +
+////					"determined from your code. You'll have to set the\n" +
+////					"width and height in the designer window.";
+////
+////				Base.showWarning("Could not find applet size", message, null);
+////				size = new Dimension(480, 320);
+//			}
+//		} // else no size() command found
+//		return size;
+//	}
 	
 	/**
 	 * See if the G4P library has been installed in the SketchBook libraries folder correctly
