@@ -98,8 +98,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		initComponents();
 		initCustomComponents();
 		guiControl =  new GuiControl(null, tabWindows, treeSketchView, tblPropView);
-		guiControl.initModel(new Dimension(480,320));
-
 		createWindowAdapter();
 	}
 
@@ -109,15 +107,23 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 * @param theEditor
 	 * @param size 
 	 */
-	public GuiDesigner(Editor theEditor, Dimension size) {
+	public GuiDesigner(Editor theEditor) {
 		instance = this;
 
 		editor = theEditor;
 		initComponents();
 		initCustomComponents();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
-		guiControl.initModel(size);
+		guiControl.initModel();
+		Dimension size = guiControl.getSketchSize();
+		if(size == null){
+			final String message =
+				"The size of this sketch could not automatically be\n" +
+				"determined from your code. You'll have to set the\n" +
+				"width and height in the designer window.";
 
+			showWarning("Could not find applet size", message, null);
+		}
 		createWindowAdapter();
 	}
 
@@ -130,7 +136,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowClosing(WindowEvent e) {
 				//System.out.println("CLOSING");
-				dispose();              	
+				setExtendedState(ICONIFIED);				              	
 			}
 
 			/**
@@ -145,7 +151,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowIconified(WindowEvent e) {
 				//System.out.println("ICONIFIED");
-				setVisible(false);
 			}
 
 			/**
@@ -162,6 +167,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 			public void windowActivated(WindowEvent e) {
 //				System.out.println("ACTIVATED");
 				setExtendedState(NORMAL);
+				if(guiControl != null)
+					guiControl.setSketchSize(guiControl.getSketchSize());
 			}
 
 			/**
@@ -169,10 +176,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowDeactivated(WindowEvent e) {
 //				System.out.println("DEACTIVATED");
-//				if(!warningOn){
-//					setExtendedState(ICONIFIED);
-//					return;
-//				}
+				if(!warningOn){
+					setExtendedState(ICONIFIED);
+					return;
+				}
 			}
 
 		};
@@ -222,6 +229,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		mitemGS8.setSelected(true);
 		tabWindows.setGridSize(8);
 	}
+
 
 	/** This method is called from within the constructor to
 	 * initialize the form.

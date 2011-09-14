@@ -17,10 +17,11 @@ public interface TDataConstants {
 	public final int UNAVAILABLE		=	0x00000035;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Capture code pattern
+	 * Capture code and size patterns
 	 */
 	
 	public final String CODE_TAG		=	"(//_CODE_:.*:\\d{6}:)";
+	public final String SK_SIZE			=	"(?:^|\\s|;)size\\s*\\(\\s*(\\S+)\\s*,\\s*(\\d+),?\\s*([^\\)]*)\\s*\\)";
 	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Event handler method patterns

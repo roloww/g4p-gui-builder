@@ -37,9 +37,9 @@ public class GuiControl implements TFileConstants, TDataConstants {
 
 	private String guiPdeBase = "";
 
-	private Pattern p;
+	private Pattern pCode, pSize;
 	private Matcher m;
-	
+
 	/**
 	 * @param tabs
 	 * @param tree
@@ -59,7 +59,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 				e.printStackTrace();
 			}
 		}
-		p = Pattern.compile(CODE_TAG, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+		pCode = Pattern.compile(CODE_TAG, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+		pSize = Pattern.compile(SK_SIZE, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
 	}
 
 	public boolean addComponent(DBase comp){
@@ -88,32 +89,63 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		tabs.setGridSize(gs);
 	}
 
+	/**
+	 * Set the sketch size in the designer window if one is provided
+	 * @param size width and height
+	 */
+	public void setSketchSize(Dimension size){
+		if(size != null){
+			DBase m = (DBase) tree.getRoot().getChildAt(0);
+			m.set_width(size.width);
+			m.set_height(size.height);
+		}
+	}
+
+	/**
+	 * Get the size of the sketch from the code
+	 * @return null if no size found
+	 */
+	public Dimension getSketchSize(){
+		Dimension s = null;
+		Sketch sketch = editor.getSketch();
+		SketchCode curr =  sketch.getCurrentCode();
+		int currIndex = getTabIndex(sketch, curr.getPrettyName());
+		if(currIndex != 0)
+			sketch.setCurrentCode(0);
+		String code = editor.getText();
+		code = processing.mode.java.JavaBuild.scrubComments(code);
+		m = pSize.matcher(code);
+		int i = 0;
+		if(m.groupCount() >= 3){
+			try	{
+				int wide = Integer.parseInt(m.group(1));
+				int high = Integer.parseInt(m.group(2));
+				s = new Dimension(wide, high);
+				System.out.println(s);
+			} catch (NumberFormatException e) {
+				s = null;
+			}
+		}
+		sketch.setCurrentCode(currIndex);
+		return s;
+	}
+
 	public void captureCode(){
 		Sketch sketch = editor.getSketch();
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
-//		try {
-//			gui_tab.load();
-//		} catch (IOException e1) {
-//			System.out.println("CAPTURE unable to load code");
-//			e1.printStackTrace();
-//		}
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
 		sketch.setCurrentCode(gui_tab_index);
-//		String code = gui_tab.getProgram();
+		//		String code = gui_tab.getProgram();
 		String code = editor.getText();
 		gui_tab.setProgram(code);
-//		if(codeP.equalsIgnoreCase(code))
-//			System.out.println("Different");
 		try {
 			gui_tab.save();
 		} catch (IOException e) {
 			System.out.println("CAPTURE unable to save code");
 			e.printStackTrace();
 		}
-
-		System.out.println("Program length " + code.length() + "\n");
-		p.matcher(code);
-		m = p.matcher(code);
+		//pCode.matcher(code);
+		m = pCode.matcher(code);
 		ArrayList<CodeTag> tags = new ArrayList<CodeTag>();
 		while(m.find()){
 			String[] sa = m.group().split(":");
@@ -126,7 +158,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			String snippet = code.substring(tags.get(t).e + 1, tags.get(t+1).s - 2);
 			Code.instance().add(tags.get(t).id, snippet);
 		}
-		
+
 	}
 
 	public void generateCode(){
@@ -172,7 +204,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 
 		// Close the create method
 		compCreators.add("}\n\n");
-		
+
 		// Build up full sketch code
 		evtMethods.addAll(compCreators);
 		evtMethods.addAll(compDecs);
@@ -243,7 +275,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(dm != null)
 			this.makGUIfromTreeModel((CtrlSketchModel) dm);
 		else
-			this.initModel(new Dimension(480,320));		
+			this.initModel();		
 	}
 
 	/**
@@ -264,10 +296,9 @@ public class GuiControl implements TFileConstants, TDataConstants {
 
 	/**
 	 * Temporary setup for testing purposes
-	 * @param size 
 	 */
-	public void initModel(Dimension size){
-		makGUIfromTreeModel(getBaseSketchModel(size));
+	public void initModel(){
+		makGUIfromTreeModel(getBaseSketchModel());
 	}
 
 	/**
@@ -299,12 +330,12 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * Create a blank sketch
 	 * @return
 	 */
-	private CtrlSketchModel getBaseSketchModel(Dimension size) {
+	private CtrlSketchModel getBaseSketchModel() {
 		CtrlSketchModel m = null;
 		DApplication app = new DApplication();
 		DWindow win1 = new DWindow(true);
-		win1._0024_width = size.width;
-		win1._0025_height = size.height;
+		win1._0024_width = 480;
+		win1._0025_height = 320;
 		app.add(win1);
 		m = new CtrlSketchModel(app);
 		return m;
@@ -313,7 +344,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public class CodeTag {
 		public Integer id;
 		public int s, e;
-		
+
 		/**
 		 * @param name
 		 * @param s
