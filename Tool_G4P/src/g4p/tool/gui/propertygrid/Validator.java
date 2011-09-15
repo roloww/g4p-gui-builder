@@ -78,6 +78,9 @@ public abstract class Validator implements TDataConstants, Serializable {
 		case COMPONENT_NAME:
 			v = new Validator_ControlName();
 			break;
+		case COMPONENT_NAME_0:
+			v = new Validator_ControlName(0);
+			break;
 		case COLOUR_SCHEME:
 		case CURSOR_CHANGER:
 		case RENDERER:
@@ -154,6 +157,9 @@ public abstract class Validator implements TDataConstants, Serializable {
 		private static String firstChar = "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		
 		public Validator_ControlName(Object ... args){
+			if(args.length > 0){
+				min = Integer.parseInt(args[0].toString());
+			}
 		}
 
 		@Override
@@ -164,8 +170,12 @@ public abstract class Validator implements TDataConstants, Serializable {
 		@Override
 		public boolean isValid(Object value) {
 			String uv = value.toString();
+			int len = uv.length();
 			boolean valid = true;
-			if(uv.length() < min || uv.length() > max){
+			if(len == 0 && min  == 0) {
+				valid = true;
+			}
+			else if(len < min || uv.length() > max){
 				errorType = INVALID_LENGTH;
 				valid = false;
 			}
@@ -201,12 +211,10 @@ public abstract class Validator implements TDataConstants, Serializable {
 		}
 		
 		public void preEditAction(Object ...args){
-			System.out.println("ControlName PRE removing "+originalValue);
 			NameGen.instance().remove((String) originalValue);
 		}
 		
 		public void postEditAction(Object ...args){
-			System.out.println("ControlName POST");
 			NameGen.instance().add((String) cellValue);
 		}
 
