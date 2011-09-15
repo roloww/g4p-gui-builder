@@ -115,13 +115,13 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		String code = editor.getText();
 		code = processing.mode.java.JavaBuild.scrubComments(code);
 		m = pSize.matcher(code);
-		int i = 0;
-		if(m.groupCount() >= 3){
+		System.out.println("Looking for size");
+		if(m.find() && m.groupCount() >= 3){
 			try	{
 				int wide = Integer.parseInt(m.group(1));
 				int high = Integer.parseInt(m.group(2));
 				s = new Dimension(wide, high);
-				System.out.println(s);
+				System.out.println("Found " + s.width + "  " + s.height);
 			} catch (NumberFormatException e) {
 				s = null;
 			}
@@ -129,6 +129,22 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		sketch.setCurrentCode(currIndex);
 		return s;
 	}
+	
+//	  static public String[] match(String what, String regexp) {
+//		    Pattern p = matchPattern(regexp);
+//		    Matcher m = p.matcher(what);
+//		    if (m.find()) {
+//		      int count = m.groupCount() + 1;
+//		      String[] groups = new String[count];
+//		      for (int i = 0; i < count; i++) {
+//		        groups[i] = m.group(i);
+//		      }
+//		      return groups;
+//		    }
+//		    return null;
+//		  }
+
+
 
 	public void captureCode(){
 		Sketch sketch = editor.getSketch();

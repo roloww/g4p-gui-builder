@@ -33,6 +33,21 @@ public final class DWindow extends DBase {
 	public Boolean 		Display_scale_show = true;
 	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 300);
 	
+	public String 		_0060_wdraw = "";
+	public String 		wdraw_label = "Draw method Name";
+	public String 		wdraw_tooltip = "The draw() method for this window";
+	public Boolean 		wdraw_edit = true;
+	public Boolean 		wdraw_show = true;
+	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
+
+	public String 		_0062_wmouse = "";
+	public String 		wmouse_label = "Mouse method Name";
+	public String 		wmouse_tooltip = "The draw() method for this window";
+	public Boolean 		wmouse_edit = true;
+	public Boolean 		wmouse_show = true;
+	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
+
+	
 	/**
 	 * Create a Window object
 	 * @param mainSketch true if main sketch
@@ -51,8 +66,9 @@ public final class DWindow extends DBase {
 			name_label = "SKETCH";
 			_0024_width = 480;
 			_0025_height = 320;
-			
 			_0010_title = "My sketch title";
+			wdraw_edit = wdraw_show = false;
+			wmouse_edit = wmouse_show = false;
 		}
 		else {
 			set_name(NameGen.instance().getNext("window"));
@@ -76,6 +92,50 @@ public final class DWindow extends DBase {
 		return _0010_title;
 	}
 
+	public String get_event_definition(){
+		StringBuilder sb = new StringBuilder();
+		
+		if(_0060_wdraw.length() > 0){
+			sb.append(Messages.build(WIN_DRAW, _0060_wdraw, _0005_name, id.toString()).replace('[', '{'));  // event header
+			sb.append(get_draw_event_code() + get_event_end());
+		}
+		if(_0062_wmouse.length() > 0){
+			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id.toString()).replace('[', '{'));  // event header
+			sb.append(get_mouse_event_code() + get_event_end());
+		}
+		return new String(sb);
+	}
+
+	/**
+	 * Get the event code if none then return generic message
+	 * @param code
+	 * @return
+	 */
+	protected String get_draw_event_code(){ 
+		String ev_code = Code.instance().get(id);
+		if(ev_code == null)
+			return CODE_GWINDOW_DRAW;
+		else
+			return ev_code; 
+	}
+
+	protected String get_mouse_event_code(){ 
+		String ev_code = Code.instance().get(id);
+		if(ev_code == null)
+			return Messages.build(CODE_GWINDOW_MOUSE, _0005_name, componentClass);
+		else
+			return ev_code; 
+	}
+
+	/**
+	 * Get the event method end with tag
+	 * @return
+	 */
+	protected String get_event_end(){
+		return Messages.build(METHOD_END, _0005_name, 
+				id.toString()).replace(']', '}');
+	}
+	
 	/**
 	 * Get the declaration for this control
 	 */
@@ -93,10 +153,20 @@ public final class DWindow extends DBase {
 	public String get_creator(DBase parent){
 		if(mainSketch)
 			return null;
-		else
-			return Messages.build(CTOR_WINDOW_1, _0005_name, "this", _0010_title, _0020_x, _0021_y, _0024_width, _0025_height, false, _0011_renderer);
+		else {
+			StringBuilder sb = new StringBuilder();
+			sb.append(Messages.build(CTOR_WINDOW_1, _0005_name, "this", _0010_title, _0020_x, _0021_y, _0024_width, _0025_height, false, _0011_renderer));
+			if(_0060_wdraw.length() > 0){
+				sb.append(Messages.build(ADD_DRAW_HANDLER, _0005_name, "this", _0060_wdraw));
+			}
+			if(_0062_wmouse.length() > 0){
+				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
+			}
+			return new String(sb);
+		}
 	}
 	
+	// recursive method
 	public void make_creator(ArrayList<String> lines, DBase parent){
 		DBase comp;
 		Enumeration<?> e;
@@ -127,8 +197,6 @@ public final class DWindow extends DBase {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
-//		NameGen.instance().add(_0101_eventHandler);
-//		IdGen.instance().add(id);
 		renderer_editor = new CellEditor_JComboBox(RENDERER);
 	}
 

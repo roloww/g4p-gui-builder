@@ -48,6 +48,8 @@ public class G4PTool implements Tool, TFileConstants {
 	// keep track of the FUI designer for this sketch
 	private GuiDesigner dframe;
 
+	private boolean g4p_error_shown = false;
+	
 	public String getMenuTitle() {
 		return "GUI builder";
 	}
@@ -74,10 +76,10 @@ public class G4PTool implements Tool, TFileConstants {
 		File sketchFolder = sketch.getFolder();
 		File sketchbookFolder = base.getSketchbookFolder();
 
-		// Provide a warning if G4P is not loaded
-		if (!g4pJarExists(base.getSketchbookLibrariesFolder())) {
+		// Provide a warning (first time only) if G4P is not loaded
+		if (!g4p_error_shown && !g4pJarExists(base.getSketchbookLibrariesFolder())) {
 			Base.showWarning("GUI Builder error", "Although you can use this tool the sketch created will not \nwork because the G4P library needs to be installed.\nSee G4P at http://www.lagers.org.uk/g4p/", null);
-			// return;
+			g4p_error_shown = true;
 		}
 		// The tool is not open so create the designer window
 		if (dframe == null) {
@@ -108,40 +110,6 @@ public class G4PTool implements Tool, TFileConstants {
 		dframe.toFront();
 	}
 
-//	/**
-//	 * I have shamelessly taken this code from ProcessingJS by florian jenett
-//	 * 
-//	 * @param sketch
-//	 * @return
-//	 */
-//	private Dimension getAppletSize(Sketch sketch){	
-//		Dimension size = null;
-//		String sizeRegex = "(?:^|\\s|;)size\\s*\\(\\s*(\\S+)\\s*,\\s*(\\d+),?\\s*([^\\)]*)\\s*\\)";
-//		int wide, high;
-//		String scrubbed = processing.mode.java.JavaBuild.scrubComments( sketch.getCode(0).getProgram() );
-//		String[] matches = PApplet.match( scrubbed, sizeRegex );
-//
-//		if ( matches != null )
-//		{
-//			try	{
-//				wide = Integer.parseInt(matches[1]);
-//				high = Integer.parseInt(matches[2]);
-//				size = new Dimension(wide, high);
-//			} catch (NumberFormatException e) {
-//				// found a reference to size, but it didn't
-//				// seem to contain numbers
-////				final String message =
-////					"The size of this sketch could not automatically be\n" +
-////					"determined from your code. You'll have to set the\n" +
-////					"width and height in the designer window.";
-////
-////				Base.showWarning("Could not find applet size", message, null);
-////				size = new Dimension(480, 320);
-//			}
-//		} // else no size() command found
-//		return size;
-//	}
-	
 	/**
 	 * See if the G4P library has been installed in the SketchBook libraries folder correctly
 	 * @param sketchbookLibrariesFolder

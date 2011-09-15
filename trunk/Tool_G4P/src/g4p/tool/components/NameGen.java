@@ -31,12 +31,13 @@ public final class NameGen {
 	}
 
 	public void add(String name){
-		words.add(name);
-		System.out.println("Name: " + name + "   ADDED size= " + words.size());
+		if(name.length() > 0)
+			words.add(name);
 	}
 	
 	public void remove(String name){
-		words.remove(name);
+		if(name.length() > 0)
+			words.remove(name);
 	}
 	
 	public void reset(){
