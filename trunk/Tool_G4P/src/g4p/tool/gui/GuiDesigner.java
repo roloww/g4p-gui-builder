@@ -114,7 +114,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		initComponents();
 		initCustomComponents();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
-		guiControl.initModel();
+		guiControl.loadGuiLayout();
 		Dimension size = guiControl.getSketchSize();
 		if(size == null){
 			final String message =
@@ -135,7 +135,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * The close operation can be overridden at this point.
 			 */
 			public void windowClosing(WindowEvent e) {
-				//System.out.println("CLOSING");
+				System.out.println("CLOSING");
+//				guiControl.saveGuiLayout();
 				setExtendedState(ICONIFIED);				              	
 			}
 
@@ -143,41 +144,45 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window has been closed.
 			 */
 			public void windowClosed(WindowEvent e) {
-				//System.out.println("CLOSED");
+				System.out.println("CLOSED");
 			}
 
 			/**
 			 * Invoked when a window is iconified.
 			 */
 			public void windowIconified(WindowEvent e) {
-				//System.out.println("ICONIFIED");
+				System.out.println("ICONIFIED");
+//				guiControl.saveGuiLayout();
 			}
 
 			/**
 			 * Invoked when a window is de-iconified.
 			 */
 			public void windowDeiconified(WindowEvent e) {
-				//System.out.println("DEICONIFIED");
-
+				System.out.println("DEICONIFIED");
+//				guiControl.captureCode();
 			}
 
 			/**
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-//				System.out.println("ACTIVATED");
+				System.out.println("ACTIVATED");
 				setExtendedState(NORMAL);
-				if(guiControl != null)
+//				if(guiControl != null)
 					guiControl.setSketchSize(guiControl.getSketchSize());
+					guiControl.codeCapture();
 			}
 
 			/**
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-//				System.out.println("DEACTIVATED");
+				System.out.println("DEACTIVATED");
 				if(!warningOn){
 					setExtendedState(ICONIFIED);
+					guiControl.saveGuiLayout();
+					guiControl.codeGeneration();
 					return;
 				}
 			}
@@ -816,11 +821,11 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_mitemSaveActionPerformed
 
 	private void mitemGenCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGenCodeActionPerformed
-		guiControl.generateCode();
+		guiControl.codeGeneration();
 	}//GEN-LAST:event_mitemGenCodeActionPerformed
 
 	private void mitemGetUserCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGetUserCodeActionPerformed
-		guiControl.captureCode();
+		guiControl.codeCapture();
 	}//GEN-LAST:event_mitemGetUserCodeActionPerformed
 
 	/**

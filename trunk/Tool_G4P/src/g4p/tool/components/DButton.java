@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 public class DButton extends DCoreText {
 
 	transient protected RectangularShape face;
-	transient float mitre = 10.0f;
+	transient float mitre = 6.0f;
 
 	public DButton(){
 		super();
@@ -62,6 +62,7 @@ public class DButton extends DCoreText {
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
+		mitre = 6.0f;
 		face = new RoundRectangle2D.Float(0, 0, _0024_width, _0025_height, mitre, mitre);
 	}
 }
