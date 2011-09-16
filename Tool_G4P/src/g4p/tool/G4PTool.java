@@ -100,8 +100,7 @@ public class G4PTool implements Tool, TFileConstants {
 			System.out.println("##name## Version ##version## created by ##author##");
 		} 
 		else {
-			System.out.println("FOUND  " + System.currentTimeMillis());
-
+			
 		}
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
