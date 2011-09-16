@@ -6,13 +6,12 @@
  * Only add/edit code inside the event handlers i.e. only
  * lines between the matching comment tags. e.g.
 
- void myBtnEvents(GButton button) { //_CODE_:button1:987654:
+ void myBtnEvents(GButton button) { //_CODE_:button1:12356:
      // It is safe to enter your event code here  
- } //_CODE_:button1:987654:
+ } //_CODE_:button1:12356:
  
  * Do not rename this tab!
  * =========================================================
  */
- 
- 
- 
+
+
