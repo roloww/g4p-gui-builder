@@ -1,0 +1,13 @@
+import guicomponents.*;
+
+
+void setup(){
+  size(300,200);
+  createGUI();
+  
+}
+
+void draw(){
+  background(200);
+  
+}
