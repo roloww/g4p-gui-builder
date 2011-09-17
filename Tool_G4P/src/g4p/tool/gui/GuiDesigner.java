@@ -137,6 +137,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			public void windowClosing(WindowEvent e) {
 				System.out.println("CLOSING");
 //				guiControl.saveGuiLayout();
+				setVisible(false);
 				setExtendedState(ICONIFIED);				              	
 			}
 
@@ -168,10 +169,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowActivated(WindowEvent e) {
 				System.out.println("ACTIVATED");
+				setVisible(true);
 				setExtendedState(NORMAL);
-//				if(guiControl != null)
-					guiControl.setSketchSize(guiControl.getSketchSize());
-					guiControl.codeCapture();
+				guiControl.setSketchSize(guiControl.getSketchSize());
+				guiControl.codeCapture();
 			}
 
 			/**
