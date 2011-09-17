@@ -49,7 +49,6 @@ public class CellEditor_JComboBox extends CellEditor_Base {
 			else
 				component.setOpaque(false);
 		}
-	
 		return component;
 	}
 

@@ -1,5 +1,7 @@
 package g4p.tool;
 
+import processing.core.PApplet;
+
 public interface TDataConstants {
 
 	// Validator constants
@@ -60,7 +62,7 @@ public interface TDataConstants {
 
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Creator patterns
+	 * Creator and initialisation patterns
 	 */
 
 	// 		GWindow(PApplet theApplet, String name, int x, int y, int w, int h, boolean noFrame, String mode)
@@ -78,6 +80,9 @@ public interface TDataConstants {
 	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width)
 	public final String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
 
+	//		GLabel(PApplet theApplet, String text, int x, int y, int width, int height) {
+	public final String CTOR_GLABEL		=	"  {0} = new GLabel({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
+
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
 	public final String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});\n";
 	public final String ADD_OPTION			=	"  {0}.addOption({1});\n";
@@ -91,20 +96,31 @@ public interface TDataConstants {
 	public final String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
-	public final String CTOR_GTEXTFIELD		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
+	public final String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
 
+	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
+	public final String CTOR_GHORZSLIDER	=	"  {0} = new GHorzSlider({1}, {2}, {3}, {4}, {5});\n";
+	public final String CTOR_GVERTSLIDER	=	"  {0} = new GVertSlider({1}, {2}, {3}, {4}, {5});\n";
+	public final String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
+
+	//		GWSlider(PApplet theApplet, String skin, int x, int y, int length) {
+	public final String CTOR_GWSLIDER		=	"  {0} = new GWSlider({1}, \"{2}\", {3}, {4}, {5});\n";
+
+	
+	public final String SET_F_LIMITS		=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
+	
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Default test code patterns
 	 */
-	
-	public final String CODE_ANY			=	"  println(\"{0} - {1} event occured\");\n";
-	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked\");\n";
-	public final String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected\");\n";
-	public final String CODE_GOPTION		=	"  println(\"{0} - option selected\");\n";
-	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded\");\n";
-	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield\");\n";
+	public final String TIME 				= 	"+ System.currentTimeMillis()%10000 );\n";
+	public final String CODE_ANY			=	"  println(\"{0} - {1} event occured \" " + TIME;
+	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked \" " + TIME;
+	public final String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected \" " + TIME;
+	public final String CODE_GOPTION		=	"  println(\"{0} - option selected \" " + TIME;
+	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded \" " + TIME;
+	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield \" " + TIME;
 	public final String CODE_GWINDOW_DRAW	=	"  appc.background(200,255,200);\n";
-	public final String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event {1}\");\n";
+	public final String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event {1}\" " + TIME;
 
 	public final String INDENT				=	"  ";
 	

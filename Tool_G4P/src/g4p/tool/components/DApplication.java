@@ -27,25 +27,29 @@ public final class DApplication extends DBase {
 	public Boolean width_show = false;
 	public Boolean height_show = false;
 	
-	public String _0010_Colour_scheme = "BLUE_SCHEME";
-	transient public CellEditor_Base Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-	public Boolean Colour_scheme_edit = true;
-	public Boolean Colour_scheme_show = true;
+	public String _0010_col_scheme = "BLUE_SCHEME";
+	transient public CellEditor_Base col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+	public Boolean col_scheme_edit = true;
+	public Boolean col_scheme_show = true;
+	public String col_scheme_label = "Colour scheme";
+	
+	public Boolean _0020_cursor  = false;
+	public Boolean cursor_edit = true;
+	public Boolean cursor_show = true;
+	public String cursor_updater = "updateCursorChanger";
+	public String cursor_label = "Enable mouse over";
 
-	public Boolean _0020_Cursor_changer  = false;
-	public Boolean Cursor_changer_edit = true;
-	public Boolean Cursor_changer_show = true;
-	public String Cursor_changer_updater = "updateCursorChanger";
-
-	public String _0022_Cursor_off = "ARROW";
-	transient public CellEditor_Base Cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-	public Boolean Cursor_off_edit = true;
-	public Boolean Cursor_off_show = false;
-
-	public String _0023_Cursor_over = "CROSS";
-	transient public CellEditor_Base Cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-	public Boolean Cursor_over_edit = true;
-	public Boolean Cursor_over_show = false;
+	public String _0024_cursor_off = "ARROW";
+	transient public CellEditor_Base cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	public Boolean cursor_off_edit = true;
+	public Boolean cursor_off_show = false;
+	public String cursor_off_label = "Not over control";
+	
+	public String _0023_cursor_over = "CROSS";
+	transient public CellEditor_Base cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	public Boolean cursor_over_edit = true;
+	public Boolean cursor_over_show = false;
+	public String cursor_over_label = "Is over control";
 
 	/**
 	 * 
@@ -62,9 +66,9 @@ public final class DApplication extends DBase {
 
 	public String get_creator(DBase parent){ 
 		StringBuilder sb = new StringBuilder();
-		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0010_Colour_scheme));
-		if(_0020_Cursor_changer) {
-			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0022_Cursor_off, _0023_Cursor_over));
+		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0010_col_scheme));
+		if(_0020_cursor) {
+			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0024_cursor_off, _0023_cursor_over));
 			sb.append("  G4P.setMouseOverEnabled(true);\n");
 			sb.append("  G4P.messagesEnabled(false);\n");
 		}
@@ -72,9 +76,9 @@ public final class DApplication extends DBase {
 	}
 
 	public void updateCursorChanger(){
-		System.out.println("update cursor changer done  " + _0020_Cursor_changer.toString());
-		Cursor_off_show = _0020_Cursor_changer;
-		Cursor_over_show = _0020_Cursor_changer;
+		System.out.println("update cursor changer done  " + _0020_cursor.toString());
+		cursor_off_show = _0020_cursor;
+		cursor_over_show = _0020_cursor;
 		propertyModel.createProperties(this);
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
@@ -86,9 +90,9 @@ public final class DApplication extends DBase {
 		NameGen.instance().add(_0005_name);
 //		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
-		Colour_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-		Cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-		Cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+		col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+		cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+		cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
 	}
 
 	public String toString(){

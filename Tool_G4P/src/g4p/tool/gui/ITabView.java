@@ -50,6 +50,7 @@ public interface ITabView {
 	
 	
 	public abstract void scaleWindowToFit();
+	public abstract void scaleWindow(int scale);
 	
 	public abstract void setShowGrid(boolean show);
 	public abstract void setSnapToGrid(boolean snap);

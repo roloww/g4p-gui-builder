@@ -83,6 +83,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 			break;
 		case COLOUR_SCHEME:
 		case CURSOR_CHANGER:
+		case SLIDER_SKIN:
 		case RENDERER:
 			v = new Validator_Combo(ListGen.instance().getComboBoxModel(type));
 			break;

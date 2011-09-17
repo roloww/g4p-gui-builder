@@ -78,6 +78,10 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		tabs.scaleWindowToFit();
 	}
 
+	public void setScale(int scale){
+		tabs.scaleWindow(scale);
+	}
+	
 	public void showGrid(boolean show){
 		tabs.setShowGrid(show);
 	}
