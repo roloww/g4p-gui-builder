@@ -185,6 +185,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println("CODE GENERATED");
 	}
 
 	private String makeGuiCode(){
@@ -263,6 +264,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * This saves the GUI (tree) model) layout using serialisation.
 	 */
 	public void saveGuiLayout() {
+		System.out.println("Save GUI layout");
 		File file;
 		// Editor == null if run outside of Processing
 		if(editor == null){
@@ -278,6 +280,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * This method loads the serialised GUI layout (tree model)
 	 */
 	public void loadGuiLayout() {
+		System.out.println("Load GUI layout");
 		DefaultTreeModel dm = null;
 		File file = new File(editor.getSketch().getFolder(), MODEL_FILENAME);
 
