@@ -34,15 +34,14 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	public static int gridSize = 4;
 	public static boolean showGrid;
 	public static boolean snapToGrid;
-	
+
 	private static Color gridCol = new Color(32,64,32);
-	
+
 	private DBase window = null;
 	private DBase selected;
 
 	private MutableDBase selInfo = new MutableDBase();
 
-//	private float scale = 1.0f;
 	private int startX, startY;
 	private int deltaX, deltaY;
 
@@ -93,7 +92,7 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 			y = Math.round(ny * gs * scale);
 		}					
 	}
-	
+
 	public void isOver(MutableDBase m, int x, int y){
 		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
@@ -112,13 +111,19 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 		selected = comp;
 	}
 
-	
+
 	/**
 	 * @param scale the scale to set
 	 */
 	public void scaleWindowToFit(int w, int h) {
 		int scale = Math.round(92.0f * Math.min(((float) w)/window.get_width(),
 				((float) h)/window.get_height()));
+		((DWindow)window)._0014_Display_scale = scale;
+		repaint();
+		tabCtrl.componentChangedInGUI(window);
+	}
+
+	void scaleWindowToFit(int scale) {
 		((DWindow)window)._0014_Display_scale = scale;
 		repaint();
 		tabCtrl.componentChangedInGUI(window);
@@ -192,7 +197,7 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	private int snapValue(int nbr){
 		return (snapToGrid) ? gridSize * Math.round(((float)nbr)/((float)gridSize)) : nbr;
 	}
-	
+
 	@Override
 	public void mouseMoved(MouseEvent e) {
 	}

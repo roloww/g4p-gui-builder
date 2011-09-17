@@ -34,6 +34,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 		super.paintComponent(g);
 		getSelectedComponent().repaint();
 	}
+	
 	/* (non-Javadoc)
 	 * @see g4p.tool.gui.IWindowView#addWindow(g4p.tool.components.DBase)
 	 */
@@ -88,8 +89,8 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 				// it is selecting
 				if(window != comp){
 					winView = tabMap.get(window);
-//					if(winView != null)
-//						winView.UpdateComponent(comp);
+					//					if(winView != null)
+					//						winView.UpdateComponent(comp);
 					tree.setSelectedComponent(comp);
 				}
 			}
@@ -98,7 +99,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 			winView.setSelected(comp);
 		repaint();
 	}
-	
+
 	/**
 	 * Call this if the name of the window has changed
 	 */
@@ -108,19 +109,19 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 			setTitleAt(i, winname);
 		}
 	}
-	
+
 	/**
 	 * Change of state caused by clicking on a tab
 	 */
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		CtrlTabView sourceTabbedPane = (CtrlTabView) changeEvent.getSource();
-	    WindowView winView = (WindowView) sourceTabbedPane.getSelectedComponent();
-	    if(winView != null){
-	    	DBase comp = winView.getWindowComponent();
-	    	props.showProprtiesFor(comp);
-	    	tree.setSelectedComponent(comp);
-	    }
+		WindowView winView = (WindowView) sourceTabbedPane.getSelectedComponent();
+		if(winView != null){
+			DBase comp = winView.getWindowComponent();
+			props.showProprtiesFor(comp);
+			tree.setSelectedComponent(comp);
+		}
 	}
 
 	/**
@@ -145,6 +146,13 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	}
 
 	@Override
+	public void scaleWindow(int scale) {
+		WindowView winView = (WindowView) this.getSelectedComponent();
+		winView.scaleWindowToFit(scale);
+	}
+
+
+	@Override
 	public void setGridSize(int gsize) {
 		WindowView.gridSize = gsize;
 		repaint();
@@ -165,9 +173,9 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	@Override
 	public void deleteAllWindows() {
 		this.removeAll();
-		
+
 	}
 
-	
-	
+
+
 }

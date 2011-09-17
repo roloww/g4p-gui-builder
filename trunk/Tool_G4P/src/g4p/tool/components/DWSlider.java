@@ -5,26 +5,43 @@ import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.CellEditor_Base;
 import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
 
 @SuppressWarnings("serial")
 public class DWSlider extends DSliderFloat {
 
-	public String _0030_Slider_skin = "gwSlider";
-	transient public CellEditor_Base Slider_skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
-	public Boolean Slider_skin_edit = true;
-	public Boolean Slider_skin_show = true;
-
+	public String _0030_skin = "gwSlider";
+	transient public CellEditor_Base skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
+	public Boolean skin_edit = true;
+	public Boolean skin_show = true;
+	public String skin_label = "Style";
+	
 	public DWSlider(){
 		super();
 		componentClass = "GWSlider";
 		set_name(NameGen.instance().getNext("cool_slider"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
 		_0024_width = 100;
+		height_show = height_edit = false;
 		_0025_height = 40;
 	}
 
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		String s;
+		s = Messages.build(CTOR_GWSLIDER, _0005_name, "this", _0030_skin,
+				_0020_x, _0021_y, _0024_width);
+		s += Messages.build(SET_F_LIMITS,_0005_name, _0040_value, _0041_min, _0042_max);
+		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		return s;
+	}
+
+	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
@@ -60,6 +77,6 @@ public class DWSlider extends DSliderFloat {
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
-		Slider_skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
+		skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
 	}
 }

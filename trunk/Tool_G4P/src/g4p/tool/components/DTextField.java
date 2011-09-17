@@ -1,5 +1,7 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
@@ -21,6 +23,18 @@ public class DTextField extends DCoreText {
 		_0025_height = 20;
 	}
 	
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		String s;
+		s = Messages.build(CTOR_GTEXTFIELD, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height, _0030_multiline);
+		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		return s;
+	}
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
