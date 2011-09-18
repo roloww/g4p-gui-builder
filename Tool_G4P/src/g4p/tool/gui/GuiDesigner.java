@@ -135,8 +135,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * The close operation can be overridden at this point.
 			 */
 			public void windowClosing(WindowEvent e) {
-				System.out.println("CLOSING");
-				//				guiControl.saveGuiLayout();
+//				System.out.println("CLOSING");
 				setVisible(false);
 				setExtendedState(ICONIFIED);				              	
 			}
@@ -145,30 +144,28 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window has been closed.
 			 */
 			public void windowClosed(WindowEvent e) {
-				System.out.println("CLOSED");
+//				System.out.println("CLOSED");
 			}
 
 			/**
 			 * Invoked when a window is iconified.
 			 */
 			public void windowIconified(WindowEvent e) {
-				System.out.println("ICONIFIED");
-				//				guiControl.saveGuiLayout();
+//				System.out.println("ICONIFIED");
 			}
 
 			/**
 			 * Invoked when a window is de-iconified.
 			 */
 			public void windowDeiconified(WindowEvent e) {
-				System.out.println("DEICONIFIED");
-				//				guiControl.captureCode();
+//				System.out.println("DEICONIFIED");
 			}
 
 			/**
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-				System.out.println("ACTIVATED");
+//				System.out.println("ACTIVATED");
 				setVisible(true);
 				setExtendedState(NORMAL);
 				guiControl.setSketchSize(guiControl.getSketchSize());
@@ -179,7 +176,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-				System.out.println("DEACTIVATED");
+//				System.out.println("DEACTIVATED");
 				if(!warningOn){
 					setExtendedState(ICONIFIED);
 					guiControl.saveGuiLayout();
