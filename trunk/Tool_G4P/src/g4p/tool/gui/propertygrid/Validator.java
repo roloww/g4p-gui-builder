@@ -81,11 +81,14 @@ public abstract class Validator implements TDataConstants, Serializable {
 		case COMPONENT_NAME_0:
 			v = new Validator_ControlName(0);
 			break;
-		case COLOUR_SCHEME:
-		case CURSOR_CHANGER:
-		case SLIDER_SKIN:
-		case RENDERER:
-			v = new Validator_Combo(ListGen.instance().getComboBoxModel(type));
+			//		case COLOUR_SCHEME:
+			//		case CURSOR_CHANGER:
+			//		case SLIDER_SKIN:
+			//		case RENDERER:
+			//		case KNOB_CTRL:
+		default:
+			if(ListGen.instance().hasComboModel(type))
+				v = new Validator_Combo(ListGen.instance().getComboBoxModel(type));
 			break;
 		}
 		return v;
@@ -101,7 +104,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 	protected Object originalValue;
 
 	protected int errorType = VALID;
-	
+
 	// Holds the current cell value even if in valid
 	protected Object cellValue;
 
@@ -138,10 +141,10 @@ public abstract class Validator implements TDataConstants, Serializable {
 	public int getError(){
 		return errorType;
 	}
-	
+
 	public void postEditAction(Object ...args){	}
 	public void preEditAction(Object ...args){	}
-//	public Object getModel(){ return null; }
+	//	public Object getModel(){ return null; }
 
 	/**
 	 * ====================================================
@@ -153,10 +156,10 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 		private int min = 1;
 		private int max = 30;
-		
+
 		private static String validChars = "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		private static String firstChar = "_$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		
+
 		public Validator_ControlName(Object ... args){
 			if(args.length > 0){
 				min = Integer.parseInt(args[0].toString());
@@ -210,11 +213,11 @@ public abstract class Validator implements TDataConstants, Serializable {
 			}
 			return valid;	
 		}
-		
+
 		public void preEditAction(Object ...args){
 			NameGen.instance().remove((String) originalValue);
 		}
-		
+
 		public void postEditAction(Object ...args){
 			NameGen.instance().add((String) cellValue);
 		}
@@ -523,7 +526,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 		public void preEditAction(Object ...args){
 			CellEditor_JComboBox.component.setModel((ComboBoxModel) list) ;
 		}
-	
+
 		/**
 		 * See if the value passed is valid
 		 */

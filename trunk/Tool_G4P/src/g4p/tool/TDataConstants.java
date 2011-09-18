@@ -1,6 +1,5 @@
 package g4p.tool;
 
-import processing.core.PApplet;
 
 public interface TDataConstants {
 
@@ -11,6 +10,7 @@ public interface TDataConstants {
 	public final int CURSOR_CHANGER 	=	0x00000023;
 	public final int SLIDER_SKIN 		=	0x00000024;
 	public final int RENDERER	 		=	0x00000025;
+	public final int KNOB_CTRL	 		=	0x00000026;
 
 	public final int VALID				=	0x00000030;
 	public final int INVALID_LENGTH		=	0x00000031;
@@ -39,6 +39,9 @@ public interface TDataConstants {
 	public final String ADD_DRAW_HANDLER	=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
 	public final String ADD_MOUSE_HANDLER	=	"  {0}.addMouseHandler({1}, \"{2}\");\n";
 
+	// 0 = event method name  :  1/2 = component name/id
+	public final String METHOD_START_0	=	"void {0}() [ //_CODE_:{1}:{2}:\n";
+	
 	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
 	public final String METHOD_START_1	=	"void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
 	
@@ -105,15 +108,31 @@ public interface TDataConstants {
 
 	//		GWSlider(PApplet theApplet, String skin, int x, int y, int length) {
 	public final String CTOR_GWSLIDER		=	"  {0} = new GWSlider({1}, \"{2}\", {3}, {4}, {5});\n";
+	public final String SET_F_LIMITS		=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
+
+	//		GTimer(PApplet theApplet, Object obj, String methodName, int interval){
+	public final String CTOR_GTIMER			=	"  {0} = new GTimer({1}, {2}, \"{3}\", {4});\n";
+	public final String START_TIMER_0		=	"  {0}.start();\n";
+	public final String START_TIMER_1		=	"  {0}.start({1});\n";
+	
+
+	//		GKnob(PApplet theApplet, int x, int y, int size, int arcStart, int arcEnd) {
+	public final String CTOR_GKNOB			=	"  {0} = new GKnob({1}, {2}, {3}, {4}, {5}, {6});\n";
+	//		GKnobOval(PApplet theApplet, int x, int y, int width, int height, int arcStart, int arcEnd) {
+	public final String CTOR_GKNOBOVAL		=	"  {0} = new GKnobOval({1}, {2}, {3}, {4}, {5}, {6}, {7});\n";
+	public final String SET_ARC_ONLY		=	"  {0}.setRotArcOnly({1});\n";
+	public final String SET_NBR_TICKS		=	"  {0}.setNbrTickMarks({1});\n";
+	public final String SET_CONTROLLER		=	"  {0}.setControlMode(GKnob.CTRL_{1});\n";
 
 	
-	public final String SET_F_LIMITS		=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
-	
+
+			
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Default test code patterns
 	 */
 	public final String TIME 				= 	"+ System.currentTimeMillis()%10000 );\n";
 	public final String CODE_ANY			=	"  println(\"{0} - {1} event occured \" " + TIME;
+	public final String CODE_TIMER			=	"  println(\"{0} - {1} timer event occured at \" " + TIME;
 	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked \" " + TIME;
 	public final String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected \" " + TIME;
 	public final String CODE_GOPTION		=	"  println(\"{0} - option selected \" " + TIME;
