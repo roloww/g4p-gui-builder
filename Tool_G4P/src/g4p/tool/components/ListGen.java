@@ -6,6 +6,11 @@ import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ *  When adding a new type of list - need to modify the getValidator(type) mewethod to included it
+ * @author Peter
+ *
+ */
 public class ListGen implements TDataConstants {
 
 
@@ -29,6 +34,7 @@ public class ListGen implements TDataConstants {
 		makeCursorShapeSelection(CURSOR_CHANGER);
 		makeGWSliderSkinSelection(SLIDER_SKIN);
 		makeRendererSelection(RENDERER);
+		makeKnobControllerSelection(KNOB_CTRL);
 	}
 	
 	private void makeRendererSelection(int type) {
@@ -54,7 +60,17 @@ public class ListGen implements TDataConstants {
 				"green_red20px", "purple18px", "red_yellow18px" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
+	
+	private void makeKnobControllerSelection(int type){
+		String[] s = new String[] { "ANGULAR", "HORIZONTAL", "VERTICAL" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
 
+	// ================================================================
+	
+	public boolean hasComboModel(int type){
+		return cbList.containsKey(type);
+	}
 	
 	public DefaultComboBoxModel getComboBoxModel(int key){
 		if(key == SLIDER_SKIN)

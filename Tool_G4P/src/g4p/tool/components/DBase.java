@@ -29,8 +29,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 @SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TGuiConstants {
 
-//	public static final String COMP_NAME_PROPERTY = "_0005_name";
-	
 	transient public CtrlPropModel propertyModel;
 
 	// Whether it is selectable in the WindowView
@@ -154,18 +152,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}				
 	}
 	
-//	/**
-//	 * Where components are in secondary windows.
-//	 */
-//	public String get_add_to_window(DBase window){
-//		return null; //Messages.build(ADD_TO_WINDOW, _0005_name);
-//	}
-	
 	/**
 	 * Get the declaration for this control
 	 */
 	public String get_declaration(){
-		return null;
+		return componentClass + " " + _0005_name+ "; ";
 	}
 
 	/**
@@ -181,7 +172,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	public String get_event_definition(){
-		return null;
+		String ec = get_event_header() + get_event_code() + get_event_end();
+		return ec;
 	}
 	
 	/**
@@ -190,7 +182,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_code(){ 
-		return ""; 
+		String ev_code = Code.instance().get(id);
+		if(ev_code == null)
+			return Messages.build(CODE_ANY, _0005_name, componentClass);
+		else
+			return ev_code; 
 	}
 
 	/**
@@ -198,7 +194,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_header(){
-		return null;
+		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, 
+				componentClass.substring(1).toLowerCase(), 
+				_0005_name, id.toString()).replace('[', '{');
 	}
 	
 	/**
@@ -206,7 +204,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_end(){
-		return null;
+		return Messages.build(METHOD_END, _0005_name, 
+				id.toString()).replace(']', '}');
 	}
 	
 	

@@ -52,12 +52,18 @@ public class DOptionGroup extends DBase {
 		}				
 	}
 
+	public String get_event_definition(){
+//		String ec = get_event_header() + get_event_code() + get_event_end();
+//		return ec;
+		return null;
+	}
+
 	/**
 	 * Get the declaration for this control
 	 */
-	public String get_declaration(){
-		return componentClass + " " + _0005_name+ "; ";
-	}
+//	public String get_declaration(){
+//		return componentClass + " " + _0005_name+ "; ";
+//	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);

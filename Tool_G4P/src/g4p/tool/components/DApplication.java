@@ -27,29 +27,29 @@ public final class DApplication extends DBase {
 	public Boolean width_show = false;
 	public Boolean height_show = false;
 	
-	public String _0010_col_scheme = "BLUE_SCHEME";
-	transient public CellEditor_Base col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-	public Boolean col_scheme_edit = true;
-	public Boolean col_scheme_show = true;
-	public String col_scheme_label = "Colour scheme";
+	public String 		_0010_col_scheme = "BLUE_SCHEME";
+	transient public 	CellEditor_Base col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+	public Boolean 		col_scheme_edit = true;
+	public Boolean 		col_scheme_show = true;
+	public String 		col_scheme_label = "Colour scheme";
 	
-	public Boolean _0020_cursor  = false;
-	public Boolean cursor_edit = true;
-	public Boolean cursor_show = true;
-	public String cursor_updater = "updateCursorChanger";
-	public String cursor_label = "Enable mouse over";
+	public Boolean 		_0020_cursor  = false;
+	public Boolean 		cursor_edit = true;
+	public Boolean 		cursor_show = true;
+	public String 		cursor_updater = "updateCursorChanger";
+	public String 		cursor_label = "Enable mouse over";
 
-	public String _0024_cursor_off = "ARROW";
-	transient public CellEditor_Base cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-	public Boolean cursor_off_edit = true;
-	public Boolean cursor_off_show = false;
-	public String cursor_off_label = "Not over control";
+	public String 		_0024_cursor_off = "ARROW";
+	transient public 	CellEditor_Base cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	public Boolean 		cursor_off_edit = true;
+	public Boolean 		cursor_off_show = false;
+	public String 		cursor_off_label = "Not over control";
 	
-	public String _0023_cursor_over = "CROSS";
-	transient public CellEditor_Base cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-	public Boolean cursor_over_edit = true;
-	public Boolean cursor_over_show = false;
-	public String cursor_over_label = "Is over control";
+	public String 		_0023_cursor_over = "CROSS";
+	transient public 	CellEditor_Base cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	public Boolean 		cursor_over_edit = true;
+	public Boolean 		cursor_over_show = false;
+	public String 		cursor_over_label = "Is over control";
 
 	/**
 	 * 
@@ -83,12 +83,19 @@ public final class DApplication extends DBase {
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
 	
+	public String get_event_definition(){
+		return null;
+	}
+
+	public String get_declaration(){
+		return null;
+	}
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
-//		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id);
 		col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
 		cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
