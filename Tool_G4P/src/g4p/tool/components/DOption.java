@@ -24,6 +24,22 @@ public class DOption extends DCoreSelectable {
 		return Messages.build(METHOD_START_2, _0101_eventHandler, componentClass, "opt_selected", "opt_deselected", _0005_name, id.toString()).replace('[', '{');
 	}
 
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		String s;
+		s = Messages.build(CTOR_GOPTION, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, _0024_width);
+		s += Messages.build(ADD_OPTION, parent._0005_name, _0005_name);
+		if(_0050_selected)
+			s += Messages.build(SEL_OPTION, _0005_name, "true");
+		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);		
+		return s;
+	}
+
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0020_x, _0021_y);
@@ -51,21 +67,6 @@ public class DOption extends DCoreSelectable {
 		if(this == selected)
 			drawSelector(g);
 		g.setTransform(paf);
-	}
-
-	/**
-	 * Get the creator statement var = new Foo(...);
-	 * @return
-	 */
-	public String get_creator(DBase parent){
-		String s;
-		s = Messages.build(CTOR_GOPTION, _0005_name, "this", 
-				_0015_text, _0020_x, _0021_y, _0024_width);
-		s += Messages.build(ADD_OPTION, parent._0005_name, _0005_name);
-		if(_0050_selected)
-			s += Messages.build(SEL_OPTION, _0005_name, "true");
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);		
-		return s;
 	}
 
 	

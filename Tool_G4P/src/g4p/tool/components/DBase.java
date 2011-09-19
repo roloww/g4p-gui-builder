@@ -156,7 +156,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Get the declaration for this control
 	 */
 	public String get_declaration(){
-		return componentClass + " " + _0005_name+ "; ";
+		return componentClass + " " + _0005_name+ "; \n";
 	}
 
 	/**
