@@ -40,12 +40,12 @@ public final class DWindow extends DBase {
 	public Boolean 		wdraw_show = true;
 	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0062_wmouse = "";
-	public String 		wmouse_label = "Mouse method Name";
-	public String 		wmouse_tooltip = "The draw() method for this window";
-	public Boolean 		wmouse_edit = true;
-	public Boolean 		wmouse_show = true;
-	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
+//	public String 		_0062_wmouse = "";
+//	public String 		wmouse_label = "Mouse method Name";
+//	public String 		wmouse_tooltip = "The draw() method for this window";
+//	public Boolean 		wmouse_edit = true;
+//	public Boolean 		wmouse_show = true;
+//	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	
 	/**
@@ -68,7 +68,7 @@ public final class DWindow extends DBase {
 			_0025_height = 320;
 			_0010_title = "My sketch title";
 			wdraw_edit = wdraw_show = false;
-			wmouse_edit = wmouse_show = false;
+//			wmouse_edit = wmouse_show = false;
 		}
 		else {
 			set_name(NameGen.instance().getNext("window"));
@@ -99,10 +99,10 @@ public final class DWindow extends DBase {
 			sb.append(Messages.build(WIN_DRAW, _0060_wdraw, _0005_name, id.toString()).replace('[', '{'));  // event header
 			sb.append(get_draw_event_code() + get_event_end());
 		}
-		if(_0062_wmouse.length() > 0){
-			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id.toString()).replace('[', '{'));  // event header
-			sb.append(get_mouse_event_code() + get_event_end());
-		}
+//		if(_0062_wmouse.length() > 0){
+//			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id.toString()).replace('[', '{'));  // event header
+//			sb.append(get_mouse_event_code() + get_event_end());
+//		}
 		return new String(sb);
 	}
 
@@ -159,9 +159,9 @@ public final class DWindow extends DBase {
 			if(_0060_wdraw.length() > 0){
 				sb.append(Messages.build(ADD_DRAW_HANDLER, _0005_name, "this", _0060_wdraw));
 			}
-			if(_0062_wmouse.length() > 0){
-				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
-			}
+//			if(_0062_wmouse.length() > 0){
+//				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
+//			}
 			return new String(sb);
 		}
 	}
@@ -186,7 +186,9 @@ public final class DWindow extends DBase {
 				e = children();
 				while(e.hasMoreElements()){
 					comp = (DBase)e.nextElement();
-					lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+					if( !(comp instanceof DOptionGroup) )	{
+						lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+					}
 				}
 			}
 		}				
@@ -204,7 +206,6 @@ public final class DWindow extends DBase {
     @Override
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-//		af.translate(_0020_x, _0021_y);
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);

@@ -1,5 +1,7 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
+
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
@@ -14,6 +16,24 @@ public class DCheckbox extends DCoreSelectable{
 		set_name(NameGen.instance().getNext("checkbox"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
 		_0015_text = "Checkbox text";
+	}
+
+//	public String get_event_header(){
+//		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, "checkBox", _0005_name, id.toString()).replace('[', '{');
+//	}
+
+	/**
+	 * Get the creator statement var = new Foo(...);
+	 * @return
+	 */
+	public String get_creator(DBase parent){
+		String s;
+		s = Messages.build(CTOR_GCHECKBOX, _0005_name, "this", 
+				_0015_text, _0020_x, _0021_y, _0024_width);
+		if(_0050_selected)
+			s += Messages.build(SEL_OPTION, _0005_name, "true");
+		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);		
+		return s;
 	}
 
 	
