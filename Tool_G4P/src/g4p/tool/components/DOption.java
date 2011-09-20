@@ -20,7 +20,7 @@ public class DOption extends DCoreSelectable {
 		_0015_text = "Option text";
 	}
 	
-	public String get_event_header(){
+	protected String get_event_header(){
 		return Messages.build(METHOD_START_2, _0101_eventHandler, componentClass, "opt_selected", "opt_deselected", _0005_name, id.toString()).replace('[', '{');
 	}
 
@@ -28,7 +28,7 @@ public class DOption extends DCoreSelectable {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GOPTION, _0005_name, "this", 
 				_0015_text, _0020_x, _0021_y, _0024_width);

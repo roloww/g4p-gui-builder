@@ -22,6 +22,11 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 		createProperties(component);
 	}
 
+	/**
+	 * Given a GUI control object make a Property object for
+	 * each public field that starts with an underscore.
+	 * @param cl
+	 */
 	@SuppressWarnings("unchecked")
 	public void createProperties(DBase cl){
 		ArrayList<Property> props = new ArrayList<Property>();
@@ -52,13 +57,15 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-//		if(rowIndex >= propData.length || columnIndex > 1)
-//			return new String("");
 		if(columnIndex == 0)
 			return propData[rowIndex].cellLabel;
 		return propData[rowIndex].getValue();
 	}
 
+	/**
+	 * This must be used when changing the value in a field to ensure an event
+	 * is generated to be caught and display in the GUI table
+	 */
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		if(columnIndex == 1){
 			propData[rowIndex].setValue(aValue);

@@ -32,7 +32,7 @@ public class DPanel extends DCoreText {
 //		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GPANEL, _0005_name, "this", 
 				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);

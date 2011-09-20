@@ -57,7 +57,7 @@ public class DKnob extends DSliderFloat {
 	/**
 	 * Get the declaration for this control
 	 */
-	public String get_declaration(){
+	protected String get_declaration(){
 		if(_0024_width == _0025_height)
 			return "GKnob " + _0005_name+ ";\n ";
 		else
@@ -81,7 +81,7 @@ public class DKnob extends DSliderFloat {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		String s;
 		if(_0024_width == _0025_height)
 			s = Messages.build(CTOR_GKNOB, _0005_name, "this", _0020_x, _0021_y, _0024_width, _0032_dial_start_angle, _0033_dial_end_angle);

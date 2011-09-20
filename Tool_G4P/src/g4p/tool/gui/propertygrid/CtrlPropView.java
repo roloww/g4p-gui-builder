@@ -33,10 +33,11 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		this.tree = tree;
 	}
 
-	/* (non-Javadoc)
-	 * @see g4p.tool.gui.propertygrid.IPropView#showProprtiesFor(g4p.tool.components.DBase)
+
+	/**
+	 * This method should be called when the selected object in 
+	 * either tab or tree view changes
 	 */
-	@Override
 	public void showProprtiesFor(DBase comp){
 		if(comp != null)
 			setModel(comp.getTableModel());
@@ -47,15 +48,24 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		return getModel().getColumnName(col);
 	}
 
+	/**
+	 * Retrieve a value from a given position in the table
+	 */
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return getModel().getValueAt(rowIndex, columnIndex);
 	}
 
+	/**
+	 * This method is triggered when a value in the table is
+	 * changed using the setValueAt method in the CtrlPropModel
+	 * class.
+	 */
 	public void tableChanged(TableModelEvent e) {
 		super.tableChanged(e);
 		if(e.getType() == TableModelEvent.UPDATE){
 			int row = e.getFirstRow();
 			if(row >= 0){
+				// Just in case the window name was changed
 				tabs.updateTabName();
 				tabs.repaint();
 			}
