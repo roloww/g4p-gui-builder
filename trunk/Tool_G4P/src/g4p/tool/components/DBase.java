@@ -39,6 +39,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String componentClass = "";
 
+//	public Integer[] id = new Integer[1];
 	public Integer id = null;
 	
 	public String 		_0005_name = "APPLICATION";
@@ -341,6 +342,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		propertyModel = new CtrlPropModel(this);
 	}
 
+	/**
+	 * Get the property model for this component. If it does not exist then
+	 * create it first
+	 * @return
+	 */
 	public CtrlPropModel getTableModel(){
 		if(propertyModel == null)
 			makeTableModel();
