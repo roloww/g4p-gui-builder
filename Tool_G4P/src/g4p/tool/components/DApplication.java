@@ -102,7 +102,4 @@ public final class DApplication extends DBase {
 		cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
 	}
 
-	public String toString(){
-		return _0005_name;
-	}
 }

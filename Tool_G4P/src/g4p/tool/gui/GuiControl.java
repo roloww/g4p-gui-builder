@@ -101,8 +101,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void setSketchSize(Dimension size){
 		if(size != null){
 			DBase m = (DBase) tree.getRoot().getChildAt(0);
-			m.set_width(size.width);
-			m.set_height(size.height);
+			m._0024_width = size.width;
+			m._0025_height = size.height;
 		}
 	}
 
