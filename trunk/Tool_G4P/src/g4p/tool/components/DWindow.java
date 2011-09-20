@@ -87,11 +87,6 @@ public final class DWindow extends DBase {
 		width_show = height_show = true;
 	}
 
-//    @Override
-// 	public String get_title(){
-//		return _0010_title;
-//	}
-
 	protected String get_event_definition(){
 		StringBuilder sb = new StringBuilder();
 		
