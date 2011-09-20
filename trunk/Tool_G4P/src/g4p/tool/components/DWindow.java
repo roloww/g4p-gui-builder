@@ -92,7 +92,7 @@ public final class DWindow extends DBase {
 		return _0010_title;
 	}
 
-	public String get_event_definition(){
+	protected String get_event_definition(){
 		StringBuilder sb = new StringBuilder();
 		
 		if(_0060_wdraw.length() > 0){
@@ -137,9 +137,9 @@ public final class DWindow extends DBase {
 	}
 	
 	/**
-	 * Get the declaration for this control
+	 * Get the declaration for this window
 	 */
-	public String get_declaration(){
+	protected String get_declaration(){
 		if(mainSketch)
 			return null;
 		else
@@ -150,7 +150,7 @@ public final class DWindow extends DBase {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		if(mainSketch)
 			return null;
 		else {

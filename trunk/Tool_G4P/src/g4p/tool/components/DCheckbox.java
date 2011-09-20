@@ -18,15 +18,11 @@ public class DCheckbox extends DCoreSelectable{
 		_0015_text = "Checkbox text";
 	}
 
-//	public String get_event_header(){
-//		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, "checkBox", _0005_name, id.toString()).replace('[', '{');
-//	}
-
 	/**
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GCHECKBOX, _0005_name, "this", 
 				_0015_text, _0020_x, _0021_y, _0024_width);

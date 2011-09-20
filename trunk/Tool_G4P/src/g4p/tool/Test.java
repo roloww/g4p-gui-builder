@@ -17,11 +17,6 @@ public class Test implements TDataConstants {
 		DTextField txf = new DTextField();
 		DKnob knb = new DKnob();
 
-		System.out.println(op.get_event_definition());
-		System.out.println(btn.get_event_definition());
-		System.out.println(txf.get_event_definition());
-		System.out.println(knb.get_event_definition());
-		
 		System.out.println();
 		
 		Messages.println(CTOR_GBUTTON_3, "btnStarter", "this", "Start", "image.png", 1, 30, 40, 100, 22);

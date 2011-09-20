@@ -26,10 +26,6 @@ public class DOptionGroup extends DBase {
 		allowsChildren = true;
 	}
 	
-	public String get_creator(DBase parent){
-		return Messages.build(CTOR_GOPTIONGROUP, _0005_name);
-	}
-
 	public void make_creator(ArrayList<String> lines, DBase parent){
 		DOption comp;
 		Enumeration<?> e;
@@ -52,7 +48,14 @@ public class DOptionGroup extends DBase {
 		}				
 	}
 
-	public String get_event_definition(){
+	protected String get_creator(DBase parent){
+		return Messages.build(CTOR_GOPTIONGROUP, _0005_name);
+	}
+
+	/**
+	 * This class has no events
+	 */
+	protected String get_event_definition(){
 		return null;
 	}
 

@@ -96,7 +96,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ==========================================================================
 	
 	/**
-	 * Recursive function to get the event method
+	 * Recursive function to get the event methods for all controls
 	 * 
 	 * @param lines
 	 */
@@ -155,7 +155,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	/**
 	 * Get the declaration for this control
 	 */
-	public String get_declaration(){
+	protected String get_declaration(){
 		return componentClass + " " + _0005_name+ "; \n";
 	}
 
@@ -163,15 +163,21 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		return null;
 	}
 	
+
+	// ==========================================================================
+	// ==========================================================================
+	// =================   Stuff for event code generation   ====================
+	// ==========================================================================
+
 	/** get the event method for this control
 	 * 
 	 * @return
 	 */
-	public String get_event_definition(){
+	protected String get_event_definition(){
 		String ec = get_event_header() + get_event_code() + get_event_end();
 		return ec;
 	}

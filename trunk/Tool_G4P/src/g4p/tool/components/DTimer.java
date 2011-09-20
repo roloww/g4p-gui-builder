@@ -58,7 +58,7 @@ public class DTimer extends DBase {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	public String get_creator(DBase parent){
+	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GTIMER, _0005_name, "this", "this", _0101_eventHandler, _0075_interval);
 		if(_0077_timer_starts){
