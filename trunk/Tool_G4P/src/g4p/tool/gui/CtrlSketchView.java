@@ -171,8 +171,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			DBase window = getGuiContainerFor(selected);
 			DBase opg = getOptionGroupFor(selected);
 			if(window != null && opg != null){
-				comp.set_x( (window.get_width() - comp.get_width())/ 2);
-				comp.set_y( (window.get_height() - comp.get_height())/ 2);
+				comp._0020_x = (window._0024_width - comp._0024_width)/ 2;
+				comp._0021_y = (window._0025_height - comp._0025_height)/ 2;
 				if(opg.getChildCount() == 0)
 					((DOption)comp)._0050_selected = true;
 				m.insertNodeInto(comp, opg, opg.getChildCount());
@@ -186,8 +186,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			DBase selected = (DBase) getLastSelectedPathComponent();
 			DBase window = getGuiContainerFor(selected);
 			if(window != null){
-				comp.set_x( (window.get_width() - comp.get_width())/ 2);
-				comp.set_y( (window.get_height() - comp.get_height())/ 2);
+				comp._0020_x = (window._0024_width - comp._0024_width)/ 2;
+				comp._0021_y = (window._0025_height - comp._0025_height)/ 2;
 				m.insertNodeInto(comp, window, window.getChildCount());
 				setSelectedComponent(comp);
 			}
@@ -229,8 +229,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
 	private void undoComponent(DBase comp){
 		NameGen.instance().remove(comp.get_name());			
-		NameGen.instance().remove(comp.get_event_name());
-		IdGen.instance().remove(comp.get_id());
+		NameGen.instance().remove(comp._0101_eventHandler);
+		IdGen.instance().remove(comp.id);
 	}
 	
 	@Override

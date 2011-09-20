@@ -39,7 +39,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String componentClass = "";
 
-	protected Integer id = null;
+	public Integer id = null;
 	
 	public String 		_0005_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
@@ -319,44 +319,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		_0005_name = name;
 	}
 
-	public void set_x(int x){
-		_0020_x = x;
-	}
-
-	public void set_y(int y){
-		_0021_y = y;
-	}
-
-	public void set_width(int width){
-		_0024_width = width;
-	}
-
-	public void set_height(int height){
-		_0025_height = height;
-	}
-
 	public void set_event_name(String e_name){
 		_0101_eventHandler = e_name;
 	}
 	
 	public String get_name() { return _0005_name; }
-	
-	public Integer get_id() { return id; }
-
-	public int get_x() { return _0020_x;	}
-
-	public int get_y() { return _0021_y; }
-
-	public int get_width() { return _0024_width; }
-
-	public int get_height() { return _0025_height; }
-
-	public String get_text() { return ""; }
-
-	public String get_title() { return ""; }
-
-	public String get_event_name(){	return _0101_eventHandler; }
-
 	
 	public boolean isSelectable(){
 		return selectable;
