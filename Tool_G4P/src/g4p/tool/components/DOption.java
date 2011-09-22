@@ -16,12 +16,12 @@ public class DOption extends DCoreSelectable {
 		text_label = "Option display text";
 		componentClass = "GOption";
 		set_name(NameGen.instance().getNext("option"));
-		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		_0015_text = "Option text";
 	}
 	
 	protected String get_event_header(){
-		return Messages.build(METHOD_START_2, _0101_eventHandler, componentClass, "opt_selected", "opt_deselected", _0005_name, id.toString()).replace('[', '{');
+		return Messages.build(METHOD_START_2, _0101_eventHandler, componentClass, "opt_selected", "opt_deselected", _0005_name, id[0].toString()).replace('[', '{');
 	}
 
 	/**

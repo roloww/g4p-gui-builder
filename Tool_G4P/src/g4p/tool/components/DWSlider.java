@@ -76,7 +76,7 @@ public class DWSlider extends DSliderFloat {
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
-		IdGen.instance().add(id);
+		IdGen.instance().add(id[0]);
 		skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
 	}
 }

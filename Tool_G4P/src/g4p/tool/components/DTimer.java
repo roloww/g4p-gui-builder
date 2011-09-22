@@ -51,7 +51,7 @@ public class DTimer extends DBase {
 	 * @return
 	 */
 	protected String get_event_header(){
-		return Messages.build(METHOD_START_0, _0101_eventHandler, _0005_name, id.toString()).replace('[', '{');
+		return Messages.build(METHOD_START_0, _0101_eventHandler, _0005_name, id[0].toString()).replace('[', '{');
 	}
 
 	/**
