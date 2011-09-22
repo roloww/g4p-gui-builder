@@ -40,12 +40,12 @@ public final class DWindow extends DBase {
 	public Boolean 		wdraw_show = true;
 	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-//	public String 		_0062_wmouse = "";
-//	public String 		wmouse_label = "Mouse method Name";
-//	public String 		wmouse_tooltip = "The draw() method for this window";
-//	public Boolean 		wmouse_edit = true;
-//	public Boolean 		wmouse_show = true;
-//	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
+	public String 		_0062_wmouse = "";
+	public String 		wmouse_label = "Mouse method Name";
+	public String 		wmouse_tooltip = "The draw() method for this window";
+	public Boolean 		wmouse_edit = true;
+	public Boolean 		wmouse_show = true;
+	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	
 	/**
@@ -54,6 +54,10 @@ public final class DWindow extends DBase {
 	 */
 	public DWindow(boolean mainSketch) {
 		super();
+		id = new Integer[4];
+		for(int i = 0; i < id.length; i++)
+			id[i] = IdGen.instance().getNext();
+
 		selectable = true;
 		resizeable = true;
 		moveable = false;
@@ -91,13 +95,13 @@ public final class DWindow extends DBase {
 		StringBuilder sb = new StringBuilder();
 		
 		if(_0060_wdraw.length() > 0){
-			sb.append(Messages.build(WIN_DRAW, _0060_wdraw, _0005_name, id.toString()).replace('[', '{'));  // event header
-			sb.append(get_draw_event_code() + get_event_end());
+			sb.append(Messages.build(WIN_DRAW, _0060_wdraw, _0005_name, id[0].toString()).replace('[', '{'));  // event header
+			sb.append(get_event_code(0) + get_event_end(0));
 		}
-//		if(_0062_wmouse.length() > 0){
-//			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id.toString()).replace('[', '{'));  // event header
-//			sb.append(get_mouse_event_code() + get_event_end());
-//		}
+		if(_0062_wmouse.length() > 0){
+			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(get_event_code(1) + get_event_end(1));
+		}
 		return new String(sb);
 	}
 
@@ -106,30 +110,30 @@ public final class DWindow extends DBase {
 	 * @param code
 	 * @return
 	 */
-	protected String get_draw_event_code(){ 
-		String ev_code = Code.instance().get(id);
-		if(ev_code == null)
-			return CODE_GWINDOW_DRAW;
-		else
-			return ev_code; 
-	}
-
-	protected String get_mouse_event_code(){ 
-		String ev_code = Code.instance().get(id);
-		if(ev_code == null)
-			return Messages.build(CODE_GWINDOW_MOUSE, _0005_name, componentClass);
-		else
-			return ev_code; 
-	}
+//	protected String get_draw_event_code(){ 
+//		String ev_code = Code.instance().get(id[0]);
+//		if(ev_code == null)
+//			return CODE_GWINDOW_DRAW;
+//		else
+//			return ev_code; 
+//	}
+//
+//	protected String get_mouse_event_code(){ 
+//		String ev_code = Code.instance().get(id[0]);
+//		if(ev_code == null)
+//			return Messages.build(CODE_GWINDOW_MOUSE, _0005_name, componentClass);
+//		else
+//			return ev_code; 
+//	}
 
 	/**
 	 * Get the event method end with tag
 	 * @return
 	 */
-	protected String get_event_end(){
-		return Messages.build(METHOD_END, _0005_name, 
-				id.toString()).replace(']', '}');
-	}
+//	protected String get_event_end(int n){
+//		return Messages.build(METHOD_END, _0005_name, 
+//				id.toString()).replace(']', '}');
+//	}
 	
 	/**
 	 * Get the declaration for this window
@@ -154,9 +158,9 @@ public final class DWindow extends DBase {
 			if(_0060_wdraw.length() > 0){
 				sb.append(Messages.build(ADD_DRAW_HANDLER, _0005_name, "this", _0060_wdraw));
 			}
-//			if(_0062_wmouse.length() > 0){
-//				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
-//			}
+			if(_0062_wmouse.length() > 0){
+				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
+			}
 			return new String(sb);
 		}
 	}
@@ -194,6 +198,8 @@ public final class DWindow extends DBase {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
+		for(int i = 0; i < id.length; i++)
+			IdGen.instance().add(id[i]);
 		renderer_editor = new CellEditor_JComboBox(RENDERER);
 	}
 

@@ -39,8 +39,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public String componentClass = "";
 
-//	public Integer[] id = new Integer[1];
-	public Integer id = null;
+	public Integer[] id = new Integer[1];
+//	public Integer id = null;
 	
 	public String 		_0005_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
@@ -87,10 +87,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public DBase(){
 		allowsChildren = false;
-		id = IdGen.instance().getNext();
+		id[0] = IdGen.instance().getNext();
 	}
 
-	
 	// ==========================================================================
 	// ==========================================================================
 	// ===============   Stuff for code generation   ============================
@@ -179,7 +178,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_definition(){
-		String ec = get_event_header() + get_event_code() + get_event_end();
+		String ec = get_event_header() + get_event_code() + get_event_end(0);
 		return ec;
 	}
 	
@@ -189,30 +188,53 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @return
 	 */
 	protected String get_event_code(){ 
-		String ev_code = Code.instance().get(id);
+		return get_event_code(0);
+	}
+
+	/**
+	 * Get the event code if none then return generic message
+	 * @param n
+	 * @return
+	 */
+	protected String get_event_code(int n){
+		if(n < 0 || n >= id.length)
+			n = 0;
+		String ev_code = Code.instance().get(id[0]);
 		if(ev_code == null)
 			return Messages.build(CODE_ANY, _0005_name, componentClass);
 		else
 			return ev_code; 
 	}
-
+	
 	/**
 	 * Get the event header
 	 * @return
 	 */
-	protected String get_event_header(){
+	protected String get_event_header(int n){
+		if(n < 0 || n >= id.length)
+			n = 0;
 		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, 
 				componentClass.substring(1).toLowerCase(), 
-				_0005_name, id.toString()).replace('[', '{');
+				_0005_name, id[n].toString()).replace('[', '{');
+	}
+	
+	protected String get_event_header(){
+		return get_event_header(0);
 	}
 	
 	/**
 	 * Get the event method end with tag
 	 * @return
 	 */
-	protected String get_event_end(){
+	protected String get_event_end(int n){
+		if(n < 0 || n >= id.length)
+			n = 0;
 		return Messages.build(METHOD_END, _0005_name, 
-				id.toString()).replace(']', '}');
+				id[n].toString()).replace(']', '}');
+	}
+	
+	protected String get_event_end(){
+		return get_event_end(0);
 	}
 	
 	
@@ -226,7 +248,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
-		IdGen.instance().add(id);
+		IdGen.instance().add(id[0]);
 	}
 	
 	

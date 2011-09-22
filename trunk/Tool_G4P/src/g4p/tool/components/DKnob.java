@@ -100,7 +100,7 @@ public class DKnob extends DSliderFloat {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
-		IdGen.instance().add(id);
+		IdGen.instance().add(id[0]);
 		controller_editor = new CellEditor_JComboBox(KNOB_CTRL);
 	}
 

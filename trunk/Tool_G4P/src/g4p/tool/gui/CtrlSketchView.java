@@ -230,7 +230,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	private void undoComponent(DBase comp){
 		NameGen.instance().remove(comp.get_name());			
 		NameGen.instance().remove(comp._0101_eventHandler);
-		IdGen.instance().remove(comp.id);
+		for(int i = 0; i < comp.id.length; i++)
+			IdGen.instance().remove(comp.id[i]);							///
 	}
 	
 	@Override
@@ -260,13 +261,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		DBase r = (DBase) m.getRoot();
 		r.make_creator(lines, null);
 	}
-
-	
-//	@Override
-//	public void generateAddToWin(ArrayList<String> lines) {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 	// ==========================================================================
 	// ==========================================================================
