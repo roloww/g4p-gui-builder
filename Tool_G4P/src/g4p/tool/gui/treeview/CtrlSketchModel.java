@@ -1,4 +1,4 @@
-package g4p.tool.gui;
+package g4p.tool.gui.treeview;
 
 import java.io.Serializable;
 

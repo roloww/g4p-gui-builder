@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package g4p.tool.gui;
+package g4p.tool.gui.tabview;
 
 import g4p.tool.Messages;
 import g4p.tool.TGuiConstants;

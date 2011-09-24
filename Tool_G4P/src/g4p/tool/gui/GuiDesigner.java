@@ -27,6 +27,8 @@ import g4p.tool.components.DVertSlider;
 import g4p.tool.components.DWSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
+import g4p.tool.gui.tabview.CtrlTabView;
+import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

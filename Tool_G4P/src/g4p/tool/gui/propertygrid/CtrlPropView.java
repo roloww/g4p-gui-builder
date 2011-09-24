@@ -2,8 +2,8 @@ package g4p.tool.gui.propertygrid;
 
 import g4p.tool.Messages;
 import g4p.tool.components.DBase;
-import g4p.tool.gui.ISketchView;
-import g4p.tool.gui.ITabView;
+import g4p.tool.gui.tabview.ITabView;
+import g4p.tool.gui.treeview.ISketchView;
 
 import java.awt.event.MouseEvent;
 

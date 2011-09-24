@@ -1,4 +1,4 @@
-package g4p.tool.gui;
+package g4p.tool.gui.tabview;
 
 import g4p.tool.components.DBase;
 

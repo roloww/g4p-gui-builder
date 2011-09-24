@@ -9,6 +9,9 @@ import g4p.tool.components.DWindow;
 import g4p.tool.components.IdGen;
 import g4p.tool.components.NameGen;
 import g4p.tool.gui.propertygrid.IPropView;
+import g4p.tool.gui.tabview.ITabView;
+import g4p.tool.gui.treeview.CtrlSketchModel;
+import g4p.tool.gui.treeview.ISketchView;
 
 import java.awt.Dimension;
 import java.io.File;

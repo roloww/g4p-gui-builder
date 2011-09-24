@@ -1,7 +1,7 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.WindowView.MutableDBase;
+import g4p.tool.gui.tabview.WindowView.MutableDBase;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
