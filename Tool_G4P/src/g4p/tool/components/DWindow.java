@@ -34,28 +34,28 @@ public final class DWindow extends DBase {
 	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 300);
 	
 	public String 		_0060_wdraw = "";
-	public String 		wdraw_label = "Draw method name";
+	public String 		wdraw_label = "Draw method";
 	public String 		wdraw_tooltip = "The draw() method for this window";
 	public Boolean 		wdraw_edit = true;
 	public Boolean 		wdraw_show = true;
 	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	public String 		_0062_wmouse = "";
-	public String 		wmouse_label = "Mouse method name";
+	public String 		wmouse_label = "Mouse method";
 	public String 		wmouse_tooltip = "The mouseEvent() method for this window";
 	public Boolean 		wmouse_edit = true;
 	public Boolean 		wmouse_show = true;
 	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	public String 		_0064_wpre = "";
-	public String 		wpre_label = "Pre method name";
+	public String 		wpre_label = "Pre method";
 	public String 		wpre_tooltip = "The pre() method for this window";
 	public Boolean 		wpre_edit = true;
 	public Boolean 		wpre_show = true;
 	public Validator 	wpre_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	public String 		_0066_wpost = "";
-	public String 		wpost_label = "Post method name";
+	public String 		wpost_label = "Post method";
 	public String 		wpost_tooltip = "The post() method for this window";
 	public Boolean 		wpost_edit = true;
 	public Boolean 		wpost_show = true;
