@@ -1,8 +1,10 @@
-package g4p.tool.gui;
+package g4p.tool.gui.tabview;
 
 import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
+import g4p.tool.gui.ClassIcon;
 import g4p.tool.gui.propertygrid.IPropView;
+import g4p.tool.gui.treeview.ISketchView;
 
 import java.awt.Graphics;
 import java.util.HashMap;

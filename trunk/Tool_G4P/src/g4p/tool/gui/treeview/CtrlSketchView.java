@@ -1,4 +1,4 @@
-package g4p.tool.gui;
+package g4p.tool.gui.treeview;
 
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
@@ -9,7 +9,9 @@ import g4p.tool.components.DTimer;
 import g4p.tool.components.DWindow;
 import g4p.tool.components.IdGen;
 import g4p.tool.components.NameGen;
+import g4p.tool.gui.ClassIcon;
 import g4p.tool.gui.propertygrid.IPropView;
+import g4p.tool.gui.tabview.ITabView;
 
 import java.awt.Component;
 import java.awt.Dimension;
