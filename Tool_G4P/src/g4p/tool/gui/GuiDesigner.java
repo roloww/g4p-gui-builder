@@ -115,7 +115,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		initCustomComponents();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
-		Dimension size = guiControl.getSketchSize();
+		Dimension size = guiControl.getSketchSizeFromCode();
 		if(size == null){
 			final String message =
 				"The size of this sketch could not automatically be\n" +
@@ -168,7 +168,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 //				System.out.println("ACTIVATED");
 				setVisible(true);
 				setExtendedState(NORMAL);
-				guiControl.setSketchSize(guiControl.getSketchSize());
+				guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
 				guiControl.codeCapture();
 			}
 

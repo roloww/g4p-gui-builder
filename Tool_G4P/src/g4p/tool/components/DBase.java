@@ -199,7 +199,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected String get_event_code(int n){
 		if(n < 0 || n >= id.length)
 			n = 0;
-		String ev_code = Code.instance().get(id[0]);
+		String ev_code = Code.instance().get(id[n]);
 		if(ev_code == null)
 			return Messages.build(CODE_ANY, _0005_name, componentClass);
 		else

@@ -34,18 +34,32 @@ public final class DWindow extends DBase {
 	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 300);
 	
 	public String 		_0060_wdraw = "";
-	public String 		wdraw_label = "Draw method Name";
+	public String 		wdraw_label = "Draw method name";
 	public String 		wdraw_tooltip = "The draw() method for this window";
 	public Boolean 		wdraw_edit = true;
 	public Boolean 		wdraw_show = true;
 	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	public String 		_0062_wmouse = "";
-	public String 		wmouse_label = "Mouse method Name";
-	public String 		wmouse_tooltip = "The draw() method for this window";
+	public String 		wmouse_label = "Mouse method name";
+	public String 		wmouse_tooltip = "The mouseEvent() method for this window";
 	public Boolean 		wmouse_edit = true;
 	public Boolean 		wmouse_show = true;
 	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
+
+	public String 		_0064_wpre = "";
+	public String 		wpre_label = "Pre method name";
+	public String 		wpre_tooltip = "The pre() method for this window";
+	public Boolean 		wpre_edit = true;
+	public Boolean 		wpre_show = true;
+	public Validator 	wpre_validator = Validator.getValidator(COMPONENT_NAME_0);
+
+	public String 		_0066_wpost = "";
+	public String 		wpost_label = "Post method name";
+	public String 		wpost_tooltip = "The post() method for this window";
+	public Boolean 		wpost_edit = true;
+	public Boolean 		wpost_show = true;
+	public Validator 	wpost_validator = Validator.getValidator(COMPONENT_NAME_0);
 
 	
 	/**
@@ -72,7 +86,9 @@ public final class DWindow extends DBase {
 			_0025_height = 320;
 			_0010_title = "My sketch title";
 			wdraw_edit = wdraw_show = false;
-//			wmouse_edit = wmouse_show = false;
+			wmouse_edit = wmouse_show = false;
+			wpre_edit = wpre_show = false;
+			wpost_edit = wpost_show = false;
 		}
 		else {
 			set_name(NameGen.instance().getNext("window"));
@@ -102,38 +118,42 @@ public final class DWindow extends DBase {
 			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id[1].toString()).replace('[', '{'));  // event header
 			sb.append(get_event_code(1) + get_event_end(1));
 		}
+		if(_0064_wpre.length() > 0){
+			sb.append(Messages.build(WIN_PRE, _0064_wpre, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(get_event_code(2) + get_event_end(2));
+		}
+		if(_0066_wpost.length() > 0){
+			sb.append(Messages.build(WIN_POST, _0066_wpost, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(get_event_code(3) + get_event_end(3));
+		}
 		return new String(sb);
 	}
 
 	/**
 	 * Get the event code if none then return generic message
-	 * @param code
+	 * @param n 0-3 depending on method
 	 * @return
 	 */
-//	protected String get_draw_event_code(){ 
-//		String ev_code = Code.instance().get(id[0]);
-//		if(ev_code == null)
-//			return CODE_GWINDOW_DRAW;
-//		else
-//			return ev_code; 
-//	}
-//
-//	protected String get_mouse_event_code(){ 
-//		String ev_code = Code.instance().get(id[0]);
-//		if(ev_code == null)
-//			return Messages.build(CODE_GWINDOW_MOUSE, _0005_name, componentClass);
-//		else
-//			return ev_code; 
-//	}
-
-	/**
-	 * Get the event method end with tag
-	 * @return
-	 */
-//	protected String get_event_end(int n){
-//		return Messages.build(METHOD_END, _0005_name, 
-//				id.toString()).replace(']', '}');
-//	}
+	protected String get_event_code(int n){
+		String ev_code = Code.instance().get(id[n]);
+		if(ev_code == null){
+			switch(n){
+			case 0:
+				ev_code = CODE_GWINDOW_DRAW;
+				break;
+			case 1:
+				ev_code = Messages.build(CODE_GWINDOW_MOUSE, _0005_name);
+				break;
+			case 2:
+				ev_code = Messages.build(CODE_GWINDOW_PEE, _0005_name);
+				break;
+			case 3:
+				ev_code = Messages.build(CODE_GWINDOW_POST, _0005_name);
+				break;
+			}
+		}
+		return ev_code;
+	}
 	
 	/**
 	 * Get the declaration for this window
@@ -160,6 +180,12 @@ public final class DWindow extends DBase {
 			}
 			if(_0062_wmouse.length() > 0){
 				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
+			}
+			if(_0064_wpre.length() > 0){
+				sb.append(Messages.build(ADD_PRE_HANDLER, _0005_name, "this", _0064_wpre));
+			}
+			if(_0066_wpost.length() > 0){
+				sb.append(Messages.build(ADD_POST_HANDLER, _0005_name, "this", _0066_wpost));
 			}
 			return new String(sb);
 		}

@@ -100,9 +100,7 @@ public class G4PTool implements Tool, TFileConstants {
 			dframe = new GuiDesigner(editor);
 			System.out.println("##name## Version ##version## created by ##author##");
 		} 
-		else {
-			
-		}
+
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
 		dframe.setVisible(true);
