@@ -38,6 +38,8 @@ public interface TDataConstants {
 
 	public final String ADD_DRAW_HANDLER	=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
 	public final String ADD_MOUSE_HANDLER	=	"  {0}.addMouseHandler({1}, \"{2}\");\n";
+	public final String ADD_PRE_HANDLER		=	"  {0}.addPreHandler({1}, \"{2}\");\n";
+	public final String ADD_POST_HANDLER	=	"  {0}.addPostHandler({1}, \"{2}\");\n";
 
 	// 0 = event method name  :  1/2 = component name/id
 	public final String METHOD_START_0	=	"void {0}() [ //_CODE_:{1}:{2}:\n";
@@ -49,8 +51,8 @@ public interface TDataConstants {
 	public final String METHOD_START_2	=	"void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
 	
 	// 0 = event method name  :  1/2 = component name/id	
-	public final String WIN_DRAW			=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	public final String WIN_MOUSE			=	"void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_DRAW		=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_MOUSE		=	"void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
 	public final String WIN_PRE			=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	public final String WIN_POST		=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	
@@ -133,9 +135,9 @@ public interface TDataConstants {
 	public final String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded \" " + TIME;
 	public final String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield \" " + TIME;
 	public final String CODE_GWINDOW_DRAW	=	"  appc.background(200,255,200);\n";
-	public final String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event {1}\" " + TIME;
-	public final String CODE_GWINDOW_PEE	=	"  println(\"{0} - pre method called {1}\" " + TIME;
-	public final String CODE_GWINDOW_POST	=	"  println(\"{0} - post method called {1}\" " + TIME;
+	public final String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event \" " + TIME;
+	public final String CODE_GWINDOW_PEE	=	"  println(\"{0} - pre method called \" " + TIME;
+	public final String CODE_GWINDOW_POST	=	"  println(\"{0} - post method called \" " + TIME;
 
 	public final String INDENT				=	"  ";
 	

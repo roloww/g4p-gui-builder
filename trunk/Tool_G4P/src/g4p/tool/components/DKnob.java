@@ -71,10 +71,10 @@ public class DKnob extends DSliderFloat {
 	protected String get_event_header(){
 		if(_0024_width == _0025_height)
 			return Messages.build(METHOD_START_1, _0101_eventHandler, "GKnob", "knob", 
-					_0005_name, id.toString()).replace('[', '{');
+					_0005_name, id[0].toString()).replace('[', '{');
 		else
 			return Messages.build(METHOD_START_1, _0101_eventHandler, "GKnobOval", "knob", 
-					_0005_name, id.toString()).replace('[', '{');
+					_0005_name, id[0].toString()).replace('[', '{');
 	}
 
 	/**

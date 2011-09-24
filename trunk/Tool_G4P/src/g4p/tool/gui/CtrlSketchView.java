@@ -12,6 +12,7 @@ import g4p.tool.components.NameGen;
 import g4p.tool.gui.propertygrid.IPropView;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -131,6 +132,13 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			}
 		}
 		return c;
+	}
+
+	@Override
+	public Dimension getSketchSizeFromDesigner() {
+		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		DBase t0 = (DBase) ((DefaultMutableTreeNode) m.getRoot()).getFirstChild();	
+		return new Dimension(t0._0024_width, t0._0025_height);
 	}
 
 	/**

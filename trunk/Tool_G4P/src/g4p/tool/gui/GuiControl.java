@@ -110,7 +110,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * Get the size of the sketch from the code
 	 * @return null if no size found
 	 */
-	public Dimension getSketchSize(){
+	public Dimension getSketchSizeFromCode(){
 		Dimension s = null;
 		Sketch sketch = editor.getSketch();
 		SketchCode curr =  sketch.getCurrentCode();
@@ -120,13 +120,11 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		String code = editor.getText();
 		code = processing.mode.java.JavaBuild.scrubComments(code);
 		m = pSize.matcher(code);
-		System.out.println("Looking for size");
 		if(m.find() && m.groupCount() >= 3){
 			try	{
 				int wide = Integer.parseInt(m.group(1));
 				int high = Integer.parseInt(m.group(2));
 				s = new Dimension(wide, high);
-				System.out.println("Found " + s.width + "  " + s.height);
 			} catch (NumberFormatException e) {
 				s = null;
 			}
@@ -149,8 +147,6 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		try {
 			gui_tab.save();
 		} catch (IOException e) {
-			System.out.println("CAPTURE unable to save code");
-			e.printStackTrace();
 		}
 		//pCode.matcher(code);
 		m = pCode.matcher(code);
@@ -160,7 +156,6 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			tags.add(new CodeTag(sa[2], m.start(), m.end()));
 		}
 		// Validate tags???
-		System.out.println("\nCODE CAPTURED " + tags.size() + "\n");
 		Code.instance().reset();
 		for(int t = 0; t < tags.size(); t += 2){
 			String snippet = code.substring(tags.get(t).e + 1, tags.get(t+1).s - 2);
@@ -172,6 +167,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void codeGeneration(){
 		String code;
 		Sketch sketch = editor.getSketch();
+		
+
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
 		sketch.setCurrentCode(gui_tab_index);
@@ -182,14 +179,32 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		// Set the code to show in the editor
 		editor.setText(code);
 		editor.setSelection(0, 0);
-		editor.repaint();
-		// Save the generated code
-		try {
-			gui_tab.save();
-		} catch (IOException e) {
-			e.printStackTrace();
+
+		// See if the first tab has text if not create some basic code
+		sketch.setCurrentCode(0);
+		String code0 = editor.getText();
+		if(code0 != null && code0.length() == 0){
+			SketchCode tab0 = sketch.getCurrentCode();
+			try {
+				File f = new File(editor.getBase().getSketchbookFolder() + SEP + TAB0_PDE_BASE);
+				String tab0code = Base.loadFile(f);
+				Dimension size = tree.getSketchSizeFromDesigner();
+				tab0code = tab0code.replace("WIDTH", "" + size.width);
+				tab0code = tab0code.replace("HEIGHT", "" + size.height);
+				editor.setText(tab0code);
+				tab0.setProgram(tab0code);
+			}
+			catch(Exception excp){
+			}
 		}
-		System.out.println("CODE GENERATED");
+	
+		editor.repaint();
+// Save the generated code
+//		try {
+//			gui_tab.save();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	private String makeGuiCode(){
@@ -268,14 +283,13 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * This saves the GUI (tree) model) layout using serialisation.
 	 */
 	public void saveGuiLayout() {
-		System.out.println("Save GUI layout");
 		File file;
 		// Editor == null if run outside of Processing
 		if(editor == null){
-			file = new File(MODEL_FILENAME);
+			file = new File(GUI_MODEL_FILENAME);
 		}
 		else {
-			file = new File(editor.getSketch().getFolder(), MODEL_FILENAME);
+			file = new File(editor.getSketch().getFolder(), GUI_MODEL_FILENAME);
 		}
 		tree.saveModel(file);
 	}
@@ -284,9 +298,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * This method loads the serialised GUI layout (tree model)
 	 */
 	public void loadGuiLayout() {
-		System.out.println("Load GUI layout");
 		DefaultTreeModel dm = null;
-		File file = new File(editor.getSketch().getFolder(), MODEL_FILENAME);
+		File file = new File(editor.getSketch().getFolder(), GUI_MODEL_FILENAME);
 
 		if(file.exists()){
 			NameGen.instance().reset();

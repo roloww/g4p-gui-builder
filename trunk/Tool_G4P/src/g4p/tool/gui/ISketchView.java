@@ -1,5 +1,6 @@
 package g4p.tool.gui;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.util.ArrayList;
 
@@ -58,6 +59,7 @@ public interface ISketchView {
 	
 	public abstract void generateCreator(ArrayList<String> lines);
 	
-//	public abstract void generateAddToWin(ArrayList<String> lines);
+	public Dimension getSketchSizeFromDesigner();
+	
 	
 }
