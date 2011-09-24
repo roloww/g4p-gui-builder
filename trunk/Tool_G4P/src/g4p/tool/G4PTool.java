@@ -55,16 +55,40 @@ public class G4PTool implements Tool, TFileConstants {
 		return "GUI builder";
 	}
 
+	/**
+	 * Get version string of this tool
+	 * @return revision number string
+	 */
+	public String getVersion(){
+		return "##version##";
+	}
+	
+	/**
+	 * Get version number of this tool as an integer with the form  <br>
+	 * MMmmii <br>
+	 * M = Major revision <br>
+	 * m = minor revision <br>
+	 * i = internal revision <br>
+	 * @return version number as int
+	 */
+	public int getVersionNo(){
+		String n[] = "##version##".split("[\\.]");
+		int[] vnp = new int[3];
+		for(int i = 0; i < n.length; i++){
+			try {
+				vnp[i] = Integer.parseInt(n[i]);
+			}
+			catch(Exception excp){
+			}
+		}
+		return ((vnp[0] * 100) + vnp[1]) * 100 + vnp[2];
+	}
+	
+	/**
+	 * Called once first time the tool is called
+	 */
 	public void init(processing.app.Editor theEditor) {
 		this.editor = theEditor;
-	}
-
-	public void simpleRun() {
-		if (dframe == null) {
-			dframe = new GuiDesigner();
-		}
-		dframe.setVisible(true);
-		dframe.toFront();
 	}
 
 	/**
@@ -101,6 +125,8 @@ public class G4PTool implements Tool, TFileConstants {
 			System.out.println("##name## Version ##version## created by ##author##");
 		} 
 
+		System.out.println("Version     = "+ getVersion());
+		System.out.println("Version No  = "+ getVersionNo());
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
 		dframe.setVisible(true);
