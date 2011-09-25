@@ -69,8 +69,8 @@ public interface TGuiConstants {
     public final Color cboxBack			= lblBack;
     public final Color cboxEdge			= Color.black;
     public final Color cboxFill			= Color.white;
-    public final int BOXSIZE	=	14; 
-    public final int BOXINSET	=	3; 
+    public final int BOXSIZE			=	14; 
+    public final int BOXINSET			=	3; 
     
     
     
