@@ -34,7 +34,7 @@ public interface TGuiConstants {
 	public final Color blackEdge 		= Color.black;
 	public final Color greenEdge 		= new Color(0,64,0,60);
 
-	public final Color winBack 			= new Color(0,255,0,60);
+	public final Color winBack 			= new Color(128,255,128,60);
 	
 	public final Color btnBack 			= new Color(100,100,255);
 

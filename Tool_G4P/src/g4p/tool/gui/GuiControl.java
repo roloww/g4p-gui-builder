@@ -170,8 +170,6 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void codeGeneration(){
 		String code;
 		Sketch sketch = editor.getSketch();
-		
-
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
 		sketch.setCurrentCode(gui_tab_index);
@@ -182,7 +180,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		// Set the code to show in the editor
 		editor.setText(code);
 		editor.setSelection(0, 0);
-
+		sketch.setModified(true);
+		
 		// See if the first tab has text if not create some basic code
 		sketch.setCurrentCode(0);
 		String code0 = editor.getText();
@@ -196,11 +195,11 @@ public class GuiControl implements TFileConstants, TDataConstants {
 				tab0code = tab0code.replace("HEIGHT", "" + size.height);
 				editor.setText(tab0code);
 				tab0.setProgram(tab0code);
+				sketch.setModified(true);
 			}
 			catch(Exception excp){
 			}
 		}
-	
 		editor.repaint();
 // Save the generated code
 //		try {
