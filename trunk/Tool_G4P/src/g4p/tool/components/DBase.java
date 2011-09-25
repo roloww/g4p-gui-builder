@@ -78,7 +78,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Validator 	height_validator = width_validator;
 
 	public String		_0101_eventHandler = "Event handler";
-	public String 		eventHandler_label = "Event method name";
+	public String 		eventHandler_label = "Event method";
 	public String 		eventHandler_tooltip = "unique name for event handler method";
 	public Boolean 		eventHandler_edit = false;
 	public Boolean 		eventHandler_show = false;
