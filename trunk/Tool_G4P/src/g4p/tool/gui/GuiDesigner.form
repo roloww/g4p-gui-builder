@@ -6,11 +6,19 @@
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="menuGrid">
+        <Menu class="javax.swing.JMenu" name="menuDisplay">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Grid"/>
+            <Property name="text" type="java.lang.String" value="Display"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mitemAuto">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Auto Hide"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mitemAutoActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JCheckBoxMenuItem" name="mitemSnapToGrid">

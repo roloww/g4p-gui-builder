@@ -204,7 +204,9 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		}
 	}
 
-	@Override
+	/**
+	 * Removes the currently selected component from the GUI.
+	 */
 	public void removeComponent() {
 		DBase comp = (DBase) getLastSelectedPathComponent();
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
@@ -219,12 +221,6 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			}
 			// Remove window from tab view
 			tabs.deleteWindow(comp);
-//			m.removeNodeFromParent(comp);
-//			NameGen.instance().remove(comp.get_name());
-//			NameGen.instance().remove(comp.get_event_name());
-//			IdGen.instance().remove(comp.get_id());
-//			setSelectedComponent((DBase) r);
-//			return;
 		}
 		// Component is valid for removal
 		DefaultMutableTreeNode p = (DefaultMutableTreeNode) comp.getParent();
