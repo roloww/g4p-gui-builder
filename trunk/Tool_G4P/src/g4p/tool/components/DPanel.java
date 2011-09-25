@@ -14,9 +14,10 @@ public class DPanel extends DCoreText {
 
 	final protected static int TAB_HEIGHT = 16;
 	
-	public Boolean 		_0030_opaque = true;
-	public Boolean 		opaque_edit = true;
-	public Boolean 		opaque_show = true;
+	public Boolean 		_0030_collapsed = false;
+	public String 		collapsed_label = "Collapsed?";
+	public Boolean 		collapsed_edit = true;
+	public Boolean 		collapsed_show = true;
 
 	public DPanel(){
 		super();
@@ -36,6 +37,7 @@ public class DPanel extends DCoreText {
 		String s;
 		s = Messages.build(CTOR_GPANEL, _0005_name, "this", 
 				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+		s += Messages.build(COLLAPSED, _0005_name, _0030_collapsed);
 		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
 		return s;
 	}
@@ -67,10 +69,10 @@ public class DPanel extends DCoreText {
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
-		if(_0030_opaque)
-			g.setColor(pnlBackOpaque);
-		else
+		if(_0030_collapsed)
 			g.setColor(pnlBackClear);
+		else
+			g.setColor(pnlBackOpaque);
 		g.fillRect(0, 0, _0024_width, _0025_height);
 		g.setColor(pnlTabCol);
 		g.fillRect(0, -TAB_HEIGHT, _0024_width, TAB_HEIGHT);
