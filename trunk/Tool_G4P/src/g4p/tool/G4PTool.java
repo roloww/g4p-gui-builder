@@ -26,16 +26,13 @@ package g4p.tool;
 
 import g4p.tool.gui.GuiDesigner;
 
-import java.awt.Dimension;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 
 import processing.app.Base;
 import processing.app.Sketch;
 import processing.app.tools.Tool;
-import processing.core.PApplet;
 
 /**
  * 
@@ -124,9 +121,6 @@ public class G4PTool implements Tool, TFileConstants {
 			dframe = new GuiDesigner(editor);
 			System.out.println("##name## Version ##version## created by ##author##");
 		} 
-
-		System.out.println("Version     = "+ getVersion());
-		System.out.println("Version No  = "+ getVersionNo());
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
 		dframe.setVisible(true);
