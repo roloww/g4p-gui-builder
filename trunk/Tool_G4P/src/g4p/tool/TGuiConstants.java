@@ -40,7 +40,7 @@ public interface TGuiConstants {
 
 	public final Color pnlTabCol 		= new Color(50,50,255);
 	public final Color pnlBackOpaque 	= new Color(192,192,255);
-	public final Color pnlBackClear 	= new Color(192,192,255,80);
+	public final Color pnlBackClear 	= new Color(255,192,192,48);
 
     public final Color lblBack 			= new Color(255,255,255,60);
     
