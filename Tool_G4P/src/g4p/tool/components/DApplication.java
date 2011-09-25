@@ -76,7 +76,6 @@ public final class DApplication extends DBase {
 	}
 
 	public void updateCursorChanger(){
-		System.out.println("update cursor changer done  " + _0020_cursor.toString());
 		cursor_off_show = _0020_cursor;
 		cursor_over_show = _0020_cursor;
 		propertyModel.createProperties(this);

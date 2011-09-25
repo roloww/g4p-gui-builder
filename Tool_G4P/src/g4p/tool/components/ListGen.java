@@ -73,8 +73,6 @@ public class ListGen implements TDataConstants {
 	}
 	
 	public DefaultComboBoxModel getComboBoxModel(int key){
-		if(key == SLIDER_SKIN)
-			System.out.println("Retrieving SKIN combo model");
 		return cbList.get(key);
 	}
 
