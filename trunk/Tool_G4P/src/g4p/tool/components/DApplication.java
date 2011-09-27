@@ -67,10 +67,10 @@ public final class DApplication extends DBase {
 	public String get_creator(DBase parent){ 
 		StringBuilder sb = new StringBuilder();
 		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0010_col_scheme));
+		sb.append("  G4P.messagesEnabled(false);\n");
 		if(_0020_cursor) {
 			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0024_cursor_off, _0023_cursor_over));
 			sb.append("  G4P.setMouseOverEnabled(true);\n");
-			sb.append("  G4P.messagesEnabled(false);\n");
 		}
 		return new String(sb);
 	}

@@ -9,7 +9,7 @@ public interface TFileConstants {
 	// Relative to sketch folder
 	public final String PDE_TAB_PRETTY_NAME 	= "gui";
 	public final String PDE_TAB_NAME 			= PDE_TAB_PRETTY_NAME + ".pde";
-	public final String CONFIG_FOLDER 			= "GUI_BUILDER_DATA_" + "##version##";
+	public final String CONFIG_FOLDER 			= "GUI_BUILDER_DATA";
 	
 	public final String GUI_MODEL_FILENAME 		= CONFIG_FOLDER + SEP + "gui.ser." + "##version##";
 	
