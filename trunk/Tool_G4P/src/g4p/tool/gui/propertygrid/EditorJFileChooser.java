@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -16,6 +17,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
+
+import processing.app.Base;
+import processing.app.Editor;
 
 public class EditorJFileChooser extends EditorBase {
 
@@ -36,6 +40,7 @@ public class EditorJFileChooser extends EditorBase {
 			File f = chooser.getSelectedFile();
 			String name = (f != null) ? f.getName() : "";
 			component = new JTextField(name);
+			component.setFocusable(false);
 		}
 	}
 	
@@ -43,13 +48,19 @@ public class EditorJFileChooser extends EditorBase {
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
 		chooser = (JFileChooser) chooser;
-		File f;
 		GuiDesigner.keepOpen(true);
+		Editor e = GuiDesigner.editor();
 		int selected = chooser.showDialog(GuiDesigner.instance(), "Use Image");
 		if(selected == JFileChooser.APPROVE_OPTION){
-			f = chooser.getSelectedFile();
-			name = f.getName();
+			File src = chooser.getSelectedFile();	 
+			name = src.getName();
+			File dest = new File(e.getSketch().getDataFolder(), name);
 			// Copy file to data folder
+			try {
+				Base.copyFile(src, dest);
+			} catch (IOException e1) {
+				System.out.println("COPY failed");
+			}
 			component.setText(name);
 			// FORCE update this property
 			((CtrlPropView)table).updateProperty(name, row, column);

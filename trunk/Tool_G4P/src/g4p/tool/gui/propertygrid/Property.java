@@ -20,7 +20,7 @@ public final class Property implements Comparable {
 	
 	// The validator to use with this property
 	public Validator validator = null;
-	public EditorBase editor = null;
+	public EditorBase cell_editor = null;
 	public TableCellRenderer renderer = null;
 	public boolean allowEdit = true;
 	public boolean show = true;
@@ -43,7 +43,7 @@ public final class Property implements Comparable {
 		// Get cell editor if any
 		try {
 			Field field = fieldFromObject.getClass().getField(shortFieldName + "_editor");
-			editor =  (EditorBase) field.get(fieldFromObject);
+			cell_editor =  (EditorBase) field.get(fieldFromObject);
 		}
 		catch(Exception excp){
 			// Nothing to do 
