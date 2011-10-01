@@ -6,19 +6,17 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 @SuppressWarnings("serial")
-public class CellEditor_JComboBox extends CellEditor_Base {
+public class EditorJComboBox extends EditorBase {
 
 	protected static JComboBox component = null;
 
-	public CellEditor_JComboBox(int type){
-//		System.out.println("Creating JComboBox editor");
+	public EditorJComboBox(int type){
 		validator = Validator.getValidator(type);
 		if(component == null){
 			component = new JComboBox(ListGen.instance().getComboBoxModel(type));

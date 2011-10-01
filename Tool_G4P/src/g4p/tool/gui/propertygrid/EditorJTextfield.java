@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 
 
 @SuppressWarnings("serial")
-public class CellEditor_JTextfield extends CellEditor_Base { 
+public class EditorJTextfield extends EditorBase { 
 
 	protected static JTextField component;
 
@@ -33,7 +33,7 @@ public class CellEditor_JTextfield extends CellEditor_Base {
 	/**
 	 * Create an integer editor component that accepts any valid integer.
 	 */
-	public CellEditor_JTextfield() {
+	public EditorJTextfield() {
 		//		System.out.println("JTextField Editor constructor()");
 		component = new JTextField();
 		component.addKeyListener(new KeyListener(){
