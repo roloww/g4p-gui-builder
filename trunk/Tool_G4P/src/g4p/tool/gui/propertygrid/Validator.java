@@ -524,7 +524,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 		// The first argument should be the combo box cell editor
 		public void preEditAction(Object ...args){
-			CellEditor_JComboBox.component.setModel((ComboBoxModel) list) ;
+			EditorJComboBox.component.setModel((ComboBoxModel) list) ;
 		}
 
 		/**

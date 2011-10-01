@@ -78,7 +78,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 * If no editor avaialble use default editor and renderer
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
-		CellEditor_Base editor = null;
+		EditorBase editor = null;
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
 		Class<?> c = p.field.getType(); // p.fieldType;
@@ -86,13 +86,13 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		editor = p.editor;
 		if(editor == null){
 			if (c == boolean.class || c == Boolean.class) {
-				editor = new CellEditor_Boolean();
+				editor = new EditorBoolean();
 			}
 			if (c == int.class || c == Integer.class || c == String.class) {
-				editor = new CellEditor_JTextfield();
+				editor = new EditorJTextfield();
 			}
 			if (c == float.class || c == Float.class) {
-				editor = new CellEditor_JTextfield();
+				editor = new EditorJTextfield();
 			}
 			p.editor = editor;
 		}
@@ -125,6 +125,10 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		((CtrlPropModel)getModel()).modelChangedInGUI();
 	}
 
+	public void updateProperty(Object value, int row, int col){
+		getModel().setValueAt(value, row, col);
+	}
+	
 	public String getToolTipText(MouseEvent e) {
 		String tip = null;
 		int row = rowAtPoint(e.getPoint());

@@ -10,11 +10,11 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 @SuppressWarnings("serial")
-public class CellEditor_Boolean extends CellEditor_Base {
+public class EditorBoolean extends EditorBase {
 
 	protected JCheckBox component;
 
-	public CellEditor_Boolean(){
+	public EditorBoolean(){
 		component = new JCheckBox();
 		component.setHorizontalAlignment(JCheckBox.CENTER);
 		component.setRequestFocusEnabled(false);	

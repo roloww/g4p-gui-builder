@@ -1,5 +1,7 @@
 package g4p.tool.gui.propertygrid;
 
+import g4p.tool.gui.GuiDesigner;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,24 +14,55 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 
-public class Cell_editor_JFileChooser extends CellEditor_Base {
+public class EditorJFileChooser extends EditorBase {
 
-	protected static JFileChooser component = null;
-
-
+	protected static JFileChooser chooser = null;
+	protected static JTextField component = null;
+	
+	protected String name = "";
+	
+	public EditorJFileChooser(){
+		if(chooser == null){
+			chooser = new JFileChooser();
+			chooser.addChoosableFileFilter(new ImageFilter());
+			chooser.setAcceptAllFileFilterUsed(false);
+			chooser.setAccessory(new ImagePreview(chooser));
+			chooser.setCurrentDirectory(null);
+		}
+		if(component == null){
+			File f = chooser.getSelectedFile();
+			String name = (f != null) ? f.getName() : "";
+			component = new JTextField(name);
+		}
+	}
+	
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-		// TODO Auto-generated method stub
-		return null;
+		chooser = (JFileChooser) chooser;
+		File f;
+		GuiDesigner.keepOpen(true);
+		int selected = chooser.showDialog(GuiDesigner.instance(), "Use Image");
+		if(selected == JFileChooser.APPROVE_OPTION){
+			f = chooser.getSelectedFile();
+			name = f.getName();
+			// Copy file to data folder
+			component.setText(name);
+			// FORCE update this property
+			((CtrlPropView)table).updateProperty(name, row, column);
+		}
+		GuiDesigner.keepOpen(false);
+		this.fireEditingStopped();
+		this.fireEditingCanceled();
+		return component;
 	}
 
 	@Override
 	public Object getCellEditorValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return component.getText();
 	}
 
 
