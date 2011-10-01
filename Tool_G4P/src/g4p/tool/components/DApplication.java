@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.CellEditor_Base;
-import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
+import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 
 import javax.swing.event.TableModelEvent;
 
@@ -28,7 +28,7 @@ public final class DApplication extends DBase {
 	public Boolean height_show = false;
 	
 	public String 		_0010_col_scheme = "BLUE_SCHEME";
-	transient public 	CellEditor_Base col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
+	transient public 	EditorBase col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 	public Boolean 		col_scheme_edit = true;
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
@@ -40,13 +40,13 @@ public final class DApplication extends DBase {
 	public String 		cursor_label = "Enable mouse over";
 
 	public String 		_0024_cursor_off = "ARROW";
-	transient public 	CellEditor_Base cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
 	public Boolean 		cursor_off_edit = true;
 	public Boolean 		cursor_off_show = false;
 	public String 		cursor_off_label = "Not over control";
 	
 	public String 		_0023_cursor_over = "CROSS";
-	transient public 	CellEditor_Base cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+	transient public 	EditorBase cursor_over_editor = new EditorJComboBox(CURSOR_CHANGER);
 	public Boolean 		cursor_over_edit = true;
 	public Boolean 		cursor_over_show = false;
 	public String 		cursor_over_label = "Is over control";
@@ -96,9 +96,9 @@ public final class DApplication extends DBase {
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		IdGen.instance().add(id[0]);
-		col_scheme_editor = new CellEditor_JComboBox(COLOUR_SCHEME);
-		cursor_off_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
-		cursor_over_editor = new CellEditor_JComboBox(CURSOR_CHANGER);
+		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
+		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
+		cursor_over_editor = new EditorJComboBox(CURSOR_CHANGER);
 	}
 
 }

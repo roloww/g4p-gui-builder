@@ -1,8 +1,8 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.CellEditor_Base;
-import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
+import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
@@ -22,7 +22,7 @@ public final class DWindow extends DBase {
 	
 	public String 		_0011_renderer = "JAVA2D";
 	public String 		renderer_label = "Renderer";
-	transient public CellEditor_Base renderer_editor = new CellEditor_JComboBox(RENDERER);
+	transient public EditorBase renderer_editor = new EditorJComboBox(RENDERER);
 	public Boolean 		renderer_edit = false;
 	public Boolean 		renderer_show = false;
 
@@ -226,7 +226,7 @@ public final class DWindow extends DBase {
 		NameGen.instance().add(_0005_name);
 		for(int i = 0; i < id.length; i++)
 			IdGen.instance().add(id[i]);
-		renderer_editor = new CellEditor_JComboBox(RENDERER);
+		renderer_editor = new EditorJComboBox(RENDERER);
 	}
 
 

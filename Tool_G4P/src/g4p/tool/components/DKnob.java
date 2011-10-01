@@ -1,8 +1,8 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.CellEditor_Base;
-import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
+import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
@@ -28,7 +28,7 @@ public class DKnob extends DSliderFloat {
 	public Validator 	dial_end_angle_validator = Validator.getValidator(int.class, 0, 360);
 
 	public String 		_0038_controller = "HORIZONTAL";
-	transient public 	CellEditor_Base controller_editor = new CellEditor_JComboBox(KNOB_CTRL);
+	transient public 	EditorBase controller_editor = new EditorJComboBox(KNOB_CTRL);
 	public Boolean		controller_edit = true;
 	public Boolean		controller_show = true;
 	public String		controller_label = "Mouse controller scheme";
@@ -101,7 +101,7 @@ public class DKnob extends DSliderFloat {
 		in.defaultReadObject();
 		NameGen.instance().add(_0005_name);
 		IdGen.instance().add(id[0]);
-		controller_editor = new CellEditor_JComboBox(KNOB_CTRL);
+		controller_editor = new EditorJComboBox(KNOB_CTRL);
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
