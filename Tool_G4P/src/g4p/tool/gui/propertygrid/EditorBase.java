@@ -4,9 +4,11 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.plaf.UIResource;
 import javax.swing.table.TableCellEditor;
 
+
 @SuppressWarnings("serial")
 public abstract class EditorBase extends AbstractCellEditor implements TableCellEditor, UIResource {
 
+	
 	// Validation object 
 	public Validator validator = null;
 	

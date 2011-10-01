@@ -3,8 +3,6 @@ package g4p.tool.gui.propertygrid;
 import g4p.tool.components.ListGen;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;

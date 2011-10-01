@@ -72,9 +72,28 @@ public class DButton extends DCoreText {
 	 * @return
 	 */
 	protected String get_creator(DBase parent){
-		String s;
-		s = Messages.build(CTOR_GBUTTON_1, _0005_name, "this", 
-				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+		// 1 = text used  : 2 = icon used  :  4 = filename provided
+		int mode = (_0015_text.length() > 0) ? 1 : 0;
+		mode += (_0019_filename.length() > 0) ? 2 : 0;
+		mode += (_0017_icon == true) ? 4 : 0;
+		// Text only     1, 3, 5 (0, 2, 4= no icon and empty text
+		// Icon  only    6
+		// Text & icon	 7
+		String s = "";
+		switch(mode){
+		case 6:
+			s = Messages.build(CTOR_GBUTTON_2, _0005_name, "this", 
+					_0019_filename, _0018_nbr_images, _0020_x, _0021_y, _0024_width, _0025_height);
+			break;
+		case 7:
+			s = Messages.build(CTOR_GBUTTON_2, _0005_name, "this", 
+					_0019_filename, _0018_nbr_images, _0020_x, _0021_y, _0024_width, _0025_height);
+			break;
+		default:
+			s = Messages.build(CTOR_GBUTTON_3, _0005_name, "this", _0015_text,
+					_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+			break;
+		}
 		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
 		return s;
 	}

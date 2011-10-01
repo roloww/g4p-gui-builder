@@ -14,15 +14,18 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
+import processing.app.Editor;
+
 @SuppressWarnings({ "serial", "unused" })
 public class CtrlPropView extends JTable implements TableModelListener, IPropView {
 
 	private ITabView tabs;
 	private ISketchView tree;
-
+//	private Editor editor;
 
 	public CtrlPropView() {
 		super();
+//		this.editor = editor;
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setRowHeight(22);
 		setTableHeader(null); // hides column names
@@ -78,30 +81,30 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 	 * If no editor avaialble use default editor and renderer
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
-		EditorBase editor = null;
+		EditorBase cell_editor = null;
 		// Retrieve the property
 		Property p = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row));
 		Class<?> c = p.field.getType(); // p.fieldType;
 		// Get special editor if none then use one based on data type
-		editor = p.editor;
-		if(editor == null){
+		cell_editor = p.cell_editor;
+		if(cell_editor == null){
 			if (c == boolean.class || c == Boolean.class) {
-				editor = new EditorBoolean();
+				cell_editor = new EditorBoolean();
 			}
 			if (c == int.class || c == Integer.class || c == String.class) {
-				editor = new EditorJTextfield();
+				cell_editor = new EditorJTextfield();
 			}
 			if (c == float.class || c == Float.class) {
-				editor = new EditorJTextfield();
+				cell_editor = new EditorJTextfield();
 			}
-			p.editor = editor;
+			p.cell_editor = cell_editor;
 		}
 		// If we have don't have a validator then get one based on the class
 		if(p.validator == null) 
 			p.validator = Validator.getDefaultValidator(c);
-		if(editor != null && editor.validator == null)
-			editor.validator = p.validator;
-		return (editor == null) ? super.getCellEditor(row, col) : editor;
+		if(cell_editor != null && cell_editor.validator == null)
+			cell_editor.validator = p.validator;
+		return (cell_editor == null) ? super.getCellEditor(row, col) : cell_editor;
 	}
 
 	public TableCellRenderer getCellRenderer(int row, int col) {

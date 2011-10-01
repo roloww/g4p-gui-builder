@@ -27,6 +27,7 @@ import g4p.tool.components.DVertSlider;
 import g4p.tool.components.DWSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
+import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.tabview.CtrlTabView;
 import g4p.tool.gui.treeview.CtrlSketchView;
 
@@ -50,12 +51,17 @@ import processing.app.Editor;
 public class GuiDesigner extends javax.swing.JFrame {
 
 	private static GuiDesigner instance = null;
+	private static Editor editor = null;
 
 	private static boolean stayOpen = false;
 	private static boolean autoHide = false;
 	
 	public static GuiDesigner instance(){
 		return instance;
+	}
+	
+	public static Editor editor(){
+		return editor;
 	}
 	
 	public static void keepOpen(boolean mode){
@@ -91,7 +97,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private WindowListener winAdapt;
 
-	private Editor editor = null;
 	private CtrlSketchView treeSketchView;
 	private CtrlPropView tblPropView;
 	private CtrlTabView tabWindows;
@@ -117,7 +122,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 */
 	public GuiDesigner(Editor theEditor) {
 		instance = this;
-
 		editor = theEditor;
 		initComponents();
 		initCustomComponents();
