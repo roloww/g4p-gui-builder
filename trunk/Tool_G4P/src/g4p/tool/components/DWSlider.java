@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.CellEditor_Base;
-import g4p.tool.gui.propertygrid.CellEditor_JComboBox;
+import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 
 @SuppressWarnings("serial")
 public class DWSlider extends DSliderFloat {
 
 	public String _0030_skin = "gwSlider";
-	transient public CellEditor_Base skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
+	transient public EditorBase skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	public Boolean skin_edit = true;
 	public Boolean skin_show = true;
 	public String skin_label = "Style";
@@ -77,6 +77,6 @@ public class DWSlider extends DSliderFloat {
 		NameGen.instance().add(_0005_name);
 		NameGen.instance().add(_0101_eventHandler);
 		IdGen.instance().add(id[0]);
-		skin_editor = new CellEditor_JComboBox(SLIDER_SKIN);
+		skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	}
 }
