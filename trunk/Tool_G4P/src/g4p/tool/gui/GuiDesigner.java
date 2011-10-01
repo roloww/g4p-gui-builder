@@ -51,8 +51,16 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private static GuiDesigner instance = null;
 
-	private static boolean warningOn = false;
+	private static boolean stayOpen = false;
 	private static boolean autoHide = false;
+	
+	public static GuiDesigner instance(){
+		return instance;
+	}
+	
+	public static void keepOpen(boolean mode){
+		stayOpen = mode;
+	}
 	
 	/**
 	 * This is provided because the GuiDesigner window is specified as 
@@ -67,7 +75,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 * @param e option exception
 	 */
 	public static void showWarning(String title, String message, Exception e) {
-		warningOn = true;
+		stayOpen = true;
 		if (title == null || title.equals("")) 
 			title = "Warning";
 		if (instance == null) {
@@ -77,7 +85,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(instance, message, title,
 					JOptionPane.WARNING_MESSAGE);
 		}
-		warningOn = false;
+		stayOpen = false;
 		if (e != null) e.printStackTrace();
 	}
 
@@ -95,7 +103,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 */
 	public GuiDesigner() {
 		instance = this;
-
 		initComponents();
 		initCustomComponents();
 		guiControl =  new GuiControl(null, tabWindows, treeSketchView, tblPropView);
@@ -178,7 +185,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 */
 			public void windowDeactivated(WindowEvent e) {
 //				System.out.println("DEACTIVATED");
-				if(!warningOn){
+				if(!stayOpen){
 					if(autoHide)
 						setExtendedState(ICONIFIED);
 					guiControl.saveGuiLayout();
