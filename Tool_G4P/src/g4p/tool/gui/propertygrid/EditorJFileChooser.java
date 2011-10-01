@@ -56,7 +56,6 @@ public class EditorJFileChooser extends EditorBase {
 		}
 		GuiDesigner.keepOpen(false);
 		this.fireEditingStopped();
-		this.fireEditingCanceled();
 		return component;
 	}
 
