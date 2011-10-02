@@ -8,9 +8,11 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.RectangularShape;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+import javax.swing.Icon;
 import javax.swing.event.TableModelEvent;
 
 @SuppressWarnings("serial")
@@ -18,7 +20,8 @@ public class DButton extends DCoreText {
 
 	transient protected RectangularShape face;
 	transient float mitre = 6.0f;
-
+	transient BufferedImage icon = null;
+	
 	public Boolean 		_0031_icon  = false;
 	public Boolean 		icon_edit = true;
 	public Boolean 		icon_show = true;
@@ -29,12 +32,14 @@ public class DButton extends DCoreText {
 	public Boolean 		nbr_images_edit = true;
 	public Boolean 		nbr_images_show = false;
 	public String 		nbr_images_label = "No. of frames in icon";
+	public String 		nbr_images_updater = "nbrImagesChanged";
 	public Validator 	nbr_images_validator = Validator.getValidator(int.class, 1, 3);
 
 	public String 		_0033_filename = "";
 	public Boolean 		filename_edit = true;
 	public Boolean 		filename_show = false;
 	public String 		filename_label = "Image filename";
+	public String 		filename_updater = "imageChanged";
 	transient public EditorJFileChooser filename_editor = new EditorJFileChooser();
 
 	public DButton(){
@@ -49,6 +54,26 @@ public class DButton extends DCoreText {
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}
 
+	public void imageChanged(){
+		System.out.println("Image has changed");
+		icon = this.getImageFromDataFolder(_0033_filename);
+		int w = icon.getWidth() / _0032_nbr_images;
+		if(w > _0130_width) 
+			_0130_width = w;
+		int h = icon.getHeight();
+		if(h > _0131_height)
+			_0131_height = h;
+	}
+	
+	public void nbrImagesChanged(){
+		System.out.println("Update nbr images");
+		if(icon == null && _0033_filename.length() > 0)
+			icon = this.getImageFromDataFolder(_0033_filename);
+		int w = icon.getWidth() / _0032_nbr_images;
+		if(w > _0130_width) 
+			_0130_width = w;
+	}
+	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0120_x, _0121_y);
@@ -61,6 +86,13 @@ public class DButton extends DCoreText {
 		g.setColor(blackEdge);
 		g.draw(face);
 		g.drawString(this._0010_name, 6, _0131_height/2 +4 );
+		if(_0031_icon && icon != null){
+			int w = icon.getWidth() / _0032_nbr_images;
+			int h = icon.getHeight();
+			int px = (_0130_width - w)/2;
+			int py = (_0131_height - icon.getHeight())/2;
+			g.drawImage(icon, px, py, px + w, py + h, 0, 0, w, h, null);
+		}
 		if(this == selected)
 			drawSelector(g);
 
