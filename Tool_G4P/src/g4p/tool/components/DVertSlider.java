@@ -13,8 +13,8 @@ public class DVertSlider extends DSliderInteger {
 		componentClass = "GVertSlider";
 		set_name(NameGen.instance().getNext("slider"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
-		_0024_width = 12;
-		_0025_height = 100;
+		_0130_width = 12;
+		_0131_height = 100;
 	}
 	
 	/**
@@ -23,23 +23,23 @@ public class DVertSlider extends DSliderInteger {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GVERTSLIDER, _0005_name, "this", 
-				_0020_x, _0021_y, _0024_width, _0025_height);
-		s += Messages.build(SET_LIMITS,_0005_name, _0040_value, _0041_min, _0042_max);
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		s = Messages.build(CTOR_GVERTSLIDER, _0010_name, "this", 
+				_0120_x, _0121_y, _0130_width, _0131_height);
+		s += Messages.build(SET_LIMITS,_0010_name, _0630_value, _0631_min, _0632_max);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 
 		g.setColor(sdrBack);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(sdrThumb);
-		g.fillRect(0, _0025_height/2 - 5, _0024_width, 10);
+		g.fillRect(0, _0131_height/2 - 5, _0130_width, 10);
 		
 		if(this == selected)
 			drawSelector(g);

@@ -63,7 +63,7 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D)g;
-		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		float scale = ((DWindow)window)._0025_Display_scale / 100.0f;
 		AffineTransform orgAF = g2.getTransform();
 		AffineTransform af = new AffineTransform(orgAF);
 		g2.setStroke(stdStroke);
@@ -94,16 +94,16 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	}
 
 	public void isOver(MutableDBase m, int x, int y){
-		float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+		float scale = ((DWindow)window)._0025_Display_scale / 100.0f;
 		int sx = Math.round(x / scale);
 		int sy = Math.round(y / scale);
 		selInfo.reset();
 		window.isOver(m, sx, sy);
 		if(m.comp != null){
-			m.orgX = m.comp._0020_x;
-			m.orgY = m.comp._0021_y;
-			m.orgW = m.comp._0024_width;
-			m.orgH = m.comp._0025_height;
+			m.orgX = m.comp._0120_x;
+			m.orgY = m.comp._0121_y;
+			m.orgW = m.comp._0130_width;
+			m.orgH = m.comp._0131_height;
 		}
 	}
 
@@ -116,15 +116,15 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	 * @param scale the scale to set
 	 */
 	public void scaleWindowToFit(int w, int h) {
-		int scale = Math.round(92.0f * Math.min(((float) w)/window._0024_width,
-				((float) h)/window._0025_height));
-		((DWindow)window)._0014_Display_scale = scale;
+		int scale = Math.round(92.0f * Math.min(((float) w)/window._0130_width,
+				((float) h)/window._0131_height));
+		((DWindow)window)._0025_Display_scale = scale;
 		repaint();
 		tabCtrl.componentChangedInGUI(window);
 	}
 
 	void scaleWindowToFit(int scale) {
-		((DWindow)window)._0014_Display_scale = scale;
+		((DWindow)window)._0025_Display_scale = scale;
 		repaint();
 		tabCtrl.componentChangedInGUI(window);
 	}
@@ -164,30 +164,30 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		if(selInfo.comp != null && selInfo.comp.isResizeable()){
-			float scale = ((DWindow)window)._0014_Display_scale / 100.0f;
+			float scale = ((DWindow)window)._0025_Display_scale / 100.0f;
 			deltaX = Math.round((e.getX() - startX) / scale);
 			deltaY = Math.round((e.getY() - startY) / scale);
 			if(selInfo.comp.isResizeable()){
 				switch(selInfo.selID){
 				case OVER_HORZ:
 					setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-					selInfo.comp._0024_width = snapValue(selInfo.orgW + deltaX);
+					selInfo.comp._0130_width = snapValue(selInfo.orgW + deltaX);
 					break;
 				case OVER_VERT:
 					setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-					selInfo.comp._0025_height = snapValue(selInfo.orgH + deltaY);
+					selInfo.comp._0131_height = snapValue(selInfo.orgH + deltaY);
 					break;
 				case OVER_DIAG:
 					setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-					selInfo.comp._0024_width = snapValue(selInfo.orgW + deltaX);
-					selInfo.comp._0025_height = snapValue(selInfo.orgH + deltaY);
+					selInfo.comp._0130_width = snapValue(selInfo.orgW + deltaX);
+					selInfo.comp._0131_height = snapValue(selInfo.orgH + deltaY);
 					break;
 				}
 			}
 			if(selInfo.comp.isMoveable() && selInfo.selID == OVER_COMP){
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-				selInfo.comp._0020_x = snapValue(selInfo.orgX + deltaX);
-				selInfo.comp._0021_y = snapValue(selInfo.orgY + deltaY);
+				selInfo.comp._0120_x = snapValue(selInfo.orgX + deltaX);
+				selInfo.comp._0121_y = snapValue(selInfo.orgY + deltaY);
 			}
 			tabCtrl.componentChangedInGUI(selInfo.comp);
 			repaint();

@@ -42,14 +42,14 @@ public class DOptionGroup extends DBase {
 				e = children();
 				while(e.hasMoreElements()){
 					comp = (DOption)e.nextElement();
-					lines.add(Messages.build(ADD_A_CHILD, parent._0005_name, comp._0005_name));
+					lines.add(Messages.build(ADD_A_CHILD, parent._0010_name, comp._0010_name));
 				}
 			}
 		}				
 	}
 
 	protected String get_creator(DBase parent){
-		return Messages.build(CTOR_GOPTIONGROUP, _0005_name);
+		return Messages.build(CTOR_GOPTIONGROUP, _0010_name);
 	}
 
 	/**

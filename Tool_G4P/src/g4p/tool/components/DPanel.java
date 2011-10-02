@@ -25,20 +25,20 @@ public class DPanel extends DCoreText {
 		set_name(NameGen.instance().getNext("panel"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		allowsChildren = true;
-		_0015_text = "Tab bar text";
+		_0020_text = "Tab bar text";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
-		_0024_width = 100;
-		_0025_height = 60;
+		_0130_width = 100;
+		_0131_height = 60;
 //		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GPANEL, _0005_name, "this", 
-				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
-		s += Messages.build(COLLAPSED, _0005_name, _0030_collapsed);
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		s = Messages.build(CTOR_GPANEL, _0010_name, "this", 
+				_0020_text, _0120_x, _0121_y, _0130_width, _0131_height);
+		s += Messages.build(COLLAPSED, _0010_name, _0030_collapsed);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
@@ -58,14 +58,14 @@ public class DPanel extends DCoreText {
 			while(e.hasMoreElements()){
 				comp = (DBase)e.nextElement();
 				if(!(comp instanceof DOptionGroup))
-					lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+					lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
 			}
 		}				
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
@@ -73,11 +73,11 @@ public class DPanel extends DCoreText {
 			g.setColor(pnlBackClear);
 		else
 			g.setColor(pnlBackOpaque);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(pnlTabCol);
-		g.fillRect(0, -TAB_HEIGHT, _0024_width, TAB_HEIGHT);
+		g.fillRect(0, -TAB_HEIGHT, _0130_width, TAB_HEIGHT);
 		g.setColor(blackEdge);
-		g.drawString(_0005_name, 2, -4);
+		g.drawString(_0010_name, 2, -4);
 		if(this == selected)
 			drawSelector(g);
 		Enumeration<?> e = children();
@@ -90,27 +90,27 @@ public class DPanel extends DCoreText {
 	public void drawSelector(Graphics2D g){
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
-		g.drawRect(0, -TAB_HEIGHT,_0024_width, _0025_height + TAB_HEIGHT);
+		g.drawRect(0, -TAB_HEIGHT,_0130_width, _0131_height + TAB_HEIGHT);
 		
-		drawHandle(g, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2);
-		drawHandle(g, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE);
-		drawHandle(g, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE);	
+		drawHandle(g, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2);
+		drawHandle(g, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE);
+		drawHandle(g, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE);	
 	}
 
 	public void isOver(MutableDBase m, int x, int y) {
 		if(selectable){
-			x -= _0020_x;
-			y -= _0021_y;
+			x -= _0120_x;
+			y -= _0121_y;
 			//
-			if(getSize() < m.area && isOverRectangle(x, y, 0, - TAB_HEIGHT, _0024_width, _0025_height + TAB_HEIGHT)){			
+			if(getSize() < m.area && isOverRectangle(x, y, 0, - TAB_HEIGHT, _0130_width, _0131_height + TAB_HEIGHT)){			
 				m.selID = OVER_COMP;
 				m.comp = this;
 				m.area = getSize();
-				if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
+				if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
 					m.selID = OVER_HORZ;
-				else if(isOverRectangle(x,y, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+				else if(isOverRectangle(x,y, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
 					m.selID = OVER_VERT;
-				else if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+				else if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
 					m.selID = OVER_DIAG;
 			}
 		}
@@ -126,8 +126,8 @@ public class DPanel extends DCoreText {
 	 * Make allowance for the panel tab
 	 */
 	public boolean isOver(int x, int y){
-		return (x >= _0020_x && x <= _0020_x + _0024_width 
-				&& y >= _0021_y - TAB_HEIGHT && y <= _0021_y + _0025_height);
+		return (x >= _0120_x && x <= _0120_x + _0130_width 
+				&& y >= _0121_y - TAB_HEIGHT && y <= _0121_y + _0131_height);
 	}
 
 }

@@ -4,7 +4,7 @@ package g4p.tool.components;
 public class DCoreSelectable extends DCoreText {
 
 	
-	public Boolean _0050_selected  = false;
+	public Boolean _0685_selected  = false;
 	public Boolean selected_edit = true;
 	public Boolean selected_show = true;
 	public String selected_label = "Selected?";
@@ -12,11 +12,11 @@ public class DCoreSelectable extends DCoreText {
 	
 	public DCoreSelectable(){
 		super();
-		_0024_width = 90;
-		_0025_height = 20;
+		_0130_width = 90;
+		_0131_height = 20;
 	}
 	
 	public void setSelected(boolean selected){
-		_0050_selected = selected;
+		_0685_selected = selected;
 	}
 }

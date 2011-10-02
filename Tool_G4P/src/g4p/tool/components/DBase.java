@@ -42,42 +42,42 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Integer[] id = new Integer[1];
 //	public Integer id = null;
 	
-	public String 		_0005_name = "APPLICATION";
+	public String 		_0010_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
 	public String 		name_tooltip = null;
 	public Boolean 		name_edit = false;
 	public Boolean 		name_show = true;
 	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
 
-	public int 			_0020_x = 0;
+	public int 			_0120_x = 0;
 	public String 		x_label = "X";
 	public String 		x_tooltip = "pixels";
 	public Boolean 		x_edit = false;
 	public Boolean 		x_show = false;
 	public Validator 	x_validator = Validator.getValidator(int.class, -9999, 9999);
 
-	public int 			_0021_y = 0;
+	public int 			_0121_y = 0;
 	public String 		y_label = "Y";
 	public String 		y_tooltip = "pixels";
 	public Boolean 		y_edit = false;
 	public Boolean 		y_show = false;
 	public Validator 	y_validator = x_validator;
 
-	public int 			_0024_width = 0;
+	public int 			_0130_width = 0;
 	public String 		width_label = "Width";
 	public String 		width_tooltip = "pixels";
 	public Boolean 		width_edit = false;
 	public Boolean 		width_show = false;
 	public Validator 	width_validator = Validator.getValidator(int.class, 10, 999);
 
-	public int 			_0025_height = 0;
+	public int 			_0131_height = 0;
 	public String 		height_label = "Height";
 	public String 		height_tooltip = "pixels";
 	public Boolean 		height_edit = false;
 	public Boolean 		height_show = false;
 	public Validator 	height_validator = width_validator;
 
-	public String		_0101_eventHandler = "Event handler";
+	public String		_0701_eventHandler = "Event handler";
 	public String 		eventHandler_label = "Event method";
 	public String 		eventHandler_tooltip = "unique name for event handler method";
 	public Boolean 		eventHandler_edit = false;
@@ -156,7 +156,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Get the declaration for this control
 	 */
 	protected String get_declaration(){
-		return componentClass + " " + _0005_name+ "; \n";
+		return componentClass + " " + _0010_name+ "; \n";
 	}
 
 	/**
@@ -201,7 +201,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 			n = 0;
 		String ev_code = Code.instance().get(id[n]);
 		if(ev_code == null)
-			return Messages.build(CODE_ANY, _0005_name, componentClass);
+			return Messages.build(CODE_ANY, _0010_name, componentClass);
 		else
 			return ev_code; 
 	}
@@ -213,9 +213,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected String get_event_header(int n){
 		if(n < 0 || n >= id.length)
 			n = 0;
-		return Messages.build(METHOD_START_1, _0101_eventHandler, componentClass, 
+		return Messages.build(METHOD_START_1, _0701_eventHandler, componentClass, 
 				componentClass.substring(1).toLowerCase(), 
-				_0005_name, id[n].toString()).replace('[', '{');
+				_0010_name, id[n].toString()).replace('[', '{');
 	}
 	
 	protected String get_event_header(){
@@ -229,7 +229,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected String get_event_end(int n){
 		if(n < 0 || n >= id.length)
 			n = 0;
-		return Messages.build(METHOD_END, _0005_name, 
+		return Messages.build(METHOD_END, _0010_name, 
 				id[n].toString()).replace(']', '}');
 	}
 	
@@ -246,8 +246,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
-		NameGen.instance().add(_0005_name);
-		NameGen.instance().add(_0101_eventHandler);
+		NameGen.instance().add(_0010_name);
+		NameGen.instance().add(_0701_eventHandler);
 		IdGen.instance().add(id[0]);
 	}
 	
@@ -261,14 +261,14 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Display details - used for debugging only
 	 */
 	public String show(){
-		return Messages.build("{0}  {1} Pos [{2},{3}] Size [{4}, {5}]", this.getClass(), _0005_name, _0020_x, _0021_y, _0024_width, _0025_height);
+		return Messages.build("{0}  {1} Pos [{2},{3}] Size [{4}, {5}]", this.getClass(), _0010_name, _0120_x, _0121_y, _0130_width, _0131_height);
 	}
 
 	/**
 	 * Use this to return the name of the component
 	 */
 	public String toString(){
-		return _0005_name;
+		return _0010_name;
 	}
 
 
@@ -289,11 +289,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public void drawSelector(Graphics2D g){
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
-		g.drawRect(0, 0,_0024_width, _0025_height);
+		g.drawRect(0, 0,_0130_width, _0131_height);
 
-		drawHandle(g, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2);
-		drawHandle(g, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE);
-		drawHandle(g, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE);	
+		drawHandle(g, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2);
+		drawHandle(g, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE);
+		drawHandle(g, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE);	
 	}
 
 	protected void drawHandle(Graphics2D g, int x, int y){
@@ -305,18 +305,18 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	public void isOver(MutableDBase m, int x, int y) {
 		if(selectable){
-			x -= _0020_x;
-			y -= _0021_y;
+			x -= _0120_x;
+			y -= _0121_y;
 			
-			if(getSize() < m.area && isOverRectangle(x, y, 0, 0, _0024_width, _0025_height)){			
+			if(getSize() < m.area && isOverRectangle(x, y, 0, 0, _0130_width, _0131_height)){			
 				m.selID = OVER_COMP;
 				m.comp = this;
 				m.area = getSize();
-				if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, (_0025_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
+				if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
 					m.selID = OVER_HORZ;
-				else if(isOverRectangle(x,y, (_0024_width - HANDLE_SIZE) / 2, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+				else if(isOverRectangle(x,y, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
 					m.selID = OVER_VERT;
-				else if(isOverRectangle(x,y, _0024_width - HANDLE_SIZE, _0025_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+				else if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
 					m.selID = OVER_DIAG;
 			}
 		}
@@ -339,14 +339,14 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// ==========================================================================
 
 	public void set_name(String name){
-		_0005_name = name;
+		_0010_name = name;
 	}
 
 	public void set_event_name(String e_name){
-		_0101_eventHandler = e_name;
+		_0701_eventHandler = e_name;
 	}
 	
-	public String get_name() { return _0005_name; }
+	public String get_name() { return _0010_name; }
 	
 	public boolean isSelectable(){
 		return selectable;
@@ -376,7 +376,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	public int getSize(){
-		return _0024_width * _0025_height;
+		return _0130_width * _0131_height;
 	}
 	
 }
