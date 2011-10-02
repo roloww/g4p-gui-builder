@@ -2,7 +2,9 @@ package g4p.tool.components;
 
 import g4p.tool.Messages;
 import g4p.tool.TDataConstants;
+import g4p.tool.TFileConstants;
 import g4p.tool.TGuiConstants;
+import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Validator;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
@@ -10,13 +12,20 @@ import g4p.tool.gui.tabview.WindowView.MutableDBase;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import processing.app.Editor;
 
 /**
  * This class is used to represent non-visual components that do not contain
@@ -27,7 +36,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  *
  */
 @SuppressWarnings("serial")
-public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TGuiConstants {
+public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TFileConstants, TGuiConstants {
 
 	transient public CtrlPropModel propertyModel;
 
@@ -375,6 +384,18 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return propertyModel;
 	}
 
+	public BufferedImage getImageFromDataFolder(String filename){
+		BufferedImage img = null;
+		Editor ed = GuiDesigner.editor();
+		File f = new File(ed.getSketch().getDataFolder(), filename);
+		try {
+			img = ImageIO.read(f);
+		} 
+		catch (IOException e) {
+		}
+		return img;
+	}
+	
 	public int getSize(){
 		return _0130_width * _0131_height;
 	}
