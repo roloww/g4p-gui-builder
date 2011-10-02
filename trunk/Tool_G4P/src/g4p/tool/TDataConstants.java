@@ -1,5 +1,7 @@
 package g4p.tool;
 
+import processing.core.PApplet;
+
 
 public interface TDataConstants {
 
@@ -75,6 +77,10 @@ public interface TDataConstants {
 	
 	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height)
 	public final String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
+	
+	//		GImageButton(PApplet theApplet, String maskFile, String imgFile, int nbrImages, int x, int y)
+	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
+
 	
 	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width)
 	public final String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
