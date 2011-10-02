@@ -12,7 +12,7 @@ import g4p.tool.gui.propertygrid.EditorJComboBox;
 @SuppressWarnings("serial")
 public class DWSlider extends DSliderFloat {
 
-	public String _0030_skin = "gwSlider";
+	public String _0620_skin = "gwSlider";
 	transient public EditorBase skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	public Boolean skin_edit = true;
 	public Boolean skin_show = true;
@@ -23,9 +23,9 @@ public class DWSlider extends DSliderFloat {
 		componentClass = "GWSlider";
 		set_name(NameGen.instance().getNext("cool_slider"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
-		_0024_width = 100;
+		_0130_width = 100;
 		height_show = height_edit = false;
-		_0025_height = 40;
+		_0131_height = 40;
 	}
 
 	/**
@@ -34,30 +34,30 @@ public class DWSlider extends DSliderFloat {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GWSLIDER, _0005_name, "this", _0030_skin,
-				_0020_x, _0021_y, _0024_width);
-		s += Messages.build(SET_F_LIMITS,_0005_name, _0040_value, _0041_min, _0042_max);
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		s = Messages.build(CTOR_GWSLIDER, _0010_name, "this", _0620_skin,
+				_0120_x, _0121_y, _0130_width);
+		s += Messages.build(SET_F_LIMITS,_0010_name, _0630_value, _0631_min, _0632_max);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
-		int cx = _0024_width/2;
-		int cy = _0025_height/2;
+		int cx = _0130_width/2;
+		int cy = _0131_height/2;
 		
 		g.setColor(csdrBack);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(csdrBorder);
-		g.drawRect(0, 0, _0024_width, _0025_height);
+		g.drawRect(0, 0, _0130_width, _0131_height);
 		
 		g.setColor(csdrSlideBack);
-		g.fillRect(0, (_0025_height - 6)/2, _0024_width, 6);
+		g.fillRect(0, (_0131_height - 6)/2, _0130_width, 6);
 		g.setColor(csdrSlideBorder);
-		g.drawRect(0, (_0025_height - 6)/2, _0024_width, 6);
+		g.drawRect(0, (_0131_height - 6)/2, _0130_width, 6);
 		
 		
 		g.setColor(csdrThumb);
@@ -74,8 +74,8 @@ public class DWSlider extends DSliderFloat {
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0005_name);
-		NameGen.instance().add(_0101_eventHandler);
+		NameGen.instance().add(_0010_name);
+		NameGen.instance().add(_0701_eventHandler);
 		IdGen.instance().add(id[0]);
 		skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	}

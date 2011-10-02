@@ -140,7 +140,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	public Dimension getSketchSizeFromDesigner() {
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
 		DBase t0 = (DBase) ((DefaultMutableTreeNode) m.getRoot()).getFirstChild();	
-		return new Dimension(t0._0024_width, t0._0025_height);
+		return new Dimension(t0._0130_width, t0._0131_height);
 	}
 
 	/**
@@ -181,10 +181,10 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			DBase window = getGuiContainerFor(selected);
 			DBase opg = getOptionGroupFor(selected);
 			if(window != null && opg != null){
-				comp._0020_x = (window._0024_width - comp._0024_width)/ 2;
-				comp._0021_y = (window._0025_height - comp._0025_height)/ 2;
+				comp._0120_x = (window._0130_width - comp._0130_width)/ 2;
+				comp._0121_y = (window._0131_height - comp._0131_height)/ 2;
 				if(opg.getChildCount() == 0)
-					((DOption)comp)._0050_selected = true;
+					((DOption)comp)._0685_selected = true;
 				m.insertNodeInto(comp, opg, opg.getChildCount());
 				setSelectedComponent(comp);
 			}
@@ -196,8 +196,8 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			DBase selected = (DBase) getLastSelectedPathComponent();
 			DBase window = getGuiContainerFor(selected);
 			if(window != null){
-				comp._0020_x = (window._0024_width - comp._0024_width)/ 2;
-				comp._0021_y = (window._0025_height - comp._0025_height)/ 2;
+				comp._0120_x = (window._0130_width - comp._0130_width)/ 2;
+				comp._0121_y = (window._0131_height - comp._0131_height)/ 2;
 				m.insertNodeInto(comp, window, window.getChildCount());
 				setSelectedComponent(comp);
 			}
@@ -235,7 +235,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
 	private void undoComponent(DBase comp){
 		NameGen.instance().remove(comp.get_name());			
-		NameGen.instance().remove(comp._0101_eventHandler);
+		NameGen.instance().remove(comp._0701_eventHandler);
 		for(int i = 0; i < comp.id.length; i++)
 			IdGen.instance().remove(comp.id[i]);							///
 	}

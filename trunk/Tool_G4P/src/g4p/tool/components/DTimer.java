@@ -8,21 +8,21 @@ import g4p.tool.gui.propertygrid.Validator;
 @SuppressWarnings("serial")
 public class DTimer extends DBase {
 
-	public int 			_0075_interval = 20;
+	public int 			_0692_interval = 20;
 	public String 		interval_label = "Interval (ms)";
 	public String 		interval_tooltip = ">=1 millseconds";
 	public Boolean 		interval_edit = true;
 	public Boolean 		interval_show = true;
 	public Validator 	interval_validator = Validator.getValidator(int.class, 1, 999999);
 
-	public Boolean 		_0077_timer_starts  = false;
+	public Boolean 		_0693_timer_starts  = false;
 	public String 		timer_starts_label = "Start when created";
 	public String 		timer_starts_tooltip = "false - will need to be started in your program";
 	public Boolean 		timer_starts_edit = true;
 	public Boolean 		timer_starts_show = true;
 	public String 		timer_starts_updater = "updateTimerStart";
 
-	public int 			_0078_repeats = 1;
+	public int 			_0694_repeats = 1;
 	public String 		repeats_label = "Number of repeats";
 	public String 		repeats_tooltip = "=0 repeat forever";
 	public Boolean 		repeats_edit = true;
@@ -51,7 +51,7 @@ public class DTimer extends DBase {
 	 * @return
 	 */
 	protected String get_event_header(){
-		return Messages.build(METHOD_START_0, _0101_eventHandler, _0005_name, id[0].toString()).replace('[', '{');
+		return Messages.build(METHOD_START_0, _0701_eventHandler, _0010_name, id[0].toString()).replace('[', '{');
 	}
 
 	/**
@@ -60,12 +60,12 @@ public class DTimer extends DBase {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GTIMER, _0005_name, "this", "this", _0101_eventHandler, _0075_interval);
-		if(_0077_timer_starts){
-			if(_0078_repeats <= 0)
-				s += Messages.build(START_TIMER_0,_0005_name);
+		s = Messages.build(CTOR_GTIMER, _0010_name, "this", "this", _0701_eventHandler, _0692_interval);
+		if(_0693_timer_starts){
+			if(_0694_repeats <= 0)
+				s += Messages.build(START_TIMER_0,_0010_name);
 			else
-				s += Messages.build(START_TIMER_1,_0005_name, _0078_repeats);
+				s += Messages.build(START_TIMER_1,_0010_name, _0694_repeats);
 		}	
 		
 		return s;
@@ -73,7 +73,7 @@ public class DTimer extends DBase {
 
 	public void updateTimerStart(){
 		System.out.println("update timer start done  ");
-		repeats_show = _0077_timer_starts;
+		repeats_show = _0693_timer_starts;
 		propertyModel.createProperties(this);
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}

@@ -17,44 +17,44 @@ public final class DWindow extends DBase {
 
 	public boolean 		mainSketch = false;
 	
-	public String 		_0010_title = "";
+	public String 		_0015_title = "";
 	public String 		title_label = "Title text";
 	
-	public String 		_0011_renderer = "JAVA2D";
+	public String 		_0021_renderer = "JAVA2D";
 	public String 		renderer_label = "Renderer";
 	transient public EditorBase renderer_editor = new EditorJComboBox(RENDERER);
 	public Boolean 		renderer_edit = false;
 	public Boolean 		renderer_show = false;
 
 	
-	public int 			_0014_Display_scale = 100;
+	public int 			_0025_Display_scale = 100;
 	public String		Display_scale_label = "Scale (%)";
 	public Boolean 		Display_scale_edit = true;
 	public Boolean 		Display_scale_show = true;
 	public Validator 	Display_scale_validator = Validator.getValidator(int.class, 10, 300);
 	
-	public String 		_0060_wdraw = "";
+	public String 		_0750_wdraw = "";
 	public String 		wdraw_label = "Draw method";
 	public String 		wdraw_tooltip = "The draw() method for this window";
 	public Boolean 		wdraw_edit = true;
 	public Boolean 		wdraw_show = true;
 	public Validator 	wdraw_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0062_wmouse = "";
+	public String 		_0751_wmouse = "";
 	public String 		wmouse_label = "Mouse method";
 	public String 		wmouse_tooltip = "The mouseEvent() method for this window";
 	public Boolean 		wmouse_edit = true;
 	public Boolean 		wmouse_show = true;
 	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0064_wpre = "";
+	public String 		_0752_wpre = "";
 	public String 		wpre_label = "Pre method";
 	public String 		wpre_tooltip = "The pre() method for this window";
 	public Boolean 		wpre_edit = true;
 	public Boolean 		wpre_show = true;
 	public Validator 	wpre_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0066_wpost = "";
+	public String 		_0753_wpost = "";
 	public String 		wpost_label = "Post method";
 	public String 		wpost_tooltip = "The post() method for this window";
 	public Boolean 		wpost_edit = true;
@@ -80,11 +80,11 @@ public final class DWindow extends DBase {
 		this.mainSketch = mainSketch;
 		
 		if(mainSketch){
-			_0005_name = "Main window";
+			_0010_name = "Main window";
 			name_label = "SKETCH";
-			_0024_width = 480;
-			_0025_height = 320;
-			_0010_title = "My sketch title";
+			_0130_width = 480;
+			_0131_height = 320;
+			_0015_title = "My sketch title";
 			wdraw_edit = wdraw_show = false;
 			wmouse_edit = wmouse_show = false;
 			wpre_edit = wpre_show = false;
@@ -96,13 +96,13 @@ public final class DWindow extends DBase {
 			name_edit = true;
 			x_edit = y_edit = true;
 			x_show = y_show = true;	
-			_0024_width = 240;
-			_0025_height = 120;
+			_0130_width = 240;
+			_0131_height = 120;
 			
-			_0010_title = "My window title";
+			_0015_title = "My window title";
 			renderer_edit = renderer_show = true;
 		}
-		_0010_title = "Frame title text";
+		_0015_title = "Frame title text";
 		width_edit = height_edit = true;
 		width_show = height_show = true;
 	}
@@ -110,20 +110,20 @@ public final class DWindow extends DBase {
 	protected String get_event_definition(){
 		StringBuilder sb = new StringBuilder();
 		
-		if(_0060_wdraw.length() > 0){
-			sb.append(Messages.build(WIN_DRAW, _0060_wdraw, _0005_name, id[0].toString()).replace('[', '{'));  // event header
+		if(_0750_wdraw.length() > 0){
+			sb.append(Messages.build(WIN_DRAW, _0750_wdraw, _0010_name, id[0].toString()).replace('[', '{'));  // event header
 			sb.append(get_event_code(0) + get_event_end(0));
 		}
-		if(_0062_wmouse.length() > 0){
-			sb.append(Messages.build(WIN_MOUSE, _0062_wmouse, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+		if(_0751_wmouse.length() > 0){
+			sb.append(Messages.build(WIN_MOUSE, _0751_wmouse, _0010_name, id[1].toString()).replace('[', '{'));  // event header
 			sb.append(get_event_code(1) + get_event_end(1));
 		}
-		if(_0064_wpre.length() > 0){
-			sb.append(Messages.build(WIN_PRE, _0064_wpre, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+		if(_0752_wpre.length() > 0){
+			sb.append(Messages.build(WIN_PRE, _0752_wpre, _0010_name, id[1].toString()).replace('[', '{'));  // event header
 			sb.append(get_event_code(2) + get_event_end(2));
 		}
-		if(_0066_wpost.length() > 0){
-			sb.append(Messages.build(WIN_POST, _0066_wpost, _0005_name, id[1].toString()).replace('[', '{'));  // event header
+		if(_0753_wpost.length() > 0){
+			sb.append(Messages.build(WIN_POST, _0753_wpost, _0010_name, id[1].toString()).replace('[', '{'));  // event header
 			sb.append(get_event_code(3) + get_event_end(3));
 		}
 		return new String(sb);
@@ -142,13 +142,13 @@ public final class DWindow extends DBase {
 				ev_code = CODE_GWINDOW_DRAW;
 				break;
 			case 1:
-				ev_code = Messages.build(CODE_GWINDOW_MOUSE, _0005_name);
+				ev_code = Messages.build(CODE_GWINDOW_MOUSE, _0010_name);
 				break;
 			case 2:
-				ev_code = Messages.build(CODE_GWINDOW_PEE, _0005_name);
+				ev_code = Messages.build(CODE_GWINDOW_PEE, _0010_name);
 				break;
 			case 3:
-				ev_code = Messages.build(CODE_GWINDOW_POST, _0005_name);
+				ev_code = Messages.build(CODE_GWINDOW_POST, _0010_name);
 				break;
 			}
 		}
@@ -162,7 +162,7 @@ public final class DWindow extends DBase {
 		if(mainSketch)
 			return null;
 		else
-			return componentClass + " " + _0005_name+ ";\n";
+			return componentClass + " " + _0010_name+ ";\n";
 	}
 
 	/**
@@ -174,18 +174,18 @@ public final class DWindow extends DBase {
 			return null;
 		else {
 			StringBuilder sb = new StringBuilder();
-			sb.append(Messages.build(CTOR_WINDOW_1, _0005_name, "this", _0010_title, _0020_x, _0021_y, _0024_width, _0025_height, false, _0011_renderer));
-			if(_0060_wdraw.length() > 0){
-				sb.append(Messages.build(ADD_DRAW_HANDLER, _0005_name, "this", _0060_wdraw));
+			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0015_title, _0120_x, _0121_y, _0130_width, _0131_height, false, _0021_renderer));
+			if(_0750_wdraw.length() > 0){
+				sb.append(Messages.build(ADD_DRAW_HANDLER, _0010_name, "this", _0750_wdraw));
 			}
-			if(_0062_wmouse.length() > 0){
-				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0005_name, "this", _0062_wmouse));
+			if(_0751_wmouse.length() > 0){
+				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0010_name, "this", _0751_wmouse));
 			}
-			if(_0064_wpre.length() > 0){
-				sb.append(Messages.build(ADD_PRE_HANDLER, _0005_name, "this", _0064_wpre));
+			if(_0752_wpre.length() > 0){
+				sb.append(Messages.build(ADD_PRE_HANDLER, _0010_name, "this", _0752_wpre));
 			}
-			if(_0066_wpost.length() > 0){
-				sb.append(Messages.build(ADD_POST_HANDLER, _0005_name, "this", _0066_wpost));
+			if(_0753_wpost.length() > 0){
+				sb.append(Messages.build(ADD_POST_HANDLER, _0010_name, "this", _0753_wpost));
 			}
 			return new String(sb);
 		}
@@ -212,7 +212,7 @@ public final class DWindow extends DBase {
 				while(e.hasMoreElements()){
 					comp = (DBase)e.nextElement();
 					if( !(comp instanceof DOptionGroup) )	{
-						lines.add(Messages.build(ADD_A_CHILD, _0005_name, comp._0005_name));
+						lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
 					}
 				}
 			}
@@ -223,7 +223,7 @@ public final class DWindow extends DBase {
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0010_name);
 		for(int i = 0; i < id.length; i++)
 			IdGen.instance().add(id[i]);
 		renderer_editor = new EditorJComboBox(RENDERER);
@@ -237,9 +237,9 @@ public final class DWindow extends DBase {
 		
 		g.setStroke(stdStroke);
 		g.setColor(winBack);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(greenEdge);
-		g.drawRect(0, 0, _0024_width, _0025_height);
+		g.drawRect(0, 0, _0130_width, _0131_height);
 		if(this == selected)
 			drawSelector(g);
 		

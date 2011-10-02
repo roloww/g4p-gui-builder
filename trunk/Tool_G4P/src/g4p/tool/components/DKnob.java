@@ -50,18 +50,18 @@ public class DKnob extends DSliderFloat {
 		componentClass = "GKnob";
 		set_name(NameGen.instance().getNext("knob"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Turn"));
-		_0024_width = 40;
-		_0025_height = 40;
+		_0130_width = 40;
+		_0131_height = 40;
 	}
 
 	/**
 	 * Get the declaration for this control
 	 */
 	protected String get_declaration(){
-		if(_0024_width == _0025_height)
-			return "GKnob " + _0005_name+ ";\n ";
+		if(_0130_width == _0131_height)
+			return "GKnob " + _0010_name+ ";\n ";
 		else
-			return "GKnobOval " + _0005_name+ ";\n ";			
+			return "GKnobOval " + _0010_name+ ";\n ";			
 	}
 
 	/**
@@ -69,12 +69,12 @@ public class DKnob extends DSliderFloat {
 	 * @return
 	 */
 	protected String get_event_header(){
-		if(_0024_width == _0025_height)
-			return Messages.build(METHOD_START_1, _0101_eventHandler, "GKnob", "knob", 
-					_0005_name, id[0].toString()).replace('[', '{');
+		if(_0130_width == _0131_height)
+			return Messages.build(METHOD_START_1, _0701_eventHandler, "GKnob", "knob", 
+					_0010_name, id[0].toString()).replace('[', '{');
 		else
-			return Messages.build(METHOD_START_1, _0101_eventHandler, "GKnobOval", "knob", 
-					_0005_name, id[0].toString()).replace('[', '{');
+			return Messages.build(METHOD_START_1, _0701_eventHandler, "GKnobOval", "knob", 
+					_0010_name, id[0].toString()).replace('[', '{');
 	}
 
 	/**
@@ -83,15 +83,15 @@ public class DKnob extends DSliderFloat {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		if(_0024_width == _0025_height)
-			s = Messages.build(CTOR_GKNOB, _0005_name, "this", _0020_x, _0021_y, _0024_width, _0032_dial_start_angle, _0033_dial_end_angle);
+		if(_0130_width == _0131_height)
+			s = Messages.build(CTOR_GKNOB, _0010_name, "this", _0120_x, _0121_y, _0130_width, _0032_dial_start_angle, _0033_dial_end_angle);
 		else
-			s = Messages.build(CTOR_GKNOBOVAL, _0005_name, "this", _0020_x, _0021_y,_0024_width, _0025_height, _0032_dial_start_angle, _0033_dial_end_angle);
-		s += Messages.build(SET_F_LIMITS,_0005_name, _0040_value, _0041_min, _0042_max);
-		s += Messages.build(SET_ARC_ONLY,_0005_name, _0035_arc_only);
-		s += Messages.build(SET_NBR_TICKS,_0005_name, _0037_ticks);
-		s += Messages.build(SET_CONTROLLER,_0005_name, _0038_controller);
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+			s = Messages.build(CTOR_GKNOBOVAL, _0010_name, "this", _0120_x, _0121_y,_0130_width, _0131_height, _0032_dial_start_angle, _0033_dial_end_angle);
+		s += Messages.build(SET_F_LIMITS,_0010_name, _0630_value, _0631_min, _0632_max);
+		s += Messages.build(SET_ARC_ONLY,_0010_name, _0035_arc_only);
+		s += Messages.build(SET_NBR_TICKS,_0010_name, _0037_ticks);
+		s += Messages.build(SET_CONTROLLER,_0010_name, _0038_controller);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
@@ -99,27 +99,27 @@ public class DKnob extends DSliderFloat {
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
 		controller_editor = new EditorJComboBox(KNOB_CTRL);
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 
 		g.setColor(knbBezel);
-		g.fillOval(0, 0, _0024_width, _0025_height);
-		int ox = Math.round(0.16f * _0024_width);
-		int oy = Math.round(0.16f * _0025_height);
+		g.fillOval(0, 0, _0130_width, _0131_height);
+		int ox = Math.round(0.16f * _0130_width);
+		int oy = Math.round(0.16f * _0131_height);
 		g.setColor(knbBack);
-		g.fillOval(ox, oy, _0024_width - 2*ox, _0025_height - 2*oy);
+		g.fillOval(ox, oy, _0130_width - 2*ox, _0131_height - 2*oy);
 		g.setColor(knbNeedle);
 		g.setStroke(needleStroke);
-		g.drawLine(_0024_width/2, _0025_height/2, 
-				_0024_width/2 + Math.round(0.3535f*_0024_width),
-				_0025_height/2 + Math.round(0.3535f*_0025_height));
+		g.drawLine(_0130_width/2, _0131_height/2, 
+				_0130_width/2 + Math.round(0.3535f*_0130_width),
+				_0131_height/2 + Math.round(0.3535f*_0131_height));
 		if(this == selected)
 			drawSelector(g);
 		g.setTransform(paf);

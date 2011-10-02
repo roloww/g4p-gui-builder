@@ -13,9 +13,9 @@ public class DLabel extends DCoreText {
 		super();
 		componentClass = "GLabel";
 		set_name(NameGen.instance().getNext("label"));
-		_0024_width = 80;
-		_0025_height = 20;
-		_0015_text = "My label";
+		_0130_width = 80;
+		_0131_height = 20;
+		_0020_text = "My label";
 		eventHandler_edit = eventHandler_show = false;
 	}
 	
@@ -33,23 +33,23 @@ public class DLabel extends DCoreText {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GLABEL, _0005_name, "this", 
-				_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+		s = Messages.build(CTOR_GLABEL, _0010_name, "this", 
+				_0020_text, _0120_x, _0121_y, _0130_width, _0131_height);
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
 		g.setColor(lblBack);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(blackEdge);
-		g.drawRect(0, 0, _0024_width, _0025_height);
+		g.drawRect(0, 0, _0130_width, _0131_height);
 		
-		g.drawString(this._0005_name, 4, _0025_height/2 +4 );
+		g.drawString(this._0010_name, 4, _0131_height/2 +4 );
 
 		if(this == selected)
 			drawSelector(g);

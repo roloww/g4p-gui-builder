@@ -104,8 +104,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void setSketchSize(Dimension size){
 		if(size != null){
 			DBase m = (DBase) tree.getRoot().getChildAt(0);
-			m._0024_width = size.width;
-			m._0025_height = size.height;
+			m._0130_width = size.width;
+			m._0131_height = size.height;
 		}
 	}
 
@@ -347,8 +347,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		CtrlSketchModel m = null;
 		DApplication app = new DApplication();
 		DWindow win1 = new DWindow(true);
-		win1._0024_width = 480;
-		win1._0025_height = 320;
+		win1._0130_width = 480;
+		win1._0131_height = 320;
 		app.add(win1);
 		m = new CtrlSketchModel(app);
 		return m;

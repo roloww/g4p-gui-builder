@@ -19,19 +19,19 @@ public class DButton extends DCoreText {
 	transient protected RectangularShape face;
 	transient float mitre = 6.0f;
 
-	public Boolean 		_0017_icon  = false;
+	public Boolean 		_0031_icon  = false;
 	public Boolean 		icon_edit = true;
 	public Boolean 		icon_show = true;
 	public String 		icon_updater = "updateIconUsage";
 	public String 		icon_label = "Icon?";
 
-	public int	 		_0018_nbr_images = 3;
+	public int	 		_0032_nbr_images = 3;
 	public Boolean 		nbr_images_edit = true;
 	public Boolean 		nbr_images_show = false;
 	public String 		nbr_images_label = "No. of frames in icon";
 	public Validator 	nbr_images_validator = Validator.getValidator(int.class, 1, 3);
 
-	public String 		_0019_filename = "";
+	public String 		_0033_filename = "";
 	public Boolean 		filename_edit = true;
 	public Boolean 		filename_show = false;
 	public String 		filename_label = "Image filename";
@@ -42,25 +42,25 @@ public class DButton extends DCoreText {
 		componentClass = "GButton";
 		set_name(NameGen.instance().getNext("button"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
-		_0015_text = "Button face text";
-		_0024_width = 80;
-		_0025_height = 20;
+		_0020_text = "Button face text";
+		_0130_width = 80;
+		_0131_height = 20;
 		text_tooltip = "text to show on button";
-		face = new RoundRectangle2D.Float(0, 0, _0024_width, _0025_height, mitre, mitre);
+		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 
-		((RoundRectangle2D) face).setRoundRect(0, 0, _0024_width, _0025_height, mitre, mitre);	
+		((RoundRectangle2D) face).setRoundRect(0, 0, _0130_width, _0131_height, mitre, mitre);	
 		g.setStroke(stdStroke);
 		g.setColor(btnBack);
 		g.fill(face);			
 		g.setColor(blackEdge);
 		g.draw(face);
-		g.drawString(this._0005_name, 6, _0025_height/2 +4 );
+		g.drawString(this._0010_name, 6, _0131_height/2 +4 );
 		if(this == selected)
 			drawSelector(g);
 
@@ -72,34 +72,49 @@ public class DButton extends DCoreText {
 	 * @return
 	 */
 	protected String get_creator(DBase parent){
-		// 1 = text used  : 2 = icon used  :  4 = filename provided
-		int mode = (_0015_text.length() > 0) ? 1 : 0;
-		mode += (_0019_filename.length() > 0) ? 2 : 0;
-		mode += (_0017_icon == true) ? 4 : 0;
-		// Text only     1, 3, 5 (0, 2, 4= no icon and empty text
-		// Icon  only    6
-		// Text & icon	 7
 		String s = "";
-		switch(mode){
-		case 6:
-			s = Messages.build(CTOR_GBUTTON_2, _0005_name, "this", 
-					_0019_filename, _0018_nbr_images, _0020_x, _0021_y, _0024_width, _0025_height);
+		switch(getMode()){
+		case 1:
+			s = Messages.build(CTOR_GBUTTON_1, _0010_name, "this",
+					_0020_text, _0120_x, _0121_y, _0130_width, _0131_height);
 			break;
-		case 7:
-			s = Messages.build(CTOR_GBUTTON_2, _0005_name, "this", 
-					_0019_filename, _0018_nbr_images, _0020_x, _0021_y, _0024_width, _0025_height);
+		case 2:
+			s = Messages.build(CTOR_GBUTTON_2, _0010_name, "this", 
+					_0033_filename, _0032_nbr_images, _0120_x, _0121_y, _0130_width, _0131_height);
 			break;
-		default:
-			s = Messages.build(CTOR_GBUTTON_3, _0005_name, "this", _0015_text,
-					_0015_text, _0020_x, _0021_y, _0024_width, _0025_height);
+		case 3:
+			s = Messages.build(CTOR_GBUTTON_3, _0010_name, "this",  _0020_text,
+					_0033_filename, _0032_nbr_images, _0120_x, _0121_y, _0130_width, _0131_height);
 			break;
 		}
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 	
+	private int getMode(){
+		// 1 = text used  : 2 = icon used  :  4 = filename provided
+		int test = (_0020_text.length() > 0) ? 1 : 0;
+		test += (_0033_filename.length() > 0) ? 2 : 0;
+		test += (_0031_icon == true) ? 4 : 0;
+		// Text only     1, 3, 5 (0, 2, 4= no icon and empty text
+		// Icon  only    6
+		// Text & icon	 7
+		int mode;
+		switch(test){
+		case 6:
+			mode = 2;
+			break;
+		case 7:
+			mode = 3;
+			break;
+		default:
+			mode = 1;
+		}
+		return mode;
+	}
+	
 	public void updateIconUsage(){
-		nbr_images_show = filename_show = _0017_icon;
+		nbr_images_show = filename_show = _0031_icon;
 		propertyModel.createProperties(this);
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
@@ -108,10 +123,10 @@ public class DButton extends DCoreText {
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0005_name);
+		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
 		filename_editor = new EditorJFileChooser();
 		mitre = 6.0f;
-		face = new RoundRectangle2D.Float(0, 0, _0024_width, _0025_height, mitre, mitre);
+		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}
 }

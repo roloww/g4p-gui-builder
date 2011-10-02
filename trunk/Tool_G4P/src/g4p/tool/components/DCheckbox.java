@@ -15,7 +15,7 @@ public class DCheckbox extends DCoreSelectable{
 		text_label = "Checkbox display text";
 		set_name(NameGen.instance().getNext("checkbox"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
-		_0015_text = "Checkbox text";
+		_0020_text = "Checkbox text";
 	}
 
 	/**
@@ -24,33 +24,33 @@ public class DCheckbox extends DCoreSelectable{
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GCHECKBOX, _0005_name, "this", 
-				_0015_text, _0020_x, _0021_y, _0024_width);
-		if(_0050_selected)
-			s += Messages.build(SEL_OPTION, _0005_name, "true");
-		s += Messages.build(ADD_HANDLER, _0005_name, "this", _0101_eventHandler);		
+		s = Messages.build(CTOR_GCHECKBOX, _0010_name, "this", 
+				_0020_text, _0120_x, _0121_y, _0130_width);
+		if(_0685_selected)
+			s += Messages.build(SEL_OPTION, _0010_name, "true");
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);		
 		return s;
 	}
 
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0020_x, _0021_y);
+		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
 		g.setColor(cboxBack);
-		g.fillRect(0, 0, _0024_width, _0025_height);
+		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(cboxEdge);
-		g.drawRect(0, 0, _0024_width, _0025_height);
+		g.drawRect(0, 0, _0130_width, _0131_height);
 		
 		g.setColor(cboxFill);
-		int markLeft = 2, markTop = (_0025_height - BOXSIZE)/2;
+		int markLeft = 2, markTop = (_0131_height - BOXSIZE)/2;
 		g.fillRect(markLeft, markTop, BOXSIZE, BOXSIZE);
 		g.setColor(blackEdge);
 		g.drawRect(markLeft, markTop, BOXSIZE, BOXSIZE);
 
-		if(_0050_selected){
+		if(_0685_selected){
 			g.setColor(optDot);
 			g.setStroke(needleStroke);
 			int markBottom = markTop + BOXSIZE;
@@ -61,7 +61,7 @@ public class DCheckbox extends DCoreSelectable{
 		
 		g.setColor(blackEdge);
 		
-		g.drawString(_0005_name, 20, _0025_height/2 +4 );
+		g.drawString(_0010_name, 20, _0131_height/2 +4 );
 
 		if(this == selected)
 			drawSelector(g);
