@@ -33,7 +33,10 @@ import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -52,7 +55,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private static GuiDesigner instance = null;
 	private static Editor editor = null;
-
+	private static FontMetrics metrics = null;
+	
 	private static boolean stayOpen = false;
 	private static boolean autoHide = false;
 	
@@ -62,6 +66,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 	
 	public static Editor editor(){
 		return editor;
+	}
+	
+	public static FontMetrics metrics(){
+		return metrics;
 	}
 	
 	public static void keepOpen(boolean mode){
@@ -125,8 +133,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 		editor = theEditor;
 		initComponents();
 		initCustomComponents();
+		metrics = tabWindows.getGraphics().getFontMetrics();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
+		
 		Dimension size = guiControl.getSketchSizeFromCode();
 		if(size == null){
 			final String message =

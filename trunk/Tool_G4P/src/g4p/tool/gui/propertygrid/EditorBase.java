@@ -12,4 +12,6 @@ public abstract class EditorBase extends AbstractCellEditor implements TableCell
 	// Validation object 
 	public Validator validator = null;
 	
+	public void setSelected(Object value) {}
+	
 }

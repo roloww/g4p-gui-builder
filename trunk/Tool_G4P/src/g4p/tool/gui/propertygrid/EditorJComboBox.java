@@ -17,6 +17,7 @@ public class EditorJComboBox extends EditorBase {
 	protected JTable table = null;;
 	protected int row, column;
 	
+	
 	public EditorJComboBox(int type){
 		validator = Validator.getValidator(type);
 		if(component == null){
@@ -35,6 +36,7 @@ public class EditorJComboBox extends EditorBase {
 //			});
 		}
 	}
+
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
@@ -65,6 +67,10 @@ public class EditorJComboBox extends EditorBase {
 	@Override
 	public Object getCellEditorValue() {
 		return component.getSelectedItem().toString();
+	}
+
+	public void setSelected(Object value) {
+		component.setSelectedItem(value.toString());
 	}
 
 }

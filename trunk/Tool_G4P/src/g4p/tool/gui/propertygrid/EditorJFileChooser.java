@@ -21,6 +21,7 @@ import javax.swing.filechooser.FileFilter;
 import processing.app.Base;
 import processing.app.Editor;
 
+@SuppressWarnings("serial")
 public class EditorJFileChooser extends EditorBase {
 
 	protected static JFileChooser chooser = null;

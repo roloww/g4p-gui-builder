@@ -125,7 +125,7 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	@Override
 	public void modelHasBeenChanged() {
-		((CtrlPropModel)getModel()).modelChangedInGUI();
+		((CtrlPropModel)getModel()).hasBeenChanged();
 	}
 
 	public void updateProperty(Object value, int row, int col){

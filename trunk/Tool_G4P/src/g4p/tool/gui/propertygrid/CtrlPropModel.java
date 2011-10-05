@@ -81,8 +81,8 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 		return (col > 0) ? propData[row].allowEdit : false; 
 	}
 
-	public void modelChangedInGUI(){
-		this.fireTableChanged(new TableModelEvent(this));
+	public void hasBeenChanged(){
+		fireTableChanged(new TableModelEvent(this));
 	}
 
 }

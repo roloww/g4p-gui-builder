@@ -384,6 +384,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return propertyModel;
 	}
 
+	/**
+	 * Will return null if no image
+	 * @param filename
+	 * @return
+	 */
 	public BufferedImage getImageFromDataFolder(String filename){
 		BufferedImage img = null;
 		Editor ed = GuiDesigner.editor();
@@ -392,6 +397,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 			img = ImageIO.read(f);
 		} 
 		catch (IOException e) {
+			img = null;
 		}
 		return img;
 	}
@@ -400,4 +406,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return _0130_width * _0131_height;
 	}
 	
+	public void updatedInGUI(){
+		
+	}
 }

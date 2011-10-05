@@ -45,6 +45,7 @@ public interface TGuiConstants {
     public final Color lblBack 			= new Color(255,255,255,60);
     
     public final Color txfBack 			= Color.white;
+    public final Color txfFore 			= Color.cyan;
     
     public final Color knbBezel 		= new Color(60,60,128,40);
     public final Color knbBack 			= pnlBackOpaque;
