@@ -245,6 +245,8 @@ public class DButton extends DCoreText {
 					_0037_filename, _0036_nbr_images, _0120_x, _0121_y, _0130_width, _0131_height);
 			break;
 		}
+		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0031_xtAlignment, _0032_ytAlignment);
+		s += Messages.build(BTN_ICON_ALIGN, _0010_name, _0038_imgAlignment);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}

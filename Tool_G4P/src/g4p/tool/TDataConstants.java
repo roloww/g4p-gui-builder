@@ -79,11 +79,13 @@ public interface TDataConstants {
 	public final String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
 	
 	//		GImageButton(PApplet theApplet, String maskFile, String imgFile, int nbrImages, int x, int y)
-	public final String CTOR_IMG_BUTTON_1	= "  {0} = new GImageButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6});\n";
+	public final String CTOR_IMG_BUTTON_1	= 	"  {0} = new GImageButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6});\n";
 	
 	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
-	public final String CTOR_IMG_BUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5});\n";
+	public final String CTOR_IMG_BUTTON_2	=	"  {0} = new GImageButton({1}, \"{2}\", \"{3}\", {4}, {5});\n";
 
+	public final String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
+	public final String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
 	
 	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width)
 	public final String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
