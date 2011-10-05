@@ -138,6 +138,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 
 	@Override
 	public void componentChangedInGUI(DBase comp) {
+		comp.updatedInGUI();
 		props.modelHasBeenChanged();
 	}
 

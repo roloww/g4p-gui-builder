@@ -35,6 +35,8 @@ public class ListGen implements TDataConstants {
 		makeGWSliderSkinSelection(SLIDER_SKIN);
 		makeRendererSelection(RENDERER);
 		makeKnobControllerSelection(KNOB_CTRL);
+		makeHorzAlignSelection(H_ALIGN);
+		makeVertAlignSelection(V_ALIGN);
 	}
 	
 	private void makeRendererSelection(int type) {
@@ -63,6 +65,16 @@ public class ListGen implements TDataConstants {
 	
 	private void makeKnobControllerSelection(int type){
 		String[] s = new String[] { "ANGULAR", "HORIZONTAL", "VERTICAL" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
+
+	private void makeHorzAlignSelection(int type){
+		String[] s = new String[] { "LEFT", "CENTER", "RIGHT" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
+
+	private void makeVertAlignSelection(int type){
+		String[] s = new String[] { "TOP", "MIDDLE", "BOTTOM" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 

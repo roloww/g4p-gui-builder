@@ -1,7 +1,5 @@
 package g4p.tool;
 
-import processing.core.PApplet;
-
 
 public interface TDataConstants {
 
@@ -13,6 +11,8 @@ public interface TDataConstants {
 	public final int SLIDER_SKIN 		=	0x00000024;
 	public final int RENDERER	 		=	0x00000025;
 	public final int KNOB_CTRL	 		=	0x00000026;
+	public final int H_ALIGN	 		=	0x00000027;
+	public final int V_ALIGN	 		=	0x00000028;
 
 	public final int VALID				=	0x00000030;
 	public final int INVALID_LENGTH		=	0x00000031;
