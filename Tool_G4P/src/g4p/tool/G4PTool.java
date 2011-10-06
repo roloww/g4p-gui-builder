@@ -56,8 +56,17 @@ public class G4PTool implements Tool, TFileConstants {
 	 * Get version string of this tool
 	 * @return revision number string
 	 */
-	public String getVersion(){
+	public static String getVersion(){
 		return "##version##";
+	}
+	
+	/**
+	 * Get compatible version string of this tool
+	 * @return revision number string
+	 */
+	public static String getCompatibleVersionNo(){
+		String n[] = "##version##".split("[\\.]");
+		return n[0] + "." + n[1];
 	}
 	
 	/**
@@ -68,7 +77,7 @@ public class G4PTool implements Tool, TFileConstants {
 	 * i = internal revision <br>
 	 * @return version number as int
 	 */
-	public int getVersionNo(){
+	public static int getVersionNo(){
 		String n[] = "##version##".split("[\\.]");
 		int[] vnp = new int[3];
 		for(int i = 0; i < n.length; i++){
@@ -120,6 +129,7 @@ public class G4PTool implements Tool, TFileConstants {
 			}
 			dframe = new GuiDesigner(editor);
 			System.out.println("##name## Version ##version## created by ##author##");
+			System.out.println(getCompatibleVersionNo());
 		} 
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
