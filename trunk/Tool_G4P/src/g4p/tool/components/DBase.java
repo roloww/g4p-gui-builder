@@ -21,8 +21,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import processing.app.Editor;
@@ -77,7 +75,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public String 		width_tooltip = "pixels";
 	public Boolean 		width_edit = false;
 	public Boolean 		width_show = false;
-	public Validator 	width_validator = Validator.getValidator(int.class, 10, 999);
+	public Validator 	width_validator = Validator.getValidator(int.class, 10, 9999);
 
 	public int 			_0131_height = 0;
 	public String 		height_label = "Height";

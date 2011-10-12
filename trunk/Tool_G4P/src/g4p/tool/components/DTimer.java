@@ -8,6 +8,13 @@ import g4p.tool.gui.propertygrid.Validator;
 @SuppressWarnings("serial")
 public class DTimer extends DBase {
 
+	public int	 		_0691_initDelay = 20;
+	public String 		initDelay_label = "Interval (ms)";
+	public String 		initDelay_tooltip = ">=1 millseconds";
+	public Boolean 		initDelay_edit = true;
+	public Boolean 		initDelay_show = true;
+	public Validator 	initDelay_validator = Validator.getValidator(int.class, 1, 999999);
+
 	public int 			_0692_interval = 20;
 	public String 		interval_label = "Interval (ms)";
 	public String 		interval_tooltip = ">=1 millseconds";
@@ -60,14 +67,16 @@ public class DTimer extends DBase {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GTIMER, _0010_name, "this", "this", _0701_eventHandler, _0692_interval);
+		s = Messages.build(CTOR_GTIMER, _0010_name, "this", "this", _0701_eventHandler, String.valueOf(_0692_interval));
+		if(_0691_initDelay != _0692_interval){
+			s += Messages.build(INIT_DELAY_TIMER, _0010_name, String.valueOf(_0691_initDelay));			
+		}
 		if(_0693_timer_starts){
 			if(_0694_repeats <= 0)
-				s += Messages.build(START_TIMER_0,_0010_name);
+				s += Messages.build(START_TIMER_0 ,_0010_name);
 			else
-				s += Messages.build(START_TIMER_1,_0010_name, _0694_repeats);
+				s += Messages.build(START_TIMER_1, _0010_name, String.valueOf(_0694_repeats));
 		}	
-		
 		return s;
 	}
 
