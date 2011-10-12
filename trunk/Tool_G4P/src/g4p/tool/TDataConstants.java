@@ -122,6 +122,7 @@ public interface TDataConstants {
 	public final String CTOR_GTIMER			=	"  {0} = new GTimer({1}, {2}, \"{3}\", {4});\n";
 	public final String START_TIMER_0		=	"  {0}.start();\n";
 	public final String START_TIMER_1		=	"  {0}.start({1});\n";
+	public final String INIT_DELAY_TIMER	=	"  {0}.setInitialDelay({1});\n";
 	
 
 	//		GKnob(PApplet theApplet, int x, int y, int size, int arcStart, int arcEnd) {
