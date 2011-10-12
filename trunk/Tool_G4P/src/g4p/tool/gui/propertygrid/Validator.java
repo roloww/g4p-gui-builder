@@ -369,7 +369,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 	 * @author Peter Lager
 	 */
 	static class Validator_Float extends Validator{
-		float min = Float.MIN_VALUE;
+		float min = -Float.MAX_VALUE;
 		float max = Float.MAX_VALUE;
 
 		/**
@@ -419,7 +419,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 	 * @author Peter Lager
 	 */
 	static class Validator_Double extends Validator{
-		double min = Double.MIN_VALUE;
+		double min = -Double.MAX_VALUE;
 		double max = Double.MAX_VALUE;
 
 		/**
