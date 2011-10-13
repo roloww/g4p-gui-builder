@@ -111,19 +111,19 @@ public final class DWindow extends DBase {
 		StringBuilder sb = new StringBuilder();
 		
 		if(_0750_wdraw.length() > 0){
-			sb.append(Messages.build(WIN_DRAW, _0750_wdraw, _0010_name, id[0].toString()).replace('[', '{'));  // event header
+			sb.append(Messages.build(WIN_DRAW, _0750_wdraw, _0010_name, $(id[0])).replace('[', '{'));  // event header
 			sb.append(get_event_code(0) + get_event_end(0));
 		}
 		if(_0751_wmouse.length() > 0){
-			sb.append(Messages.build(WIN_MOUSE, _0751_wmouse, _0010_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(Messages.build(WIN_MOUSE, _0751_wmouse, _0010_name, $(id[1])).replace('[', '{'));  // event header
 			sb.append(get_event_code(1) + get_event_end(1));
 		}
 		if(_0752_wpre.length() > 0){
-			sb.append(Messages.build(WIN_PRE, _0752_wpre, _0010_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(Messages.build(WIN_PRE, _0752_wpre, _0010_name, $(id[2])).replace('[', '{'));  // event header
 			sb.append(get_event_code(2) + get_event_end(2));
 		}
 		if(_0753_wpost.length() > 0){
-			sb.append(Messages.build(WIN_POST, _0753_wpost, _0010_name, id[1].toString()).replace('[', '{'));  // event header
+			sb.append(Messages.build(WIN_POST, _0753_wpost, _0010_name, $(id[3])).replace('[', '{'));  // event header
 			sb.append(get_event_code(3) + get_event_end(3));
 		}
 		return new String(sb);
@@ -174,7 +174,8 @@ public final class DWindow extends DBase {
 			return null;
 		else {
 			StringBuilder sb = new StringBuilder();
-			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0015_title, _0120_x, _0121_y, _0130_width, _0131_height, false, _0021_renderer));
+			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0015_title,
+					$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), false, _0021_renderer));
 			if(_0750_wdraw.length() > 0){
 				sb.append(Messages.build(ADD_DRAW_HANDLER, _0010_name, "this", _0750_wdraw));
 			}

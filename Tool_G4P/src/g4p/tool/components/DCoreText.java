@@ -15,7 +15,6 @@ public class DCoreText extends DCore {
 	
 	public DCoreText(){
 		super();
-//		System.out.println("\tDCoreText() ctor");
 	}
 
 	// Override this method if needed

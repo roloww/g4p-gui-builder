@@ -33,8 +33,8 @@ public class DLabel extends DCoreText {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GLABEL, _0010_name, "this", 
-				_0020_text, _0120_x, _0121_y, _0130_width, _0131_height);
+		s = Messages.build(CTOR_GLABEL, _0010_name, "this", _0020_text,
+				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		return s;
 	}
 
