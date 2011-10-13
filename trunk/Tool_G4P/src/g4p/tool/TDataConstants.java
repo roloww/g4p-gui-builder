@@ -139,7 +139,7 @@ public interface TDataConstants {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Default test code patterns
 	 */
-	public final String TIME 				= 	"+ System.currentTimeMillis()%10000 );\n";
+	public final String TIME 				= 	"+ System.currentTimeMillis()%10000000 );\n";
 	public final String CODE_ANY			=	"  println(\"{0} - {1} event occured \" " + TIME;
 	public final String CODE_TIMER			=	"  println(\"{0} - {1} timer event occured at \" " + TIME;
 	public final String CODE_GBUTTON		=	"  println(\"{0} - button clicked \" " + TIME;
