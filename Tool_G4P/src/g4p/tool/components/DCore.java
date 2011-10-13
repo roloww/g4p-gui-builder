@@ -18,6 +18,8 @@ public class DCore extends DBase {
 		x_show = y_show = true;	
 		width_edit = height_edit = true;
 		width_show = height_show = true;
+		_0130_width = 80;
+		_0131_height = 22;
 		eventHandler_edit = eventHandler_show = true;
 		allowsChildren = false;
 	}

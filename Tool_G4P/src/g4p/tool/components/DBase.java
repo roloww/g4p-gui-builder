@@ -231,7 +231,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return Messages.build(METHOD_START_1, _0701_eventHandler, componentClass, 
 				componentClass.substring(1).toLowerCase(), 
 				_0010_name, $(id[n])).replace('[', '{');
-//				_0010_name, id[n].toString()).replace('[', '{');
 	}
 	
 	protected String get_event_header(){
@@ -247,7 +246,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 			n = 0;
 		return Messages.build(METHOD_END, _0010_name, 
 				$(id[n])).replace(']', '}');
-//				id[n].toString()).replace(']', '}');
 	}
 	
 	protected String get_event_end(){
@@ -307,10 +305,11 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
 		g.drawRect(0, 0,_0130_width, _0131_height);
-
-		drawHandle(g, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2);
-		drawHandle(g, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE);
-		drawHandle(g, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE);	
+		if(resizeable){
+			drawHandle(g, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2);
+			drawHandle(g, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE);
+			drawHandle(g, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE);
+		}
 	}
 
 	protected void drawHandle(Graphics2D g, int x, int y){
@@ -329,12 +328,14 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 				m.selID = OVER_COMP;
 				m.comp = this;
 				m.area = getSize();
-				if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
-					m.selID = OVER_HORZ;
-				else if(isOverRectangle(x,y, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
-					m.selID = OVER_VERT;
-				else if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
-					m.selID = OVER_DIAG;
+				if(resizeable){
+					if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2, HANDLE_SIZE, HANDLE_SIZE))
+						m.selID = OVER_HORZ;
+					else if(isOverRectangle(x,y, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+						m.selID = OVER_VERT;
+					else if(isOverRectangle(x,y, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE, HANDLE_SIZE, HANDLE_SIZE)) 
+						m.selID = OVER_DIAG;
+				}
 			}
 		}
 		if(allowsChildren){

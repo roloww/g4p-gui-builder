@@ -48,7 +48,7 @@ public class DButton extends DCoreText {
 	public int	 		_0036_nbr_images = 3;
 	public Boolean 		nbr_images_edit = true;
 	public Boolean 		nbr_images_show = false;
-	public String 		nbr_images_label = "No. of frames in icon";
+	public String 		nbr_images_label = "Nbr of tiles in icon";
 	public String 		nbr_images_updater = "nbrImagesChanged";
 	public Validator 	nbr_images_validator = Validator.getValidator(int.class, 1, 3);
 
@@ -74,7 +74,7 @@ public class DButton extends DCoreText {
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		_0020_text = "Face text";
 		_0130_width = 80;
-		_0131_height = 20;
+		_0131_height = 30;
 		text_tooltip = "text to show on button";
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 		textWidth = GuiDesigner.metrics().stringWidth(_0020_text);
@@ -266,7 +266,7 @@ public class DButton extends DCoreText {
 		ytAlignment_editor = new EditorJComboBox(V_ALIGN);
 		imgAlignment_editor = new EditorJComboBox(H_ALIGN);
 		if(_0037_filename.length() > 0)
-			getImageFromDataFolder(_0037_filename);
+			icon = getImageFromDataFolder(_0037_filename);
 		mitre = 6.0f;
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}

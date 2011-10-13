@@ -779,7 +779,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnButtonActionPerformed
 
 	private void btnImgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgButtonActionPerformed
-		showWarning("GUI Builder warning", "Image buttons not yet available", null);            
+		guiControl.addComponent(new DImageButton());
 	}//GEN-LAST:event_btnImgButtonActionPerformed
 
 	private void btnLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLabelActionPerformed

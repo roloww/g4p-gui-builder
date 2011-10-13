@@ -31,6 +31,9 @@ public interface TGuiConstants {
 	public final BasicStroke needleStroke 	= new BasicStroke(2.3f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 
+	public final BasicStroke heavyStroke 	= new BasicStroke(2.8f,
+			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
+
 	public final Color blackEdge 		= Color.black;
 	public final Color greenEdge 		= new Color(0,64,0,60);
 
