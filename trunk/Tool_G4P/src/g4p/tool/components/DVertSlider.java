@@ -24,8 +24,8 @@ public class DVertSlider extends DSliderInteger {
 	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GVERTSLIDER, _0010_name, "this", 
-				_0120_x, _0121_y, _0130_width, _0131_height);
-		s += Messages.build(SET_LIMITS,_0010_name, _0630_value, _0631_min, _0632_max);
+				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+		s += Messages.build(SET_LIMITS,_0010_name, $(_0630_value), $(_0631_min), $(_0632_max));
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}

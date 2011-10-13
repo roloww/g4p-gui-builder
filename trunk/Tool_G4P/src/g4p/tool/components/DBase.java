@@ -36,6 +36,14 @@ import processing.app.Editor;
 @SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TFileConstants, TGuiConstants {
 
+	protected static String $(int i){
+		return String.valueOf(i);
+	}
+	
+	protected static String $(float f){
+		return String.valueOf(f);
+	}
+	
 	transient public CtrlPropModel propertyModel;
 
 	// Whether it is selectable in the WindowView
@@ -222,7 +230,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 			n = 0;
 		return Messages.build(METHOD_START_1, _0701_eventHandler, componentClass, 
 				componentClass.substring(1).toLowerCase(), 
-				_0010_name, id[n].toString()).replace('[', '{');
+				_0010_name, $(id[n])).replace('[', '{');
+//				_0010_name, id[n].toString()).replace('[', '{');
 	}
 	
 	protected String get_event_header(){
@@ -237,7 +246,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		if(n < 0 || n >= id.length)
 			n = 0;
 		return Messages.build(METHOD_END, _0010_name, 
-				id[n].toString()).replace(']', '}');
+				$(id[n])).replace(']', '}');
+//				id[n].toString()).replace(']', '}');
 	}
 	
 	protected String get_event_end(){

@@ -21,7 +21,7 @@ public class DOption extends DCoreSelectable {
 	}
 	
 	protected String get_event_header(){
-		return Messages.build(METHOD_START_2, _0701_eventHandler, componentClass, "opt_selected", "opt_deselected", _0010_name, id[0].toString()).replace('[', '{');
+		return Messages.build(METHOD_START_2, _0701_eventHandler, componentClass, "opt_selected", "opt_deselected", _0010_name, $(id[0])).replace('[', '{');
 	}
 
 	/**
@@ -31,7 +31,7 @@ public class DOption extends DCoreSelectable {
 	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GOPTION, _0010_name, "this", 
-				_0020_text, _0120_x, _0121_y, _0130_width);
+				_0020_text, $(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(ADD_OPTION, parent._0010_name, _0010_name);
 		if(_0685_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");

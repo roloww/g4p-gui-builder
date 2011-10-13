@@ -105,9 +105,7 @@ public class DButton extends DCoreText {
 		propertyModel.hasBeenChanged();
 	}
 	
-
 	public void iconChanged(){
-//		System.out.println("Image has changed");
 		icon = this.getImageFromDataFolder(_0037_filename);
 		if(icon != null){
 			imgWidth = icon.getWidth() / _0036_nbr_images;
@@ -124,7 +122,6 @@ public class DButton extends DCoreText {
 	}
 	
 	public void nbrImagesChanged(){
-//		System.out.println("Update nbr images");
 		if(icon == null && _0037_filename.length() > 0)
 			icon = this.getImageFromDataFolder(_0037_filename);
 		if(icon != null){
@@ -139,8 +136,7 @@ public class DButton extends DCoreText {
 		_0130_width = Math.max(_0130_width, imgWidth + textWidth);
 		_0131_height = Math.max(_0131_height, imgHeight);
 	}
-	
-	
+		
 	public void calculateAlignmentValues(){
 		textMax = _0130_width;
 		int mode = getMode();
@@ -234,15 +230,15 @@ public class DButton extends DCoreText {
 		switch(getMode()){
 		case 1:
 			s = Messages.build(CTOR_GBUTTON_1, _0010_name, "this",
-					_0020_text, _0120_x, _0121_y, _0130_width, _0131_height);
+					_0020_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		case 2:
 			s = Messages.build(CTOR_GBUTTON_2, _0010_name, "this", 
-					_0037_filename, _0036_nbr_images, _0120_x, _0121_y, _0130_width, _0131_height);
+					_0037_filename, _0036_nbr_images, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		case 3:
 			s = Messages.build(CTOR_GBUTTON_3, _0010_name, "this",  _0020_text,
-					_0037_filename, _0036_nbr_images, _0120_x, _0121_y, _0130_width, _0131_height);
+					_0037_filename, _0036_nbr_images, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		}
 		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0031_xtAlignment, _0032_ytAlignment);
