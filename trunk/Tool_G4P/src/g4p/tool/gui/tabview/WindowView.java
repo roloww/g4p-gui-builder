@@ -163,7 +163,7 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(selInfo.comp != null && selInfo.comp.isResizeable()){
+		if(selInfo.comp != null && selInfo.comp.isSelectable()){
 			float scale = ((DWindow)window)._0025_Display_scale / 100.0f;
 			deltaX = Math.round((e.getX() - startX) / scale);
 			deltaY = Math.round((e.getY() - startY) / scale);
