@@ -137,10 +137,9 @@ public class EditorJFileChooser extends EditorBase {
 				thumbnail = null;
 				return;
 			}
-
-			//Don't use createImageIcon (which is a wrapper for getResource)
-			//because the image we're trying to load is probably not one
-			//of this program's own resources.
+			// Don't use createImageIcon (which is a wrapper for getResource)
+			// because the image we're trying to load is probably not one
+			// of this program's own resources.
 			ImageIcon tmpIcon = new ImageIcon(file.getPath());
 			if (tmpIcon != null) {
 				if (tmpIcon.getIconWidth() > 90) {

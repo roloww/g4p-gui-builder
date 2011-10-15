@@ -13,13 +13,14 @@ public interface TDataConstants {
 	public final int KNOB_CTRL	 		=	0x00000026;
 	public final int H_ALIGN	 		=	0x00000027;
 	public final int V_ALIGN	 		=	0x00000028;
+	public final int IMG_BUTTON_STYLE	=	0x00000029;
 
-	public final int VALID				=	0x00000030;
-	public final int INVALID_LENGTH		=	0x00000031;
-	public final int FIRST_CHAR_INVALID	=	0x00000032;
-	public final int HAS_A_SPACE		=	0x00000033;
-	public final int INVALID_CHAR		=	0x00000034;
-	public final int UNAVAILABLE		=	0x00000035;
+	public final int VALID				=	0x00000040;
+	public final int INVALID_LENGTH		=	0x00000041;
+	public final int FIRST_CHAR_INVALID	=	0x00000042;
+	public final int HAS_A_SPACE		=	0x00000043;
+	public final int INVALID_CHAR		=	0x00000044;
+	public final int UNAVAILABLE		=	0x00000045;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Capture code and size patterns
@@ -79,12 +80,13 @@ public interface TDataConstants {
 	public final String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
 	
 	//		GImageButton(PApplet theApplet, String maskFile, String imgFile, int nbrImages, int x, int y)
-	public final String CTOR_IMG_BUTTON_1	= 	"  {0} = new GImageButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6});\n";
+	public final String CTOR_IMG_BUTTON_1	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, {5}, {6});\n";
 	
 	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
-	public final String CTOR_IMG_BUTTON_2	=	"  {0} = new GImageButton({1}, \"{2}\", (new String[] {\"{3}\", \"{4}\" }), {5}, {6});\n";
-	public final String CTOR_IMG_BUTTON_3	=	"  {0} = new GImageButton({1}, \"{2}\", (new String[] {\"{3}\", \"{4}\", \"{5}\" }), {6}, {7});\n";
+	public final String CTOR_IMG_BUTTON_2	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
+	public final String CTOR_IMG_BUTTON_3	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
 
+	
 	public final String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
 	public final String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
 	

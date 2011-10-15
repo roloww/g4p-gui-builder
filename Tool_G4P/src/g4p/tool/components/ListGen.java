@@ -37,8 +37,15 @@ public class ListGen implements TDataConstants {
 		makeKnobControllerSelection(KNOB_CTRL);
 		makeHorzAlignSelection(H_ALIGN);
 		makeVertAlignSelection(V_ALIGN);
+		makeImgButtonSchemeSelection(IMG_BUTTON_STYLE);
+		
 	}
 	
+	private void makeImgButtonSchemeSelection(int type) {
+		String[] s = new String[] {"Tiled Image", "1 Image", "2 Images", "3 Images"};
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
+
 	private void makeRendererSelection(int type) {
 		String[] s = new String[] {"P2D", "JAVA2D", "P3D", "OPENGL"};		
 		cbList.put(type,  new DefaultComboBoxModel(s));
