@@ -282,6 +282,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnOptGroup = new javax.swing.JButton();
         btnCombo = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
+        btnActivityBar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnScale = new javax.swing.JButton();
         splitControl = new javax.swing.JSplitPane();
@@ -502,6 +503,17 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnTimer);
+
+        btnActivityBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolActivityBar.png"))); // NOI18N
+        btnActivityBar.setFocusable(false);
+        btnActivityBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnActivityBar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnActivityBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivityBar(evt);
+            }
+        });
+        tbarComponents.add(btnActivityBar);
 
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 0));
         jSeparator2.setRequestFocusEnabled(false);
@@ -890,6 +902,10 @@ public class GuiDesigner extends javax.swing.JFrame {
             autoHide = mitemAuto.isSelected();
         }//GEN-LAST:event_mitemAutoActionPerformed
 
+        private void btnActivityBar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivityBar
+            // TODO add your handling code here:
+        }//GEN-LAST:event_btnActivityBar
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -905,6 +921,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgGridSize;
+    private javax.swing.JButton btnActivityBar;
     private javax.swing.JButton btnButton;
     private javax.swing.JButton btnCheckbox;
     private javax.swing.JButton btnCombo;
