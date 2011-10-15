@@ -10,6 +10,7 @@
  */
 package g4p.tool.gui;
 
+import g4p.tool.components.DActivityBar;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DCheckbox;
@@ -56,26 +57,26 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private static GuiDesigner instance = null;
 	private static Editor editor = null;
 	private static FontMetrics metrics = null;
-	
+
 	private static boolean stayOpen = false;
 	private static boolean autoHide = false;
-	
+
 	public static GuiDesigner instance(){
 		return instance;
 	}
-	
+
 	public static Editor editor(){
 		return editor;
 	}
-	
+
 	public static FontMetrics metrics(){
 		return metrics;
 	}
-	
+
 	public static void keepOpen(boolean mode){
 		stayOpen = mode;
 	}
-	
+
 	/**
 	 * This is provided because the GuiDesigner window is specified as 
 	 * always-on-top and this conflicts with using a new Frame with
@@ -136,7 +137,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		metrics = tabWindows.getGraphics().getFontMetrics();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
-		
+
 		Dimension size = guiControl.getSketchSizeFromCode();
 		if(size == null){
 			final String message =
@@ -157,7 +158,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * The close operation can be overridden at this point.
 			 */
 			public void windowClosing(WindowEvent e) {
-//				System.out.println("CLOSING");
+				//				System.out.println("CLOSING");
 				setVisible(false);
 				setExtendedState(ICONIFIED);				              	
 			}
@@ -166,28 +167,28 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window has been closed.
 			 */
 			public void windowClosed(WindowEvent e) {
-//				System.out.println("CLOSED");
+				//				System.out.println("CLOSED");
 			}
 
 			/**
 			 * Invoked when a window is iconified.
 			 */
 			public void windowIconified(WindowEvent e) {
-//				System.out.println("ICONIFIED");
+				//				System.out.println("ICONIFIED");
 			}
 
 			/**
 			 * Invoked when a window is de-iconified.
 			 */
 			public void windowDeiconified(WindowEvent e) {
-//				System.out.println("DEICONIFIED");
+				//				System.out.println("DEICONIFIED");
 			}
 
 			/**
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-//				System.out.println("ACTIVATED");
+				//				System.out.println("ACTIVATED");
 				setVisible(true);
 				setExtendedState(NORMAL);
 				guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
@@ -198,7 +199,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-//				System.out.println("DEACTIVATED");
+				//				System.out.println("DEACTIVATED");
 				if(!stayOpen){
 					if(autoHide)
 						setExtendedState(ICONIFIED);
@@ -232,6 +233,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ClassIcon.instance().addElement(DImageButton.class, btnImgButton.getIcon());
 		ClassIcon.instance().addElement(DCombo.class, btnCombo.getIcon());
 		ClassIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
+		ClassIcon.instance().addElement(DActivityBar.class, btnActivityBar.getIcon());
 	}
 
 	private void initCustomComponents() {
@@ -505,6 +507,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnTimer);
 
         btnActivityBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolActivityBar.png"))); // NOI18N
+        btnActivityBar.setToolTipText("Activity Bar");
         btnActivityBar.setFocusable(false);
         btnActivityBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActivityBar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -898,13 +901,13 @@ public class GuiDesigner extends javax.swing.JFrame {
 		guiControl.setScale(25);
 	}//GEN-LAST:event_mitemScale25
 
-        private void mitemAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemAutoActionPerformed
-            autoHide = mitemAuto.isSelected();
-        }//GEN-LAST:event_mitemAutoActionPerformed
+	private void mitemAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemAutoActionPerformed
+		autoHide = mitemAuto.isSelected();
+	}//GEN-LAST:event_mitemAutoActionPerformed
 
-        private void btnActivityBar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivityBar
-            // TODO add your handling code here:
-        }//GEN-LAST:event_btnActivityBar
+	private void btnActivityBar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivityBar
+		guiControl.addComponent(new DActivityBar());
+	}//GEN-LAST:event_btnActivityBar
 
 	/**
 	 * @param args the command line arguments
