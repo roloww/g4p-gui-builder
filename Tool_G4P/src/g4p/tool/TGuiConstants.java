@@ -70,6 +70,12 @@ public interface TGuiConstants {
     public final int DOT_EDGE			=	10; 
     public final int DOT_SOLID			=	6; 
     
+    public final Color actBarStroke		= Color.BLACK;
+    public final Color actBarBack		= new Color(230,230,230);
+    public final Color actBar0			= new Color(255,132,132);
+    public final Color actBar1			= new Color(255,222,173);
+    public final Color actBar2			= new Color(255,255,189);
+    
     public final Color cboxBack			= lblBack;
     public final Color cboxEdge			= Color.black;
     public final Color cboxFill			= Color.white;
