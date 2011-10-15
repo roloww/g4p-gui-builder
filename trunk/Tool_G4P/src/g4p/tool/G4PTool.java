@@ -128,8 +128,9 @@ public class G4PTool implements Tool, TFileConstants {
 				configFolder.mkdir();
 			}
 			dframe = new GuiDesigner(editor);
-			System.out.println("##name## Version ##version## created by ##author##");
-			System.out.println(getCompatibleVersionNo());
+			System.out.println("===================================================");
+			System.out.println("   ##name## V##version## created by ##author.name##");
+			System.out.println("===================================================");
 		} 
 		// Design window exists so make visible, open to normal size
 		// and bring to front.

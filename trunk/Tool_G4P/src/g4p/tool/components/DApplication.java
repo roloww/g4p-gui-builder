@@ -50,6 +50,7 @@ public final class DApplication extends DBase {
 	public Boolean 		cursor_off_edit = true;
 	public Boolean 		cursor_off_show = false;
 	public String 		cursor_off_label = "Not over control";
+
 	
 	/**
 	 * 

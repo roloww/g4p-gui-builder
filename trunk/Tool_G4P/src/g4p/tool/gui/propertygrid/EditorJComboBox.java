@@ -3,6 +3,8 @@ package g4p.tool.gui.propertygrid;
 import g4p.tool.components.ListGen;
 
 import java.awt.Component;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -14,41 +16,31 @@ public class EditorJComboBox extends EditorBase {
 
 	protected static JComboBox component = null;
 
-	protected JTable table = null;;
-	protected int row, column;
+	protected JTable propTable = null;;
+	protected int cellRow, cellColumn;
 	
+	protected ItemListener listen = null;
 	
 	public EditorJComboBox(int type){
 		validator = Validator.getValidator(type);
-		if(component == null){
+		if(component == null)
 			component = new JComboBox(ListGen.instance().getComboBoxModel(type));
-//			component.addActionListener(new ActionListener(){
-//
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					if(table != null){
-//						((CtrlPropView)table).updateProperty(getCellEditorValue(), row, column);
-//						System.out.println("Combo - item selected " + getCellEditorValue());
-//					}
-//					fireEditingStopped();				
-//				}
-//
-//			});
-		}
+		
 	}
 
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-//		component.setModel((ComboBoxModel) validator.getModel());
-		// Set the list of selections
-		validator.preEditAction(this);
-		// Set the selected
-		component.setSelectedItem(value.toString());
-		this.table = table;
-		this.row = row;
-		this.column = column;
+		if(listen == null){
+			listen = new ChangeListener();
+			component.addItemListener(listen);
+		}
+		// Set the list model and selected item
+		validator.preEditAction(this, value);
+		propTable = table;
+		cellRow = row;
+		cellColumn = column;
 		
 		TableCellRenderer r = table.getCellRenderer(row, column);
 		Component c = r.getTableCellRendererComponent(table, value, isSelected, isSelected, row, column);
@@ -63,9 +55,16 @@ public class EditorJComboBox extends EditorBase {
 		return component;
 	}
 
-
+	/**
+	 * This method is called after editing is completed
+	 */
 	@Override
 	public Object getCellEditorValue() {
+		if(listen != null){
+			component.removeItemListener(listen);
+			listen = null;
+		}
+		propTable = null;
 		return component.getSelectedItem().toString();
 	}
 
@@ -73,4 +72,24 @@ public class EditorJComboBox extends EditorBase {
 		component.setSelectedItem(value.toString());
 	}
 
+	/**
+	 * Listener for the combo box
+	 * @author Peter Lager
+	 *
+	 */
+	public class ChangeListener implements ItemListener {
+		
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if(e != null && e.getID() == ItemEvent.ITEM_STATE_CHANGED && e.getStateChange() == ItemEvent.SELECTED){
+				if(propTable != null){
+					((CtrlPropView)propTable).updateProperty(getCellEditorValue(), cellRow, cellColumn);
+//					((CtrlPropView)propTable).modelHasBeenChanged();
+				}
+			}
+			fireEditingStopped();				
+		}
+		
+	}
+	
 }

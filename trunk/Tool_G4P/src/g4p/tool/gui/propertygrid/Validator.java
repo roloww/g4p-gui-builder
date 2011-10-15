@@ -500,7 +500,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 	/**
 	 * ====================================================
-	 * Validator for String data type
+	 * Validator for String data type in combo box
 	 * ====================================================
 	 * @author Peter Lager
 	 */
@@ -518,8 +518,10 @@ public abstract class Validator implements TDataConstants, Serializable {
 		}
 
 		// The first argument should be the combo box cell editor
+		// the second value the selected item
 		public void preEditAction(Object ...args){
 			EditorJComboBox.component.setModel((ComboBoxModel) list) ;
+			EditorJComboBox.component.setSelectedItem(args[1].toString());
 		}
 
 		/**
