@@ -15,7 +15,7 @@ public class DLabel extends DCoreText {
 		set_name(NameGen.instance().getNext("label"));
 		_0130_width = 80;
 		_0131_height = 20;
-		_0020_text = "My label";
+		_0029_text = "My label";
 		eventHandler_edit = eventHandler_show = false;
 	}
 	
@@ -33,7 +33,7 @@ public class DLabel extends DCoreText {
 	 */
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GLABEL, _0010_name, "this", _0020_text,
+		s = Messages.build(CTOR_GLABEL, _0010_name, "this", _0029_text,
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		return s;
 	}

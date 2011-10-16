@@ -25,7 +25,7 @@ public class DPanel extends DCoreText {
 		set_name(NameGen.instance().getNext("panel"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		allowsChildren = true;
-		_0020_text = "Tab bar text";
+		_0029_text = "Tab bar text";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
 		_0130_width = 100;
@@ -35,7 +35,7 @@ public class DPanel extends DCoreText {
 
 	protected String get_creator(DBase parent){
 		String s;
-		s = Messages.build(CTOR_GPANEL, _0010_name, "this", _0020_text,
+		s = Messages.build(CTOR_GPANEL, _0010_name, "this", _0029_text,
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		s += Messages.build(COLLAPSED, _0010_name, _0030_collapsed);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);

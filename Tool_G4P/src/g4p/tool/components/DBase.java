@@ -415,7 +415,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return _0130_width * _0131_height;
 	}
 	
-	public void updatedInGUI(){
-		
+	public void updatedInGUI(){		
 	}
 }

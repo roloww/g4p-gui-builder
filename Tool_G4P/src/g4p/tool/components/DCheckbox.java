@@ -15,7 +15,7 @@ public class DCheckbox extends DCoreSelectable{
 		text_label = "Checkbox display text";
 		set_name(NameGen.instance().getNext("checkbox"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Clicked"));
-		_0020_text = "Checkbox text";
+		_0029_text = "Checkbox text";
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class DCheckbox extends DCoreSelectable{
 	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GCHECKBOX, _0010_name, "this", 
-				_0020_text, $(_0120_x), $(_0121_y), $(_0130_width));
+				_0029_text, $(_0120_x), $(_0121_y), $(_0130_width));
 		if(_0685_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);		

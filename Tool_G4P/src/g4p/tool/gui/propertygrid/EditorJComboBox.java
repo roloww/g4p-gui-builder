@@ -72,6 +72,10 @@ public class EditorJComboBox extends EditorBase {
 		component.setSelectedItem(value.toString());
 	}
 
+	public void setSelectedIndex(int index) {
+		component.setSelectedIndex(index);
+	}
+
 	/**
 	 * Listener for the combo box
 	 * @author Peter Lager
