@@ -64,9 +64,11 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		super.tableChanged(e);
 		if(e.getType() == TableModelEvent.UPDATE){
 			int row = e.getFirstRow();
-			// Just in case the window name was changed
-			tabs.updateTabName();
-			tabs.repaint();
+			if(row >= 0){
+				// Just in case the window name was changed
+				tabs.updateTabName();
+				tabs.repaint();
+			}
 		}
 	}
 

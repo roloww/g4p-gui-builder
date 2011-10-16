@@ -2,7 +2,7 @@ package g4p.tool.gui.tabview;
 
 import g4p.tool.components.DBase;
 import g4p.tool.components.DWindow;
-import g4p.tool.gui.ClassIcon;
+import g4p.tool.gui.ToolIcon;
 import g4p.tool.gui.propertygrid.IPropView;
 import g4p.tool.gui.treeview.ISketchView;
 
@@ -44,7 +44,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	public void addWindow(DBase winComp){
 		WindowView winView = new WindowView(this, winComp);
 		tabMap.put(winComp, winView);
-		addTab(winComp.get_name(), ClassIcon.instance().getIcon(DWindow.class), winView);
+		addTab(winComp.get_name(), ToolIcon.instance().getIcon(DWindow.class), winView);
 	}
 
 	/* (non-Javadoc)

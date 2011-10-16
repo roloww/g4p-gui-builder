@@ -28,20 +28,18 @@ import g4p.tool.components.DVertSlider;
 import g4p.tool.components.DWSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
-import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.tabview.CtrlTabView;
 import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.Icon;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
 
@@ -217,28 +215,31 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 */
 	private void getIcons(){
 		// Messy way to do it but stops error when used with Processing IDE
-		ClassIcon.instance().addElement(DApplication.class, btnWindow.getIcon());
-		ClassIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
-		ClassIcon.instance().addElement(DPanel.class, btnPanel.getIcon());
-		ClassIcon.instance().addElement(DButton.class, btnButton.getIcon());
-		ClassIcon.instance().addElement(DLabel.class, btnLabel.getIcon());
-		ClassIcon.instance().addElement(DHorzSlider.class, btnHorzSlider.getIcon());
-		ClassIcon.instance().addElement(DVertSlider.class, btnVertSlider.getIcon());
-		ClassIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
-		ClassIcon.instance().addElement(DCheckbox.class, btnCheckbox.getIcon());
-		ClassIcon.instance().addElement(DOptionGroup.class, btnOptGroup.getIcon());
-		ClassIcon.instance().addElement(DOption.class, btnOption.getIcon());
-		ClassIcon.instance().addElement(DTimer.class, btnTimer.getIcon());
-		ClassIcon.instance().addElement(DWSlider.class, btnCoolSlider.getIcon());
-		ClassIcon.instance().addElement(DImageButton.class, btnImgButton.getIcon());
-		ClassIcon.instance().addElement(DCombo.class, btnCombo.getIcon());
-		ClassIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
-		ClassIcon.instance().addElement(DActivityBar.class, btnActivityBar.getIcon());
+		ToolIcon.instance().addElement(DApplication.class, btnWindow.getIcon());
+		ToolIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
+		ToolIcon.instance().addElement(DPanel.class, btnPanel.getIcon());
+		ToolIcon.instance().addElement(DButton.class, btnButton.getIcon());
+		ToolIcon.instance().addElement(DLabel.class, btnLabel.getIcon());
+		ToolIcon.instance().addElement(DHorzSlider.class, btnHorzSlider.getIcon());
+		ToolIcon.instance().addElement(DVertSlider.class, btnVertSlider.getIcon());
+		ToolIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
+		ToolIcon.instance().addElement(DCheckbox.class, btnCheckbox.getIcon());
+		ToolIcon.instance().addElement(DOptionGroup.class, btnOptGroup.getIcon());
+		ToolIcon.instance().addElement(DOption.class, btnOption.getIcon());
+		ToolIcon.instance().addElement(DTimer.class, btnTimer.getIcon());
+		ToolIcon.instance().addElement(DWSlider.class, btnCoolSlider.getIcon());
+		ToolIcon.instance().addElement(DImageButton.class, btnImgButton.getIcon());
+		ToolIcon.instance().addElement(DCombo.class, btnCombo.getIcon());
+		ToolIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
+		ToolIcon.instance().addElement(DActivityBar.class, btnActivityBar.getIcon());
+		ToolIcon.instance().addElement("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon1.png")));
+		ToolIcon.instance().addElement("CB_ICON2", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 	}
 
 	private void initCustomComponents() {
 		getIcons();
 
+		
 		treeSketchView = new CtrlSketchView();
 		tblPropView = new CtrlPropView();
 		tabWindows = new CtrlTabView();
