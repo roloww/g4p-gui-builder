@@ -101,7 +101,10 @@ public interface TGuiConstants {
     public final int BOXSIZE			=	14; 
     public final int BOXINSET			=	3; 
     
-    
-    
+    public final Color comboBack		= Color.white;
+    public final Color comboEdge		= Color.black;
+    public final Color comboThumb		= new Color(64,64,64,48);
+    public final Color comboDropBack	= new Color(64,64,64,60);
+    public final Color comboDropEdge	= new Color(64,64,64,90);
     
 }
