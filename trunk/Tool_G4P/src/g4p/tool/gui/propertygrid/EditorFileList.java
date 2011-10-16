@@ -1,15 +1,11 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.TFileConstants;
 import g4p.tool.gui.GuiDesigner;
-import g4p.tool.gui.propertygrid.EditorJFileChooser.ImageFilter;
-import g4p.tool.gui.propertygrid.EditorJFileChooser.ImagePreview;
 
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,9 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 import processing.app.Base;
-import processing.app.Editor;
-import processing.app.Sketch;
-import processing.core.PApplet;
 
 public class EditorFileList extends EditorBase {
 
