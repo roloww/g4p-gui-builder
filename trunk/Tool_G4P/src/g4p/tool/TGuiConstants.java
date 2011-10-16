@@ -17,6 +17,25 @@ public interface TGuiConstants {
 	public final int OVER_VERT			=	0x00000202;
 	public final int OVER_DIAG			=	0x00000203;
 
+	/*
+	 * The next three sets are to provide simple constants 
+	 * when using the combo-box for alignment and button style.
+	 * 
+	 * It is important that the constants start at zero and match
+	 * the value index in the combo-box model. 
+	 * So do NO change.
+	 */
+	public final int LEFT				= 	0x00000000;
+	public final int RIGHT				= 	0x00000001;
+	public final int CENTER				= 	0x00000002;
+
+	public final int TOP				= 	0x00000000;
+	public final int BOTTOM				= 	0x00000001;
+	public final int MIDDLE				= 	0x00000002;
+
+	public final int TEXT_ONLY			= 	0x00000000;
+	public final int ICON_ONLY			= 	0x00000001;
+	public final int TEXT_AND_ICON		= 	0x00000002;
 
 	// Fonts
     public final Font displayFont 		= new Font("Sans Serif", Font.PLAIN, 11);

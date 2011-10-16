@@ -35,13 +35,20 @@ public class ListGen implements TDataConstants {
 		makeGWSliderSkinSelection(SLIDER_SKIN);
 		makeRendererSelection(RENDERER);
 		makeKnobControllerSelection(KNOB_CTRL);
-		makeHorzAlignSelection(H_ALIGN);
+		makeHorzAlignSelection2(H_ALIGN_2);
+		makeHorzAlignSelection3(H_ALIGN_3);
 		makeVertAlignSelection(V_ALIGN);
-		makeImgButtonSchemeSelection(IMG_BUTTON_STYLE);
+		makeImgButtonStyleSelection(IMG_BUTTON_STYLE);
+		makeButtonStyleSelection(BUTTON_STYLE);
 		
 	}
 	
-	private void makeImgButtonSchemeSelection(int type) {
+	private void makeButtonStyleSelection(int type) {
+		String[] s = new String[] {"Text only", "Icon only", "Text + Icon"};
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
+
+	private void makeImgButtonStyleSelection(int type) {
 		String[] s = new String[] {"Tiled Image", "1 Image", "2 Images", "3 Images"};
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
@@ -75,13 +82,18 @@ public class ListGen implements TDataConstants {
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
-	private void makeHorzAlignSelection(int type){
-		String[] s = new String[] { "LEFT", "CENTER", "RIGHT" };
+	private void makeHorzAlignSelection2(int type){
+		String[] s = new String[] { "LEFT", "RIGHT" };
+		cbList.put(type,  new DefaultComboBoxModel(s));
+	}
+
+	private void makeHorzAlignSelection3(int type){
+		String[] s = new String[] { "LEFT", "RIGHT" , "CENTER"};
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
 	private void makeVertAlignSelection(int type){
-		String[] s = new String[] { "TOP", "MIDDLE", "BOTTOM" };
+		String[] s = new String[] { "TOP", "BOTTOM" , "MIDDLE"};
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
@@ -95,4 +107,15 @@ public class ListGen implements TDataConstants {
 		return cbList.get(key);
 	}
 
+	public void setSelectedValue(int key, String value){
+		cbList.get(key).setSelectedItem(value);
+	}
+	
+	public int getIndexOf(int key, String value){
+		return cbList.get(key).getIndexOf(value);
+	}
+	
+	public int getSize(int key){
+		return cbList.get(key).getSize();
+	}
 }

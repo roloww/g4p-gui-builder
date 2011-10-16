@@ -17,7 +17,7 @@ public class DOption extends DCoreSelectable {
 		componentClass = "GOption";
 		set_name(NameGen.instance().getNext("option"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
-		_0020_text = "Option text";
+		_0029_text = "Option text";
 	}
 	
 	protected String get_event_header(){
@@ -31,7 +31,7 @@ public class DOption extends DCoreSelectable {
 	protected String get_creator(DBase parent){
 		String s;
 		s = Messages.build(CTOR_GOPTION, _0010_name, "this", 
-				_0020_text, $(_0120_x), $(_0121_y), $(_0130_width));
+				_0029_text, $(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(ADD_OPTION, parent._0010_name, _0010_name);
 		if(_0685_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");

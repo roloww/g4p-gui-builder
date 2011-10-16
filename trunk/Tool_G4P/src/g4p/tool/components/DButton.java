@@ -19,52 +19,57 @@ import java.io.ObjectInputStream;
 public class DButton extends DCoreText {
 
 	transient protected RectangularShape face;
-	transient BufferedImage icon = null;
-	transient float mitre = 6.0f;
-	
-	int imgWidth, imgHeight, imgAlign, imgX, imgY;
-	int textWidth, textHeight, textAlign, textX, textY, textMin, textMax;
-	
-	public String 		_0031_xtAlignment = "CENTER";
-	transient public 	EditorBase xtAlignment_editor = new EditorJComboBox(H_ALIGN);
+	transient protected BufferedImage icon = null;
+	transient protected float mitre = 6.0f;
+
+	protected int iconWidth, iconHeight, iconX, iconY;
+	protected int textWidth, textHeight,  textX, textY, textMin, textMax;
+
+	// Alignments
+	protected int textHAlign, textVAlign, iconAlign, iconAlignModel;;
+	protected int style;
+
+	public String		_0028_btn_style = "Text only";
+	transient public 	EditorBase btn_style_editor = new EditorJComboBox(BUTTON_STYLE);
+	public Boolean 		btn_style_edit = true;
+	public Boolean 		btn_style_show = true;
+	public String 		btn_style_label = "Button style";
+	public String		btn_style_updater = "btnStyleChanged";
+
+	public String 		_0033_xtAlignment = "CENTER";
+	transient public 	EditorBase xtAlignment_editor = new EditorJComboBox(H_ALIGN_3);
 	public Boolean 		xtAlignment_edit = true;
 	public Boolean 		xtAlignment_show = true;
 	public String 		xtAlignment_label = "Horz text alignment";
 	public String 		xtAlignment_updater = "textAlignChanged";
 
-	public String 		_0032_ytAlignment = "MIDDLE";
+	public String 		_0034_ytAlignment = "MIDDLE";
 	transient public 	EditorBase ytAlignment_editor = new EditorJComboBox(V_ALIGN);
 	public Boolean 		ytAlignment_edit = true;
 	public Boolean 		ytAlignment_show = true;
 	public String 		ytAlignment_label = "Vert text alignment";
 	public String 		ytAlignment_updater = "textAlignChanged";
 
-	public Boolean 		_0035_icon  = false;
-	public Boolean 		icon_edit = true;
-	public Boolean 		icon_show = true;
-	public String 		icon_updater = "updateIconUsage";
-	public String 		icon_label = "Icon?";
+	public int	 		_0036_nbr_tiles = 3;
+	public Boolean 		nbr_tiles_edit = true;
+	public Boolean 		nbr_tiles_show = false;
+	public String 		nbr_tiles_label = "Nbr of tiles in icon";
+	public String 		nbr_tiles_updater = "nbrTilesChanged";
+	public Validator 	nbr_tiles_validator = Validator.getValidator(int.class, 1, 3);
 
-	public int	 		_0036_nbr_images = 3;
-	public Boolean 		nbr_images_edit = true;
-	public Boolean 		nbr_images_show = false;
-	public String 		nbr_images_label = "Nbr of tiles in icon";
-	public String 		nbr_images_updater = "nbrImagesChanged";
-	public Validator 	nbr_images_validator = Validator.getValidator(int.class, 1, 3);
+	public String 		_0037_icon_file = "";
+	transient public 	EditorJFileChooser icon_file_editor = new EditorJFileChooser();
+	public Boolean 		icon_file_edit = true;
+	public Boolean 		icon_file_show = false;
+	public String 		icon_file_label = "Icon file";
+	public String 		icon_file_updater = "iconChanged";
 
-	public String 		_0037_filename = "";
-	transient public 	EditorJFileChooser filename_editor = new EditorJFileChooser();
-	public Boolean 		filename_edit = true;
-	public Boolean 		filename_show = false;
-	public String 		filename_label = "Image filename";
-	public String 		filename_updater = "iconChanged";
-
-	public String 		_0038_imgAlignment = "LEFT";
-	transient public 	EditorBase imgAlignment_editor = new EditorJComboBox(H_ALIGN);
-	public Boolean 		imgAlignment_edit = true;
-	public Boolean 		imgAlignment_show = false;
-	public String 		imgAlignment_label = "Image alignment";
-	public String 		imgAlignment_updater = "iconAlignChanged";
+	public String 		_0038_icon_alignment = "LEFT";
+	transient public 	EditorBase icon_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+	public Boolean 		icon_alignment_edit = true;
+	public Boolean 		icon_alignment_show = false;
+	public String 		icon_alignment_label = "Icon alignment";
+	public String 		icon_alignment_updater = "iconAlignChanged";
 
 
 	public DButton(){
@@ -72,44 +77,99 @@ public class DButton extends DCoreText {
 		componentClass = "GButton";
 		set_name(NameGen.instance().getNext("button"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
-		_0020_text = "Face text";
+		_0029_text = "Face text";
 		_0130_width = 80;
 		_0131_height = 30;
 		text_tooltip = "text to show on button";
+
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
-		textWidth = GuiDesigner.metrics().stringWidth(_0020_text);
+		textWidth = GuiDesigner.metrics().stringWidth(_0029_text);
 		textHeight = GuiDesigner.metrics().getHeight();
+		style = ListGen.instance().getIndexOf(BUTTON_STYLE, _0028_btn_style);
+		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0033_xtAlignment);
+		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0034_ytAlignment);
+		iconAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0038_icon_alignment);
+		iconAlignModel = H_ALIGN_3;
 		calculateAlignmentValues();
 	}
 
 	public void updatedInGUI(){
 		calculateAlignmentValues();
 	}
-	
+
+	public void btnStyleChanged(){
+		int newStyle = ListGen.instance().getIndexOf(BUTTON_STYLE, _0028_btn_style);
+		switch(newStyle){
+		case TEXT_ONLY:
+			// show text stuff
+			text_show = true;
+			xtAlignment_show = true;
+			ytAlignment_show = true;
+			// hide image properties
+			icon_file_show = false;
+			nbr_tiles_show = false;
+			icon_alignment_show = false;
+
+			break;
+		case ICON_ONLY:
+			// hide text stuff
+			text_show = false;
+			xtAlignment_show = false;
+			ytAlignment_show = false;
+			// show image properties
+			icon_file_show = true;
+			nbr_tiles_show = true;
+			icon_alignment_show = true;
+			// New h-alignment
+			if(style != ICON_ONLY){
+				icon_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+				// centre changed to right alignment
+				iconAlign = (iconAlign == CENTER) ? iconAlign - 1 : 0;
+				iconAlignModel = H_ALIGN_2;
+			}
+			break; 
+		case TEXT_AND_ICON: // text + icon
+			// show text stuff
+			text_show = true;
+			xtAlignment_show = true;
+			ytAlignment_show = true;
+			// show image properties
+			icon_file_show = true;
+			nbr_tiles_show = true;
+			icon_alignment_show = true;
+			// New h-alignment
+			if(style != TEXT_AND_ICON){
+				icon_alignment_editor = new EditorJComboBox(H_ALIGN_2);
+				// Maintain right alignment
+				iconAlign = (iconAlign == 1) ? 2 : 0;
+				iconAlignModel = H_ALIGN_3;
+			}
+			break;
+		}
+		style = newStyle;
+		propertyModel.createProperties(this);
+		propertyModel.hasBeenChanged();
+	}
+
 	public void textChanged(){
-		textWidth = GuiDesigner.metrics().stringWidth(_0020_text);
+		textWidth = GuiDesigner.metrics().stringWidth(_0029_text);
 		validateButtonSize();
 		calculateAlignmentValues();
 		propertyModel.hasBeenChanged();
 	}
 
 	public void textAlignChanged(){
+		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0033_xtAlignment);
+		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0034_ytAlignment);
 		calculateAlignmentValues();	
 		propertyModel.hasBeenChanged();
 	}
-	
-	public void updateIconUsage(){
-		nbr_images_show = filename_show = imgAlignment_show = _0035_icon;
-		calculateAlignmentValues();
-		propertyModel.createProperties(this);
-		propertyModel.hasBeenChanged();
-	}
-	
+
 	public void iconChanged(){
-		icon = this.getImageFromDataFolder(_0037_filename);
+		icon = this.getImageFromDataFolder(_0037_icon_file);
 		if(icon != null){
-			imgWidth = icon.getWidth() / _0036_nbr_images;
-			imgHeight = icon.getHeight();
+			iconWidth = icon.getWidth() / _0036_nbr_tiles;
+			iconHeight = icon.getHeight();
 			validateButtonSize();
 			calculateAlignmentValues();
 			propertyModel.hasBeenChanged();
@@ -117,80 +177,96 @@ public class DButton extends DCoreText {
 	}
 
 	public void iconAlignChanged(){
+		if(iconAlignModel == H_ALIGN_3)
+			iconAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0038_icon_alignment);
+		else
+			iconAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0038_icon_alignment);
 		calculateAlignmentValues();		
 		propertyModel.hasBeenChanged();
 	}
-	
-	public void nbrImagesChanged(){
-		if(icon == null && _0037_filename.length() > 0)
-			icon = this.getImageFromDataFolder(_0037_filename);
+
+	public void nbrTilesChanged(){
+		if(icon == null && _0037_icon_file.length() > 0)
+			icon = this.getImageFromDataFolder(_0037_icon_file);
 		if(icon != null){
-			imgWidth = icon.getWidth() / _0036_nbr_images;
+			iconWidth = icon.getWidth() / _0036_nbr_tiles;
 			validateButtonSize();
 			calculateAlignmentValues();
 			propertyModel.hasBeenChanged();
 		}
 	}
-	
-	public void validateButtonSize(){
-		_0130_width = Math.max(_0130_width, imgWidth + textWidth);
-		_0131_height = Math.max(_0131_height, imgHeight);
-	}
-		
-	public void calculateAlignmentValues(){
-		textMax = _0130_width;
-		int mode = getMode();
-		// STEP 1
-		// Set image x position based on image alignment.
-		if((mode & 2) == 2) { // has an image
-			// If there is text force image to left hand side
-			if(_0020_text.length() > 0 && _0038_imgAlignment.equalsIgnoreCase("CENTER")){
-				_0038_imgAlignment = "LEFT";
-				imgAlignment_editor.setSelected(_0038_imgAlignment);
-				propertyModel.hasBeenChanged();
-			}
-			if(_0038_imgAlignment.equalsIgnoreCase("LEFT")){
-				imgX = 0;
-				textMin = imgWidth + 2;
-				textMax = _0130_width;
-			}
-			else if(_0038_imgAlignment.equalsIgnoreCase("RIGHT")){
-				imgX = _0130_width - imgWidth;
-				textMin = 0;
-				textMax = imgX - 2;
-			}
-			else if(_0038_imgAlignment.equalsIgnoreCase("CENTER")){
-				imgX = (_0130_width - imgWidth)/2;
-				// No text for centred image
-			}
-			imgY = (_0131_height - imgHeight)/2;
+
+	protected void validateButtonSize(){
+		int w = textWidth, h = textHeight;
+		switch(style){
+		case ICON_ONLY:  // icon only
+			w = iconWidth;
+			h = iconHeight;
+			break;
+		case TEXT_AND_ICON:  // text + icon
+			w = iconWidth + textWidth;
+			h = Math.max(iconHeight, textHeight);
 		}
-		// STEP 2
-		// calculate text position
-		if((mode & 1) == 1){
+		w = Math.max(_0130_width, iconWidth + textWidth);
+		h = Math.max(_0131_height, h);
+		if( w != _0130_width || h != _0131_height){
+			_0130_width = w;
+			_0131_height = h;
+		}
+	}
+
+
+	protected void calculateAlignmentValues(){
+		// Calculate icon position and range limits for text
+		textMin = 0;
+		textMax = _0130_width;
+		switch(style){
+		case ICON_ONLY: // icon only
+		case TEXT_AND_ICON: // text + icon
+			iconY = (_0131_height - iconHeight)/2;
+			switch(iconAlign){
+			case LEFT:
+				iconX = 0;
+				textMin = iconWidth;
+				break;
+			case CENTER:
+				iconX = (_0130_width - iconWidth)/2;
+				break;
+			case RIGHT:
+				iconX = _0130_width - iconWidth;
+				textMax = iconX;
+				break;
+			}
+			break;
+		}
+		// Calculate text position
+		if(style == TEXT_ONLY || style == TEXT_AND_ICON){
 			// Horizontal
-			if(_0031_xtAlignment.equalsIgnoreCase("LEFT")){
+			switch(textHAlign){
+			case LEFT:
 				textX = textMin;
-			}
-			else if(_0031_xtAlignment.equalsIgnoreCase("RIGHT")){
-				textX = textMax - textWidth;
-			}
-			else if(_0031_xtAlignment.equalsIgnoreCase("CENTER")){
+				break;
+			case CENTER:
 				textX = textMin + (textMax - textMin - textWidth)/2;
+				break;
+			case RIGHT:
+				textX = textMax - textWidth;
+				break;
 			}
 			// Vertical
-			if(_0032_ytAlignment.equalsIgnoreCase("TOP")){
+			switch(textVAlign){
+			case TOP:
 				textY = textHeight + 1;
-			}
-			else if(_0032_ytAlignment.equalsIgnoreCase("MIDDLE")){
-				textY = (_0131_height + textHeight)/2;
-			}
-			else if(_0032_ytAlignment.equalsIgnoreCase("BOTTOM")){
+				break;
+			case MIDDLE:
+				textY = (_0131_height + textHeight)/2;				
+				break;
+			case BOTTOM:
 				textY = _0131_height - 1;
+				break;
 			}
 		}
 	}
-	
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
@@ -201,20 +277,24 @@ public class DButton extends DCoreText {
 		g.setStroke(stdStroke);
 		g.setColor(btnBack);
 		g.fill(face);			
-		g.setColor(blackEdge);
-		g.draw(face);
-		if(_0020_text.length() > 0){
+		// Draw text if required. Use face text if available else use variable name
+		if(style == TEXT_ONLY || style == TEXT_AND_ICON &&_0029_text.length() > 0){
 			g.setColor(txfFore);
-			g.drawString(_0020_text, textX, textY );
+			g.drawString(_0029_text, textX, textY );
 		}
 		else {
 			g.setColor(blackEdge);
 			g.drawString(_0010_name, textX, textY );			
 		}
-		if(_0035_icon && icon != null){
-			g.drawImage(icon, imgX, imgY, imgX + imgWidth, imgY + imgHeight, 
-					0, 0, imgWidth, imgHeight, null);
+		// Draw icon is required and available
+		if(style == ICON_ONLY || style == TEXT_AND_ICON && icon != null){
+			g.drawImage(icon, iconX, iconY, iconX + iconWidth, iconY + iconHeight, 
+					0, 0, iconWidth, iconHeight, null);
 		}
+		// draw border
+		g.setColor(blackEdge);
+		g.draw(face);
+
 		if(this == selected)
 			drawSelector(g);
 
@@ -227,46 +307,41 @@ public class DButton extends DCoreText {
 	 */
 	protected String get_creator(DBase parent){
 		String s = "";
-		switch(getMode()){
-		case 1:
+		switch(style){
+		case TEXT_ONLY:
 			s = Messages.build(CTOR_GBUTTON_1, _0010_name, "this",
-					_0020_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+					_0029_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
-		case 2:
+		case ICON_ONLY:
 			s = Messages.build(CTOR_GBUTTON_2, _0010_name, "this", 
-					_0037_filename, _0036_nbr_images, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+					_0037_icon_file, _0036_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
-		case 3:
-			s = Messages.build(CTOR_GBUTTON_3, _0010_name, "this",  _0020_text,
-					_0037_filename, _0036_nbr_images, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+		case TEXT_AND_ICON:
+			s = Messages.build(CTOR_GBUTTON_3, _0010_name, "this",  _0029_text,
+					_0037_icon_file, _0036_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		}
-		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0031_xtAlignment, _0032_ytAlignment);
-		if(_0035_icon && icon != null)
-			s += Messages.build(BTN_ICON_ALIGN, _0010_name, _0038_imgAlignment);
+		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0033_xtAlignment, _0034_ytAlignment);
+		if(icon != null)
+			s += Messages.build(BTN_ICON_ALIGN, _0010_name, _0038_icon_alignment);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
-	
-	private int getMode(){
-		// 1 = text used  : 2 = icon used  :  4 = filename provided
-		int mode = (_0020_text.length() > 0) ? 1 : 0;
-		mode += (_0035_icon == true && icon != null && _0037_filename.length() > 0) ? 2 : 0;
-		return mode;
-	}
-	
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
-		filename_editor = new EditorJFileChooser();
-		xtAlignment_editor = new EditorJComboBox(H_ALIGN);
+
+		btn_style_editor = new EditorJComboBox(BUTTON_STYLE);
+		icon_file_editor = new EditorJFileChooser();
+		xtAlignment_editor = new EditorJComboBox(H_ALIGN_3);
 		ytAlignment_editor = new EditorJComboBox(V_ALIGN);
-		imgAlignment_editor = new EditorJComboBox(H_ALIGN);
-		if(_0037_filename.length() > 0)
-			icon = getImageFromDataFolder(_0037_filename);
+		icon_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+		if(_0037_icon_file.length() > 0)
+			icon = getImageFromDataFolder(_0037_icon_file);
 		mitre = 6.0f;
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}

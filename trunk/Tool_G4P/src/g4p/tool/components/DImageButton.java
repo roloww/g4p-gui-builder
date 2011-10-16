@@ -17,7 +17,8 @@ public class DImageButton extends DCore {
 
 	transient BufferedImage image = null;
 	
-	int mem_nbr_tiles = 1;
+	protected int mem_nbr_tiles = 1;
+	protected int style;
 	
 	public String 		_0041_btn_style = "1 Image";
 	transient public 	EditorBase btn_style_editor = new EditorJComboBox(IMG_BUTTON_STYLE);
@@ -74,6 +75,7 @@ public class DImageButton extends DCore {
 		width_show = height_show = false;
 		_0130_width = 80;
 		_0131_height = 30;
+		style = ListGen.instance().getIndexOf(IMG_BUTTON_STYLE, _0041_btn_style);
 		resizeable = false;
 	}
 
@@ -85,7 +87,7 @@ public class DImageButton extends DCore {
 	protected String get_creator(DBase parent){
 		String s = "", f1 ="", f2 = "", f3 = "";
 		// Get button style
-		int style = ListGen.instance().getComboBoxModel(IMG_BUTTON_STYLE).getIndexOf(_0041_btn_style);
+//		style = ListGen.instance().getComboBoxModel(IMG_BUTTON_STYLE).getIndexOf(_0041_btn_style);
 		// Get the image file parameters
 		switch(style){
 		case 3:
@@ -140,7 +142,7 @@ public class DImageButton extends DCore {
 	}
 
 	public void buttonStyleChanged(){
-		int style = ListGen.instance().getComboBoxModel(IMG_BUTTON_STYLE).getIndexOf(_0041_btn_style);
+		style = ListGen.instance().getIndexOf(IMG_BUTTON_STYLE, _0041_btn_style);
 		switch(style){
 		case 0: // Tiled image
 			nbr_tiles_show = true;
@@ -183,7 +185,6 @@ public class DImageButton extends DCore {
 		_0130_width = (image == null) ? _0130_width : image.getWidth() / _0043_nbr_tiles;
 		propertyModel.createProperties(this);
 		propertyModel.hasBeenChanged();
-
 	}
 	
 	public void imageChanged(){

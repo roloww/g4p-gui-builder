@@ -26,7 +26,6 @@ public final class DWindow extends DBase {
 	public Boolean 		renderer_edit = false;
 	public Boolean 		renderer_show = false;
 
-	
 	public int 			_0025_Display_scale = 100;
 	public String		Display_scale_label = "Scale (%)";
 	public Boolean 		Display_scale_edit = true;
