@@ -34,7 +34,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		this.tree = tree;
 	}
 
-
 	/**
 	 * This method should be called when the selected object in 
 	 * either tab or tree view changes
@@ -133,7 +132,6 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		int row = rowAtPoint(e.getPoint());
 		if(row != -1){
 			tip = ((Property) ((CtrlPropModel) getModel()).getPropertyAt(row)).tooltip;
-//			Messages.println("Row {0}  ::  {1}", row, tip);
 		}
 		return tip;
 	}
