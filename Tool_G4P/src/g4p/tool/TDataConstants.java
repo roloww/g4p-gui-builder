@@ -1,5 +1,7 @@
 package g4p.tool;
 
+import processing.core.PApplet;
+
 
 
 public interface TDataConstants {
@@ -138,6 +140,10 @@ public interface TDataConstants {
 	public final String SET_ARC_ONLY		=	"  {0}.setRotArcOnly({1});\n";
 	public final String SET_NBR_TICKS		=	"  {0}.setNbrTickMarks({1});\n";
 	public final String SET_CONTROLLER		=	"  {0}.setControlMode(GKnob.CTRL_{1});\n";
+
+	
+	//		GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){
+	public final String CTOR_GCOMBO			=	"  {0} = new GCombo({1}, {2}, PApplet.loadStrings\"{3}\", {4}, {5}, {6});\n";
 
 	//		GActivityBar(PApplet theApplet, int x, int y, int width, int height){
 	public final String CTOR_GACTIVITYBAR	=	"  {0} = new GActivityBar({1}, {2}, {3}, {4}, {5});\n";
