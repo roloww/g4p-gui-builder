@@ -5,6 +5,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import processing.core.PApplet;
+
 public class TestDialog {
 
 	/**
@@ -17,16 +19,21 @@ public class TestDialog {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		
 		int r;
-		r = JOptionPane.showConfirmDialog(null, p, "Combobox List", JOptionPane.OK_CANCEL_OPTION);
+		r = JOptionPane.showConfirmDialog(null, p, "ComboBox List (1 option per line)", JOptionPane.OK_CANCEL_OPTION);
 		if(r == JOptionPane.CANCEL_OPTION)
 			System.out.println("CANCEL " + r);
 		else {
 			System.out.println("OK " + r);
 		}
 		System.out.println("\n\n"+c.getText());
-
+		String[] lines = PApplet.split(c.getText(), "\n");
+		for(String line : lines){
+			line = line.replace('\\', ' ');
+			line = line.replace('"', '\'');
+			System.out.println(">> " + line);
+		}
+	
 	}
 
 }
