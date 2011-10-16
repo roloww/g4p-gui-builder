@@ -1,12 +1,11 @@
 package g4p.tool.components;
 
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-
 import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.EditorBase;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
+
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 
 @SuppressWarnings("serial")
 public class DCombo extends DCore {
@@ -14,7 +13,7 @@ public class DCombo extends DCore {
 	
 
 	public String height_updator = "heightChanged";
-	public int list_size = 0;
+//	public int list_size = 0;
 	
 	
 	public int	 		_0053_nbr_rows = 5;

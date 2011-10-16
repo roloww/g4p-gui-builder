@@ -1,8 +1,5 @@
 package g4p.tool;
 
-import processing.core.PApplet;
-
-
 
 public interface TDataConstants {
 
