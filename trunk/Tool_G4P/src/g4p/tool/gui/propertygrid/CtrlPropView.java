@@ -21,11 +21,9 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 
 	private ITabView tabs;
 	private ISketchView tree;
-//	private Editor editor;
 
 	public CtrlPropView() {
 		super();
-//		this.editor = editor;
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setRowHeight(22);
 		setTableHeader(null); // hides column names
@@ -67,18 +65,16 @@ public class CtrlPropView extends JTable implements TableModelListener, IPropVie
 		super.tableChanged(e);
 		if(e.getType() == TableModelEvent.UPDATE){
 			int row = e.getFirstRow();
-			if(row >= 0){
-				// Just in case the window name was changed
-				tabs.updateTabName();
-				tabs.repaint();
-			}
+			// Just in case the window name was changed
+			tabs.updateTabName();
+			tabs.repaint();
 		}
 	}
 
 	/**
 	 * Get a cell editor and a validator.
 	 * 
-	 * If no editor avaialble use default editor and renderer
+	 * If no editor available use default editor and renderer
 	 */
 	public TableCellEditor getCellEditor(int row, int col) {
 		EditorBase cell_editor = null;
