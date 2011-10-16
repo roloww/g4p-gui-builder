@@ -48,7 +48,7 @@ public class EditorJFileChooser extends EditorBase {
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
-		chooser = (JFileChooser) chooser;
+//		chooser = (JFileChooser) chooser;
 		GuiDesigner.keepOpen(true);
 		Editor e = GuiDesigner.editor();
 		int selected = chooser.showDialog(GuiDesigner.instance(), "Use Image");

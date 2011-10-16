@@ -835,7 +835,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnOptGroupActionPerformed
 
 	private void btnComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComboActionPerformed
-		showWarning("GUI Builder warning", "Drop-down lists not yet available", null);
+		guiControl.addComponent(new DCombo());
 	}//GEN-LAST:event_btnComboActionPerformed
 
 	private void btnTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimerActionPerformed
