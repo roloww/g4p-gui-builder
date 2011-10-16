@@ -78,13 +78,12 @@ public class EditorJFileChooser extends EditorBase {
 
 
 	public class ImageFilter extends FileFilter {
-
+		
 		//Accept all directories and all gif, jpg, tiff, or png files.
 		public boolean accept(File f) {
 			if (f.isDirectory()) {
 				return true;
 			}
-
 			String extension = getExtension(f);
 			if (extension != null) {
 				if (extension.equals("tga") ||
@@ -97,7 +96,6 @@ public class EditorJFileChooser extends EditorBase {
 					return false;
 				}
 			}
-
 			return false;
 		}
 
