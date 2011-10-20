@@ -2,10 +2,15 @@ package g4p.tool.components;
 
 import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorFileList;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
+import g4p.tool.gui.propertygrid.EditorJFileChooser;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
 public class DCombo extends DCore {
@@ -18,14 +23,14 @@ public class DCombo extends DCore {
 	
 	public int	 		_0053_nbr_rows = 5;
 	public Boolean 		nbr_rows_edit = true;
-	public Boolean 		nbr_rows_show = false;
+	public Boolean 		nbr_rows_show = true;
 	public String 		nbr_rows_label = "Nbr of rows";
 	public Validator 	nbr_rows_validator = Validator.getValidator(int.class, 2, 10);
 
 	public String 		_0052_list_file;
-	public Boolean 		list_file_edit = false;
+	public Boolean 		list_file_edit = true;
 	public Boolean 		list_file_show = true;
-	transient public 	EditorBase list_file_editor = null;
+	transient public 	EditorBase list_file_editor = new EditorFileList();
 
 	
 	public DCombo(){
@@ -72,4 +77,15 @@ public class DCombo extends DCore {
 
 		g.setTransform(paf);
 	}
+	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		NameGen.instance().add(_0010_name);
+		IdGen.instance().add(id[0]);
+		list_file_editor = new EditorFileList();
+	}
+
+
 }
