@@ -140,7 +140,7 @@ public interface TDataConstants {
 
 	
 	//		GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){
-	public final String CTOR_GCOMBO			=	"  {0} = new GCombo({1}, {2}, PApplet.loadStrings\"{3}\", {4}, {5}, {6});\n";
+	public final String CTOR_GCOMBO			=	"  {0} = new GCombo({1}, loadStrings(\"{2}\"), {3}, {4}, {5}, {6});\n";
 
 	//		GActivityBar(PApplet theApplet, int x, int y, int width, int height){
 	public final String CTOR_GACTIVITYBAR	=	"  {0} = new GActivityBar({1}, {2}, {3}, {4}, {5});\n";
