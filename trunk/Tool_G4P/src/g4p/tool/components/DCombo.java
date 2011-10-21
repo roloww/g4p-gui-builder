@@ -1,10 +1,9 @@
 package g4p.tool.components;
 
+import g4p.tool.Messages;
 import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorFileList;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
-import g4p.tool.gui.propertygrid.EditorJFileChooser;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
@@ -15,16 +14,12 @@ import java.io.ObjectInputStream;
 @SuppressWarnings("serial")
 public class DCombo extends DCore {
 
-	
-
-	public String height_updator = "heightChanged";
-//	public int list_size = 0;
-	
+	public String height_updator = "heightChanged";	
 	
 	public int	 		_0053_nbr_rows = 5;
 	public Boolean 		nbr_rows_edit = true;
 	public Boolean 		nbr_rows_show = true;
-	public String 		nbr_rows_label = "Nbr of rows";
+	public String 		nbr_rows_label = "Max rows to show";
 	public Validator 	nbr_rows_validator = Validator.getValidator(int.class, 2, 10);
 
 	public String 		_0052_list_file;
@@ -36,10 +31,10 @@ public class DCombo extends DCore {
 	public DCombo(){
 		super();
 		componentClass = "GCombo";
-		_0052_list_file = "list_" + id[0];
 		set_name(NameGen.instance().getNext("combo"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 
+		_0052_list_file = "list_" + id[0];
 		width_validator = Validator.getValidator(int.class, 40, 9999);
 		_0131_height = GuiDesigner.metrics().getHeight() + 2;
 		height_edit = false;
@@ -76,6 +71,17 @@ public class DCombo extends DCore {
 			drawSelector(g);
 
 		g.setTransform(paf);
+	}
+	
+//	GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){
+// 	{0} = new GCombo({1}, loadStrings(\"{2}\"), {3}, {4}, {5});\n";
+
+	protected String get_creator(DBase parent){
+		String s = "";
+			s = Messages.build(CTOR_GCOMBO, _0010_name, "this", _0052_list_file,
+					 $(_0053_nbr_rows), $(_0120_x), $(_0121_y), $(_0130_width));
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		return s;
 	}
 	
 	private void readObject(ObjectInputStream in)
