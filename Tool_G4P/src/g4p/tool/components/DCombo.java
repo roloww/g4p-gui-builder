@@ -25,6 +25,7 @@ public class DCombo extends DCore {
 	public String 		_0052_list_file;
 	public Boolean 		list_file_edit = true;
 	public Boolean 		list_file_show = true;
+	public String 		list_file_label = "Option list file";
 	transient public 	EditorBase list_file_editor = new EditorFileList();
 
 	
@@ -35,6 +36,7 @@ public class DCombo extends DCore {
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 
 		_0052_list_file = "list_" + id[0];
+		
 		width_validator = Validator.getValidator(int.class, 40, 9999);
 		_0131_height = GuiDesigner.metrics().getHeight() + 2;
 		height_edit = false;
@@ -73,9 +75,6 @@ public class DCombo extends DCore {
 		g.setTransform(paf);
 	}
 	
-//	GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){
-// 	{0} = new GCombo({1}, loadStrings(\"{2}\"), {3}, {4}, {5});\n";
-
 	protected String get_creator(DBase parent){
 		String s = "";
 			s = Messages.build(CTOR_GCOMBO, _0010_name, "this", _0052_list_file,

@@ -26,9 +26,36 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import processing.app.Editor;
 
 /**
- * This class is used to represent non-visual components that do not contain
- * other components.
- * 
+ * Every control in the G4P library has its equivalent class in this package, for instance
+ * GButton --> DButton. The classes in this package provide information about the properties
+ * available in the property grid for a particular component. <br>
+ * If an attribute identifier in one of these classes starts with an underscore followed by a
+ * 4 digit numbers then it is to become a property e.g. <pre>_0131_height</pre><br>
+ * The 4 digit number is used to decide the order properties should appear in the property
+ * grid. <br>
+ * The part after the second underscore is the property name and this is used to provide 
+ * additional information about the property, so for <pre>_0131_height</pre><br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_edit</pre> can the property be edited. <br>
+ * <pre>height_show</pre> is the property visible in the grid. <br>
+ * <pre>height_tooltip</pre> the tooltip text for the property grid. <br>
+ * <pre>height_editor</pre> the object used to edit the property. <br>
+ * <pre>height_validator</pre> the object used to validate the proerty value. <br>
+ * <pre>height_updater</pre> the name of the method to call after the property has changed. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br>
+ * <pre>height_label</pre> is the text that describes the property in the grid. <br><br>
+ *  
+ * The program uses reflection to get these attributes which are used to create a table
+ * model (CtrlPropModel class) for the property grid table (CtrlPropView class). <br>
  * 
  * @author Peter Lager
  *
@@ -36,10 +63,20 @@ import processing.app.Editor;
 @SuppressWarnings("serial")
 public abstract class DBase extends DefaultMutableTreeNode implements Serializable, TDataConstants, TFileConstants, TGuiConstants {
 
+	/**
+	 * This method was added to overcome a problem using the MessageFormat class where
+	 * the locale insisted in inserting thousand separators in numbers.
+	 * Instead of passing an int to MessageFormat this method means we can pass a String. 
+	 */
 	protected static String $(int i){
 		return String.valueOf(i);
 	}
 	
+	/**
+	 * This method was added to overcome a problem using the MessageFormat class where
+	 * the locale insisted in inserting thousand separators in numbers.
+	 * Instead of passing a float to MessageFormat this method means we can pass a String. 
+	 */
 	protected static String $(float f){
 		return String.valueOf(f);
 	}
@@ -49,13 +86,17 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// Whether it is selectable in the WindowView
 	// set to false for DOptionGroup and DTimer
 	protected boolean selectable = true;
+	// can the control be resized?
 	protected boolean resizeable = true;
+	// Can the control be moved
 	protected boolean moveable = true;
 
+	// The name of the equivalent class in G4P
 	public String componentClass = "";
 
+	// Unique id numbers to identify event handlers and used to capture
+	// user code.
 	public Integer[] id = new Integer[1];
-//	public Integer id = null;
 	
 	public String 		_0010_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
@@ -100,6 +141,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
 
 
+	/**
+	 * 
+	 */
 	public DBase(){
 		allowsChildren = false;
 		id[0] = IdGen.instance().getNext();
@@ -107,7 +151,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	// ==========================================================================
 	// ==========================================================================
-	// ===============   Stuff for code generation   ============================
+	// ===========   Stuff for control declaration and  generation   ============
 	// ==========================================================================
 	
 	/**
@@ -168,15 +212,15 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 	
 	/**
-	 * Get the declaration for this control
+	 * Get the declaration for this control <pre>Foo variable_name;</pre><br>
 	 */
 	protected String get_declaration(){
 		return componentClass + " " + _0010_name+ "; \n";
 	}
 
 	/**
-	 * Get the creator statement var = new Foo(...);
-	 * @return
+	 * Get the creator statement <pre>var = new Foo(...);</pre><br>
+	 * Override this method in all classes.
 	 */
 	protected String get_creator(DBase parent){
 		return null;
@@ -188,9 +232,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// =================   Stuff for event code generation   ====================
 	// ==========================================================================
 
-	/** get the event method for this control
+	/** 
+	 * Get the event method for this control
 	 * 
-	 * @return
 	 */
 	protected String get_event_definition(){
 		String ec = get_event_header() + get_event_code() + get_event_end(0);
@@ -289,7 +333,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	// ==========================================================================
 	// ==========================================================================
-	// =================    Stuff for drawing   =================================
+	// ==========    Stuff for drawing controls in design window   ==============
 	// ==========================================================================
 
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
@@ -301,6 +345,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public void update(){
 	}
 
+	/**
+	 * Draw a selector if the control is the one being edited.
+	 * @param g
+	 */
 	public void drawSelector(Graphics2D g){
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
@@ -311,7 +359,13 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 			drawHandle(g, _0130_width - HANDLE_SIZE, _0131_height - HANDLE_SIZE);
 		}
 	}
-
+	
+	/**
+	 * Draw a grab handle to resize the control
+	 * @param g
+	 * @param x
+	 * @param y
+	 */
 	protected void drawHandle(Graphics2D g, int x, int y){
 		g.setColor(Color.white);
 		g.fillRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
@@ -319,6 +373,13 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		g.drawRect(x, y , HANDLE_SIZE, HANDLE_SIZE);
 	}
 
+	/**
+	 * Determines whether a position is over the control and if it is whether it is
+	 * over the body of the control or a resize handle.
+	 * @param m
+	 * @param x
+	 * @param y
+	 */
 	public void isOver(MutableDBase m, int x, int y) {
 		if(selectable){
 			x -= _0120_x;
@@ -346,6 +407,16 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}
 	}
 
+	/**
+	 * Helper method to see if a position is over a given rectangle.
+	 * @param px
+	 * @param py
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @return
+	 */
 	protected boolean isOverRectangle(int px, int py, int x, int y, int w, int h){
 		return px >= x && px < x + w && py >= y && py < y + h;
 	}
@@ -384,7 +455,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	/**
 	 * Get the property model for this component. If it does not exist then
-	 * create it first
+	 * create it first.
 	 * @return
 	 */
 	public CtrlPropModel getTableModel(){
@@ -394,7 +465,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	/**
-	 * Will return null if no image
+	 * Will return null if no image was loaded.
 	 * @param filename
 	 * @return
 	 */
@@ -411,10 +482,18 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return img;
 	}
 	
+	/**
+	 * Get the actual area of the control
+	 * @return
+	 */
 	public int getSize(){
 		return _0130_width * _0131_height;
 	}
 	
+	/**
+	 * Called when the control has been changed in the GUI. <br>
+	 * Override if needed.
+	 */
 	public void updatedInGUI(){		
 	}
 }

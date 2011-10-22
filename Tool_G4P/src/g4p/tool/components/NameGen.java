@@ -3,6 +3,14 @@ package g4p.tool.components;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Singleton class used to create unique names for variables and event handlers. <br>
+ * 
+ * Prevents the use of Java keywords and many of the methods defined by Processing.
+ * 
+ * @author Peter Lager
+ *
+ */
 public final class NameGen {
 
 	private static NameGen instance;
