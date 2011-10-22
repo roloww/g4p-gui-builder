@@ -165,12 +165,7 @@ public interface TDataConstants {
 
 	public final String INDENT				=	"  ";
 	
-	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	 * Add to window pattern
-	 */
-	
-//	//  0 = window name  :  1 = control name
-//	public final String ADD_TO_WINDOW		= "  {0}.add({1});\n";
+	// Used by GOptionGroup and GPanel
 	//  0 = parent name  :  1 = control name
 	public final String ADD_A_CHILD		= "  {0}.add({1});\n";
 	

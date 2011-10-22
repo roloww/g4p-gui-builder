@@ -8,7 +8,7 @@ public interface TGuiConstants {
 	
 	
 	// Selection box size
-	public final int HANDLE_SIZE		= 5;
+	public final int HANDLE_SIZE		= 	6;
 	
 	// Mouse over constants
 	public final int OVER_NONE			=	0x00000000;

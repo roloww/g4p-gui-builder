@@ -4,7 +4,13 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class IdGen {
+/**
+ * Singleton class to provide unique identity numbers.
+ * 
+ * @author Peter Lager
+ *
+ */
+public final class IdGen {
 
 	private static IdGen instance;
 	private static int low  = 200000;

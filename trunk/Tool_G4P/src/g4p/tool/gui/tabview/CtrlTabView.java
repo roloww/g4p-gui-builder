@@ -13,6 +13,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener {
 

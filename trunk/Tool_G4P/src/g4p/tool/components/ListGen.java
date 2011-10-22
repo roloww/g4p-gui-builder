@@ -7,11 +7,15 @@ import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *  When adding a new type of list - need to modify the getValidator(type) mewethod to included it
- * @author Peter
+ * Singleton class used to create and store option lists for combobox editors. <br>
+ * 
+ * When adding a new type of list - need to modify the getValidator(type) method to 
+ * included it.<br>
+ * 
+ * @author Peter Lager.
  *
  */
-public class ListGen implements TDataConstants {
+public final class ListGen implements TDataConstants {
 
 
 	private static ListGen instance;
