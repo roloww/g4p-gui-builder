@@ -5,8 +5,14 @@ import java.lang.reflect.Method;
 
 import javax.swing.table.TableCellRenderer;
 
-@SuppressWarnings("unchecked")
-public final class Property implements Comparable {
+/**
+ * This class represents a 'prperty' that is to be shown in the property grid
+ * and is linked to a field in the D component object.
+ * 
+ * @author Peter Lager
+ *
+ */
+public final class Property implements Comparable<Object> {
 
 	public Object fieldFromObject;
 	public Field field;
@@ -25,6 +31,11 @@ public final class Property implements Comparable {
 	public boolean allowEdit = true;
 	public boolean show = true;
 	
+	/**
+	 * Creates a property from the gien object and field.
+	 * @param o
+	 * @param f
+	 */
 	public Property(Object o, Field f){
 		fieldFromObject = o;
 		field = f;
@@ -105,6 +116,11 @@ public final class Property implements Comparable {
 		}
 	}
 
+	/**
+	 * Get the value of this property. Used by the property grid to
+	 * decide what should be shown.
+	 * @return
+	 */
 	public Object getValue(){
 		return getFieldValue(field, fieldFromObject);
 	}
@@ -195,6 +211,11 @@ public final class Property implements Comparable {
 	}
 
 	// Called when table cell loses focus
+	/**
+	 * This is a really important method in that it is called when a cell in the property 
+	 * grid loses focus. It stores the edited value in the attribute and calls the 
+	 * property updater method if any.
+	 */
 	public void setValue(Object value){
 		try {
 			// Attempt to store the value
@@ -213,6 +234,15 @@ public final class Property implements Comparable {
 		}
 	}
 
+	/**
+	 * Strore a value in a field.
+	 * 
+	 * @param f
+	 * @param obj
+	 * @param value
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 */
 	private void setFieldValue(Field f, Object obj, Object value) throws IllegalArgumentException, IllegalAccessException {
 		Class<?> c = f.getClass();
 		if(c == boolean.class || c == Boolean.class)

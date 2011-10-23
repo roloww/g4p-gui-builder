@@ -30,6 +30,12 @@ import processing.app.Sketch;
 import processing.app.SketchCode;
 import processing.core.PApplet;
 
+/**
+ * Provides main functionality for using the tool.
+ * 
+ * @author Peter Lager
+ *
+ */
 public class GuiControl implements TFileConstants, TDataConstants {
 
 	private Editor editor = null;

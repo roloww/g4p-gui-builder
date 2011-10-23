@@ -1,6 +1,7 @@
 package g4p.tool.gui.propertygrid;
 
 import g4p.tool.gui.GuiDesigner;
+import g4p.tool.gui.ToolIcon;
 
 import java.awt.Component;
 import java.io.File;
@@ -15,19 +16,26 @@ import javax.swing.ScrollPaneConstants;
 
 import processing.app.Base;
 
-public class EditorFileList extends EditorBase {
+/**
+ * Editor to get a list of strings - DCombo
+ * 
+ * @author Peter Lager
+ *
+ */
+@SuppressWarnings("serial")
+public class EditorStringList extends EditorBase {
 
 	protected static JTextField component = null;
 	protected static JTextArea lister = null;
 	protected static JScrollPane pane = null;
 	
 	
-	public EditorFileList(){
+	public EditorStringList(){
 		if(lister == null){
 			lister = new JTextArea("",10,40);
 			pane = new JScrollPane(lister, 
 					ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-					ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+					ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		}
 		if(component == null){
 			component = new JTextField();
@@ -40,7 +48,6 @@ public class EditorFileList extends EditorBase {
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
 		String content = "";
-		String[] list = new String[0];
 		component.setText(value.toString());
 		GuiDesigner.keepOpen(true);
 		
@@ -57,7 +64,8 @@ public class EditorFileList extends EditorBase {
 		}
 		lister.setText(content);
 		// initialise the textarea chooser
-		int result = JOptionPane.showConfirmDialog(null, pane, "ComboBox List (1 option per line)", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(GuiDesigner.instance(), pane, "ComboBox List (1 option per line)",
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, ToolIcon.instance().getIcon("CB_ICON1"));
 		if(result == JOptionPane.OK_OPTION) {
 			try {
 				content = lister.getText();
@@ -68,13 +76,12 @@ public class EditorFileList extends EditorBase {
 			}
 		}
 		GuiDesigner.keepOpen(false);
-		this.fireEditingStopped();
+		fireEditingStopped();
 		return component;
 	}
 
 	@Override
 	public Object getCellEditorValue() {
-		// TODO Auto-generated method stub
 		return component.getText();
 	}
 

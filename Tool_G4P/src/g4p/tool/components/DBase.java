@@ -42,18 +42,10 @@ import processing.app.Editor;
  * <pre>height_editor</pre> the object used to edit the property. <br>
  * <pre>height_validator</pre> the object used to validate the proerty value. <br>
  * <pre>height_updater</pre> the name of the method to call after the property has changed. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br>
- * <pre>height_label</pre> is the text that describes the property in the grid. <br><br>
- *  
+ * 
+ * If an editor and or validator is not specified for each property a default one based on the 
+ * data type is provided. <br>
+ * 
  * The program uses reflection to get these attributes which are used to create a table
  * model (CtrlPropModel class) for the property grid table (CtrlPropView class). <br>
  * 
@@ -496,4 +488,5 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 */
 	public void updatedInGUI(){		
 	}
+	
 }

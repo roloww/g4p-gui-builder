@@ -9,7 +9,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-
+/**
+ * Default editor for text and numeric input. <br>
+ * The key to this class is selecting the correct validator.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class EditorJTextfield extends EditorBase { 
 
