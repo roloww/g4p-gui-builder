@@ -2,6 +2,13 @@ package g4p.tool.components;
 
 import java.util.HashMap;
 
+/**
+ * Every event handler method has its own unique id number. This class is used to 
+ * store user entered code indexed by the id number..
+ * 
+ * @author Peter Lager
+ *
+ */
 public class Code {
 	
 	private static Code instance;
@@ -14,7 +21,6 @@ public class Code {
 	}
 
 	HashMap<Integer, String> snippets;
-	
 	
 	private Code(){
 		snippets = new HashMap<Integer, String>();

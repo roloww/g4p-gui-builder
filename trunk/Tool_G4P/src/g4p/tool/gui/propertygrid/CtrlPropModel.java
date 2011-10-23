@@ -27,7 +27,6 @@ public class CtrlPropModel extends AbstractTableModel implements TableModel {
 	 * each public field that starts with an underscore.
 	 * @param cl
 	 */
-	@SuppressWarnings("unchecked")
 	public void createProperties(DBase cl){
 		ArrayList<Property> props = new ArrayList<Property>();
 		Property p;

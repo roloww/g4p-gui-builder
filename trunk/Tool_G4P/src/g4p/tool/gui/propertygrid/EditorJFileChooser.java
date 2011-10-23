@@ -21,6 +21,13 @@ import javax.swing.filechooser.FileFilter;
 import processing.app.Base;
 import processing.app.Editor;
 
+/**
+ * Editor allowing user to select image files. The selected image file
+ * will be copied to the sketch's data folder.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class EditorJFileChooser extends EditorBase {
 

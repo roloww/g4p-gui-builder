@@ -11,6 +11,12 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
+/**
+ * Editor to select a value from a drop-down list.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class EditorJComboBox extends EditorBase {
 

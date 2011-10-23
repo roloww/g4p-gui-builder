@@ -9,6 +9,12 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableCellRenderer;
 
+/**
+ * The default renderer to be used for Boolean values.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class Renderer_Boolean extends JCheckBox implements TableCellRenderer {
 

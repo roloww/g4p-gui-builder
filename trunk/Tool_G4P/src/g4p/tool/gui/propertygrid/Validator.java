@@ -10,7 +10,13 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 
-
+/**
+ * A collection of classes to provide validators to control input 
+ * into the property grid.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public abstract class Validator implements TDataConstants, Serializable {
 

@@ -3,7 +3,7 @@ package g4p.tool.components;
 import g4p.tool.Messages;
 import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.EditorBase;
-import g4p.tool.gui.propertygrid.EditorFileList;
+import g4p.tool.gui.propertygrid.EditorStringList;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
@@ -14,7 +14,7 @@ import java.io.ObjectInputStream;
 @SuppressWarnings("serial")
 public class DCombo extends DCore {
 
-	public String height_updator = "heightChanged";	
+	public String 		height_updator = "heightChanged";	
 	
 	public int	 		_0053_nbr_rows = 5;
 	public Boolean 		nbr_rows_edit = true;
@@ -26,7 +26,8 @@ public class DCombo extends DCore {
 	public Boolean 		list_file_edit = true;
 	public Boolean 		list_file_show = true;
 	public String 		list_file_label = "Option list file";
-	transient public 	EditorBase list_file_editor = new EditorFileList();
+	public String 		list_file_tooltip = "Do not change the filename!";
+	transient public 	EditorBase list_file_editor = new EditorStringList();
 
 	
 	public DCombo(){
@@ -89,7 +90,7 @@ public class DCombo extends DCore {
 		in.defaultReadObject();
 		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
-		list_file_editor = new EditorFileList();
+		list_file_editor = new EditorStringList();
 	}
 
 

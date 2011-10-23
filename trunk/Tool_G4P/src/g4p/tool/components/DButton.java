@@ -93,6 +93,9 @@ public class DButton extends DCoreText {
 		calculateAlignmentValues();
 	}
 
+	/**
+	 * Recalculate the alignment values for drawing this button in the designer.
+	 */
 	public void updatedInGUI(){
 		calculateAlignmentValues();
 	}
@@ -214,7 +217,6 @@ public class DButton extends DCoreText {
 			_0131_height = h;
 		}
 	}
-
 
 	protected void calculateAlignmentValues(){
 		// Calculate icon position and range limits for text

@@ -16,6 +16,12 @@ import javax.swing.table.TableCellRenderer;
 
 import processing.app.Editor;
 
+/**
+ * A view of the property grid.
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings({ "serial", "unused" })
 public class CtrlPropView extends JTable implements TableModelListener, IPropView {
 

@@ -4,6 +4,12 @@ import java.util.HashMap;
 
 import javax.swing.Icon;
 
+/**
+ * Singleton class to manage icons used by the tool.
+ * 
+ * @author Peter Lager
+ *
+ */
 public class ToolIcon {
 
 	private static ToolIcon instance = null;

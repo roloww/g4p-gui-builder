@@ -4,9 +4,13 @@ package g4p.tool;
 import java.text.MessageFormat;
 import java.util.Locale;
 
+/**
+ * 
+ * @author Peter Lager
+ *
+ */
 public class Messages {
 
-	
 	public static String build(String pattern, Object ... arguments){
 		return (pattern == null) ? "" : new MessageFormat(pattern, Locale.UK).format(arguments);        
 	}
