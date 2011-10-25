@@ -70,7 +70,7 @@ public class DCombo extends DCore {
 			g.setColor(comboDropBack);
 			g.drawRect(0, _0131_height, _0130_width, _0131_height * (_0053_nbr_rows - 1));
 			g.setColor(comboDropEdge);
-			for(int i = 1; i < _0053_nbr_rows; i++)
+			for(int i = 1; i <= _0053_nbr_rows; i++)
 				g.drawRect(0, _0131_height * i, _0130_width, _0131_height);
 		}
 		g.setColor(comboEdge);
