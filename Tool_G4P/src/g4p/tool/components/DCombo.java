@@ -25,7 +25,7 @@ public class DCombo extends DCore {
 	public int	 		_0054_selected = 0;
 	public Boolean 		selected_edit = true;
 	public Boolean 		selected_show = true;
-	public String 		selected_label = "Selected rows";
+	public String 		selected_label = "Selected row";
 	public String 		selected_tooltip = "Rows start at zero";
 	public Validator 	selected_validator = Validator.getValidator(int.class, 0, 20);
 
@@ -87,7 +87,7 @@ public class DCombo extends DCore {
 		String s = "";
 		s = Messages.build(CTOR_GCOMBO, _0010_name, "this", _0052_list_file,
 					 $(_0053_nbr_rows), $(_0120_x), $(_0121_y), $(_0130_width));
-		s += Messages.build(SEL_OPTION, $(_0054_selected));
+		s += Messages.build(SEL_OPTION,  _0010_name, $(_0054_selected));
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
