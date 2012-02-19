@@ -1,4 +1,4 @@
-<project name="ProcessingTools" default="clean" basedir="../">
+<project name="G4P GUI builder" default="clean" basedir="../">
 
     
 <!--	
@@ -163,6 +163,10 @@ ${line}
   		<mkdir dir="${project.tmp}/${project.name}/examples" />
 	  	<mkdir dir="${project.tmp}/${project.name}/reference" />
   		<mkdir dir="${project.tmp}/${project.name}/src" />
+  		
+  		<!-- Next line added to basic script : creates a data folder -->
+  		<mkdir dir="${project.tmp}/${project.name}/data" />	
+  		
   		<copy todir="${project.tmp}/${project.name}/examples">
   			<fileset dir="${project.examples}">
 	  			<exclude name="**/*README*"/>
@@ -171,6 +175,12 @@ ${line}
   		<copy todir="${project.tmp}/${project.name}/src">
   			<fileset dir="${project.src}"/>
 	  	</copy>
+	  	
+  		<!-- Next line added to basic script : copies files to tool|data folder -->
+	  	<copy todir="${project.tmp}/${project.name}/data">
+  			<fileset dir="${project.data}" excludes="README" />
+	  	</copy>
+	  	
 	  	<copy todir="${project.tmp}/${project.name}/${folder}">
   			<fileset dir="${project.lib}" excludes="README" />
 	  	</copy>
@@ -179,7 +189,9 @@ ${line}
 	
 	<target name="generate.source" if="is.normal">
 	    <antcall target="generate.source.win"/>
+<!--
 	    <antcall target="generate.source.nix"/>
+-->
 	</target>
 	
 	
@@ -190,6 +202,7 @@ ${line}
 	    <property name="src.list" refid="src.contents" />
 	    <foreach list="${src.list}" param="file" target="parse.file" delimiter=";" />
 	</target>
+	
 	<target name="generate.source.nix" unless="is.windows">
 	    <echo message="generating source (mac/linux) ..."/>
 	    <path id="src.contents"><fileset dir="${project.tmp}/${project.name}/src" includes="**/*.java" /></path>
@@ -222,7 +235,12 @@ ${line}
  			<link href="${javadoc.java.href}" />
 			<link href="${javadoc.processing.href}" />
 			<taglet name="ExampleTaglet" path="resources/code" />
+			
+			<!-- This line has been replaced by the next line
  			<fileset dir="${project.tmp}/${project.name}/src" defaultexcludes="yes">
+ 			-->
+ 			<fileset dir="${project.tmp}/${project.name}/src" defaultexcludes="yes" excludes="**/*.form **/*.cld **/*.png **/*.jpg">
+ 
 			<!-- add packages to be added to reference. -->
 				<include name="**/*"/>
 			</fileset>
