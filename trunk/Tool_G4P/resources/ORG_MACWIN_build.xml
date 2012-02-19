@@ -329,6 +329,7 @@ ${line}
 	<target name="versionSourcefile">
 		<echo message="${file}" />
 		<replaceregexp file="${file}" match="##author##" replace="${author.name} ${author.url}" flags="g" />
+		<replaceregexp file="${file}" match="##author.name##" replace="${author.name}" flags="g" />
 		<replaceregexp file="${file}" match="##version##" replace="${project.version}" flags="g" />
 		<replaceregexp file="${file}" match="##date##" replace="${date}" flags="g" />
 		<replaceregexp file="${file}" match="##copyright##" replace="${project.copyright}" flags="g" />
