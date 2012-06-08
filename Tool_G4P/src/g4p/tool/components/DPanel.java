@@ -33,26 +33,26 @@ public class DPanel extends DCoreText {
 //		System.out.println("ctor DPanel()   " + _0005_name);
 	}
 
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GPANEL, _0010_name, "this", _0029_text,
+		s = Messages.build(CTOR_GPANEL, _0010_name, window, _0029_text,
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		s += Messages.build(COLLAPSED, _0010_name, _0030_collapsed);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
-	public void make_creator(ArrayList<String> lines, DBase parent){
+	public void make_creator(ArrayList<String> lines, DBase parent, String window){
 		DBase comp;
 		Enumeration<?> e;
-		String ccode = get_creator(parent);
+		String ccode = get_creator(parent, window);
 		if(ccode != null && !ccode.equals(""))
 			lines.add(ccode);
 		if(allowsChildren){
 			e = children();
 			while(e.hasMoreElements()){
 				comp = (DBase)e.nextElement();
-				comp.make_creator(lines, this);
+				comp.make_creator(lines, this, window);
 			}
 			e = children();
 			while(e.hasMoreElements()){

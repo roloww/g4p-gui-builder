@@ -512,7 +512,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 	 */
 	static class Validator_Combo extends Validator{
 
-		DefaultComboBoxModel list;
+		DefaultComboBoxModel<?> list;
 		/**
 		 * 
 		 * The length of args should be 2 i.e.
@@ -520,7 +520,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 		 * @param args
 		 */
 		public Validator_Combo(Object ... args){
-			list = (DefaultComboBoxModel) args[0];
+			list = (DefaultComboBoxModel<?>) args[0];
 		}
 
 		// The first argument should be the combo box cell editor

@@ -265,7 +265,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		DefaultTreeModel m = (DefaultTreeModel) getModel();
 		// Start with application
 		DBase r = (DBase) m.getRoot();
-		r.make_creator(lines, null);
+		r.make_creator(lines, null, "this");
 	}
 
 	// ==========================================================================

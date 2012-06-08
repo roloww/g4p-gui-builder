@@ -31,9 +31,9 @@ public class DLabel extends DCoreText {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GLABEL, _0010_name, "this", _0029_text,
+		s = Messages.build(CTOR_GLABEL, _0010_name, window, _0029_text,
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		return s;
 	}
@@ -49,7 +49,7 @@ public class DLabel extends DCoreText {
 		g.setColor(blackEdge);
 		g.drawRect(0, 0, _0130_width, _0131_height);
 		
-		g.drawString(this._0010_name, 4, _0131_height/2 +4 );
+		g.drawString(this._0010_name, 4, _0131_height/2 + 4);
 
 		if(this == selected)
 			drawSelector(g);

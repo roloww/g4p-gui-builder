@@ -26,19 +26,19 @@ public class DOptionGroup extends DBase {
 		allowsChildren = true;
 	}
 	
-	public void make_creator(ArrayList<String> lines, DBase parent){
+	public void make_creator(ArrayList<String> lines, DBase parent, String window){
 		DOption comp;
 		Enumeration<?> e;
-		String ccode = get_creator(parent);
+		String ccode = get_creator(parent, window);
 		if(ccode != null && !ccode.equals(""))
 			lines.add(ccode);
 		if(allowsChildren){
 			e = children();
 			while(e.hasMoreElements()){
 				comp = (DOption)e.nextElement();
-				comp.make_creator(lines, this);
+				comp.make_creator(lines, this, window);
 			}
-			if(parent != null){
+			if(parent != null && !(parent instanceof DWindow)){
 				e = children();
 				while(e.hasMoreElements()){
 					comp = (DOption)e.nextElement();
@@ -48,7 +48,7 @@ public class DOptionGroup extends DBase {
 		}				
 	}
 
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		return Messages.build(CTOR_GOPTIONGROUP, _0010_name);
 	}
 

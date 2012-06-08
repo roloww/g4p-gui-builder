@@ -65,7 +65,7 @@ public final class DApplication extends DBase {
 		name_label = "PROCCESSING";
 	}
 
-	public String get_creator(DBase parent){ 
+	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
 		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0710_col_scheme));
 		sb.append("  G4P.messagesEnabled(false);\n");

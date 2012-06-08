@@ -28,9 +28,9 @@ public class DOption extends DCoreSelectable {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GOPTION, _0010_name, "this", 
+		s = Messages.build(CTOR_GOPTION, _0010_name, window, 
 				_0029_text, $(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(ADD_OPTION, parent._0010_name, _0010_name);
 		if(_0685_selected)

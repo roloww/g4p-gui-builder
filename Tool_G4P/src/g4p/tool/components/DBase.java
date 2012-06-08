@@ -188,17 +188,17 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * @param lines
 	 * @param parent
 	 */
-	public void make_creator(ArrayList<String> lines, DBase parent){
+	public void make_creator(ArrayList<String> lines, DBase parent, String window){
 		DBase comp;
 		Enumeration<?> e;
-		String ccode = get_creator(parent);
+		String ccode = get_creator(parent, window);
 		if(ccode != null && !ccode.equals(""))
 			lines.add(ccode);
 		if(allowsChildren){
 			e = children();
 			while(e.hasMoreElements()){
 				comp = (DBase)e.nextElement();
-				comp.make_creator(lines, this);
+				comp.make_creator(lines, this, window);
 			}
 		}				
 	}
@@ -214,7 +214,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Get the creator statement <pre>var = new Foo(...);</pre><br>
 	 * Override this method in all classes.
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		return null;
 	}
 	
