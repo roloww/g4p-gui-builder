@@ -41,8 +41,8 @@ public class DActivityBar extends DCore {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
-		String	s = Messages.build(CTOR_GACTIVITYBAR, _0010_name, "this",
+	protected String get_creator(DBase parent, String window){
+		String	s = Messages.build(CTOR_GACTIVITYBAR, _0010_name, window,
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		return s;
 	}

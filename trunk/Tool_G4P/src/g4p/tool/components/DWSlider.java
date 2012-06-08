@@ -32,9 +32,9 @@ public class DWSlider extends DSliderFloat {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GWSLIDER, _0010_name, "this", _0620_skin,
+		s = Messages.build(CTOR_GWSLIDER, _0010_name, window, _0620_skin,
 				$(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(SET_F_LIMITS,_0010_name, $(_0630_value), $(_0631_min), $(_0632_max));
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);

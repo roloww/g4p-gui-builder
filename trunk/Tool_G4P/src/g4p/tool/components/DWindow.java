@@ -100,6 +100,9 @@ public final class DWindow extends DBase {
 			
 			_0015_title = "My window title";
 			renderer_edit = renderer_show = true;
+			// Create a draw method for this window
+			_0750_wdraw = NameGen.instance().getNext("win_draw");
+			System.out.println("Window draw method name = "+ _0750_wdraw);
 		}
 		_0015_title = "Frame title text";
 		width_edit = height_edit = true;
@@ -168,7 +171,7 @@ public final class DWindow extends DBase {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		if(mainSketch)
 			return null;
 		else {
@@ -191,11 +194,13 @@ public final class DWindow extends DBase {
 		}
 	}
 	
-	// recursive method
-	public void make_creator(ArrayList<String> lines, DBase parent){
+	/**
+	 * This is the main method to create the code to create the Window
+	 */
+	public void make_creator(ArrayList<String> lines, DBase parent, String window){
 		DBase comp;
 		Enumeration<?> e;
-		String ccode = get_creator(parent);
+		String ccode = get_creator(parent, window);
 		if(ccode != null && !ccode.equals(""))
 			lines.add(ccode);
 		if(allowsChildren){
@@ -203,19 +208,21 @@ public final class DWindow extends DBase {
 			while(e.hasMoreElements()){
 				comp = (DBase)e.nextElement();
 				if(mainSketch)
-					comp.make_creator(lines, null);
+					comp.make_creator(lines, null, "this");
 				else
-					comp.make_creator(lines, this);
+					comp.make_creator(lines, this, _0010_name + ".papplet");
 			}
-			if(!mainSketch){
-				e = children();
-				while(e.hasMoreElements()){
-					comp = (DBase)e.nextElement();
-					if( !(comp instanceof DOptionGroup) )	{
-						lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
-					}
-				}
-			}
+			// If not the main window then add to the actual window
+			// This will not be required for G4P V2+
+//			if(!mainSketch){
+//				e = children();
+//				while(e.hasMoreElements()){
+//					comp = (DBase)e.nextElement();
+//					if( !(comp instanceof DOptionGroup) )	{
+//						lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
+//					}
+//				}
+//			}
 		}				
 	}
 

@@ -84,7 +84,7 @@ public class DImageButton extends DCore {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s = "", f1 ="", f2 = "", f3 = "";
 		// Get button style
 //		style = ListGen.instance().getComboBoxModel(IMG_BUTTON_STYLE).getIndexOf(_0041_btn_style);
@@ -103,17 +103,17 @@ public class DImageButton extends DCore {
 		switch(style){
 		case 0:
 		case 1:
-			s = Messages.build(CTOR_IMG_BUTTON_1, _0010_name, "this", mask, f1,
+			s = Messages.build(CTOR_IMG_BUTTON_1, _0010_name, window, mask, f1,
 					$(_0043_nbr_tiles), $(_0120_x), $(_0121_y));
 			break;
 		case 2:
-			s = Messages.build(CTOR_IMG_BUTTON_2, _0010_name, "this", mask, f1, f2,
+			s = Messages.build(CTOR_IMG_BUTTON_2, _0010_name, window, mask, f1, f2,
 					$(_0120_x), $(_0121_y));
 			s = s.replace('<', '{');
 			s = s.replace('>', '}');
 			break;
 		case 3:
-			s = Messages.build(CTOR_IMG_BUTTON_3, _0010_name, "this", mask, f1, f2, f3, 
+			s = Messages.build(CTOR_IMG_BUTTON_3, _0010_name, window, mask, f1, f2, f3, 
 					$(_0120_x), $(_0121_y));
 			s = s.replace('<', '{');
 			s = s.replace('>', '}');

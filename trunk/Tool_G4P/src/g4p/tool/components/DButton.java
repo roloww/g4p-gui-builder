@@ -307,19 +307,19 @@ public class DButton extends DCoreText {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s = "";
 		switch(style){
 		case TEXT_ONLY:
-			s = Messages.build(CTOR_GBUTTON_1, _0010_name, "this",
+			s = Messages.build(CTOR_GBUTTON_1, _0010_name, window,
 					_0029_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		case ICON_ONLY:
-			s = Messages.build(CTOR_GBUTTON_2, _0010_name, "this", 
+			s = Messages.build(CTOR_GBUTTON_2, _0010_name, window, 
 					_0037_icon_file, _0036_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		case TEXT_AND_ICON:
-			s = Messages.build(CTOR_GBUTTON_3, _0010_name, "this",  _0029_text,
+			s = Messages.build(CTOR_GBUTTON_3, _0010_name, window,  _0029_text,
 					_0037_icon_file, _0036_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 			break;
 		}

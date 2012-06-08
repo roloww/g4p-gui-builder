@@ -81,13 +81,13 @@ public class DKnob extends DSliderFloat {
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
-	protected String get_creator(DBase parent){
+	protected String get_creator(DBase parent, String window){
 		String s;
 		if(_0130_width == _0131_height)
-			s = Messages.build(CTOR_GKNOB, _0010_name, "this", $(_0120_x), $(_0121_y), $(_0130_width),
+			s = Messages.build(CTOR_GKNOB, _0010_name, window, $(_0120_x), $(_0121_y), $(_0130_width),
 					$(_0032_dial_start_angle), $(_0033_dial_end_angle));
 		else
-			s = Messages.build(CTOR_GKNOBOVAL, _0010_name, "this", $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height),
+			s = Messages.build(CTOR_GKNOBOVAL, _0010_name, window, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height),
 					$(_0032_dial_start_angle), $(_0033_dial_end_angle));
 		s += Messages.build(SET_F_LIMITS,_0010_name, String.valueOf(_0630_value), String.valueOf(_0631_min), String.valueOf(_0632_max));
 		s += Messages.build(SET_ARC_ONLY,_0010_name, _0035_arc_only);
