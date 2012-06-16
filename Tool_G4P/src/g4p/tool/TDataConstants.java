@@ -56,10 +56,10 @@ public interface TDataConstants {
 	public final String METHOD_START_2	=	"void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
 	
 	// 0 = event method name  :  1/2 = component name/id	
-	public final String WIN_DRAW		=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	public final String WIN_MOUSE		=	"void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
-	public final String WIN_PRE			=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	public final String WIN_POST		=	"void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_DRAW		=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_MOUSE		=	"synchronized void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_PRE			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	public final String WIN_POST		=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	
 	// 0 = component name  : 1 = id
 	public final String METHOD_END 		=	"] //_CODE_:{0}:{1}:\n\n";

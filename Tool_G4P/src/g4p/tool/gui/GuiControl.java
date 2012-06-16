@@ -29,6 +29,7 @@ import processing.app.Editor;
 import processing.app.Sketch;
 import processing.app.SketchCode;
 import processing.core.PApplet;
+import processing.mode.java.preproc.PdePreprocessor;
 
 /**
  * Provides main functionality for using the tool.
@@ -127,7 +128,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(currIndex != 0)
 			sketch.setCurrentCode(0);
 		String code = editor.getText();
-		code = processing.mode.java.JavaBuild.scrubComments(code);
+		code = PdePreprocessor.scrubComments(code);
 		m = pSize.matcher(code);
 		if(m.find() && m.groupCount() >= 3){
 			try	{
