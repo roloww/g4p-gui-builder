@@ -415,7 +415,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 	/**
 	 * ====================================================
-	 * Validator for float data type
+	 * Validator for double data type
 	 * ====================================================
 	 * @author Peter Lager
 	 */
