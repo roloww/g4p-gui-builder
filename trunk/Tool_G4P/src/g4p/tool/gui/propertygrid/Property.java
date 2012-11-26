@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import javax.swing.table.TableCellRenderer;
 
 /**
- * This class represents a 'prperty' that is to be shown in the property grid
+ * This class represents a 'property' that is to be shown in the property grid
  * and is linked to a field in the D component object.
  * 
  * @author Peter Lager
@@ -235,7 +235,7 @@ public final class Property implements Comparable<Object> {
 	}
 
 	/**
-	 * Strore a value in a field.
+	 * Store a value in a field.
 	 * 
 	 * @param f
 	 * @param obj

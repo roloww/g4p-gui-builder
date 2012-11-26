@@ -43,8 +43,7 @@ public final class ListGen implements TDataConstants {
 		makeHorzAlignSelection3(H_ALIGN_3);
 		makeVertAlignSelection(V_ALIGN);
 		makeImgButtonStyleSelection(IMG_BUTTON_STYLE);
-		makeButtonStyleSelection(BUTTON_STYLE);
-		
+		makeButtonStyleSelection(BUTTON_STYLE);	
 	}
 	
 	private void makeButtonStyleSelection(int type) {
@@ -58,14 +57,14 @@ public final class ListGen implements TDataConstants {
 	}
 
 	private void makeRendererSelection(int type) {
-		String[] s = new String[] {"P2D", "JAVA2D", "P3D", "OPENGL"};		
+		String[] s = new String[] {"JAVA2D", "P2D", "P3D"};		
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
 	private void makeColourSchemeSelection(int type){
-		String[] s = new String[] { "BLUE_SCHEME", "GREEN_SCHEME", 
-				"RED_SCHEME", "PURPLE_SCHEME", "YELLOW_SCHEME", 
-				"CYAN_SCHEME", "GREY_SCHEME" };
+		String[] s = new String[] { "RED_SCHEME", "GREEN_SCHEME", "YELLOW_SCHEME", 
+				"PURPLE_SCHEME", "ORANGE_SCHEME", "CYAN_SCHEME", 
+				"BLUE_SCHEME", "GOLD_SCHEME" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 	
