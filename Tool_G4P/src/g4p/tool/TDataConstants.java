@@ -151,16 +151,16 @@ public interface TDataConstants {
 	 * Default test code patterns
 	 */
 	String TIME 				= 	"+ System.currentTimeMillis()%10000000 );\n";
-	String CODE_ANY			=	"  println(\"{0} - {1} event occured \" " + TIME;
+	String CODE_ANY				=	"  println(\"{0} - {1} event occured \" " + TIME;
 	String CODE_TIMER			=	"  println(\"{0} - {1} timer event occured at \" " + TIME;
-	String CODE_GBUTTON		=	"  println(\"{0} - button clicked \" " + TIME;
+	String CODE_GBUTTON			=	"  println(\"{0} - button clicked \" " + TIME;
 	String CODE_GCHECKBOX		=	"  println(\"{0} - checkbox selected \" " + TIME;
-	String CODE_GOPTION		=	"  println(\"{0} - option selected \" " + TIME;
+	String CODE_GOPTION			=	"  println(\"{0} - option selected \" " + TIME;
 	String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded \" " + TIME;
 	String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield \" " + TIME;
 	String CODE_GWINDOW_DRAW	=	"  appc.background(200,255,200);\n";
 	String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event \" " + TIME;
-	String CODE_GWINDOW_PEE	=	"  println(\"{0} - pre method called \" " + TIME;
+	String CODE_GWINDOW_PEE		=	"  println(\"{0} - pre method called \" " + TIME;
 	String CODE_GWINDOW_POST	=	"  println(\"{0} - post method called \" " + TIME;
 
 	String INDENT				=	"  ";

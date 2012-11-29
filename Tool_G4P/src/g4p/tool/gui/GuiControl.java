@@ -34,6 +34,8 @@ import processing.mode.java.preproc.PdePreprocessor;
 /**
  * Provides main functionality for using the tool.
  * 
+ * Includes code generation functionality and event handling code capture.
+ * 
  * @author Peter Lager
  *
  */
