@@ -60,12 +60,15 @@ public class EditorJFileChooser extends EditorBase {
 		Editor e = GuiDesigner.editor();
 		int selected = chooser.showDialog(GuiDesigner.instance(), "Use Image");
 		if(selected == JFileChooser.APPROVE_OPTION){
-			File src = chooser.getSelectedFile();	 
+			File src = chooser.getSelectedFile();	
 			name = src.getName();
 			File dest = new File(e.getSketch().getDataFolder(), name);
 			// Copy file to data folder
 			try {
-				Base.copyFile(src, dest);
+				// Make sure we do not attempt to use an image already in the data folder
+				if(!src.equals(dest))
+					// Source is not inside the data folder so copy it there
+					Base.copyFile(src, dest);
 			} catch (IOException e1) {
 				System.out.println("COPY failed");
 			}
