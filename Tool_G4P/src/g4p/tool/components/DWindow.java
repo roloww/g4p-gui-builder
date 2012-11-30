@@ -82,6 +82,9 @@ public final class DWindow extends DBase {
 		if(mainSketch){
 			_0010_name = "Main window";
 			name_label = "SKETCH";
+			x_edit = y_edit = false;
+			x_show = y_show = false;	
+			eventHandler_show = false;
 			_0130_width = 480;
 			_0131_height = 320;
 			_0015_title = "My sketch title";

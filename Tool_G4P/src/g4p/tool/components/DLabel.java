@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 @SuppressWarnings("serial")
-public class DLabel extends DCoreText {
+public class DLabel extends DTextIcon {
 
 	
 	public DLabel(){

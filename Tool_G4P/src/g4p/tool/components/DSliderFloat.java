@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 
 @SuppressWarnings("serial")
-public class DSliderFloat extends DCore {
+public class DSliderFloat extends DText {
 
 	public Float 		_0630_value = 50.0f;
 	public String 		value_label = "Value (initial)";

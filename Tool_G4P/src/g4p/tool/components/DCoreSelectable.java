@@ -1,7 +1,7 @@
 package g4p.tool.components;
 
 @SuppressWarnings("serial")
-public class DCoreSelectable extends DCoreText {
+public class DCoreSelectable extends DTextIcon {
 
 	
 	public Boolean _0685_selected  = false;

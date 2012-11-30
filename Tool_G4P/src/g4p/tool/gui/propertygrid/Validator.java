@@ -75,6 +75,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 	/**
 	 * Create a validator for a JComboBox
+	 * 
 	 * @param type control string
 	 * @return
 	 */

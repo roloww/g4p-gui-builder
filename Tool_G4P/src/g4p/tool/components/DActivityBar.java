@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DActivityBar extends DCore {
+public class DActivityBar extends DText {
 
 	transient protected RectangularShape face;
 
