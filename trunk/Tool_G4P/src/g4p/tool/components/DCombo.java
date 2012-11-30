@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DCombo extends DCore {
+public class DCombo extends DText {
 
 	public String 		height_updator = "heightChanged";	
 	

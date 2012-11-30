@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DImageButton extends DCore {
+public class DImageButton extends DText {
 
 	transient BufferedImage image = null;
 	

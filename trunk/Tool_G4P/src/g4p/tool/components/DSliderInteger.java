@@ -5,7 +5,7 @@ import javax.swing.event.TableModelEvent;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
-public class DSliderInteger extends DCore {
+public class DSliderInteger extends DText {
 
 	public int 			_0630_value = 50;
 	public String 		value_label = "Value (initial)";

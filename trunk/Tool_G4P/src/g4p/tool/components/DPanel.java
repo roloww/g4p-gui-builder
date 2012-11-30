@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
-public class DPanel extends DCoreText {
+public class DPanel extends DTextIcon {
 
 	final protected static int TAB_HEIGHT = 16;
 	

@@ -241,7 +241,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	private void initCustomComponents() {
 		getIcons();
 
-
 		treeSketchView = new CtrlSketchView();
 		tblPropView = new CtrlPropView();
 		tabWindows = new CtrlTabView();

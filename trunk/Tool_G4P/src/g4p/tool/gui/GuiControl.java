@@ -65,8 +65,9 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		this.props = props;
 		if(editor != null){
 			try {
+				editor.getBase();
 				// Get the start text for the gui tab
-				File f = new File(editor.getBase().getSketchbookFolder() + SEP + GUI_PDE_BASE);
+				File f = new File(Base.getSketchbookFolder() + SEP + GUI_PDE_BASE);
 				guiPdeBase = Base.loadFile(f);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -310,7 +311,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	}
 
 	/**
-	 * This method loads the serialised GUI layout (tree model)
+	 * This method loads the serialised GUI layout (tree model) if available
+	 * otherwise it creates a blank model.
 	 */
 	public void loadGuiLayout() {
 		DefaultTreeModel dm = null;
@@ -353,7 +355,9 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	}
 
 	/**
-	 * Create a blank sketch
+	 * Create a blank sketch.
+	 * Starts with a DAplication for the root and a single DWindow child to represent
+	 * the main
 	 * @return
 	 */
 	private CtrlSketchModel getBaseSketchModel() {

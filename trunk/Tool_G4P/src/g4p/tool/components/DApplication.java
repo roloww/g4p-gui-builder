@@ -33,23 +33,23 @@ public final class DApplication extends DBase {
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
 	
-//	public Boolean 		_0720_cursor  = false;
-//	public Boolean 		cursor_edit = true;
-//	public Boolean 		cursor_show = true;
-//	public String 		cursor_updater = "updateCursorChanger";
-//	public String 		cursor_label = "Enable mouse over";
-//
+	public Boolean 		_0720_cursor  = true;
+	public Boolean 		cursor_edit = true;
+	public Boolean 		cursor_show = true;
+	public String 		cursor_updater = "updateCursorChanger";
+	public String 		cursor_label = "Enable mouse over";
+
 //	public String 		_0721_cursor_over = "CROSS";
 //	transient public 	EditorBase cursor_over_editor = new EditorJComboBox(CURSOR_CHANGER);
 //	public Boolean 		cursor_over_edit = true;
 //	public Boolean 		cursor_over_show = false;
 //	public String 		cursor_over_label = "Is over control";
-//
-//	public String 		_0722_cursor_off = "ARROW";
-//	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
-//	public Boolean 		cursor_off_edit = true;
-//	public Boolean 		cursor_off_show = false;
-//	public String 		cursor_off_label = "Not over control";
+
+	public String 		_0722_cursor_off = "ARROW";
+	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
+	public Boolean 		cursor_off_edit = true;
+	public Boolean 		cursor_off_show = false;
+	public String 		cursor_off_label = "Not over control";
 
 	
 	/**
@@ -63,16 +63,24 @@ public final class DApplication extends DBase {
 		allowsChildren = true;
 		_0010_name = "SKETCH";
 		name_label = "PROCCESSING";
+		name_edit = false;
+		x_show = false;
+		y_show = false;
+		width_show = false;
+		height_show = false;
+		eventHandler_show = false;
 	}
 
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
 		sb.append(Messages.build("  G4P.setGlobalColorScheme(this, GCScheme.{0});\n", _0710_col_scheme));
 		sb.append("  G4P.messagesEnabled(false);\n");
-//		if(_0720_cursor) {
-//			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0722_cursor_off, _0721_cursor_over));
-//			sb.append("  G4P.setMouseOverEnabled(true);\n");
-//		}
+		if(_0720_cursor) {
+			sb.append(Messages.build("  setCursorOff({0});\n", _0722_cursor_off));
+		}
+		else {
+			sb.append("  G4P.setMouseOverEnabled(false);\n");			
+		}
 		return new String(sb);
 	}
 

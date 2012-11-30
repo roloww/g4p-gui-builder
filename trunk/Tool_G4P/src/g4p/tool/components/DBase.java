@@ -95,7 +95,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	
 	public String 		_0010_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
-	public String 		name_tooltip = null;
+	public String 		name_tooltip = "Use Java naming rules";
 	public Boolean 		name_edit = false;
 	public Boolean 		name_show = true;
 	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
@@ -103,36 +103,36 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public int 			_0120_x = 0;
 	public String 		x_label = "X";
 	public String 		x_tooltip = "pixels";
-	public Boolean 		x_edit = false;
-	public Boolean 		x_show = false;
+	public Boolean 		x_edit = true;
+	public Boolean 		x_show = true;
 	public Validator 	x_validator = Validator.getValidator(int.class, -9999, 9999);
 
 	public int 			_0121_y = 0;
 	public String 		y_label = "Y";
 	public String 		y_tooltip = "pixels";
-	public Boolean 		y_edit = false;
-	public Boolean 		y_show = false;
+	public Boolean 		y_edit = true;
+	public Boolean 		y_show = true;
 	public Validator 	y_validator = x_validator;
 
 	public int 			_0130_width = 0;
 	public String 		width_label = "Width";
 	public String 		width_tooltip = "pixels";
-	public Boolean 		width_edit = false;
-	public Boolean 		width_show = false;
+	public Boolean 		width_edit = true;
+	public Boolean 		width_show = true;
 	public Validator 	width_validator = Validator.getValidator(int.class, 10, 9999);
 
 	public int 			_0131_height = 0;
 	public String 		height_label = "Height";
 	public String 		height_tooltip = "pixels";
-	public Boolean 		height_edit = false;
-	public Boolean 		height_show = false;
+	public Boolean 		height_edit = true;
+	public Boolean 		height_show = true;
 	public Validator 	height_validator = width_validator;
 
 	public String		_0701_eventHandler = "Event handler";
 	public String 		eventHandler_label = "Event method";
 	public String 		eventHandler_tooltip = "unique name for event handler method";
-	public Boolean 		eventHandler_edit = false;
-	public Boolean 		eventHandler_show = false;
+	public Boolean 		eventHandler_edit = true;
+	public Boolean 		eventHandler_show = true;
 	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
 
 
@@ -140,7 +140,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * 
 	 */
 	public DBase(){
-		allowsChildren = false;
+		allowsChildren = true;
 		id[0] = IdGen.instance().getNext();
 	}
 
