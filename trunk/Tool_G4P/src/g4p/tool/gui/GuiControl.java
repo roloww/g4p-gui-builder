@@ -176,6 +176,9 @@ public class GuiControl implements TFileConstants, TDataConstants {
 
 	}
 
+	/**
+	 * Create the code when then the editor loses focus.
+	 */
 	public void codeGeneration(){
 		String code;
 		Sketch sketch = editor.getSketch();
@@ -197,7 +200,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(code0 != null && code0.length() == 0){
 			SketchCode tab0 = sketch.getCurrentCode();
 			try {
-				File f = new File(editor.getBase().getSketchbookFolder() + SEP + TAB0_PDE_BASE);
+				editor.getBase();
+				File f = new File(Base.getSketchbookFolder() + SEP + TAB0_PDE_BASE);
 				String tab0code = Base.loadFile(f);
 				Dimension size = tree.getSketchSizeFromDesigner();
 				tab0code = tab0code.replace("WIDTH", "" + size.width);

@@ -67,7 +67,7 @@ public final class DApplication extends DBase {
 
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
-		sb.append(Messages.build("  G4P.setColorScheme(this, GCScheme.{0});\n", _0710_col_scheme));
+		sb.append(Messages.build("  G4P.setGlobalColorScheme(this, GCScheme.{0});\n", _0710_col_scheme));
 		sb.append("  G4P.messagesEnabled(false);\n");
 //		if(_0720_cursor) {
 //			sb.append(Messages.build("  G4P.cursor({0}, {1});\n", _0722_cursor_off, _0721_cursor_over));

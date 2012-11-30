@@ -73,6 +73,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return String.valueOf(f);
 	}
 	
+	/**
+	 * The property model used in the table view
+	 */
 	transient public CtrlPropModel propertyModel;
 
 	// Whether it is selectable in the WindowView
