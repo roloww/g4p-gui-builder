@@ -15,6 +15,7 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public final class DWindow extends DBase {
 
+	// Set to true for main skecth and false for secondary windows
 	public boolean 		mainSketch = false;
 	
 	public String 		_0015_title = "";
