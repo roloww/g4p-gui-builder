@@ -19,7 +19,6 @@ import java.io.ObjectInputStream;
 public class DButton extends DTextIcon {
 
 	transient protected RectangularShape face;
-	transient protected BufferedImage icon = null;
 	transient protected float mitre = 6.0f;
 
 	int style = TEXT_ONLY;
@@ -30,7 +29,7 @@ public class DButton extends DTextIcon {
 		componentClass = "GButton";
 		set_name(NameGen.instance().getNext("button"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
-		_0029_text = "Face text";
+		_0030_text = "Face text";
 		_0130_width = 80;
 		_0131_height = 30;
 		text_tooltip = "text to show on button";
@@ -87,24 +86,24 @@ public class DButton extends DTextIcon {
 	 */
 	protected String get_creator(DBase parent, String window){
 		String s = "";
-		switch(style){
-		case TEXT_ONLY:
-			s = Messages.build(CTOR_GBUTTON_1, _0010_name, window,
-					_0029_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
-			break;
-		case ICON_ONLY:
-			s = Messages.build(CTOR_GBUTTON_2, _0010_name, window, 
-					_0035_icon_file, _0037_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
-			break;
-		case TEXT_AND_ICON:
-			s = Messages.build(CTOR_GBUTTON_3, _0010_name, window,  _0029_text,
-					_0035_icon_file, _0037_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
-			break;
-		}
-		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0033_xtAlignment, _0034_ytAlignment);
-		if(icon != null)
-			s += Messages.build(BTN_ICON_ALIGN, _0010_name, _0038_icon_alignment);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+//		switch(style){
+//		case TEXT_ONLY:
+//			s = Messages.build(CTOR_GBUTTON_1, _0010_name, window,
+//					_0029_text, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+//			break;
+//		case ICON_ONLY:
+//			s = Messages.build(CTOR_GBUTTON_2, _0010_name, window, 
+//					_0035_icon_file, _0037_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+//			break;
+//		case TEXT_AND_ICON:
+//			s = Messages.build(CTOR_GBUTTON_3, _0010_name, window,  _0029_text,
+//					_0035_icon_file, _0037_nbr_tiles, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+//			break;
+//		}
+//		s += Messages.build(BTN_TEXT_ALIGN, _0010_name, _0033_text_x_alignment, _0034_ytAlignment);
+//		if(icon != null)
+//			s += Messages.build(BTN_ICON_ALIGN, _0010_name, _0038_icon_alignment);
+//		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
 
@@ -116,12 +115,12 @@ public class DButton extends DTextIcon {
 		IdGen.instance().add(id[0]);
 
 		icon_file_editor = new EditorJFileChooser();
-		xtAlignment_editor = new EditorJComboBox(H_ALIGN_3);
-		ytAlignment_editor = new EditorJComboBox(V_ALIGN);
 		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		if(_0035_icon_file.length() > 0)
-			icon = getImageFromDataFolder(_0035_icon_file);
+		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
+		if(_0034_icon_file.length() > 0)
+			icon = getImageFromDataFolder(_0034_icon_file);
 		mitre = 6.0f;
 		face = new RoundRectangle2D.Float(0, 0, _0130_width, _0131_height, mitre, mitre);
 	}

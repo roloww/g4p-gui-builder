@@ -1,13 +1,13 @@
 package g4p.tool.components;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
+import g4p_controls.GCScheme;
 
-import javax.swing.event.TableModelEvent;
+import java.awt.Color;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 /**
  * This class represents the whole Processing sketch. <br>
@@ -20,7 +20,7 @@ import javax.swing.event.TableModelEvent;
  */
 @SuppressWarnings("serial")
 public final class DApplication extends DBase {
-	
+		
 	public Boolean name_edit = false;
 	public Boolean x_show = false;
 	public Boolean y_show = false;
@@ -32,18 +32,13 @@ public final class DApplication extends DBase {
 	public Boolean 		col_scheme_edit = true;
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
+	public String 		col_scheme_updater = "colourSchemeChange";
 	
 	public Boolean 		_0720_cursor  = true;
 	public Boolean 		cursor_edit = true;
 	public Boolean 		cursor_show = true;
 	public String 		cursor_updater = "updateCursorChanger";
 	public String 		cursor_label = "Enable mouse over";
-
-//	public String 		_0721_cursor_over = "CROSS";
-//	transient public 	EditorBase cursor_over_editor = new EditorJComboBox(CURSOR_CHANGER);
-//	public Boolean 		cursor_over_edit = true;
-//	public Boolean 		cursor_over_show = false;
-//	public String 		cursor_over_label = "Is over control";
 
 	public String 		_0722_cursor_off = "ARROW";
 	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
@@ -69,14 +64,15 @@ public final class DApplication extends DBase {
 		width_show = false;
 		height_show = false;
 		eventHandler_show = false;
+		
 	}
 
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
-		sb.append(Messages.build("  G4P.setGlobalColorScheme(this, GCScheme.{0});\n", _0710_col_scheme));
+		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0710_col_scheme));
 		sb.append("  G4P.messagesEnabled(false);\n");
 		if(_0720_cursor) {
-			sb.append(Messages.build("  setCursorOff({0});\n", _0722_cursor_off));
+			sb.append(Messages.build("  G4P.setCursorOff({0});\n", _0722_cursor_off));
 		}
 		else {
 			sb.append("  G4P.setMouseOverEnabled(false);\n");			
@@ -84,13 +80,6 @@ public final class DApplication extends DBase {
 		return new String(sb);
 	}
 
-//	public void updateCursorChanger(){
-//		cursor_off_show = _0720_cursor;
-//		cursor_over_show = _0720_cursor;
-//		propertyModel.createProperties(this);
-//		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
-//	}
-	
 	public String get_event_definition(){
 		return null;
 	}
@@ -99,6 +88,11 @@ public final class DApplication extends DBase {
 		return null;
 	}
 
+	public void colourSchemeChange(){
+		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0710_col_scheme);
+		DBase.jpalette = GCScheme.getJavaColor(colScheme);
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
@@ -106,8 +100,10 @@ public final class DApplication extends DBase {
 		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
-//		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
-//		cursor_over_editor = new EditorJComboBox(CURSOR_CHANGER);
+		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
+//		int cs = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0710_col_scheme);
+//		palette = GCScheme.getColor(cs);
+//		jpalette = GCScheme.getJavaColor(cs);
 	}
 
 }

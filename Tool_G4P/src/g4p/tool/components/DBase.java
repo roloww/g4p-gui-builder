@@ -8,6 +8,7 @@ import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.CtrlPropModel;
 import g4p.tool.gui.propertygrid.Validator;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
+import g4p_controls.GCScheme;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -89,6 +90,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// The name of the equivalent class in G4P
 	public String componentClass = "";
 
+	public static int colScheme = 6; // Blue
+	
+	public static Color[] jpalette = GCScheme.getJavaColor(colScheme);
+	
 	// Unique id numbers to identify event handlers and used to capture
 	// user code.
 	public Integer[] id = new Integer[1];
@@ -135,6 +140,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Boolean 		eventHandler_show = true;
 	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
 
+	public Boolean 		_0039_opaque  = false;
+	public Boolean 		opaque_edit = true;
+	public Boolean 		opaque_show = true;
+	public String 		opaque_label = "Selected?";
 
 	/**
 	 * 
@@ -218,7 +227,10 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * Override this method in all classes.
 	 */
 	protected String get_creator(DBase parent, String window){
-		return null;
+		String s = "";
+		if(opaque_show)
+			s = Messages.build(SET_OPAQUE, _0010_name, _0039_opaque);
+		return s;
 	}
 	
 

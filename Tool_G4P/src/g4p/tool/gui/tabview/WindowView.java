@@ -12,6 +12,7 @@ import g4p.tool.components.DWindow;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -54,6 +55,8 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 		this.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		this.setFont(new Font("Dialog", Font.PLAIN, 12));
+
 	}
 
 	public DBase getWindowComponent(){
