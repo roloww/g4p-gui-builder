@@ -67,8 +67,8 @@ public class DButton_OLD extends DTextIcon {
 		case TEXT_ONLY:
 			// show text stuff
 			text_show = true;
-			xtAlignment_show = true;
-			ytAlignment_show = true;
+			text_x_alignment_show = true;
+			text_y_alignment_show = true;
 			// hide image properties
 			icon_file_show = false;
 			nbr_tiles_show = false;
@@ -78,8 +78,8 @@ public class DButton_OLD extends DTextIcon {
 		case ICON_ONLY:
 			// hide text stuff
 			text_show = false;
-			xtAlignment_show = false;
-			ytAlignment_show = false;
+			text_x_alignment_show = false;
+			text_y_alignment_show = false;
 			// show image properties
 			icon_file_show = true;
 			nbr_tiles_show = true;
@@ -95,8 +95,8 @@ public class DButton_OLD extends DTextIcon {
 		case TEXT_AND_ICON: // text + icon
 			// show text stuff
 			text_show = true;
-			xtAlignment_show = true;
-			ytAlignment_show = true;
+			text_x_alignment_show = true;
+			text_y_alignment_show = true;
 			// show image properties
 			icon_file_show = true;
 			nbr_tiles_show = true;
@@ -116,23 +116,23 @@ public class DButton_OLD extends DTextIcon {
 	}
 
 	public void textChanged(){
-		textWidth = GuiDesigner.metrics().stringWidth(_0029_text);
+		textWidth = GuiDesigner.metrics().stringWidth(_0030_text);
 		validateButtonSize();
 		calculateAlignmentValues();
 		propertyModel.hasBeenChanged();
 	}
 
 	public void textAlignChanged(){
-		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0033_xtAlignment);
-		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0034_ytAlignment);
+		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0031_text_x_alignment);
+		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0032_text_y_alignment);
 		calculateAlignmentValues();	
 		propertyModel.hasBeenChanged();
 	}
 
 	public void iconChanged(){
-		icon = this.getImageFromDataFolder(_0035_icon_file);
+		icon = this.getImageFromDataFolder(_0034_icon_file);
 		if(icon != null){
-			iconWidth = icon.getWidth() / _0037_nbr_tiles;
+			iconWidth = icon.getWidth() / _0035_nbr_tiles;
 			iconHeight = icon.getHeight();
 			validateButtonSize();
 			calculateAlignmentValues();
@@ -140,20 +140,12 @@ public class DButton_OLD extends DTextIcon {
 		}
 	}
 
-	public void iconAlignChanged(){
-		if(iconAlignModel == H_ALIGN_3)
-			iconAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0038_icon_alignment);
-		else
-			iconAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0038_icon_alignment);
-		calculateAlignmentValues();		
-		propertyModel.hasBeenChanged();
-	}
 
 	public void nbrTilesChanged(){
-		if(icon == null && _0035_icon_file.length() > 0)
-			icon = this.getImageFromDataFolder(_0035_icon_file);
+		if(icon == null && _0034_icon_file.length() > 0)
+			icon = this.getImageFromDataFolder(_0034_icon_file);
 		if(icon != null){
-			iconWidth = icon.getWidth() / _0037_nbr_tiles;
+			iconWidth = icon.getWidth() / _0035_nbr_tiles;
 			validateButtonSize();
 			calculateAlignmentValues();
 			propertyModel.hasBeenChanged();

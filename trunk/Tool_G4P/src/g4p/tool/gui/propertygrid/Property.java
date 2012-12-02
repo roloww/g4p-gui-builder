@@ -99,8 +99,9 @@ public final class Property implements Comparable<Object> {
 		catch(Exception excp){
 			// Nothing to do but assume the fields is to be shown
 		}
-		// Method to call if this property changes
+		// Method to call if this property changes in grid view
 		try {
+			updateMethod = null;
 			Field field = fieldFromObject.getClass().getField(shortFieldName + "_updater");
 			String methodName =  (String) field.get(fieldFromObject);
 			// We have a method name but do we have the method

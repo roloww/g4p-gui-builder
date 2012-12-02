@@ -69,6 +69,12 @@ public interface TDataConstants {
 	 * Creator and initialisation patterns
 	 */
 
+	String SET_TEXT				=	"  {0}.setText(\"{1}\");\n";
+	String SET_TEXT_ALIGN		=	"  {0}.setTextAlign(GAlign.{1}, GAlign.{2});\n";
+	String SET_ICON				= 	"  {0}.setIcon(\"{1}\", {2}, GAlign.{3}, GAlign.{4});\n";
+	String SET_OPAQUE			=	"  {0}.setOpaque({1});\n";
+
+	
 	// 		GWindow(PApplet theApplet, String name, int x, int y, int w, int h, boolean noFrame, String mode)
 	String CTOR_WINDOW_1		=	"  {0} = new GWindow({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
 	
@@ -96,7 +102,7 @@ public interface TDataConstants {
 	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
 
 	//		GLabel(PApplet theApplet, String text, int x, int y, int width, int height) {
-	String CTOR_GLABEL		=	"  {0} = new GLabel({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
+	String CTOR_GLABEL		=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
 	String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});\n";
@@ -158,7 +164,7 @@ public interface TDataConstants {
 	String CODE_GOPTION			=	"  println(\"{0} - option selected \" " + TIME;
 	String CODE_GPANEL			=	"  println(\"{0} - panel collapsed or expanded \" " + TIME;
 	String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield \" " + TIME;
-	String CODE_GWINDOW_DRAW	=	"  appc.background(200,255,200);\n";
+	String CODE_GWINDOW_DRAW	=	"  appc.background(230);\n";
 	String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event \" " + TIME;
 	String CODE_GWINDOW_PEE		=	"  println(\"{0} - pre method called \" " + TIME;
 	String CODE_GWINDOW_POST	=	"  println(\"{0} - post method called \" " + TIME;

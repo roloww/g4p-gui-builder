@@ -40,6 +40,7 @@ public interface TGuiConstants {
 	// Fonts
     Font displayFont 		= new Font("Sans Serif", Font.PLAIN, 11);
 
+    
 	// Drawing constants
 	BasicStroke stdStroke 	= new BasicStroke(1.1f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
@@ -53,10 +54,16 @@ public interface TGuiConstants {
 	BasicStroke heavyStroke 	= new BasicStroke(2.8f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 
+	BasicStroke dashed 	= new BasicStroke(1.1f,
+			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND, 4.0f,
+			new float[] {2,4, 1,2, 1,4}, 0.0f);
+
+	Color dashedEdge		= new Color(32,32,32,128);
+	
 	Color blackEdge 		= Color.black;
 	Color greenEdge 		= new Color(0,64,0,60);
 
-	Color winBack 			= new Color(64,255,64,60);
+	Color winBack 			= new Color(200,200,200,60);
 	
 	Color btnBack 			= new Color(100,100,255);
 

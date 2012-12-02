@@ -15,7 +15,7 @@ public class DLabel extends DTextIcon {
 		set_name(NameGen.instance().getNext("label"));
 		_0130_width = 80;
 		_0131_height = 20;
-		_0029_text = "My label";
+		_0030_text = "My label";
 		eventHandler_edit = eventHandler_show = false;
 	}
 	
@@ -32,9 +32,10 @@ public class DLabel extends DTextIcon {
 	 * @return
 	 */
 	protected String get_creator(DBase parent, String window){
-		String s;
-		s = Messages.build(CTOR_GLABEL, _0010_name, window, _0029_text,
+		String s = "";
+		s = Messages.build(CTOR_GLABEL, _0010_name, window, 
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+		s += super.get_creator(parent, window);
 		return s;
 	}
 
@@ -43,16 +44,21 @@ public class DLabel extends DTextIcon {
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
+		if(_0039_opaque){
+			g.setColor(DBase.jpalette[6]);
+			g.fillRect(0, 0, _0130_width, _0131_height);
+		}
 		g.setStroke(stdStroke);
-		g.setColor(lblBack);
-		g.fillRect(0, 0, _0130_width, _0131_height);
-		g.setColor(blackEdge);
-		g.drawRect(0, 0, _0130_width, _0131_height);
-		
-		g.drawString(this._0010_name, 4, _0131_height/2 + 4);
 
+		super.draw(g, paf, selected);
+		
 		if(this == selected)
 			drawSelector(g);
+		else {
+			g.setColor(dashedEdge);
+			g.setStroke(dashed);
+			g.drawRect(0, 0, _0130_width, _0131_height);		
+		}
 		g.setTransform(paf);
 	}
 

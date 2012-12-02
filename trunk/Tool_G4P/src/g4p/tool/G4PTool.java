@@ -25,7 +25,9 @@
 package g4p.tool;
 
 import g4p.tool.gui.GuiDesigner;
+import g4p_controls.*;
 
+import java.awt.Color;
 import java.io.File;
 
 import javax.swing.JFrame;
@@ -41,12 +43,16 @@ import processing.app.tools.Tool;
  */
 public class G4PTool implements Tool, TFileConstants {
 
+	
 	// Keep track of the editor using this sketch
 	private processing.app.Editor editor;
 	// keep track of the FUI designer for this sketch
 	private GuiDesigner dframe;
 
 	private boolean g4p_error_shown = false;
+	
+//	public static int[] palette = null;
+//	public static Color[] jpalette = null;
 	
 	public String getMenuTitle() {
 		return "GUI builder";
@@ -102,6 +108,8 @@ public class G4PTool implements Tool, TFileConstants {
 	 * 
 	 */
 	public void run() {
+		GCScheme.makeColorSchemes();
+		
 //		Base base = editor.getBase();
 		Sketch sketch = editor.getSketch();
 		File sketchFolder = sketch.getFolder();
@@ -131,7 +139,15 @@ public class G4PTool implements Tool, TFileConstants {
 			System.out.println("===================================================");
 			System.out.println("   ##tool.name## V##tool.prettyVersion## created by ##author.name##");
 			System.out.println("===================================================");
-		} 
+			
+//			try {
+//				BufferedImage img = ImageIO.read(new File(sketchbookFolder, G4P_TOOL_DATA_FOLDER + SEP + "default_gui_palette.png"));
+//				System.out.println("Image " + img);
+//			} catch (IOException e) {
+//				System.out.println("Unable to load colour schemes");
+//				e.printStackTrace();
+//			}
+		}
 		// Design window exists so make visible, open to normal size
 		// and bring to front.
 		dframe.setVisible(true);

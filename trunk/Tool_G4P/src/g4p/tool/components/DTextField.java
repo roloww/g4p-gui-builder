@@ -17,7 +17,7 @@ public class DTextField extends DTextIcon {
 		componentClass = "GTextField";
 		set_name(NameGen.instance().getNext("textfield"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Enter"));
-		_0029_text = "Some text";
+		_0030_text = "Some text";
 		text_tooltip = "initial text to display";
 		_0130_width = 80;
 		_0131_height = 20;
@@ -30,7 +30,7 @@ public class DTextField extends DTextIcon {
 	protected String get_creator(DBase parent, String window){
 		String s;
 		s = Messages.build(CTOR_GTEXTFIELD, _0010_name, window, 
-				_0029_text, _0120_x, _0121_y, _0130_width, _0131_height, _0030_multiline);
+				_0030_text, _0120_x, _0121_y, _0130_width, _0131_height, _0030_multiline);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
 		return s;
 	}
