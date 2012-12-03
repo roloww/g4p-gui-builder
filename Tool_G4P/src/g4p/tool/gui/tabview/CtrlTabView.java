@@ -49,7 +49,7 @@ public class CtrlTabView extends JTabbedPane implements ITabView, ChangeListener
 	public void addWindow(DBase winComp){
 		WindowView winView = new WindowView(this, winComp);
 		tabMap.put(winComp, winView);
-		addTab(winComp.get_name(), ToolIcon.instance().getIcon(DWindow.class), winView);
+		addTab(winComp.get_name(), ToolIcon.getIcon(DWindow.class), winView);
 	}
 
 	/* (non-Javadoc)

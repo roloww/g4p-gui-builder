@@ -1,9 +1,13 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
+import g4p.tool.gui.propertygrid.EditorJFileChooser;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
 public class DLabel extends DTextIcon {
@@ -62,5 +66,20 @@ public class DLabel extends DTextIcon {
 		g.setTransform(paf);
 	}
 
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		NameGen.instance().add(_0010_name);
+		IdGen.instance().add(id[0]);
 
+		icon_file_editor = new EditorJFileChooser();
+		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
+		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
+		if(_0034_icon_file.length() > 0)
+			icon = getImageFromDataFolder(_0034_icon_file);
+	}
+	
 }

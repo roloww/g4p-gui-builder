@@ -38,9 +38,13 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
+
+import javax.imageio.*;
 
 import processing.app.Editor;
 
@@ -217,25 +221,35 @@ public class GuiDesigner extends javax.swing.JFrame {
 	 */
 	private void getIcons(){
 		// Messy way to do it but stops error when used with Processing IDE
-		ToolIcon.instance().addElement(DApplication.class, btnWindow.getIcon());
-		ToolIcon.instance().addElement(DWindow.class, btnWindow.getIcon());
-		ToolIcon.instance().addElement(DPanel.class, btnPanel.getIcon());
-		ToolIcon.instance().addElement(DButton.class, btnButton.getIcon());
-		ToolIcon.instance().addElement(DLabel.class, btnLabel.getIcon());
-		ToolIcon.instance().addElement(DHorzSlider.class, btnHorzSlider.getIcon());
-		ToolIcon.instance().addElement(DVertSlider.class, btnVertSlider.getIcon());
-		ToolIcon.instance().addElement(DTextField.class, btnTextfield.getIcon());
-		ToolIcon.instance().addElement(DCheckbox.class, btnCheckbox.getIcon());
-		ToolIcon.instance().addElement(DOptionGroup.class, btnOptGroup.getIcon());
-		ToolIcon.instance().addElement(DOption.class, btnOption.getIcon());
-		ToolIcon.instance().addElement(DTimer.class, btnTimer.getIcon());
-		ToolIcon.instance().addElement(DWSlider.class, btnCoolSlider.getIcon());
-		ToolIcon.instance().addElement(DImageButton.class, btnImgButton.getIcon());
-		ToolIcon.instance().addElement(DCombo.class, btnCombo.getIcon());
-		ToolIcon.instance().addElement(DKnob.class, btnKnob.getIcon());
-		ToolIcon.instance().addElement(DActivityBar.class, btnActivityBar.getIcon());
-		ToolIcon.instance().addElement("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon1.png")));
-		ToolIcon.instance().addElement("CB_ICON2", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
+		ToolIcon.addIcon(DApplication.class, btnWindow.getIcon());
+		ToolIcon.addIcon(DWindow.class, btnWindow.getIcon());
+		ToolIcon.addIcon(DPanel.class, btnPanel.getIcon());
+		ToolIcon.addIcon(DButton.class, btnButton.getIcon());
+		ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
+		ToolIcon.addIcon(DHorzSlider.class, btnHorzSlider.getIcon());
+		ToolIcon.addIcon(DVertSlider.class, btnVertSlider.getIcon());
+		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
+		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
+		ToolIcon.addIcon(DOptionGroup.class, btnOptGroup.getIcon());
+		ToolIcon.addIcon(DOption.class, btnOption.getIcon());
+		ToolIcon.addIcon(DTimer.class, btnTimer.getIcon());
+		ToolIcon.addIcon(DWSlider.class, btnCoolSlider.getIcon());
+		ToolIcon.addIcon(DImageButton.class, btnImgButton.getIcon());
+		ToolIcon.addIcon(DCombo.class, btnCombo.getIcon());
+		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
+		ToolIcon.addIcon(DActivityBar.class, btnActivityBar.getIcon());
+
+		ToolIcon.addIcon("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon1.png")));
+		ToolIcon.addIcon("CB_ICON2", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
+
+		// Load images from resource
+		try {
+			ToolImage.addImage("CB_ICON", ImageIO.read(getClass().getResource("/g4p/tick.png")));
+			ToolImage.addImage("OP_ICON", ImageIO.read(getClass().getResource("/g4p/pinhead.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void initCustomComponents() {

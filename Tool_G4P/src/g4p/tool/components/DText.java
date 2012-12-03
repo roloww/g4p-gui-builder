@@ -23,7 +23,7 @@ public class DText extends DBase {
 	protected boolean textChanged = true;
 	transient public StyledString stext;
 	
-	public String 		_0030_text = "";
+	public String 		_0030_text = "???";
 	public String 		text_label = "Text";
 	public String 		text_tooltip = "component label text";
 	public Boolean 		text_edit = true;
@@ -32,24 +32,22 @@ public class DText extends DBase {
 	public String		text_updater = "textChanged";
 
 	// Set edit to false for GPanel
-	public String 		_0031_text_x_alignment = "LEFT";
+	public String 		_0031_text_x_alignment = "CENTER";
 	transient public 	EditorBase text_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 	public Boolean 		text_x_alignment_edit = true;
-	public Boolean 		text_x_alignment_show = false;
-	public String 		text_x_alignment_label = "Horz text alignment";
+	public Boolean 		text_x_alignment_show = true;
+	public String 		text_x_alignment_label = "Text X align";
 	public String 		text_x_alignment_updater = "textAlignChanged";
 
 	public String 		_0032_text_y_alignment = "MIDDLE";
 	transient public 	EditorBase text_y_alignment_editor = new EditorJComboBox(V_ALIGN);
 	public Boolean 		text_y_alignment_edit = true;
-	public Boolean 		text_y_alignment_show = false;
-	public String 		text_y_alignment_label = "Vert text alignment";
+	public Boolean 		text_y_alignment_show = true;
+	public String 		text_y_alignment_label = "Text Y align";
 	public String 		text_y_alignment_updater = "textAlignChanged";
 
 	public String 		width_updater = "sizeChanged";
 	public String 		height_updater = "sizeChanged";
-
-
 
 	public DText(){
 		super();
@@ -67,12 +65,16 @@ public class DText extends DBase {
 		eventHandler_edit = eventHandler_show = true;
 	}
 
+	protected boolean isTextAlignDefaults(){
+		return _0031_text_x_alignment.equals("CENTER") && _0032_text_y_alignment.equals("MIDDLE");
+	}
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		if(_0030_text.length() > 0){
 			s = Messages.build(SET_TEXT, _0010_name, _0030_text);
-			s += Messages.build(SET_TEXT_ALIGN, _0010_name, _0031_text_x_alignment, _0032_text_y_alignment);
+			if(!isTextAlignDefaults())
+				s += Messages.build(SET_TEXT_ALIGN, _0010_name, _0031_text_x_alignment, _0032_text_y_alignment);
 		}
 		s += super.get_creator(parent, window);		
 		return s;
@@ -98,10 +100,6 @@ public class DText extends DBase {
 		propertyModel.hasBeenChanged();
 	}
 
-	public void updatedInGUI(){
-		
-	}
-
 	public void textAlignChanged(){
 		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0031_text_x_alignment);
 		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0032_text_y_alignment);
@@ -117,7 +115,10 @@ public class DText extends DBase {
 		textX = x_offset;
 		if(textWidth != text_width){
 			textWidth = text_width;
-			stext.setWrapWidth(textWidth);
+			if(stext == null)
+				stext = new StyledString(_0030_text, textWidth);
+			else
+				stext.setWrapWidth(textWidth);
 			textChanged = true;
 		}
 	}
@@ -140,15 +141,13 @@ public class DText extends DBase {
 		if(textChanged){
 			stext = new StyledString(_0030_text, textWidth);
 			textChanged = false;
-			System.out.println("NEW StyledString ceated " + System.currentTimeMillis());
 		}
 		else
 			stext.setWrapWidth(textWidth);
 		
 		LinkedList<TextLayoutInfo> lines = stext.getLines(g);
 
-		float deltaY = stext.getMaxLineHeight(), currY = 0;
-		float startX;
+		float deltaY = stext.getMaxLineHeight(), currY = 0, startX;
 
 		switch(textVAlign){
 		case TOP:

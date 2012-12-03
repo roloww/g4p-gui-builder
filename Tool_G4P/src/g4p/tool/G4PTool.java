@@ -110,13 +110,14 @@ public class G4PTool implements Tool, TFileConstants {
 	public void run() {
 		GCScheme.makeColorSchemes();
 		
-//		Base base = editor.getBase();
+		Base base = editor.getBase();
 		Sketch sketch = editor.getSketch();
 		File sketchFolder = sketch.getFolder();
-		File sketchbookFolder = Base.getSketchbookFolder();
+		File sketchbookFolder = base.getSketchbookFolder();
 
 		// Provide a warning (first time only) if G4P is not loaded
-		if (!g4p_error_shown && !g4pJarExists(Base.getSketchbookLibrariesFolder())) {
+		// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
+		if (!g4p_error_shown && !g4pJarExists(base.getSketchbookLibrariesFolder())) {
 			Base.showWarning("GUI Builder error", "Although you can use this tool the sketch created will not \nwork because the G4P library needs to be installed.\nSee G4P at http://www.lagers.org.uk/g4p/", null);
 			g4p_error_shown = true;
 		}

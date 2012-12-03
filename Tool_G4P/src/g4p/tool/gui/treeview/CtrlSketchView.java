@@ -338,7 +338,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 					tree, value, sel,
 					expanded, leaf, row,
 					hasFocus);
-			cellIcon = ToolIcon.instance().getIcon(value.getClass());
+			cellIcon = ToolIcon.getIcon(value.getClass());
 			setIcon(cellIcon);
 
 			return this;

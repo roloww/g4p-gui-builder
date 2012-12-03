@@ -50,16 +50,18 @@ public interface TDataConstants {
 	String METHOD_START_0	=	"void {0}() [ //_CODE_:{1}:{2}:\n";
 	
 	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
-	String METHOD_START_1	=	"void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
+
+//	String METHOD_START_1	=	"void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
+	String METHOD_START_1	=	"void {0}({1} source, GEvent event) [ //_CODE_:{2}:{3}:\n";
 	
 	// 0 = event method name  :  1/2 = parameter type/name : 1/3 =  parameter type/name : 4/5 =  component name/id	
 	String METHOD_START_2	=	"void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
 	
 	// 0 = event method name  :  1/2 = component name/id	
-	String WIN_DRAW		=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	String WIN_DRAW			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	String WIN_MOUSE		=	"synchronized void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
 	String WIN_PRE			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	String WIN_POST		=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	String WIN_POST			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	
 	// 0 = component name  : 1 = id
 	String METHOD_END 		=	"] //_CODE_:{0}:{1}:\n\n";
@@ -72,6 +74,7 @@ public interface TDataConstants {
 	String SET_TEXT				=	"  {0}.setText(\"{1}\");\n";
 	String SET_TEXT_ALIGN		=	"  {0}.setTextAlign(GAlign.{1}, GAlign.{2});\n";
 	String SET_ICON				= 	"  {0}.setIcon(\"{1}\", {2}, GAlign.{3}, GAlign.{4});\n";
+	String SET_ICON_ALIGN		=	"  {0}.setIconAlign(GAlign.{1}, GAlign.{2});\n";
 	String SET_OPAQUE			=	"  {0}.setOpaque({1});\n";
 
 	
@@ -79,7 +82,8 @@ public interface TDataConstants {
 	String CTOR_WINDOW_1		=	"  {0} = new GWindow({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
 	
 	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height)
-	String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
+	String CTOR_GBUTTON		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5});\n";
+	String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
 	
 	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height)
 	String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
@@ -98,8 +102,8 @@ public interface TDataConstants {
 	String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
 	String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
 	
-	//		GCheckbox(PApplet theApplet, String text, int x, int y, int width)
-	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, \"{2}\", {3}, {4}, {5});\n";
+	//		GCheckbox(PApplet theApplet, int x, int y, int width, int height)
+	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, {2}, {3}, {4}, {5});\n";
 
 	//		GLabel(PApplet theApplet, String text, int x, int y, int width, int height) {
 	String CTOR_GLABEL		=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";

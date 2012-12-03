@@ -143,7 +143,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Boolean 		_0039_opaque  = false;
 	public Boolean 		opaque_edit = true;
 	public Boolean 		opaque_show = true;
-	public String 		opaque_label = "Selected?";
+	public String 		opaque_label = "Opaque background?";
 
 	/**
 	 * 
@@ -215,6 +215,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		}				
 	}
 	
+
+	// ==========================================================================
+	// ==========================================================================
+	// =================   Stuff for event code generation   ====================
+	// ==========================================================================
+
 	/**
 	 * Get the declaration for this control <pre>Foo variable_name;</pre><br>
 	 */
@@ -233,12 +239,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		return s;
 	}
 	
-
-	// ==========================================================================
-	// ==========================================================================
-	// =================   Stuff for event code generation   ====================
-	// ==========================================================================
-
 	/** 
 	 * Get the event method for this control
 	 * 
@@ -280,7 +280,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		if(n < 0 || n >= id.length)
 			n = 0;
 		return Messages.build(METHOD_START_1, _0701_eventHandler, componentClass, 
-				componentClass.substring(1).toLowerCase(), 
+//				componentClass.substring(1).toLowerCase(), 
 				_0010_name, $(id[n])).replace('[', '{');
 	}
 	
@@ -346,12 +346,19 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public void draw(Graphics2D g2, AffineTransform af, DBase selected) {
 	}
 	
-	/**
+	/*
 	 * Call this method when a change is made to the object in the window view.
 	 */
-	public void update(){
-	}
+//	public void update(){
+//	}
 
+	/**
+	 * Called when the control has been changed in the GUI. <br>
+	 * Override if needed.
+	 */
+	public void updatedInGUI(){		
+	}
+	
 	/**
 	 * Draw a selector if the control is the one being edited.
 	 * @param g
@@ -496,12 +503,5 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public int getSize(){
 		return _0130_width * _0131_height;
 	}
-	
-	/**
-	 * Called when the control has been changed in the GUI. <br>
-	 * Override if needed.
-	 */
-	public void updatedInGUI(){		
-	}
-	
+
 }
