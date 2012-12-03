@@ -1,15 +1,14 @@
 package g4p.tool.components;
 
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.EditorJFileChooser;
 import g4p.tool.gui.propertygrid.Validator;
+
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
 public class DTextIcon extends DText {
@@ -18,7 +17,8 @@ public class DTextIcon extends DText {
 
 	protected int iconX, iconY, iconWidth, iconHeight;
 	protected int iconHAlign, iconVAlign;//, iconAlignModel;;
-
+	protected int iconNo = 0;
+	
 	public String 		_0034_icon_file = "";
 	transient public 	EditorJFileChooser icon_file_editor = new EditorJFileChooser();
 	public Boolean 		icon_file_edit = true;
@@ -37,14 +37,14 @@ public class DTextIcon extends DText {
 	transient public 	EditorBase icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_2);
 	public Boolean 		icon_x_alignment_edit = true;
 	public Boolean 		icon_x_alignment_show = false;
-	public String 		icon_x_alignment_label = "Icon horz alignment";
+	public String 		icon_x_alignment_label = "Icon Y align";
 	public String 		icon_x_alignment_updater = "iconAlignChanged";
 
 	public String 		_0037_icon_y_alignment = "MIDDLE";
 	transient public 	EditorBase icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
 	public Boolean 		icon_y_alignment_edit = true;
 	public Boolean 		icon_y_alignment_show = false;
-	public String 		icon_y_alignment_label = "Icon vert alignment";
+	public String 		icon_y_alignment_label = "Icon Y align";
 	public String 		icon_y_alignment_updater = "iconAlignChanged";
 
 	
@@ -56,8 +56,11 @@ public class DTextIcon extends DText {
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";
-		if(icon != null){
+		if(_0034_icon_file.length() > 0){
 			s = Messages.build(SET_ICON, _0010_name, _0034_icon_file, _0035_nbr_tiles, _0036_icon_x_alignment, _0037_icon_y_alignment);
+		}
+		else if(icon != null && !isIconAlignDefaults()){
+			s = Messages.build(SET_ICON_ALIGN, _0010_name, _0036_icon_x_alignment, _0037_icon_y_alignment);
 		}
 		s += super.get_creator(parent, window);
 		return s;
@@ -80,15 +83,8 @@ public class DTextIcon extends DText {
 	 * If the width or height is changed then we need to update the text etc.
 	 */
 	public void sizeChanged(){
-		System.out.println("DTextIcon size changed");
 		textWidth = _0130_width;
-//		textChanged = true;
 		iconAlignChanged();
-//		if(iconHAlign == LEFT)
-//			setHorzTextBoxValues(iconWidth, _0130_width - iconWidth);
-//		else 
-//			setHorzTextBoxValues(0, _0130_width - iconWidth);
-//		propertyModel.hasBeenChanged();
 	}
 
 	public void nbrTilesChanged(){
@@ -121,6 +117,10 @@ public class DTextIcon extends DText {
 //		propertyModel.hasBeenChanged();
 	}
 
+	protected boolean isIconAlignDefaults(){
+		return _0036_icon_x_alignment.equals("RIGHT") && _0037_icon_y_alignment.equals("MIDDLE");
+	}
+
 	public void iconChanged(){
 		icon = this.getImageFromDataFolder(_0034_icon_file);
 		if(icon != null){
@@ -139,7 +139,7 @@ public class DTextIcon extends DText {
 		super.draw(g, paf, selected); // draw text
 		if(icon != null)
 			g.drawImage(icon, iconX, iconY, iconX + iconWidth, iconY + iconHeight, 
-				0, 0, iconWidth, iconHeight, null);
+					iconNo * iconWidth, 0, iconNo * iconWidth + iconWidth, iconHeight, null);
 	}
 
 }

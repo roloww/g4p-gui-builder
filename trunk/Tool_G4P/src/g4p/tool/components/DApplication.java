@@ -63,8 +63,8 @@ public final class DApplication extends DBase {
 		y_show = false;
 		width_show = false;
 		height_show = false;
+		opaque_show = false;
 		eventHandler_show = false;
-		
 	}
 
 	public String get_creator(DBase parent, String window){ 

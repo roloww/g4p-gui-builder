@@ -65,7 +65,7 @@ public class EditorStringList extends EditorBase {
 		lister.setText(content);
 		// initialise the textarea chooser
 		int result = JOptionPane.showConfirmDialog(GuiDesigner.instance(), pane, "ComboBox List (1 option per line)",
-				JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, ToolIcon.instance().getIcon("CB_ICON1"));
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, ToolIcon.getIcon("CB_ICON1"));
 		if(result == JOptionPane.OK_OPTION) {
 			try {
 				content = lister.getText();

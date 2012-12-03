@@ -67,7 +67,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			try {
 				editor.getBase();
 				// Get the start text for the gui tab
-				File f = new File(Base.getSketchbookFolder() + SEP + GUI_PDE_BASE);
+				// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
+				File f = new File(editor.getBase().getSketchbookFolder() + SEP + GUI_PDE_BASE);
 				guiPdeBase = Base.loadFile(f);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -94,7 +95,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void setScale(int scale){
 		tabs.scaleWindow(scale);
 	}
-	
+
 	public void showGrid(boolean show){
 		tabs.setShowGrid(show);
 	}
@@ -131,7 +132,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(currIndex != 0)
 			sketch.setCurrentCode(0);
 		String code = editor.getText();
-		code = PdePreprocessor.scrubComments(code);
+		code = scrubComments(code);
 		m = pSize.matcher(code);
 		if(m.find() && m.groupCount() >= 3){
 			try	{
@@ -147,6 +148,59 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	}
 
 	/**
+	 * Replace all commented portions of a given String as spaces. <br>
+	 * Copied from processing.mode.java.preproc.PdePreprocessor; <br>
+	 * so that it will be compatible with 1.5.1
+	 * 
+	 */
+	public String scrubComments(String what) {
+		char p[] = what.toCharArray();
+
+		int index = 0;
+		while (index < p.length) {
+			// for any double slash comments, ignore until the end of the line
+			if ((p[index] == '/') &&
+					(index < p.length - 1) &&
+					(p[index+1] == '/')) {
+				p[index++] = ' ';
+				p[index++] = ' ';
+				while ((index < p.length) &&
+						(p[index] != '\n')) {
+					p[index++] = ' ';
+				}
+
+				// check to see if this is the start of a new multiline comment.
+				// if it is, then make sure it's actually terminated somewhere.
+			} else if ((p[index] == '/') &&
+					(index < p.length - 1) &&
+					(p[index+1] == '*')) {
+				p[index++] = ' ';
+				p[index++] = ' ';
+				boolean endOfRainbow = false;
+				while (index < p.length - 1) {
+					if ((p[index] == '*') && (p[index+1] == '/')) {
+						p[index++] = ' ';
+						p[index++] = ' ';
+						endOfRainbow = true;
+						break;
+
+					} else {
+						// continue blanking this area
+						p[index++] = ' ';
+					}
+				}
+				if (!endOfRainbow) {
+					throw new RuntimeException("Missing the */ from the end of a " +
+					"/* comment */");
+				}
+			} else {  // any old character, move along
+				index++;
+			}
+		}
+		return new String(p);
+	}
+
+	/**
 	 * Capture user code in the event handlers
 	 */
 	public void codeCapture(){
@@ -154,7 +208,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		SketchCode gui_tab = getTab(sketch, PDE_TAB_PRETTY_NAME);
 		int gui_tab_index = sketch.getCodeIndex(gui_tab);
 		sketch.setCurrentCode(gui_tab_index);
-		//		String code = gui_tab.getProgram();
+		//String code = gui_tab.getProgram();
 		String code = editor.getText();
 		gui_tab.setProgram(code);
 		try {
@@ -194,7 +248,7 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		editor.setText(code);
 		editor.setSelection(0, 0);
 		sketch.setModified(true);
-		
+
 		// See if the first tab has text if not create some basic code
 		sketch.setCurrentCode(0);
 		String code0 = editor.getText();
@@ -202,7 +256,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			SketchCode tab0 = sketch.getCurrentCode();
 			try {
 				editor.getBase();
-				File f = new File(Base.getSketchbookFolder() + SEP + TAB0_PDE_BASE);
+				// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
+				File f = new File(editor.getBase().getSketchbookFolder() + SEP + TAB0_PDE_BASE);
 				String tab0code = Base.loadFile(f);
 				Dimension size = tree.getSketchSizeFromDesigner();
 				tab0code = tab0code.replace("WIDTH", "" + size.width);
@@ -215,12 +270,12 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			}
 		}
 		editor.repaint();
-// Save the generated code
-//		try {
-//			gui_tab.save();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		// Save the generated code
+		//		try {
+		//			gui_tab.save();
+		//		} catch (IOException e) {
+		//			e.printStackTrace();
+		//		}
 	}
 
 	private String makeGuiCode(){

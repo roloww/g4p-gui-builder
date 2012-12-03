@@ -3,6 +3,7 @@ package g4p.tool.gui;
 import java.util.HashMap;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  * Singleton class to manage icons used by the tool.
@@ -12,47 +13,45 @@ import javax.swing.Icon;
  */
 public class ToolIcon {
 
-	private static ToolIcon instance = null;
-	
-	public static ToolIcon instance(){
-		if(instance == null){
-			instance = new ToolIcon();
-		}
-		return instance;
-	}
+//	private static ToolIcon instance = null;
+//	
+//	public static ToolIcon instance(){
+//		if(instance == null){
+//			instance = new ToolIcon();
+//		}
+//		return instance;
+//	}
 	
 	@SuppressWarnings("rawtypes")
-	private HashMap<Class, Icon> classIcons = null;
-	private HashMap<String, Icon> namedIcons = null;
+	private static HashMap<Class, Icon> classIcons = new HashMap<Class, Icon>();
+	private static HashMap<String, ImageIcon> namedIcons = new HashMap<String, ImageIcon>();
 	
-	private Icon unknown = null;
-	
-
 	@SuppressWarnings({ "rawtypes" })
 	private ToolIcon(){
 		classIcons = new HashMap<Class, Icon>();
-		namedIcons = new HashMap<String, Icon>();
+		namedIcons = new HashMap<String, ImageIcon>();
 	}
 	
 	
-	public void addElement(String n, Icon icon){
+	public static void addIcon(String n, ImageIcon icon){
 		namedIcons.put(n, icon);
 	}
 
-	public Icon getIcon(String n){
-		Icon icon = namedIcons.get(n);
-		return (icon == null) ? unknown : icon;
+	public static ImageIcon getIcon(String n){
+		ImageIcon icon = namedIcons.get(n);
+		return (ImageIcon) ((icon == null) ? null : icon);
 	}
 
+	
 	@SuppressWarnings("rawtypes")
-	public void addElement(Class c, Icon icon){
+	public static void addIcon(Class c, Icon icon){
 		classIcons.put(c, icon);
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public Icon getIcon(Class c){
+	public static Icon getIcon(Class c){
 		Icon icon = classIcons.get(c);
-		return (icon == null) ? unknown : icon;
+		return (icon == null) ? null : icon;
 	}
 	
 }
