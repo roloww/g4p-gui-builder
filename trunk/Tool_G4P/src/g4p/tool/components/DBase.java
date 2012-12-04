@@ -133,7 +133,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Boolean 		height_show = true;
 	public Validator 	height_validator = width_validator;
 
-	public String		_0701_eventHandler = "Event handler";
+	public String		_0012_eventHandler = "Event handler";
 	public String 		eventHandler_label = "Event method";
 	public String 		eventHandler_tooltip = "unique name for event handler method";
 	public Boolean 		eventHandler_edit = true;
@@ -198,7 +198,8 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * This method is overridden in DWindow, DPanel and DOptionGroup.
 	 * 
 	 * @param lines
-	 * @param parent
+	 * @param parent the control that has this as a child default = null
+	 * @param window the window responsible for drawing this control default = "this" 
 	 */
 	public void make_creator(ArrayList<String> lines, DBase parent, String window){
 		DBase comp;
@@ -244,8 +245,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 * 
 	 */
 	protected String get_event_definition(){
-		String ec = get_event_header() + get_event_code() + get_event_end(0);
-		return ec;
+		return get_event_header() + get_event_code() + get_event_end(0);
 	}
 	
 	/**
@@ -279,7 +279,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected String get_event_header(int n){
 		if(n < 0 || n >= id.length)
 			n = 0;
-		return Messages.build(METHOD_START_1, _0701_eventHandler, componentClass, 
+		return Messages.build(METHOD_START_1, _0012_eventHandler, componentClass, 
 //				componentClass.substring(1).toLowerCase(), 
 				_0010_name, $(id[n])).replace('[', '{');
 	}
@@ -313,7 +313,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	throws IOException, ClassNotFoundException {
 		in.defaultReadObject();
 		NameGen.instance().add(_0010_name);
-		NameGen.instance().add(_0701_eventHandler);
+		NameGen.instance().add(_0012_eventHandler);
 		IdGen.instance().add(id[0]);
 	}
 	
@@ -446,7 +446,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 
 	public void set_event_name(String e_name){
-		_0701_eventHandler = e_name;
+		_0012_eventHandler = e_name;
 	}
 	
 	public String get_name() { return _0010_name; }

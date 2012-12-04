@@ -31,7 +31,7 @@ public class DTextField extends DTextIcon {
 		String s;
 		s = Messages.build(CTOR_GTEXTFIELD, _0010_name, window, 
 				_0030_text, _0120_x, _0121_y, _0130_width, _0131_height, _0030_multiline);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 

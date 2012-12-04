@@ -70,7 +70,8 @@ public interface TDataConstants {
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Creator and initialisation patterns
 	 */
-
+	String SET_SKETCH_TITLE		=	"  if(frame != null)\n    frame.setTitle(\"{0}\");\n";
+	
 	String SET_TEXT				=	"  {0}.setText(\"{1}\");\n";
 	String SET_TEXT_ALIGN		=	"  {0}.setTextAlign(GAlign.{1}, GAlign.{2});\n";
 	String SET_ICON				= 	"  {0}.setIcon(\"{1}\", {2}, GAlign.{3}, GAlign.{4});\n";
@@ -106,19 +107,19 @@ public interface TDataConstants {
 	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, {2}, {3}, {4}, {5});\n";
 
 	//		GLabel(PApplet theApplet, String text, int x, int y, int width, int height) {
-	String CTOR_GLABEL		=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";
+	String CTOR_GLABEL			=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
-	String CTOR_GOPTION		=	"  {0} = new GOption({1}, \"{2}\", {3}, {4}, {5});\n";
-	String ADD_OPTION			=	"  {0}.addOption({1});\n";
+	String CTOR_GOPTION			=	"  {0} = new GOption({1}, {2}, {3}, {4}, {5});\n";
+//	String ADD_OPTION			=	"  {0}.addOption({1});\n";
 	String SEL_OPTION			=	"  {0}.setSelected({1});\n";
 	
 	//		GOptionGroup()
-	String CTOR_GOPTIONGROUP	=	"  {0} = new GOptionGroup();\n";
+	String CTOR_GOPTIONGROUP	=	"  {0} = new GToggleGroup();\n";
 	
 	
 	//		GPanel(PApplet theApplet, String text, int x, int y, int width, int height){
-	String CTOR_GPANEL			=	"  {0} = new GPanel({1}, \"{2}\", {3}, {4}, {5}, {6});\n";
+	String CTOR_GPANEL			=	"  {0} = new GPanel({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
 	String COLLAPSED			=	"  {0}.setCollapsed({1});\n";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
@@ -131,7 +132,7 @@ public interface TDataConstants {
 
 	//		GWSlider(PApplet theApplet, String skin, int x, int y, int length) {
 	String CTOR_GWSLIDER		=	"  {0} = new GWSlider({1}, \"{2}\", {3}, {4}, {5});\n";
-	String SET_F_LIMITS		=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
+	String SET_F_LIMITS			=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
 
 	//		GTimer(PApplet theApplet, Object obj, String methodName, int interval){
 	String CTOR_GTIMER			=	"  {0} = new GTimer({1}, {2}, \"{3}\", {4});\n";
@@ -144,7 +145,7 @@ public interface TDataConstants {
 	String CTOR_GKNOB			=	"  {0} = new GKnob({1}, {2}, {3}, {4}, {5}, {6});\n";
 	//		GKnobOval(PApplet theApplet, int x, int y, int width, int height, int arcStart, int arcEnd) {
 	String CTOR_GKNOBOVAL		=	"  {0} = new GKnobOval({1}, {2}, {3}, {4}, {5}, {6}, {7});\n";
-	String SET_ARC_ONLY		=	"  {0}.setRotArcOnly({1});\n";
+	String SET_ARC_ONLY			=	"  {0}.setRotArcOnly({1});\n";
 	String SET_NBR_TICKS		=	"  {0}.setNbrTickMarks({1});\n";
 	String SET_CONTROLLER		=	"  {0}.setControlMode(GKnob.CTRL_{1});\n";
 
@@ -177,6 +178,6 @@ public interface TDataConstants {
 	
 	// Used by GOptionGroup and GPanel
 	//  0 = parent name  :  1 = control name
-	String ADD_A_CHILD		= "  {0}.add({1});\n";
+	String ADD_A_CHILD		= "  {0}.addControl({1});\n";
 	
 }

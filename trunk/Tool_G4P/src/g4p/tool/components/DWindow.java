@@ -87,7 +87,7 @@ public final class DWindow extends DBase {
 			eventHandler_show = false;
 			_0130_width = 480;
 			_0131_height = 320;
-			_0015_title = "My sketch title";
+			_0015_title = "Sketch Window";
 			wdraw_edit = wdraw_show = false;
 			wmouse_edit = wmouse_show = false;
 			wpre_edit = wpre_show = false;
@@ -102,13 +102,11 @@ public final class DWindow extends DBase {
 			_0130_width = 240;
 			_0131_height = 120;
 			
-			_0015_title = "My window title";
+			_0015_title = "Window title";
 			renderer_edit = renderer_show = true;
 			// Create a draw method for this window
 			_0750_wdraw = NameGen.instance().getNext("win_draw");
-			System.out.println("Window draw method name = "+ _0750_wdraw);
 		}
-		_0015_title = "Frame title text";
 		width_edit = height_edit = true;
 		width_show = height_show = true;
 	}
@@ -176,10 +174,11 @@ public final class DWindow extends DBase {
 	 * @return
 	 */
 	protected String get_creator(DBase parent, String window){
-		if(mainSketch)
-			return null;
+		StringBuilder sb = new StringBuilder("");
+		if(mainSketch){
+			sb.append(Messages.build(SET_SKETCH_TITLE, _0015_title));
+		}
 		else {
-			StringBuilder sb = new StringBuilder();
 			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0015_title,
 					$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), false, _0021_renderer));
 			if(_0750_wdraw.length() > 0){
@@ -194,8 +193,8 @@ public final class DWindow extends DBase {
 			if(_0753_wpost.length() > 0){
 				sb.append(Messages.build(ADD_POST_HANDLER, _0010_name, "this", _0753_wpost));
 			}
-			return new String(sb);
 		}
+		return new String(sb);
 	}
 	
 	/**

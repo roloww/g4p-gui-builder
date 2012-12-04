@@ -17,7 +17,7 @@ public class DTextIcon extends DText {
 
 	protected int iconX, iconY, iconWidth, iconHeight;
 	protected int iconHAlign, iconVAlign;//, iconAlignModel;;
-	protected int iconNo = 0;
+	public int iconNo = 0;
 	
 	public String 		_0034_icon_file = "";
 	transient public 	EditorJFileChooser icon_file_editor = new EditorJFileChooser();

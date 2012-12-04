@@ -79,7 +79,7 @@ public final class DApplication extends DBase {
 		}
 		return new String(sb);
 	}
-
+	
 	public String get_event_definition(){
 		return null;
 	}

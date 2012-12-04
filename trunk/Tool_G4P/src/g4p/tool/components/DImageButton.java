@@ -119,7 +119,7 @@ public class DImageButton extends DText {
 			s = s.replace('>', '}');
 			break;
 		}
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 		

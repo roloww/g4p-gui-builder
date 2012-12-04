@@ -149,17 +149,6 @@ public class DText extends DBase {
 
 		float deltaY = stext.getMaxLineHeight(), currY = 0, startX;
 
-		switch(textVAlign){
-		case TOP:
-			currY = deltaY;
-			break;
-		case MIDDLE:
-			currY = (_0131_height - stext.getTextAreaHeight() + deltaY)/2;
-			break;
-		case BOTTOM:
-			currY = _0131_height - stext.getTextAreaHeight() + deltaY;
-		}
-
 		for(TextLayoutInfo lineInfo : lines){
 			TextLayout layout = lineInfo.layout;
 			switch(textHAlign){
@@ -173,6 +162,17 @@ public class DText extends DBase {
 			default:
 				startX = 0;		
 			}
+			switch(textVAlign){
+			case TOP:
+				currY = deltaY;
+				break;
+			case MIDDLE:
+				currY = (_0131_height - stext.getTextAreaHeight())/2 + layout.getAscent();
+				break;
+			case BOTTOM:
+				currY = _0131_height - stext.getTextAreaHeight() + deltaY - layout.getDescent();
+			}
+
 			// display text
 			g.setColor(DApplication.jpalette[2]);
 			layout.draw(g, textX + startX, currY);

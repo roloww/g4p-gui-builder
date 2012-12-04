@@ -26,7 +26,7 @@ public class DHorzSlider extends DSliderInteger {
 		s = Messages.build(CTOR_GHORZSLIDER, _0010_name, window, 
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		s += Messages.build(SET_LIMITS,_0010_name, $(_0630_value), $(_0631_min), $(_0632_max));
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 

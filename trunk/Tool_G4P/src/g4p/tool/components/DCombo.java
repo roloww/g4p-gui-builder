@@ -88,7 +88,7 @@ public class DCombo extends DText {
 		s = Messages.build(CTOR_GCOMBO, _0010_name, window, _0052_list_file,
 					 $(_0053_nbr_rows), $(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(SEL_OPTION,  _0010_name, $(_0054_selected));
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 	
