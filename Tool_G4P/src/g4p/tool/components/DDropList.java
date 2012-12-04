@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DCombo extends DText {
+public class DDropList extends DText {
 
 	public String 		height_updator = "heightChanged";	
 	
@@ -36,12 +36,11 @@ public class DCombo extends DText {
 	public String 		list_file_tooltip = "Do not change the filename!";
 	transient public 	EditorBase list_file_editor = new EditorStringList();
 
-	
-	public DCombo(){
+	public DDropList(){
 		super();
-		componentClass = "GCombo";
-		set_name(NameGen.instance().getNext("combo"));
-		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
+		componentClass = "GDropList";
+		set_name(NameGen.instance().getNext("dropList"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_click"));
 
 		_0052_list_file = "list_" + id[0];
 		
@@ -49,7 +48,6 @@ public class DCombo extends DText {
 		_0131_height = GuiDesigner.metrics().getHeight() + 2;
 		height_edit = false;
 	}
-	
 	
 	public void heightChanged(){
 		_0131_height = GuiDesigner.metrics().getHeight() + 2;		

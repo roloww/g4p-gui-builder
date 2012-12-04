@@ -73,6 +73,7 @@ public interface TDataConstants {
 	String SET_SKETCH_TITLE		=	"  if(frame != null)\n    frame.setTitle(\"{0}\");\n";
 	
 	String SET_TEXT				=	"  {0}.setText(\"{1}\");\n";
+	String SET_DEFAULT_TEXT		=	"  {0}.setDefaultText(\"{1}\");\n";
 	String SET_TEXT_ALIGN		=	"  {0}.setTextAlign(GAlign.{1}, GAlign.{2});\n";
 	String SET_ICON				= 	"  {0}.setIcon(\"{1}\", {2}, GAlign.{3}, GAlign.{4});\n";
 	String SET_ICON_ALIGN		=	"  {0}.setIconAlign(GAlign.{1}, GAlign.{2});\n";
@@ -108,6 +109,7 @@ public interface TDataConstants {
 
 	//		GLabel(PApplet theApplet, String text, int x, int y, int width, int height) {
 	String CTOR_GLABEL			=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";
+	String CTOR_SPAD			=	"  {0} = new GSketchPad({1}, {2}, {3}, {4}, {5});\n";
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
 	String CTOR_GOPTION			=	"  {0} = new GOption({1}, {2}, {3}, {4}, {5});\n";
@@ -123,8 +125,10 @@ public interface TDataConstants {
 	String COLLAPSED			=	"  {0}.setCollapsed({1});\n";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
-	String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
-
+	String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, {2}, {3}, {4}, {5}, {6});\n";
+	String CTOR_GTEXTAREA		=	"  {0} = new GTextArea({1}, {2}, {3}, {4}, {5}, {6});\n";
+	String SBAR_POLICY			= "";
+	
 	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
 	String CTOR_GHORZSLIDER	=	"  {0} = new GHorzSlider({1}, {2}, {3}, {4}, {5});\n";
 	String CTOR_GVERTSLIDER	=	"  {0} = new GVertSlider({1}, {2}, {3}, {4}, {5});\n";
