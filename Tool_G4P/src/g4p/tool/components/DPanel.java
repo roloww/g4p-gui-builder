@@ -35,10 +35,10 @@ public class DPanel extends DTextIcon {
 
 	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GPANEL, _0010_name, window, _0030_text,
-				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+		s = Messages.build(CTOR_GPANEL, _0010_name, window,
+				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), _0030_text);
 		s += Messages.build(COLLAPSED, _0010_name, _0030_collapsed);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 

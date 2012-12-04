@@ -183,8 +183,10 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			if(window != null && opg != null){
 				comp._0120_x = (window._0130_width - comp._0130_width)/ 2;
 				comp._0121_y = (window._0131_height - comp._0131_height)/ 2;
-				if(opg.getChildCount() == 0)
+				if(opg.getChildCount() == 0){
 					((DOption)comp)._0685_selected = true;
+					((DOption)comp).iconNo = 1;
+				}
 				m.insertNodeInto(comp, opg, opg.getChildCount());
 				setSelectedComponent(comp);
 			}
@@ -235,7 +237,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 	 */
 	private void undoComponent(DBase comp){
 		NameGen.instance().remove(comp.get_name());			
-		NameGen.instance().remove(comp._0701_eventHandler);
+		NameGen.instance().remove(comp._0012_eventHandler);
 		for(int i = 0; i < comp.id.length; i++)
 			IdGen.instance().remove(comp.id[i]);							///
 	}

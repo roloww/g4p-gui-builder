@@ -17,8 +17,8 @@ public class DOptionGroup extends DBase {
 		resizeable = false;
 		moveable = false;
 
-		componentClass = "GOptionGroup";
-		set_name(NameGen.instance().getNext("optGroup"));
+		componentClass = "GToggleGroup";
+		set_name(NameGen.instance().getNext("togGroup"));
 		name_label = "Variable name";
 		name_tooltip = "Java naming rules apply";
 		name_edit = true;
@@ -38,13 +38,21 @@ public class DOptionGroup extends DBase {
 				comp = (DOption)e.nextElement();
 				comp.make_creator(lines, this, window);
 			}
-			if(parent != null && !(parent instanceof DWindow)){
+			System.out.println("Adding options " + (parent != null) + "   " + (parent instanceof DWindow));
+//			if(parent != null && !(parent instanceof DWindow)){
+			// Add options to the option group
+			boolean onPanel = (parent instanceof DPanel);
 				e = children();
 				while(e.hasMoreElements()){
 					comp = (DOption)e.nextElement();
-					lines.add(Messages.build(ADD_A_CHILD, parent._0010_name, comp._0010_name));
+					lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
+					if(comp._0685_selected)
+						lines.add(Messages.build(SEL_OPTION, comp._0010_name, "true"));
+					// If this group is on a panel then add the options
+					if(onPanel)
+						lines.add(Messages.build(ADD_A_CHILD, parent._0010_name, comp._0010_name));
 				}
-			}
+//			}
 		}				
 	}
 

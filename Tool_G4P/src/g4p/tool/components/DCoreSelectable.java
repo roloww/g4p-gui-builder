@@ -20,13 +20,6 @@ public class DCoreSelectable extends DTextIcon {
 		iconNo = 0;
 	}
 	
-	protected String get_creator(DBase parent, String window){
-		String s = "";
-		if(_0685_selected)
-			s += Messages.build(SEL_OPTION, _0010_name, "true");
-		s += super.get_creator(parent, window);
-		return s;
-	}
 
 	public void selectionChange(){
 		iconNo = _0685_selected ? 1 : 0;

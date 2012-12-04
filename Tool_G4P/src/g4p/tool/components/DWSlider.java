@@ -37,7 +37,7 @@ public class DWSlider extends DSliderFloat {
 		s = Messages.build(CTOR_GWSLIDER, _0010_name, window, _0620_skin,
 				$(_0120_x), $(_0121_y), $(_0130_width));
 		s += Messages.build(SET_F_LIMITS,_0010_name, $(_0630_value), $(_0631_min), $(_0632_max));
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
 
@@ -75,7 +75,7 @@ public class DWSlider extends DSliderFloat {
 	{
 		in.defaultReadObject();
 		NameGen.instance().add(_0010_name);
-		NameGen.instance().add(_0701_eventHandler);
+		NameGen.instance().add(_0012_eventHandler);
 		IdGen.instance().add(id[0]);
 		skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	}

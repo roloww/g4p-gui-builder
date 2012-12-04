@@ -70,7 +70,7 @@ public class DButton extends DTextIcon {
 		s = Messages.build(CTOR_GBUTTON, _0010_name, window, 
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		s += super.get_creator(parent, window);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0701_eventHandler);		
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);		
 		return s;
 	}
 
