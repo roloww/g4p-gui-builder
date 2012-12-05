@@ -307,7 +307,7 @@
         <Component class="javax.swing.JButton" name="btnTextarea">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Peter\Documents\e_workspaces\ws-java5\G4P_Tool\src\g4p\toolTextArea.png"/>
+              <Image iconType="3" name="/g4p/toolTextArea.png"/>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -418,7 +418,7 @@
         <Component class="javax.swing.JButton" name="btnDropList">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/g4p/toolCombo.png"/>
+              <Image iconType="3" name="/g4p/toolDropList.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Combo Box"/>
             <Property name="focusable" type="boolean" value="false"/>

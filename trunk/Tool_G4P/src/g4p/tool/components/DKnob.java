@@ -89,7 +89,7 @@ public class DKnob extends DSliderFloat {
 		else
 			s = Messages.build(CTOR_GKNOBOVAL, _0010_name, window, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height),
 					$(_0032_dial_start_angle), $(_0033_dial_end_angle));
-		s += Messages.build(SET_F_LIMITS,_0010_name, String.valueOf(_0630_value), String.valueOf(_0631_min), String.valueOf(_0632_max));
+//		s += Messages.build(SET_F_LIMITS,_0010_name, String.valueOf(_0630_value), String.valueOf(_0631_min), String.valueOf(_0632_max));
 		s += Messages.build(SET_ARC_ONLY,_0010_name, _0035_arc_only);
 		s += Messages.build(SET_NBR_TICKS,_0010_name, $(_0037_ticks));
 		s += Messages.build(SET_CONTROLLER,_0010_name, _0038_controller);

@@ -42,18 +42,31 @@ public final class ListGen implements TDataConstants {
 		makeHorzAlignSelection2(H_ALIGN_2);
 		makeHorzAlignSelection3(H_ALIGN_3);
 		makeVertAlignSelection(V_ALIGN);
-		makeImgButtonStyleSelection(IMG_BUTTON_STYLE);
-		makeButtonStyleSelection(BUTTON_STYLE);	
+		makeValueTypeSelection(VALUE_TYPE);	
+		makeTextOrientationSelection(TEXT_ORIENT);
+//		makeImgButtonStyleSelection(IMG_BUTTON_STYLE);
+//		makeButtonStyleSelection(BUTTON_STYLE);	
+		
 	}
 	
-	private void makeButtonStyleSelection(int type) {
-		String[] s = new String[] {"Text only", "Icon only", "Text + Icon"};
-		cbList.put(type,  new DefaultComboBoxModel(s));
+//	private void makeButtonStyleSelection(int type) {
+//	String[] s = new String[] {"Text only", "Icon only", "Text + Icon"};
+//	cbList.put(type,  new DefaultComboBoxModel(s));
+//}
+//
+//private void makeImgButtonStyleSelection(int type) {
+//	String[] s = new String[] {"Tiled Image", "1 Image", "2 Images", "3 Images"};
+//	cbList.put(type,  new DefaultComboBoxModel(s));
+//}
+	
+	private void makeTextOrientationSelection(int type) {
+		String[] s = new String[] {"ORIENT_TRACK", "ORIENT_LEFT", "ORIENT_RIGHT"};
+		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
-	private void makeImgButtonStyleSelection(int type) {
-		String[] s = new String[] {"Tiled Image", "1 Image", "2 Images", "3 Images"};
-		cbList.put(type,  new DefaultComboBoxModel(s));
+	private void makeValueTypeSelection(int type) {
+		String[] s = new String[] {"INTEGER", "DECIMAL", "EXPONENT"};
+		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
 	private void makeRendererSelection(int type) {
@@ -75,7 +88,7 @@ public final class ListGen implements TDataConstants {
 	}
 
 	private void makeGWSliderSkinSelection(int type){
-		String[] s = new String[] { "gwSlider", "blue18px", 
+		String[] s = new String[] { "grey_blue", "blue18px", 
 				"green_red20px", "purple18px", "red_yellow18px" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}

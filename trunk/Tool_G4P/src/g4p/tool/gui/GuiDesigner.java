@@ -15,7 +15,7 @@ import g4p.tool.components.DApplication;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DCheckbox;
 import g4p.tool.components.DDropList;
-import g4p.tool.components.DHorzSlider;
+import g4p.tool.components.DSlider;
 import g4p.tool.components.DImageButton;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
@@ -27,7 +27,7 @@ import g4p.tool.components.DTextArea;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
 import g4p.tool.components.DVertSlider;
-import g4p.tool.components.DWSlider;
+import g4p.tool.components.DCustomSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.tabview.CtrlTabView;
@@ -228,14 +228,14 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DPanel.class, btnPanel.getIcon());
 		ToolIcon.addIcon(DButton.class, btnButton.getIcon());
 		ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
-		ToolIcon.addIcon(DHorzSlider.class, btnHorzSlider.getIcon());
+		ToolIcon.addIcon(DSlider.class, btnHorzSlider.getIcon());
 		ToolIcon.addIcon(DVertSlider.class, btnVertSlider.getIcon());
 		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
 		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
 		ToolIcon.addIcon(DOptionGroup.class, btnOptGroup.getIcon());
 		ToolIcon.addIcon(DOption.class, btnOption.getIcon());
 		ToolIcon.addIcon(DTimer.class, btnTimer.getIcon());
-		ToolIcon.addIcon(DWSlider.class, btnCoolSlider.getIcon());
+		ToolIcon.addIcon(DCustomSlider.class, btnCoolSlider.getIcon());
 		ToolIcon.addIcon(DImageButton.class, btnImgButton.getIcon());
 		ToolIcon.addIcon(DDropList.class, btnDropList.getIcon());
 		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
@@ -419,7 +419,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnTextfield);
 
-        btnTextarea.setIcon(new javax.swing.ImageIcon("C:\\Users\\Peter\\Documents\\e_workspaces\\ws-java5\\G4P_Tool\\src\\g4p\\toolTextArea.png")); // NOI18N
+        btnTextarea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTextArea.png"))); // NOI18N
         btnTextarea.setFocusable(false);
         btnTextarea.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTextarea.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -514,7 +514,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnOptGroup);
 
-        btnDropList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCombo.png"))); // NOI18N
+        btnDropList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolDropList.png"))); // NOI18N
         btnDropList.setToolTipText("Combo Box");
         btnDropList.setFocusable(false);
         btnDropList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -849,7 +849,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnTextfieldActionPerformed
 
 	private void btnHorzSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorzSliderActionPerformed
-		guiControl.addComponent(new DHorzSlider());
+		guiControl.addComponent(new DSlider());
 	}//GEN-LAST:event_btnHorzSliderActionPerformed
 
 	private void btnVertSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVertSliderActionPerformed
@@ -857,7 +857,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnVertSliderActionPerformed
 
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed
-		guiControl.addComponent(new DWSlider());
+		guiControl.addComponent(new DCustomSlider());
 	}//GEN-LAST:event_btnCoolSliderActionPerformed
 
 	private void btnKnobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKnobActionPerformed
