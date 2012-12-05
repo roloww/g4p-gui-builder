@@ -10,19 +10,20 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 
 @SuppressWarnings("serial")
-public class DWSlider extends DSliderFloat {
+public class DCustomSlider extends DLinearTrack {
 
-	public String _0620_skin = "gwSlider";
+	public String _0620_skin = "grey_blue";
 	transient public EditorBase skin_editor = new EditorJComboBox(SLIDER_SKIN);
 	public Boolean skin_edit = true;
 	public Boolean skin_show = true;
-	public String skin_label = "Style";
+	public String skin_label = "Slider skin";
 	
-	public DWSlider(){
+	
+	public DCustomSlider(){
 		super();
-		componentClass = "GWSlider";
-		set_name(NameGen.instance().getNext("cool_slider"));
-		set_event_name(NameGen.instance().getNext(get_name()+ "_Change"));
+		componentClass = "GCustomSlider";
+		set_name(NameGen.instance().getNext("custom_slider"));
+		set_event_name(NameGen.instance().getNext(get_name()+ "_change"));
 		_0130_width = 100;
 		height_show = height_edit = false;
 		_0131_height = 40;
@@ -34,9 +35,9 @@ public class DWSlider extends DSliderFloat {
 	 */
 	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GWSLIDER, _0010_name, window, _0620_skin,
-				$(_0120_x), $(_0121_y), $(_0130_width));
-		s += Messages.build(SET_F_LIMITS,_0010_name, $(_0630_value), $(_0631_min), $(_0632_max));
+		s = Messages.build(CTOR_GCUSTOMSLIDER, _0010_name, window,
+				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), _0620_skin);
+		s += super.get_creator(parent, window);		
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}

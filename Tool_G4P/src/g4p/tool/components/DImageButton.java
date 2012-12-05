@@ -214,7 +214,7 @@ public class DImageButton extends DText {
 		in.defaultReadObject();
 		NameGen.instance().add(_0010_name);
 		IdGen.instance().add(id[0]);
-		btn_style_editor = new EditorJComboBox(IMG_BUTTON_STYLE);
+//		btn_style_editor = new EditorJComboBox(IMG_BUTTON_STYLE);
 		img_off_editor = new EditorJFileChooser();
 		img_over_editor = new EditorJFileChooser();
 		img_down_editor = new EditorJFileChooser();

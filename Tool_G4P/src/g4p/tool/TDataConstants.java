@@ -14,9 +14,14 @@ public interface TDataConstants {
 	int H_ALIGN_2	 		=	0x00000027;
 	int H_ALIGN_3	 		=	0x00000028;
 	int V_ALIGN	 			=	0x00000029;
+	int VALUE_TYPE			=	0x0000002A;
+	int TEXT_ORIENT			= 	0x0000002B;
+	
+	// Defunct
+	int IMG_BUTTON_STYLE	=	0x0000102B;
 	int BUTTON_STYLE		=	0x0000002A;
-	int IMG_BUTTON_STYLE	=	0x0000002B;
 
+	
 	int VALID				=	0x00000040;
 	int INVALID_LENGTH		=	0x00000041;
 	int FIRST_CHAR_INVALID	=	0x00000042;
@@ -130,13 +135,22 @@ public interface TDataConstants {
 	String SBAR_POLICY			= "";
 	
 	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
-	String CTOR_GHORZSLIDER	=	"  {0} = new GHorzSlider({1}, {2}, {3}, {4}, {5});\n";
-	String CTOR_GVERTSLIDER	=	"  {0} = new GVertSlider({1}, {2}, {3}, {4}, {5});\n";
-	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
+	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";
+	String CTOR_GVERTSLIDER		=	"  {0} = new GVertSlider({1}, {2}, {3}, {4}, {5});\n";
 
+	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
+	String SET_VALUE_TYPE		=	"  {0}.setNumberFormat(G4P.{1}, {2});\n";
+	String SET_NBR_TICKS		=	"  {0}.setNbrTicks({1});\n";
+	String SET_STICK_TICKS		=	"  {0}.setStickToTicks({1});\n";
+	String SET_SHOW_TICKS		=	"  {0}.setShowTicks({1});\n";
+	String SET_SHOW_VALUE		=	"  {0}.setShowValue({1});\n";
+	String SET_SHOW_LIMITS		=	"  {0}.setShowLimits({1});\n";
+	String SET_TEXT_ORIENT		=	"  {0}.setTextOrientation(G4P.{1});\n";
+	String SET_EASING			=	"  {0}.setEasing({1});\n";
+	
+	
 	//		GWSlider(PApplet theApplet, String skin, int x, int y, int length) {
-	String CTOR_GWSLIDER		=	"  {0} = new GWSlider({1}, \"{2}\", {3}, {4}, {5});\n";
-	String SET_F_LIMITS			=	"  {0}.setLimits({1}f, {2}f, {3}f);\n";
+	String CTOR_GCUSTOMSLIDER	=	"  {0} = new GCustomSlider({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
 
 	//		GTimer(PApplet theApplet, Object obj, String methodName, int interval){
 	String CTOR_GTIMER			=	"  {0} = new GTimer({1}, {2}, \"{3}\", {4});\n";
@@ -150,7 +164,6 @@ public interface TDataConstants {
 	//		GKnobOval(PApplet theApplet, int x, int y, int width, int height, int arcStart, int arcEnd) {
 	String CTOR_GKNOBOVAL		=	"  {0} = new GKnobOval({1}, {2}, {3}, {4}, {5}, {6}, {7});\n";
 	String SET_ARC_ONLY			=	"  {0}.setRotArcOnly({1});\n";
-	String SET_NBR_TICKS		=	"  {0}.setNbrTickMarks({1});\n";
 	String SET_CONTROLLER		=	"  {0}.setControlMode(GKnob.CTRL_{1});\n";
 
 	
