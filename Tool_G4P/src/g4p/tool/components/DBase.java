@@ -280,7 +280,6 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		if(n < 0 || n >= id.length)
 			n = 0;
 		return Messages.build(METHOD_START_1, _0012_eventHandler, componentClass, 
-//				componentClass.substring(1).toLowerCase(), 
 				_0010_name, $(id[n])).replace('[', '{');
 	}
 	
