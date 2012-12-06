@@ -94,7 +94,6 @@ public class DImageButton extends DBase {
 				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, _0120_x, _0121_y, _0130_width, _0131_height, flist);
 			
 		}
-		System.out.println(s);
 		s += super.get_creator(parent, window);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
@@ -107,7 +106,7 @@ public class DImageButton extends DBase {
 		g.setTransform(af);
 		g.setColor(btnBack);
 		if(image != null){
-			g.drawImage(image, 0, 0, _0130_width, _0131_height, 0, 0, _0130_width, _0131_height , null);
+			g.drawImage(image, 0, 0, _0130_width, _0131_height, 0, 0, image.getWidth(), image.getHeight() , null);
 		}
 		else {
 			g.setColor(dashedEdge);
