@@ -44,7 +44,7 @@ public class DSlider extends DLinearTrack {
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
-		if(_0039_opaque){
+		if(_0060_opaque){
 			g.setColor(DBase.jpalette[6]);
 			g.fillRect(0, 0, _0130_width, _0131_height);
 		}

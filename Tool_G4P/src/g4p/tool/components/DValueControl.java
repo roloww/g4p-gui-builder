@@ -50,7 +50,7 @@ public class DValueControl extends DBase {
 	public Boolean 		nticks_show = true;
 	public Validator 	nticks_validator = Validator.getValidator(int.class, 2, 999);
 
-	public Boolean 		_0039_stick_to_ticks  = false;
+	public Boolean 		_0028_stick_to_ticks  = false;
 	public Boolean 		stick_to_ticks_edit = true;
 	public Boolean 		stick_to_ticks_show = true;
 	public String 		stick_to_ticks_label = "Stick to ticks?";
@@ -62,7 +62,7 @@ public class DValueControl extends DBase {
 	public Boolean 		ease_show = true;
 	public Validator 	ease_validator = Validator.getValidator(float.class, 1, 30);
 	
-	public Boolean 		_0050_show_ticks  = false;
+	public Boolean 		_0060_show_ticks  = false;
 	public Boolean 		show_ticks_edit = true;
 	public Boolean 		show_ticks_show = true;
 	public String 		show_ticks_label = "Show ticks?";
@@ -97,10 +97,10 @@ public class DValueControl extends DBase {
 		s += Messages.build(SET_VALUE_TYPE, _0010_name, _0024_vtype, $(_0025_precision));
 		if(_0029_nticks != 2)
 			s += Messages.build(SET_NBR_TICKS, _0010_name, $(_0029_nticks));
-		if(_0039_stick_to_ticks)
-			s += Messages.build(SET_STICK_TICKS, _0010_name, _0039_stick_to_ticks);
-		if(_0050_show_ticks)
-			s += Messages.build(SET_SHOW_TICKS, _0010_name, _0050_show_ticks);
+		if(_0028_stick_to_ticks)
+			s += Messages.build(SET_STICK_TICKS, _0010_name, _0028_stick_to_ticks);
+		if(_0060_show_ticks)
+			s += Messages.build(SET_SHOW_TICKS, _0010_name, _0060_show_ticks);
 		if(_0040_ease > 1)
 			s += Messages.build(SET_EASING, _0010_name, $(_0040_ease));
 		s += super.get_creator(parent, window);		

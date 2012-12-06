@@ -184,7 +184,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 				comp._0120_x = (window._0130_width - comp._0130_width)/ 2;
 				comp._0121_y = (window._0131_height - comp._0131_height)/ 2;
 				if(opg.getChildCount() == 0){
-					((DOption)comp)._0685_selected = true;
+					((DOption)comp)._0101_selected = true;
 					((DOption)comp).iconNo = 1;
 				}
 				m.insertNodeInto(comp, opg, opg.getChildCount());

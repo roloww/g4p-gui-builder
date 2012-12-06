@@ -86,7 +86,7 @@ public class DButton extends DTextIcon {
 		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
 		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		if(_0034_icon_file.length() > 0)
-			icon = getImageFromDataFolder(_0034_icon_file);
+		if(_0035_icon_file.length() > 0)
+			icon = getImageFromDataFolder(_0035_icon_file);
 	}
 }

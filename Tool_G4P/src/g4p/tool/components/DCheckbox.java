@@ -26,11 +26,11 @@ public class DCheckbox extends DCoreSelectable{
 		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0032_text_y_alignment);
 		// Set up icon
 		icon = ToolImage.getImage("CB_ICON");
-		_0035_nbr_tiles = 2;
-		_0036_icon_x_alignment = "LEFT";
-		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0036_icon_x_alignment);
-		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0037_icon_y_alignment);
-		iconWidth = icon.getWidth() / _0035_nbr_tiles;
+		_0036_nbr_tiles = 2;
+		_0037_icon_x_alignment = "LEFT";
+		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0037_icon_x_alignment);
+		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0038_icon_y_alignment);
+		iconWidth = icon.getWidth() / _0036_nbr_tiles;
 		iconHeight = icon.getHeight();
 		icon_x_alignment_show = true;
 		icon_y_alignment_show = true;
@@ -48,7 +48,7 @@ public class DCheckbox extends DCoreSelectable{
 		s = Messages.build(CTOR_GCHECKBOX, _0010_name, window, 
 				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
 		s += super.get_creator(parent, window);
-		if(_0685_selected)
+		if(_0101_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);		
 		return s;
@@ -56,14 +56,14 @@ public class DCheckbox extends DCoreSelectable{
 
 	protected String XXget_creator(DBase parent, String window){
 		String s = "";
-		if(_0685_selected)
+		if(_0101_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");
 		s += super.get_creator(parent, window);
 		return s;
 	}
 
 	protected boolean isIconAlignDefaults(){
-		return _0036_icon_x_alignment.equals("LEFT") && _0037_icon_y_alignment.equals("MIDDLE");
+		return _0037_icon_x_alignment.equals("LEFT") && _0038_icon_y_alignment.equals("MIDDLE");
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
@@ -71,7 +71,7 @@ public class DCheckbox extends DCoreSelectable{
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
-		if(_0039_opaque){
+		if(_0060_opaque){
 			g.setColor(DBase.jpalette[6]);
 			g.fillRect(0, 0, _0130_width, _0131_height);
 		}
