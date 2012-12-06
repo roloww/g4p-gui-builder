@@ -20,7 +20,7 @@ import g4p.tool.components.DImageButton;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
 import g4p.tool.components.DOption;
-import g4p.tool.components.DOptionGroup;
+import g4p.tool.components.DToggleGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchPad;
 import g4p.tool.components.DSlider;
@@ -228,7 +228,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DSlider.class, btnHorzSlider.getIcon());
 		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
 		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
-		ToolIcon.addIcon(DOptionGroup.class, btnOptGroup.getIcon());
+		ToolIcon.addIcon(DToggleGroup.class, btnOptGroup.getIcon());
 		ToolIcon.addIcon(DOption.class, btnOption.getIcon());
 		ToolIcon.addIcon(DTimer.class, btnTimer.getIcon());
 		ToolIcon.addIcon(DCustomSlider.class, btnCoolSlider.getIcon());
@@ -292,7 +292,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnTextfield = new javax.swing.JButton();
         btnTextarea = new javax.swing.JButton();
         btnHorzSlider = new javax.swing.JButton();
-        btnVertSlider = new javax.swing.JButton();
         btnCoolSlider = new javax.swing.JButton();
         btnKnob = new javax.swing.JButton();
         btnCheckbox = new javax.swing.JButton();
@@ -437,18 +436,6 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnHorzSlider);
-
-        btnVertSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSliderV.png"))); // NOI18N
-        btnVertSlider.setToolTipText("Slider");
-        btnVertSlider.setFocusable(false);
-        btnVertSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnVertSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnVertSlider.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVertSliderActionPerformed(evt);
-            }
-        });
-        tbarComponents.add(btnVertSlider);
 
         btnCoolSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCoolSlider.png"))); // NOI18N
         btnCoolSlider.setToolTipText("Cool Slider");
@@ -848,9 +835,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		guiControl.addComponent(new DSlider());
 	}//GEN-LAST:event_btnHorzSliderActionPerformed
 
-	private void btnVertSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVertSliderActionPerformed
-	}//GEN-LAST:event_btnVertSliderActionPerformed
-
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed
 		guiControl.addComponent(new DCustomSlider());
 	}//GEN-LAST:event_btnCoolSliderActionPerformed
@@ -868,7 +852,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnOptionActionPerformed
 
 	private void btnOptGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOptGroupActionPerformed
-		guiControl.addComponent(new DOptionGroup());
+		guiControl.addComponent(new DToggleGroup());
 	}//GEN-LAST:event_btnOptGroupActionPerformed
 
 	private void btnDropListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropListActionPerformed
@@ -988,7 +972,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnTextarea;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnTimer;
-    private javax.swing.JButton btnVertSlider;
     private javax.swing.JButton btnWindow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

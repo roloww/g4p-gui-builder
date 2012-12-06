@@ -47,10 +47,12 @@ public class DTimer extends DBase {
 		set_name(NameGen.instance().getNext("timer"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Action"));
 
-		name_label = "Variable name";
-		name_tooltip = "Java naming rules apply";
+		x_show = y_show = width_show = height_show = opaque_show = false;
+		
+//		name_label = "Variable name";
+//		name_tooltip = "Java naming rules apply";
 		name_edit = true;
-		eventHandler_edit = eventHandler_show = true;		
+//		eventHandler_edit = eventHandler_show = true;		
 	}
 
 	/**

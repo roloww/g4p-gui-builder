@@ -85,7 +85,7 @@ public class DOption extends DCoreSelectable {
 	public void selectionChanged(){
 		// test to see if this object has been selected
 		// and if so de-select all then select this
-		DOptionGroup optg = (DOptionGroup) this.getParent();
+		DToggleGroup optg = (DToggleGroup) this.getParent();
 		DOption opt;
 		Enumeration<?> e = optg.children();
 		while(e.hasMoreElements()){

@@ -13,116 +13,94 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DImageButton extends DText {
+public class DImageButton extends DBase {
 
 	transient BufferedImage image = null;
 	
 	protected int mem_nbr_tiles = 1;
 	protected int style;
 	
-	public String 		_0041_btn_style = "1 Image";
-	transient public 	EditorBase btn_style_editor = new EditorJComboBox(IMG_BUTTON_STYLE);
-	public Boolean 		btn_style_edit = true;
-	public Boolean 		btn_style_show = true;
-	public String 		btn_style_label = "Button style";
-	public String 		btn_style_updater = "buttonStyleChanged";
 
 	public String 		_0042_img_off = "";
 	transient public 	EditorJFileChooser img_off_editor = new EditorJFileChooser();
 	public Boolean 		img_off_edit = true;
 	public Boolean 		img_off_show = true;
-	public String 		img_off_label = "Image file";
-	public String 		img_off_updater = "imageChanged";
+	public String 		img_off_label = "Mouse off image";
+	public String 		img_off_updater = "imageChanged_off";
 	
-	public int	 		_0043_nbr_tiles = 1;
-	public Boolean 		nbr_tiles_edit = true;
-	public Boolean 		nbr_tiles_show = false;
-	public String 		nbr_tiles_label = "Nbr of tiles";
-	public String 		nbr_tiles_updater = "nbrTilesChanged";
-	public Validator 	nbr_tiles_validator = Validator.getValidator(int.class, 2, 3);
-
 	public String 		_0044_img_over = "";
 	transient public 	EditorJFileChooser img_over_editor = new EditorJFileChooser();
 	public Boolean 		img_over_edit = true;
 	public Boolean 		img_over_show = false;
-	public String 		img_over_label = "Over image filename";
+	public String 		img_over_label = "Mouse over image";
+	public String 		img_over_updater = "imageChanged_over";
 
 	public String 		_0045_img_down = "";
 	transient public 	EditorJFileChooser img_down_editor = new EditorJFileChooser();
 	public Boolean 		img_down_edit = true;
 	public Boolean 		img_down_show = false;
-	public String 		img_down_label = "Down image file";
-
-	public Boolean 		_0048_mask = false;
-	public Boolean 		mask_edit = true;
-	public Boolean 		mask_show = true;
-	public String 		mask_label = "Has a mask image?";
-	public String 		mask_updater = "updateMaskUsage";
+	public String 		img_down_label = "Pressed over image";
 
 	public String 		_0049_img_mask = "";
 	transient public 	EditorJFileChooser img_mask_editor = new EditorJFileChooser();
 	public Boolean 		img_mask_edit = true;
-	public Boolean 		img_mask_show = false;
-	public String 		img_mask_label = "Mask file";
+	public Boolean 		img_mask_show = true;
+	public String 		img_mask_label = "Mask image";
+
+	public Boolean 		_0048_match_image_size = false;
+	public Boolean 		match_image_size_edit = true;
+	public Boolean 		match_image_size_show = false;
+	public String 		match_image_size_label = "Use image size";
+	public String 		match_image_size_updater = "updateSize";
 
 	
 	public DImageButton(){
 		super();
 		componentClass = "GImageButton";
 		set_name(NameGen.instance().getNext("imgButton"));
-		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
-		width_edit = height_edit = false;
-		width_show = height_show = false;
-		_0130_width = 80;
-		_0131_height = 30;
-		style = ListGen.instance().getIndexOf(IMG_BUTTON_STYLE, _0041_btn_style);
-		resizeable = false;
+		set_event_name(NameGen.instance().getNext(get_name()+ "_click"));
+
+		width_edit = height_edit = true;
+		width_show = height_show = true;
+		opaque_show = false;
+		_0130_width = 100;
+		_0131_height = 60;
 	}
 
 
+
+	
 	/**
 	 * Get the creator statement var = new Foo(...);
 	 * @return
 	 */
 	protected String get_creator(DBase parent, String window){
-		String s = "", f1 ="", f2 = "", f3 = "";
-		// Get button style
-//		style = ListGen.instance().getComboBoxModel(IMG_BUTTON_STYLE).getIndexOf(_0041_btn_style);
-		// Get the image file parameters
-		switch(style){
-		case 3:
-			f3 = (_0045_img_down.length() > 0) ? "\"" + _0045_img_down + "\"" : "null";
-		case 2:
-			f2 = (_0044_img_over.length() > 0) ? "\"" + _0044_img_over + "\"" : "null";
-		default:
-			f1 = (_0042_img_off.length() > 0) ? "\"" + _0042_img_off + "\"" : "null";			
-		}
-		// Get mask file parameter
-		String mask = (_0048_mask && _0049_img_mask.length() > 0) ? "\"" + _0049_img_mask + "\"" : "null";
+		String s = "";
+		String f0 = _0042_img_off;
+		String f1 = (_0044_img_over.length() > 0) ? _0044_img_over : f0;
+		String f2 = (_0045_img_down.length() > 0) ? _0045_img_down : f0;	
+		String flist = "new String[] { \"" + f0 + "\", " + "\"" + f1 + "\", " + "\"" + f2 + "\" } " ;
 
-		switch(style){
-		case 0:
-		case 1:
-			s = Messages.build(CTOR_IMG_BUTTON_1, _0010_name, window, mask, f1,
-					$(_0043_nbr_tiles), $(_0120_x), $(_0121_y));
-			break;
-		case 2:
-			s = Messages.build(CTOR_IMG_BUTTON_2, _0010_name, window, mask, f1, f2,
-					$(_0120_x), $(_0121_y));
-			s = s.replace('<', '{');
-			s = s.replace('>', '}');
-			break;
-		case 3:
-			s = Messages.build(CTOR_IMG_BUTTON_3, _0010_name, window, mask, f1, f2, f3, 
-					$(_0120_x), $(_0121_y));
-			s = s.replace('<', '{');
-			s = s.replace('>', '}');
-			break;
+		if(_0049_img_mask.length() > 0){
+			if(_0048_match_image_size)
+				s += Messages.build(CTOR_IMG_BTN_XYFM, _0010_name, window, _0120_x, _0121_y, flist, _0049_img_mask);
+			else
+				s += Messages.build(CTOR_IMG_BTN_XYWHFM, _0010_name, window, _0120_x, _0121_y, _0130_width, _0131_height, flist, _0049_img_mask);
 		}
+		else {
+			if(_0048_match_image_size)
+				s += Messages.build(CTOR_IMG_BTN_XYF, _0010_name, window, _0120_x, _0121_y, flist);
+			else
+				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, _0120_x, _0121_y, _0130_width, _0131_height, flist);
+			
+		}
+		System.out.println(s);
+		s += super.get_creator(parent, window);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
-		
+	
+	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0120_x, _0121_y);
@@ -132,8 +110,9 @@ public class DImageButton extends DText {
 			g.drawImage(image, 0, 0, _0130_width, _0131_height, 0, 0, _0130_width, _0131_height , null);
 		}
 		else {
-			g.setStroke(heavyStroke);
-			g.drawRect(0, 0, _0130_width, _0131_height);
+			g.setColor(dashedEdge);
+			g.setStroke(dashed);
+			g.drawRect(0, 0, _0130_width, _0131_height);		
 		}
 		
 		if(this == selected)
@@ -141,73 +120,40 @@ public class DImageButton extends DText {
 		g.setTransform(paf);
 	}
 
-	public void buttonStyleChanged(){
-		style = ListGen.instance().getIndexOf(IMG_BUTTON_STYLE, _0041_btn_style);
-		switch(style){
-		case 0: // Tiled image
-			nbr_tiles_show = true;
-			img_over_show = false;
-			img_down_show = false;
-			img_off_label = "Tiled Image";
-			if(mem_nbr_tiles == 1)
-				mem_nbr_tiles = _0043_nbr_tiles = 3;
-			else
-				_0043_nbr_tiles = mem_nbr_tiles;
-			break;
-		case 1: // 1 image
-			nbr_tiles_show = false;
-			img_over_show = false;
-			img_down_show = false;
-			img_off_label = "Single Image";
-			mem_nbr_tiles = _0043_nbr_tiles;
-			_0043_nbr_tiles = 1;
-			break;
-		case 2: // 2 images
-			nbr_tiles_show = false;
+	public void imageChanged_off(){
+		if(_0042_img_off.length() > 0){
+			image = getImageFromDataFolder(_0042_img_off);
 			img_over_show = true;
-			img_down_show = false;
-			img_off_label = "OFF Image";
-			img_over_label = "OVER/DOWN Image";
-			mem_nbr_tiles = _0043_nbr_tiles;
-			_0043_nbr_tiles = 1;
-			break;
-		case 3: // 3 images
-			nbr_tiles_show = false;
-			img_over_show = true;
+			match_image_size_show = true;
+			propertyModel.createProperties(this);			
+			propertyModel.hasBeenChanged();
+		}
+	}
+	
+	public void imageChanged_over(){
+		if(_0042_img_off.length() > 0){
 			img_down_show = true;
-			img_off_label = "OFF Image";
-			img_over_label = "OVER Image";
-			img_down_label = "DOWN Image";
-			mem_nbr_tiles = _0043_nbr_tiles;
-			_0043_nbr_tiles = 1;
-			break;
+			propertyModel.createProperties(this);			
+			propertyModel.hasBeenChanged();
 		}
-		_0130_width = (image == null) ? _0130_width : image.getWidth() / _0043_nbr_tiles;
-		propertyModel.createProperties(this);
+	}
+	
+	public void updateSize(){
+		if(_0048_match_image_size){
+			_0130_width = image.getWidth();
+			_0131_height = image.getHeight();
+			width_show = height_show = false;
+			resizeable = false;
+		}
+		else {
+			width_show = height_show = true;
+			resizeable = true;
+		}
+		propertyModel.createProperties(this);			
 		propertyModel.hasBeenChanged();
 	}
 	
-	public void imageChanged(){
-		image = getImageFromDataFolder(_0042_img_off);
-		if(image != null){
-			_0130_width = image.getWidth() / _0043_nbr_tiles;
-			_0131_height = image.getHeight();
-		}
-	}
-	
-	public void nbrTilesChanged(){
-		if(image != null){
-			_0130_width = image.getWidth() / _0043_nbr_tiles;
-			_0131_height = image.getHeight();
-		}
-	}
 
-	public void updateMaskUsage(){
-		img_mask_show = _0048_mask;
-		propertyModel.createProperties(this);
-		propertyModel.hasBeenChanged();
-	}
-	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
