@@ -92,20 +92,30 @@ public interface TDataConstants {
 	
 	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height)
 	String CTOR_GBUTTON		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5});\n";
-	String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
+//	String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
 	
 	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height)
-	String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
+//	String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
+//	
+//	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height)
+//	String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
 	
-	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height)
-	String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
-	
-	//		GImageButton(PApplet theApplet, String maskFile, String imgFile, int nbrImages, int x, int y)
-	String CTOR_IMG_BUTTON_1	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, {5}, {6});\n";
+	//		GImageButton(PApplet theApplet, int x, int y, int w, int h, Sting[] files, String maskFile)
+	//																x	 y    w   h     fl    mf
+	String CTOR_IMG_BTN_XYWHFM	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, {5}, {6}, \"{7}\");\n";
+	//																x	 y    w   h     fl
+	String CTOR_IMG_BTN_XYWHF	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, {5}, {6});\n";
+	//																x	 y   fl    mf
+	String CTOR_IMG_BTN_XYFM	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, \"{5}\");\n";
+	//																x	 y   fl
+	String CTOR_IMG_BTN_XYF	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4});\n";
+
 	
 	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
-	String CTOR_IMG_BUTTON_2	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
-	String CTOR_IMG_BUTTON_3	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
+	String CTOR_IMG_BUTTON_9	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
+	String CTOR_IMG_BUTTON_8	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
+
+	String FILE_LIST			=   "  new String[] [ \"{0}\", \"{1}\", \"{2}\" } ";
 
 	
 	String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";

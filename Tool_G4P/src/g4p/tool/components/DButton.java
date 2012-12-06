@@ -1,17 +1,11 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.GuiDesigner;
-import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.EditorJFileChooser;
-import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 

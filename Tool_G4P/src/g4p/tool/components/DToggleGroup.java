@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
-public class DOptionGroup extends DBase {
+public class DToggleGroup extends DBase {
 
 	
-	public DOptionGroup(){
+	public DToggleGroup(){
 		super();
 		selectable = false;
 		resizeable = false;

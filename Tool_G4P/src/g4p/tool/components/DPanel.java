@@ -57,7 +57,7 @@ public class DPanel extends DTextIcon {
 			e = children();
 			while(e.hasMoreElements()){
 				comp = (DBase)e.nextElement();
-				if(!(comp instanceof DOptionGroup))
+				if(!(comp instanceof DToggleGroup))
 					lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
 			}
 		}				

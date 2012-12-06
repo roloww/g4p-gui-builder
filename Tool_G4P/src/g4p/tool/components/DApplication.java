@@ -5,7 +5,6 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p_controls.GCScheme;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 

@@ -3,7 +3,7 @@ package g4p.tool.gui.treeview;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DBase;
 import g4p.tool.components.DOption;
-import g4p.tool.components.DOptionGroup;
+import g4p.tool.components.DToggleGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DTimer;
 import g4p.tool.components.DWindow;
@@ -111,7 +111,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		TreeNode[] nodes = m.getPathToRoot(comp);
 		if(nodes != null){
 			for(int i = nodes.length - 1; i > 0; i--){
-				if(nodes[i] instanceof DOptionGroup){
+				if(nodes[i] instanceof DToggleGroup){
 					c = (DBase)nodes[i];
 					break;
 				}
@@ -165,7 +165,7 @@ public class CtrlSketchView extends JTree implements ISketchView {
 			m.insertNodeInto(comp, r, r.getChildCount());
 			setSelectedComponent(comp);			
 		}
-		else if(comp instanceof DOptionGroup){
+		else if(comp instanceof DToggleGroup){
 			DBase selected = (DBase) getLastSelectedPathComponent();
 			DBase window = getGuiContainerFor(selected);
 			if(window != null){
