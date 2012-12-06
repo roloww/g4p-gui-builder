@@ -46,7 +46,7 @@ public class DOptionGroup extends DBase {
 				while(e.hasMoreElements()){
 					comp = (DOption)e.nextElement();
 					lines.add(Messages.build(ADD_A_CHILD, _0010_name, comp._0010_name));
-					if(comp._0685_selected)
+					if(comp._0101_selected)
 						lines.add(Messages.build(SEL_OPTION, comp._0010_name, "true"));
 					// If this group is on a panel then add the options
 					if(onPanel)

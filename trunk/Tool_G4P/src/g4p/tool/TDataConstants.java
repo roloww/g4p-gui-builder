@@ -82,6 +82,8 @@ public interface TDataConstants {
 	String SET_TEXT_ALIGN		=	"  {0}.setTextAlign(GAlign.{1}, GAlign.{2});\n";
 	String SET_ICON				= 	"  {0}.setIcon(\"{1}\", {2}, GAlign.{3}, GAlign.{4});\n";
 	String SET_ICON_ALIGN		=	"  {0}.setIconAlign(GAlign.{1}, GAlign.{2});\n";
+	String SET_TEXT_BOLD		=	"  {0}.setTextBold();\n";
+	String SET_TEXT_ITALIC		=	"  {0}.setTextItalic();\n";
 	String SET_OPAQUE			=	"  {0}.setOpaque({1});\n";
 
 	
@@ -156,15 +158,19 @@ public interface TDataConstants {
 	String CTOR_GTIMER			=	"  {0} = new GTimer({1}, {2}, \"{3}\", {4});\n";
 	String START_TIMER_0		=	"  {0}.start();\n";
 	String START_TIMER_1		=	"  {0}.start({1});\n";
-	String INIT_DELAY_TIMER	=	"  {0}.setInitialDelay({1});\n";
+	String INIT_DELAY_TIMER		=	"  {0}.setInitialDelay({1});\n";
 	
 
-	//		GKnob(PApplet theApplet, int x, int y, int size, int arcStart, int arcEnd) {
+	//		GKnob(PApplet theApplet, int x, int y, int size, float grip ratio) {
 	String CTOR_GKNOB			=	"  {0} = new GKnob({1}, {2}, {3}, {4}, {5}, {6});\n";
 	//		GKnobOval(PApplet theApplet, int x, int y, int width, int height, int arcStart, int arcEnd) {
-	String CTOR_GKNOBOVAL		=	"  {0} = new GKnobOval({1}, {2}, {3}, {4}, {5}, {6}, {7});\n";
-	String SET_ARC_ONLY			=	"  {0}.setRotArcOnly({1});\n";
-	String SET_CONTROLLER		=	"  {0}.setControlMode(GKnob.CTRL_{1});\n";
+	String SET_TURN_RANGE		=	"  {0}.setTurnRange({1}, {2});\n";
+	String SET_CONTROLLER		=	"  {0}.setTurnMode(GKnob.CTRL_{1});\n";
+	String SET_DRAG_SENSITIVITY	=	"  {0}.setSensitivity({1});\n";
+	String SET_SHOW_TRACK		=	"  {0}.setShowTrack({1});\n";
+	String SET_SHOW_ARC_ONLY	=	"  {0}.setShowArcOnly({1});\n";
+	String SET_OVER_ARC_ONLY	=	"  {0}.setOverArcOnly({1});\n";
+	String SET_OVER_GRIP_ONLY	=	"  {0}.setIncludeOverBezel({1});\n";
 
 	
 	//		GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){

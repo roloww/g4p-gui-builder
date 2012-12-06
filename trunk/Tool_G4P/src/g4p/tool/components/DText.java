@@ -4,6 +4,7 @@ import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
+import g4p_controls.G4P;
 import g4p_controls.StyledString;
 import g4p_controls.StyledString.TextLayoutInfo;
 
@@ -46,6 +47,18 @@ public class DText extends DBase {
 	public String 		text_y_alignment_label = "Text Y align";
 	public String 		text_y_alignment_updater = "textAlignChanged";
 
+	public Boolean 		_0033_bold  = false;
+	public Boolean 		bold_edit = true;
+	public Boolean 		bold_show = true;
+	public String 		bold_label = "Bold";
+	public String 		bold_updater = "updateStyle";
+
+	public Boolean 		_0034_italic  = false;
+	public Boolean 		italic_edit = true;
+	public Boolean 		italic_show = true;
+	public String 		italic_label = "Italic";
+	public String 		italic_updater = "updateStyle";
+
 	public String 		width_updater = "sizeChanged";
 	public String 		height_updater = "sizeChanged";
 
@@ -54,6 +67,7 @@ public class DText extends DBase {
 		selectable = true;
 		resizeable = true;
 		moveable = true;
+		stext = new StyledString(_0030_text);
 		allowsChildren = false;
 		_0130_width = 80;
 		_0131_height = 22;
@@ -65,6 +79,14 @@ public class DText extends DBase {
 		eventHandler_edit = eventHandler_show = true;
 	}
 
+	public void updateStyle(){
+		stext.clearAllAttributes();
+		if(_0033_bold)
+			stext.addAttribute(G4P.WEIGHT, G4P.WEIGHT_BOLD);
+		if(_0034_italic)
+			stext.addAttribute(G4P.POSTURE, G4P.POSTURE_OBLIQUE);
+	}
+	
 	protected boolean isTextAlignDefaults(){
 		return _0031_text_x_alignment.equals("CENTER") && _0032_text_y_alignment.equals("MIDDLE");
 	}
@@ -75,6 +97,10 @@ public class DText extends DBase {
 			s = Messages.build(SET_TEXT, _0010_name, _0030_text);
 			if(!isTextAlignDefaults())
 				s += Messages.build(SET_TEXT_ALIGN, _0010_name, _0031_text_x_alignment, _0032_text_y_alignment);
+			if(_0033_bold)
+				s += Messages.build(SET_TEXT_BOLD, _0010_name);
+			if(_0034_italic)
+				s += Messages.build(SET_TEXT_ITALIC, _0010_name);
 		}
 		s += super.get_creator(parent, window);		
 		return s;
@@ -92,6 +118,12 @@ public class DText extends DBase {
 					boolean hasText = (_0030_text.length() != 0);
 					text_x_alignment_show = hasText;
 					text_y_alignment_show = hasText;
+					italic_show = hasText;
+					bold_show = hasText;
+					if(!hasText){
+						_0033_bold = false;
+						_0034_italic = false;
+					}
 					propertyModel.createProperties(this);
 				}
 				lastLength = currLength; // remember the current length

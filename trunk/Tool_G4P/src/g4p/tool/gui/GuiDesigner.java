@@ -14,8 +14,8 @@ import g4p.tool.components.DActivityBar;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DCheckbox;
+import g4p.tool.components.DCustomSlider;
 import g4p.tool.components.DDropList;
-import g4p.tool.components.DSlider;
 import g4p.tool.components.DImageButton;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
@@ -23,11 +23,10 @@ import g4p.tool.components.DOption;
 import g4p.tool.components.DOptionGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchPad;
+import g4p.tool.components.DSlider;
 import g4p.tool.components.DTextArea;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
-import g4p.tool.components.DVertSlider;
-import g4p.tool.components.DCustomSlider;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.tabview.CtrlTabView;
@@ -40,13 +39,11 @@ import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JOptionPane;
-
-import javax.imageio.*;
 
 import processing.app.Editor;
 
@@ -229,7 +226,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DButton.class, btnButton.getIcon());
 		ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
 		ToolIcon.addIcon(DSlider.class, btnHorzSlider.getIcon());
-		ToolIcon.addIcon(DVertSlider.class, btnVertSlider.getIcon());
 		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
 		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
 		ToolIcon.addIcon(DOptionGroup.class, btnOptGroup.getIcon());
@@ -853,7 +849,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 	}//GEN-LAST:event_btnHorzSliderActionPerformed
 
 	private void btnVertSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVertSliderActionPerformed
-		guiControl.addComponent(new DVertSlider());
 	}//GEN-LAST:event_btnVertSliderActionPerformed
 
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed

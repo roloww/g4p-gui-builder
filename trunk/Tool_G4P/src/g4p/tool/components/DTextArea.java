@@ -20,7 +20,7 @@ public class DTextArea extends DTextField {
 		set_event_name(NameGen.instance().getNext(get_name()+ "_change"));
 		_0130_width = 160;
 		_0131_height = 80;
-		_0039_opaque  = true;
+		_0060_opaque  = true;
 	}
 
 	/**
@@ -46,8 +46,8 @@ public class DTextArea extends DTextField {
 			s += Messages.build(SET_TEXT, _0010_name, _0030_text);
 		if(_0031_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0031_dtext);
-		if(!_0039_opaque)
-			s += Messages.build(SET_OPAQUE, _0039_opaque);
+		if(!_0060_opaque)
+			s += Messages.build(SET_OPAQUE, _0060_opaque);
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
 		return s;
 	}
@@ -57,7 +57,7 @@ public class DTextArea extends DTextField {
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 		
-		if(_0039_opaque){
+		if(_0060_opaque){
 			g.setColor(DBase.jpalette[6]);
 			g.fillRect(0, 0, _0130_width, _0131_height);
 		}

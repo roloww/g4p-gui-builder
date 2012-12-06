@@ -140,7 +140,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public Boolean 		eventHandler_show = true;
 	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
 
-	public Boolean 		_0039_opaque  = false;
+	public Boolean 		_0060_opaque  = false;
 	public Boolean 		opaque_edit = true;
 	public Boolean 		opaque_show = true;
 	public String 		opaque_label = "Opaque background?";
@@ -236,7 +236,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		if(opaque_show)
-			s = Messages.build(SET_OPAQUE, _0010_name, _0039_opaque);
+			s = Messages.build(SET_OPAQUE, _0010_name, _0060_opaque);
 		return s;
 	}
 	

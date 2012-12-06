@@ -29,11 +29,11 @@ public class DOption extends DCoreSelectable {
 		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0032_text_y_alignment);
 		// Set up icon
 		icon = ToolImage.getImage("OP_ICON");
-		_0035_nbr_tiles = 2;
-		_0036_icon_x_alignment = "LEFT";
-		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0036_icon_x_alignment);
-		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0037_icon_y_alignment);
-		iconWidth = icon.getWidth() / _0035_nbr_tiles;
+		_0036_nbr_tiles = 2;
+		_0037_icon_x_alignment = "LEFT";
+		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0037_icon_x_alignment);
+		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0038_icon_y_alignment);
+		iconWidth = icon.getWidth() / _0036_nbr_tiles;
 		iconHeight = icon.getHeight();
 		icon_x_alignment_show = true;
 		icon_y_alignment_show = true;
@@ -56,7 +56,7 @@ public class DOption extends DCoreSelectable {
 	}
 
 	protected boolean isIconAlignDefaults(){
-		return _0036_icon_x_alignment.equals("LEFT") && _0037_icon_y_alignment.equals("MIDDLE");
+		return _0037_icon_x_alignment.equals("LEFT") && _0038_icon_y_alignment.equals("MIDDLE");
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
@@ -64,7 +64,7 @@ public class DOption extends DCoreSelectable {
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
 
-		if(_0039_opaque){
+		if(_0060_opaque){
 			g.setColor(DBase.jpalette[6]);
 			g.fillRect(0, 0, _0130_width, _0131_height);
 		}
@@ -93,7 +93,7 @@ public class DOption extends DCoreSelectable {
 			opt.setSelected(false);
 			opt.iconNo = 0;
 		}
-		_0685_selected = true;
+		_0101_selected = true;
 		iconNo = 1;
 	}
 	
