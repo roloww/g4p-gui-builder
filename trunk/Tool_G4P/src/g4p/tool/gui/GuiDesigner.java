@@ -58,7 +58,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 
 	private static GuiDesigner instance = null;
 	private static Editor editor = null;
-	private static FontMetrics metrics = null;
+	//private static FontMetrics metrics = null;
 
 	private static boolean stayOpen = false;
 	private static boolean autoHide = false;
@@ -71,9 +71,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		return editor;
 	}
 
-	public static FontMetrics metrics(){
-		return metrics;
-	}
+//	public static FontMetrics metrics(){
+//		return metrics;
+//	}
 
 	public static void keepOpen(boolean mode){
 		stayOpen = mode;
@@ -136,7 +136,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		editor = theEditor;
 		initComponents();
 		initCustomComponents();
-		metrics = tabWindows.getGraphics().getFontMetrics();
+//		metrics = tabWindows.getGraphics().getFontMetrics();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
 
