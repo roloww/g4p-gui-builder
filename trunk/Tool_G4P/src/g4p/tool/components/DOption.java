@@ -97,19 +97,16 @@ public class DOption extends DCoreSelectable {
 		iconNo = 1;
 	}
 	
+	protected void read(){
+		super.read();
+		icon = ToolImage.getImage("OP_ICON");
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-
-		icon_file_editor = new EditorJFileChooser();
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		icon = ToolImage.getImage("OP_ICON");
+		read();
 	}
 	
 }

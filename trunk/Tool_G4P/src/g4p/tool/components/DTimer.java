@@ -1,5 +1,8 @@
 package g4p.tool.components;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 import javax.swing.event.TableModelEvent;
 
 import g4p.tool.Messages;
@@ -90,5 +93,15 @@ public class DTimer extends DBase {
 		propertyModel.fireTableChanged(new TableModelEvent(propertyModel));
 	}
 
+	protected void read(){
+		super.read();
+	}
+
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
+	}
 	
 }

@@ -229,14 +229,20 @@ public final class DWindow extends DBase {
 		}				
 	}
 
+	protected void read(){
+		super.read();
+		renderer_editor = new EditorJComboBox(RENDERER);
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		for(int i = 0; i < id.length; i++)
-			IdGen.instance().add(id[i]);
-		renderer_editor = new EditorJComboBox(RENDERER);
+		read();
+//		NameGen.instance().add(_0010_name);
+//		for(int i = 0; i < id.length; i++)
+//			IdGen.instance().add(id[i]);
+//		renderer_editor = new EditorJComboBox(RENDERER);
 	}
 
 

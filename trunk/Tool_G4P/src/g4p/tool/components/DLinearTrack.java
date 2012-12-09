@@ -37,7 +37,9 @@ public class DLinearTrack extends DValueControl {
 		return s;
 	}
 
-	
-	
+	protected void read(){
+		super.read();
+		text_orient_editor = new EditorJComboBox(TEXT_ORIENT);
+	}
 	
 }

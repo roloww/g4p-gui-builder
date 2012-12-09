@@ -1,10 +1,13 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
 public class DTextField extends DBase {
@@ -104,4 +107,14 @@ public class DTextField extends DBase {
 		g.setTransform(paf);
 	}
 
+	protected void read(){
+		super.read();
+	}
+
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
+	}
 }

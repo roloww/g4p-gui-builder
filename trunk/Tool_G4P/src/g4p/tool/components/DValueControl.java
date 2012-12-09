@@ -90,7 +90,6 @@ public class DValueControl extends DBase {
 		}
 	}
 
-
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s += Messages.build(SET_LIMITS, _0010_name, $(_0021_value), $(_0022_min), $(_0023_max));
@@ -107,4 +106,8 @@ public class DValueControl extends DBase {
 		return s;
 	}
 
+	protected void read(){
+		super.read();
+		vtype_editor = new EditorJComboBox(VALUE_TYPE);
+	}
 }

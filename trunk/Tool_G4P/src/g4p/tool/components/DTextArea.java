@@ -4,6 +4,8 @@ import g4p.tool.Messages;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class DTextArea extends DTextField {
 
@@ -92,6 +94,15 @@ public class DTextArea extends DTextField {
 		g.setTransform(paf);
 	}
 	
-	
+	protected void read(){
+		super.read();
+	}
+
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
+	}
 	
 }

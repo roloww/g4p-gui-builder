@@ -70,14 +70,16 @@ public class DCustomSlider extends DLinearTrack {
 			drawSelector(g);
 		g.setTransform(paf);
 	}
+	
+	protected void read(){
+		super.read();
+		skin_editor = new EditorJComboBox(SLIDER_SKIN);		
+	}
 
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		NameGen.instance().add(_0012_eventHandler);
-		IdGen.instance().add(id[0]);
-		skin_editor = new EditorJComboBox(SLIDER_SKIN);
+		read();
 	}
 }

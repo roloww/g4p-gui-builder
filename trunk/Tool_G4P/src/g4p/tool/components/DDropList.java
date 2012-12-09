@@ -96,13 +96,16 @@ public class DDropList extends DBase {
 		return s;
 	}
 	
+	protected void read(){
+		super.read();
+		list_file_editor = new EditorStringList();		
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-		list_file_editor = new EditorStringList();
+		read();
 	}
 
 
