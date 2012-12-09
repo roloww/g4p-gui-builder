@@ -153,19 +153,21 @@ public class DImageButton extends DBase {
 	}
 	
 
-	private void readObject(ObjectInputStream in)
-	throws IOException, ClassNotFoundException
-	{
-		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-//		btn_style_editor = new EditorJComboBox(IMG_BUTTON_STYLE);
+	protected void read(){
+		super.read();
 		img_off_editor = new EditorJFileChooser();
 		img_over_editor = new EditorJFileChooser();
 		img_down_editor = new EditorJFileChooser();
 		img_mask_editor = new EditorJFileChooser();
 		if(_0042_img_off.length() > 0)
 			image = getImageFromDataFolder(_0042_img_off);
+	}
+
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
 	}
 
 	

@@ -54,13 +54,6 @@ public class DCheckbox extends DCoreSelectable{
 		return s;
 	}
 
-	protected String XXget_creator(DBase parent, String window){
-		String s = "";
-		if(_0101_selected)
-			s += Messages.build(SEL_OPTION, _0010_name, "true");
-		s += super.get_creator(parent, window);
-		return s;
-	}
 
 	protected boolean isIconAlignDefaults(){
 		return _0037_icon_x_alignment.equals("LEFT") && _0038_icon_y_alignment.equals("MIDDLE");
@@ -89,19 +82,16 @@ public class DCheckbox extends DCoreSelectable{
 		g.setTransform(paf);
 	}
 
+	protected void read(){
+		super.read();
+		icon = ToolImage.getImage("CB_ICON");
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-
-		icon_file_editor = new EditorJFileChooser();
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		icon = ToolImage.getImage("CB_ICON");
+		read();
 	}
 	
 }

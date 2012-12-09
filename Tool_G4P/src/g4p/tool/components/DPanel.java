@@ -1,11 +1,14 @@
 package g4p.tool.components;
 
 import g4p.tool.Messages;
+import g4p.tool.gui.ToolImage;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -130,4 +133,14 @@ public class DPanel extends DTextIcon {
 				&& y >= _0121_y - TAB_HEIGHT && y <= _0121_y + _0131_height);
 	}
 
+	protected void read(){
+		super.read();
+	}
+	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
+	}
 }

@@ -92,17 +92,21 @@ public final class DApplication extends DBase {
 		DBase.jpalette = GCScheme.getJavaColor(colScheme);
 	}
 	
+	protected void read(){
+		super.read();
+		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
+		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);		
+	}
+	
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
-		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
-//		int cs = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0710_col_scheme);
-//		palette = GCScheme.getColor(cs);
-//		jpalette = GCScheme.getJavaColor(cs);
+		read();
+//		NameGen.instance().add(_0010_name);
+//		IdGen.instance().add(id[0]);
+//		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
+//		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
 	}
 
 }

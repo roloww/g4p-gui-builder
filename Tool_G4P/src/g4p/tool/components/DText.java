@@ -3,6 +3,7 @@ package g4p.tool.components;
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
+import g4p.tool.gui.propertygrid.EditorJFileChooser;
 import g4p.tool.gui.propertygrid.Validator;
 import g4p_controls.G4P;
 import g4p_controls.StyledString;
@@ -22,7 +23,7 @@ public class DText extends DBase {
 	
 	protected int lastLength;
 	protected boolean textChanged = true;
-	transient public StyledString stext;
+	public StyledString stext;
 	
 	public String 		_0030_text = "???";
 	public String 		text_label = "Text";
@@ -212,4 +213,11 @@ public class DText extends DBase {
 		}
 	}
 	
+	protected void read(){
+		super.read();
+		text_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
+		text_y_alignment_editor = new EditorJComboBox(V_ALIGN);
+	}
+
+
 }

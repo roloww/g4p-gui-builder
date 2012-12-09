@@ -109,15 +109,6 @@ public class DKnob extends DValueControl {
 		return s;
 	}
 
-	private void readObject(ObjectInputStream in)
-	throws IOException, ClassNotFoundException
-	{
-		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-		controller_editor = new EditorJComboBox(KNOB_CTRL);
-	}
-
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0120_x, _0121_y);
@@ -139,26 +130,17 @@ public class DKnob extends DValueControl {
 		g.setTransform(paf);
 	}
 
-	/**
-	 * Get the declaration for this control
-	 */
-//	protected String get_declaration(){
-//		if(_0130_width == _0131_height)
-//			return "GKnob " + _0010_name+ ";\n ";
-//		else
-//			return "GKnobOval " + _0010_name+ ";\n ";			
-//	}
+	protected void read(){
+		super.read();
+		controller_editor = new EditorJComboBox(KNOB_CTRL);	
+	}
+	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
+	}
 
-	/**
-	 * Get the event header
-	 * @return
-	 */
-//	protected String get_event_header(){
-//		if(_0130_width == _0131_height)
-//			return Messages.build(METHOD_START_1, _0012_eventHandler, "GKnob", "knob", 
-//					_0010_name, id[0].toString()).replace('[', '{');
-//		else
-//			return Messages.build(METHOD_START_1, _0012_eventHandler, "GKnobOval", "knob", 
-//					_0010_name, id[0].toString()).replace('[', '{');
-//	}
+
 }

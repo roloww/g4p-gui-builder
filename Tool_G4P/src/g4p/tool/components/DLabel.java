@@ -65,21 +65,16 @@ public class DLabel extends DTextIcon {
 		}
 		g.setTransform(paf);
 	}
+	
+	protected void read(){
+		super.read();
+	}
 
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{
 		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
-
-		icon_file_editor = new EditorJFileChooser();
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
-		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		if(_0035_icon_file.length() > 0)
-			icon = getImageFromDataFolder(_0035_icon_file);
+		read();
 	}
 	
 }

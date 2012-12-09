@@ -66,12 +66,16 @@ public class DSketchPad extends DBase {
 		g.setTransform(paf);
 	}
 
-	private void readObject(ObjectInputStream in)
-	throws IOException, ClassNotFoundException {
-		in.defaultReadObject();
-		NameGen.instance().add(_0010_name);
-		IdGen.instance().add(id[0]);
+	protected void read(){
+		super.read();
 		icon = ToolImage.getImage("SPAD_ICON");
+	}
+	
+	private void readObject(ObjectInputStream in)
+	throws IOException, ClassNotFoundException
+	{
+		in.defaultReadObject();
+		read();
 	}
 
 }
