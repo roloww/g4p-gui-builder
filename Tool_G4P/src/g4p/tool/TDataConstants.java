@@ -46,10 +46,10 @@ public interface TDataConstants {
 	//	public void addEventHandler(Object obj, String methodName){
 	String ADD_HANDLER			=	"  {0}.addEventHandler({1}, \"{2}\");\n";
 
-	String ADD_DRAW_HANDLER	=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
+	String ADD_DRAW_HANDLER		=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
 	String ADD_MOUSE_HANDLER	=	"  {0}.addMouseHandler({1}, \"{2}\");\n";
 	String ADD_PRE_HANDLER		=	"  {0}.addPreHandler({1}, \"{2}\");\n";
-	String ADD_POST_HANDLER	=	"  {0}.addPostHandler({1}, \"{2}\");\n";
+	String ADD_POST_HANDLER		=	"  {0}.addPostHandler({1}, \"{2}\");\n";
 
 	// 0 = event method name  :  1/2 = component name/id
 	String METHOD_START_0	=	"void {0}({1} source) [ //_CODE_:{2}:{3}:\n";
@@ -183,8 +183,9 @@ public interface TDataConstants {
 	String SET_OVER_GRIP_ONLY	=	"  {0}.setIncludeOverBezel({1});\n";
 
 	
-	//		GCombo(PApplet theApplet, String[] options, int maxRows, int x, int y, int width){
-	String CTOR_GCOMBO			=	"  {0} = new GCombo({1}, loadStrings(\"{2}\"), {3}, {4}, {5}, {6});\n";
+	//													  app,   x     y    w    y    nbr
+	String CTOR_DROPLIST		=	"  {0} = new GDropList({1}, {2}, {3}, {4}, {5}, {6});\n";
+	String CTOR_SET_LIST		=	"  {0}.setItems(loadStrings(\"{1}\"), {2});\n";
 
 	//		GActivityBar(PApplet theApplet, int x, int y, int width, int height){
 	String CTOR_GACTIVITYBAR	=	"  {0} = new GActivityBar({1}, {2}, {3}, {4}, {5});\n";
