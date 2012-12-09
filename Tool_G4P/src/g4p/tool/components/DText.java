@@ -23,9 +23,9 @@ public class DText extends DBase {
 	
 	protected int lastLength;
 	protected boolean textChanged = true;
-	public StyledString stext;
+	transient public StyledString stext;
 	
-	public String 		_0030_text = "???";
+	public String 		_0030_text = "";
 	public String 		text_label = "Text";
 	public String 		text_tooltip = "component label text";
 	public Boolean 		text_edit = true;
@@ -171,7 +171,7 @@ public class DText extends DBase {
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
-		if(textChanged){
+		if(textChanged || stext == null){
 			stext = new StyledString(_0030_text, textWidth);
 			textChanged = false;
 		}
