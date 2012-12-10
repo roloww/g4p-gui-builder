@@ -43,7 +43,7 @@ public class DDropList extends DBase {
 
 		_0052_list_file = "list_" + id[0];
 		_0130_width = 90;
-		_0131_height = 18;
+		_0131_height = 22;
 		opaque_show = false;
 		
 		width_validator = Validator.getValidator(int.class, 40, 9999);
