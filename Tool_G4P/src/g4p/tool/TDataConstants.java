@@ -112,8 +112,8 @@ public interface TDataConstants {
 
 	
 	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
-	String CTOR_IMG_BUTTON_9	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
-	String CTOR_IMG_BUTTON_8	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
+//	String CTOR_IMG_BUTTON_9	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
+//	String CTOR_IMG_BUTTON_8	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
 
 	String FILE_LIST			=   "  new String[] [ \"{0}\", \"{1}\", \"{2}\" } ";
 
@@ -148,7 +148,8 @@ public interface TDataConstants {
 	
 	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
 	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";
-	String CTOR_GVERTSLIDER		=	"  {0} = new GVertSlider({1}, {2}, {3}, {4}, {5});\n";
+//	public void setRotation(float angle, int mode){	
+	String MAKE_VERT		=	"  {0}.setRotation({1}, CORNER);\n";
 
 	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
 	String SET_VALUE_TYPE		=	"  {0}.setNumberFormat(G4P.{1}, {2});\n";

@@ -23,6 +23,10 @@ public class DLinearTrack extends DValueControl {
 	public Boolean 		text_orient_edit = true;
 	public Boolean 		text_orient_show = true;
 
+	public Boolean 		_0065_vert  = false;
+	public Boolean 		vert_edit = true;
+	public Boolean 		vert_show = true;
+	public String 		vert_label = "Make vertical slider";
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";

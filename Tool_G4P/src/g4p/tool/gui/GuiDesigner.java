@@ -235,10 +235,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DImageButton.class, btnImgButton.getIcon());
 		ToolIcon.addIcon(DDropList.class, btnDropList.getIcon());
 		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
-		ToolIcon.addIcon(DActivityBar.class, btnActivityBar.getIcon());
 		ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
 
-		ToolIcon.addIcon("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon1.png")));
+		ToolIcon.addIcon("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 		ToolIcon.addIcon("CB_ICON2", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 
 		// Load images from resource
@@ -300,7 +299,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnDropList = new javax.swing.JButton();
         btnSketchPad = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
-        btnActivityBar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnScale = new javax.swing.JButton();
         splitControl = new javax.swing.JSplitPane();
@@ -531,18 +529,6 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnTimer);
-
-        btnActivityBar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolActivityBar.png"))); // NOI18N
-        btnActivityBar.setToolTipText("Activity Bar");
-        btnActivityBar.setFocusable(false);
-        btnActivityBar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnActivityBar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnActivityBar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActivityBar(evt);
-            }
-        });
-        tbarComponents.add(btnActivityBar);
 
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 0));
         jSeparator2.setRequestFocusEnabled(false);
@@ -927,10 +913,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		autoHide = mitemAuto.isSelected();
 	}//GEN-LAST:event_mitemAutoActionPerformed
 
-	private void btnActivityBar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivityBar
-		guiControl.addComponent(new DActivityBar());
-	}//GEN-LAST:event_btnActivityBar
-
         private void btnTextareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextareaActionPerformed
        		guiControl.addComponent(new DTextArea());
        	}//GEN-LAST:event_btnTextareaActionPerformed
@@ -954,7 +936,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgGridSize;
-    private javax.swing.JButton btnActivityBar;
     private javax.swing.JButton btnButton;
     private javax.swing.JButton btnCheckbox;
     private javax.swing.JButton btnCoolSlider;
