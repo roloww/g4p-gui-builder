@@ -10,7 +10,6 @@
  */
 package g4p.tool.gui;
 
-import g4p.tool.components.DActivityBar;
 import g4p.tool.components.DApplication;
 import g4p.tool.components.DButton;
 import g4p.tool.components.DCheckbox;
@@ -20,13 +19,13 @@ import g4p.tool.components.DImageButton;
 import g4p.tool.components.DKnob;
 import g4p.tool.components.DLabel;
 import g4p.tool.components.DOption;
-import g4p.tool.components.DToggleGroup;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchPad;
 import g4p.tool.components.DSlider;
 import g4p.tool.components.DTextArea;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
+import g4p.tool.components.DToggleGroup;
 import g4p.tool.components.DWindow;
 import g4p.tool.gui.propertygrid.CtrlPropView;
 import g4p.tool.gui.tabview.CtrlTabView;
@@ -34,7 +33,6 @@ import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FontMetrics;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

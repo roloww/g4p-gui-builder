@@ -59,7 +59,7 @@ public class DSketchPad extends DBase {
 		if(this == selected)
 			drawSelector(g);
 		else {
-			g.setColor(dashedEdge);
+			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
 			g.drawRect(0, 0, _0130_width, _0131_height);		
 		}

@@ -15,7 +15,7 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public class DPanel extends DTextIcon {
 
-	final protected static int TAB_HEIGHT = 16;
+	final protected static int TAB_HEIGHT = 20;
 	
 	public Boolean 		_0030_collapsed = false;
 	public String 		collapsed_label = "Collapsed?";
@@ -72,17 +72,25 @@ public class DPanel extends DTextIcon {
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
-		if(_0030_collapsed)
-			g.setColor(pnlBackClear);
-		else
-			g.setColor(pnlBackOpaque);
+//		if(_0030_collapsed)
+//			g.setColor(pnlBackClear);
+//		else
+//			g.setColor(pnlBackOpaque);
+
+		// Panel back
+		g.setColor(DBase.jpalette[5]);
 		g.fillRect(0, 0, _0130_width, _0131_height);
-		g.setColor(pnlTabCol);
-		g.fillRect(0, -TAB_HEIGHT, _0130_width, TAB_HEIGHT);
-		g.setColor(blackEdge);
-		g.drawString(_0010_name, 2, -4);
+		
+		// Tab
+		g.setColor(DBase.jpalette[3]);
+		g.fillRect(0, 0, _0130_width, TAB_HEIGHT);
+		
+		// Text
+		g.setColor(DBase.jpalette[12]);
+		g.drawString(_0010_name, 2, 12);
 		if(this == selected)
 			drawSelector(g);
+		
 		Enumeration<?> e = children();
 		while(e.hasMoreElements()){
 			((DBase)e.nextElement()).draw(g, af, selected);
@@ -93,7 +101,7 @@ public class DPanel extends DTextIcon {
 	public void drawSelector(Graphics2D g){
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
-		g.drawRect(0, -TAB_HEIGHT,_0130_width, _0131_height + TAB_HEIGHT);
+		g.drawRect(0, 0,_0130_width, _0131_height);
 		
 		drawHandle(g, _0130_width - HANDLE_SIZE, (_0131_height - HANDLE_SIZE)/2);
 		drawHandle(g, (_0130_width - HANDLE_SIZE) / 2, _0131_height - HANDLE_SIZE);

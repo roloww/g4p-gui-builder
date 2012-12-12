@@ -36,7 +36,7 @@ public final class DApplication extends DBase {
 	public Boolean 		_0720_cursor  = true;
 	public Boolean 		cursor_edit = true;
 	public Boolean 		cursor_show = true;
-	public String 		cursor_updater = "updateCursorChanger";
+//	public String 		cursor_updater = "updateCursorChanger";
 	public String 		cursor_label = "Enable mouse over";
 
 	public String 		_0722_cursor_off = "ARROW";
