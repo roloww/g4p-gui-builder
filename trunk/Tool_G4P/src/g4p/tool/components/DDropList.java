@@ -6,6 +6,7 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorStringList;
 import g4p.tool.gui.propertygrid.Validator;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
@@ -58,15 +59,15 @@ public class DDropList extends DBase {
 		
 		// Draw background for item list
 		if(this == selected && _0053_nbr_rows > 1){
-			// Draw rows
-			g.setColor(DBase.jpalette[5]);
+			g.setColor(Color.WHITE);
 			g.fillRect(0, _0131_height, _0130_width, _0131_height * _0053_nbr_rows);
+			// Draw row borders
 			g.setColor(DBase.jpalette[4]);
 			for(int i = 1; i <= _0053_nbr_rows; i++)
 				g.drawRect(0, _0131_height * i, _0130_width, _0131_height);
 		}
-		// Main text back
-		g.setColor(DBase.jpalette[5]);
+		// Main all text back
+		g.setColor(DBase.jpalette[6]);
 		g.fillRect(0, 0, _0130_width, _0131_height);
 		// Draw thumb
 		g.setColor(DBase.jpalette[0]);

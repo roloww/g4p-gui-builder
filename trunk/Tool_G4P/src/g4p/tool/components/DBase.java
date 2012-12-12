@@ -311,20 +311,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	protected void read(){
 		NameGen.instance().add(_0010_name);
 		NameGen.instance().add(_0012_eventHandler);
-//		IdGen.instance().add(id[0]);
 		for(int i = 0; i < id.length; i++)
 			IdGen.instance().add(id[i]);
 	}
-	
-	
-//	private void readObject(ObjectInputStream in)
-//	throws IOException, ClassNotFoundException {
-//		in.defaultReadObject();
-//		NameGen.instance().add(_0010_name);
-//		NameGen.instance().add(_0012_eventHandler);
-//		IdGen.instance().add(id[0]);
-//	}
-	
 	
 	// ==========================================================================
 	// ==========================================================================
