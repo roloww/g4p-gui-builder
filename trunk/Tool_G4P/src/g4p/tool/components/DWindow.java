@@ -5,6 +5,7 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.io.IOException;
@@ -254,9 +255,9 @@ public final class DWindow extends DBase {
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
-		g.setColor(winBack);
+		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, _0130_width, _0131_height);
-		g.setColor(greenEdge);
+		g.setColor(DBase.jpalette[14]);
 		g.drawRect(0, 0, _0130_width, _0131_height);
 		if(this == selected)
 			drawSelector(g);

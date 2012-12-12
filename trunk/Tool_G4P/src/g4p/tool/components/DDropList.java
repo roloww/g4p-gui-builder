@@ -58,9 +58,10 @@ public class DDropList extends DBase {
 		
 		// Draw background for item list
 		if(this == selected && _0053_nbr_rows > 1){
-			g.setColor(DBase.jpalette[6]);
-			g.drawRect(0, _0131_height, _0130_width, _0131_height * _0053_nbr_rows);
-			g.setColor(comboDropEdge);
+			// Draw rows
+			g.setColor(DBase.jpalette[5]);
+			g.fillRect(0, _0131_height, _0130_width, _0131_height * _0053_nbr_rows);
+			g.setColor(DBase.jpalette[4]);
 			for(int i = 1; i <= _0053_nbr_rows; i++)
 				g.drawRect(0, _0131_height * i, _0130_width, _0131_height);
 		}
@@ -70,7 +71,7 @@ public class DDropList extends DBase {
 		// Draw thumb
 		g.setColor(DBase.jpalette[0]);
 		g.fillRect(_0130_width - _0131_height, 0, _0131_height, _0131_height);
-		
+		// Draw selected text
 		g.setColor(DBase.jpalette[2]);
 		g.drawRect(0, 0, _0130_width, _0131_height);
 		g.drawString(this._0010_name, 4, 12 );
@@ -78,7 +79,7 @@ public class DDropList extends DBase {
 		if(this == selected)
 			drawSelector(g);
 		else {
-			g.setColor(dashedEdge);
+			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
 			g.drawRect(0, 0, _0130_width, _0131_height);		
 		}

@@ -113,14 +113,15 @@ public class DKnob extends DValueControl {
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
-
-		g.setColor(knbBezel);
+		
+		// Bezel
+		g.setColor(DBase.jpalette[5]);
 		g.fillOval(0, 0, _0130_width, _0131_height);
 		int ox = Math.round(0.16f * _0130_width);
 		int oy = Math.round(0.16f * _0131_height);
-		g.setColor(knbBack);
+		g.setColor(DBase.jpalette[4]);
 		g.fillOval(ox, oy, _0130_width - 2*ox, _0131_height - 2*oy);
-		g.setColor(knbNeedle);
+		g.setColor(DBase.jpalette[14]);
 		g.setStroke(needleStroke);
 		g.drawLine(_0130_width/2, _0131_height/2, 
 				_0130_width/2 + Math.round(0.3535f*_0130_width),

@@ -104,12 +104,11 @@ public class DImageButton extends DBase {
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0120_x, _0121_y);
 		g.setTransform(af);
-		g.setColor(btnBack);
 		if(image != null){
 			g.drawImage(image, 0, 0, _0130_width, _0131_height, 0, 0, image.getWidth(), image.getHeight() , null);
 		}
 		else {
-			g.setColor(dashedEdge);
+			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
 			g.drawRect(0, 0, _0130_width, _0131_height);		
 		}

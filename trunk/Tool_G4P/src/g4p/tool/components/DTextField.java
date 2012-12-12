@@ -93,13 +93,15 @@ public class DTextField extends DBase {
 		g.setColor(DBase.jpalette[2]);
 		g.drawString(this._0010_name, 4, 12 );
 
-		g.setColor(DBase.jpalette[3]);
-		g.fillRect(2, _0131_height - 12, _0130_width-4, 10);
+		if(_0035_horz_scrollbar){
+			g.setColor(DBase.jpalette[3]);
+			g.fillRect(2, _0131_height - 12, _0130_width-4, 10);
+		}
 		
 		if(this == selected)
 			drawSelector(g);
 		else {
-			g.setColor(dashedEdge);
+			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
 			g.drawRect(0, 0, _0130_width, _0131_height);		
 		}
