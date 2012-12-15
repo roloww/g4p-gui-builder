@@ -76,6 +76,7 @@ public class DKnob extends DValueControl {
 		_0131_height = 60;
 		_0060_show_ticks = true;
 		vtype_show = false;
+		precision_show = false;
 	}
 
 	public void updateController(){
