@@ -505,7 +505,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnDropList);
 
-        btnSketchPad.setIcon(new javax.swing.ImageIcon("C:\\Users\\Peter\\Documents\\e_workspaces\\ws-java5\\G4P_Tool\\src\\g4p\\toolSketchPad.png")); // NOI18N
+        btnSketchPad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSketchPad.png"))); // NOI18N
         btnSketchPad.setFocusable(false);
         btnSketchPad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSketchPad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

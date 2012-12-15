@@ -48,6 +48,7 @@ public interface TDataConstants {
 
 	String ADD_DRAW_HANDLER		=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
 	String ADD_MOUSE_HANDLER	=	"  {0}.addMouseHandler({1}, \"{2}\");\n";
+	String ADD_KEY_HANDLER	=	"  {0}.addKeyHandler({1}, \"{2}\");\n";
 	String ADD_PRE_HANDLER		=	"  {0}.addPreHandler({1}, \"{2}\");\n";
 	String ADD_POST_HANDLER		=	"  {0}.addPostHandler({1}, \"{2}\");\n";
 
@@ -65,6 +66,7 @@ public interface TDataConstants {
 	// 0 = event method name  :  1/2 = component name/id	
 	String WIN_DRAW			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	String WIN_MOUSE		=	"synchronized void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
+	String WIN_KEY			=	"synchronized void {0}(GWinApplet appc, GWinData data, KeyEvent kevent) [ //_CODE_:{1}:{2}:\n";
 	String WIN_PRE			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	String WIN_POST			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	
@@ -92,13 +94,6 @@ public interface TDataConstants {
 	
 	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height)
 	String CTOR_GBUTTON		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5});\n";
-//	String CTOR_GBUTTON_1		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
-	
-	//		GButton(PApplet theApplet, String imgFile, int nbrImages, int x, int y, int width, int height)
-//	String CTOR_GBUTTON_2		=	"  {0} = new GButton({1}, \"{2}\", {3}, {4}, {5}, {6}, {7});\n";
-//	
-//	//		GButton(PApplet theApplet, String text, String imgFile, int nbrImages, int x, int y, int width, int height)
-//	String CTOR_GBUTTON_3		=	"  {0} = new GButton({1}, \"{2}\", \"{3}\", {4}, {5}, {6}, {7}, {8});\n";
 	
 	//		GImageButton(PApplet theApplet, int x, int y, int w, int h, Sting[] files, String maskFile)
 	//																x	 y    w   h     fl    mf
@@ -108,7 +103,7 @@ public interface TDataConstants {
 	//																x	 y   fl    mf
 	String CTOR_IMG_BTN_XYFM	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4}, \"{5}\");\n";
 	//																x	 y   fl
-	String CTOR_IMG_BTN_XYF	= 	"  {0} = new GImageButton({1}, {2}, {3}, {4});\n";
+	String CTOR_IMG_BTN_XYF		= 	"  {0} = new GImageButton({1}, {2}, {3}, {4});\n";
 
 	
 	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
@@ -130,7 +125,6 @@ public interface TDataConstants {
 
 	//		GOption(PApplet theApplet, String text, int x, int y, int width){
 	String CTOR_GOPTION			=	"  {0} = new GOption({1}, {2}, {3}, {4}, {5});\n";
-//	String ADD_OPTION			=	"  {0}.addOption({1});\n";
 	String SEL_OPTION			=	"  {0}.setSelected({1});\n";
 	
 	//		GOptionGroup()
@@ -148,7 +142,7 @@ public interface TDataConstants {
 	
 	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
 	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";
-//	public void setRotation(float angle, int mode){	
+	//											angle,  mode){	
 	String MAKE_VERT		=	"  {0}.setRotation({1}, CORNER);\n";
 
 	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
@@ -188,10 +182,6 @@ public interface TDataConstants {
 	String CTOR_DROPLIST		=	"  {0} = new GDropList({1}, {2}, {3}, {4}, {5}, {6});\n";
 	String CTOR_SET_LIST		=	"  {0}.setItems(loadStrings(\"{1}\"), {2});\n";
 
-	//		GActivityBar(PApplet theApplet, int x, int y, int width, int height){
-	String CTOR_GACTIVITYBAR	=	"  {0} = new GActivityBar({1}, {2}, {3}, {4}, {5});\n";
-
-
 			
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	 * Default test code patterns
@@ -206,6 +196,7 @@ public interface TDataConstants {
 	String CODE_GTEXTFIELD		=	"  println(\"{0} - change or enter key pressed in textfield \" " + TIME;
 	String CODE_GWINDOW_DRAW	=	"  appc.background(230);\n";
 	String CODE_GWINDOW_MOUSE	=	"  println(\"{0} - mouse event \" " + TIME;
+	String CODE_GWINDOW_KEY		=	"  println(\"{0} - key event \" " + TIME;
 	String CODE_GWINDOW_PEE		=	"  println(\"{0} - pre method called \" " + TIME;
 	String CODE_GWINDOW_POST	=	"  println(\"{0} - post method called \" " + TIME;
 

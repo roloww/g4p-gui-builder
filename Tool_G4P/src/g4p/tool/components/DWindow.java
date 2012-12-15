@@ -48,14 +48,21 @@ public final class DWindow extends DBase {
 	public Boolean 		wmouse_show = true;
 	public Validator 	wmouse_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0014_wpre = "";
+	public String 		_0014_wkey = "";
+	public String 		wkey_label = "Key method";
+	public String 		wkey_tooltip = "The keyEvent() method for this window";
+	public Boolean 		wkey_edit = true;
+	public Boolean 		wkey_show = true;
+	public Validator 	wkey_validator = Validator.getValidator(COMPONENT_NAME_0);
+
+	public String 		_0015_wpre = "";
 	public String 		wpre_label = "Pre method";
 	public String 		wpre_tooltip = "The pre() method for this window";
 	public Boolean 		wpre_edit = true;
 	public Boolean 		wpre_show = true;
 	public Validator 	wpre_validator = Validator.getValidator(COMPONENT_NAME_0);
 
-	public String 		_0015_wpost = "";
+	public String 		_0016_wpost = "";
 	public String 		wpost_label = "Post method";
 	public String 		wpost_tooltip = "The post() method for this window";
 	public Boolean 		wpost_edit = true;
@@ -69,7 +76,7 @@ public final class DWindow extends DBase {
 	 */
 	public DWindow(boolean mainSketch) {
 		super();
-		id = new Integer[4];
+		id = new Integer[5];
 		for(int i = 0; i < id.length; i++)
 			id[i] = IdGen.instance().getNext();
 
@@ -125,13 +132,17 @@ public final class DWindow extends DBase {
 			sb.append(Messages.build(WIN_MOUSE, _0013_wmouse, _0010_name, $(id[1])).replace('[', '{'));  // event header
 			sb.append(get_event_code(1) + get_event_end(1));
 		}
-		if(_0014_wpre.length() > 0){
-			sb.append(Messages.build(WIN_PRE, _0014_wpre, _0010_name, $(id[2])).replace('[', '{'));  // event header
-			sb.append(get_event_code(2) + get_event_end(2));
+		if(_0014_wkey.length() > 0){
+			sb.append(Messages.build(WIN_KEY, _0014_wkey, _0010_name, $(id[2])).replace('[', '{'));  // event header
+			sb.append(get_event_code(2) + get_event_end(1));
 		}
-		if(_0015_wpost.length() > 0){
-			sb.append(Messages.build(WIN_POST, _0015_wpost, _0010_name, $(id[3])).replace('[', '{'));  // event header
+		if(_0015_wpre.length() > 0){
+			sb.append(Messages.build(WIN_PRE, _0015_wpre, _0010_name, $(id[3])).replace('[', '{'));  // event header
 			sb.append(get_event_code(3) + get_event_end(3));
+		}
+		if(_0016_wpost.length() > 0){
+			sb.append(Messages.build(WIN_POST, _0016_wpost, _0010_name, $(id[4])).replace('[', '{'));  // event header
+			sb.append(get_event_code(4) + get_event_end(4));
 		}
 		return new String(sb);
 	}
@@ -152,9 +163,12 @@ public final class DWindow extends DBase {
 				ev_code = Messages.build(CODE_GWINDOW_MOUSE, _0010_name);
 				break;
 			case 2:
-				ev_code = Messages.build(CODE_GWINDOW_PEE, _0010_name);
+				ev_code = Messages.build(CODE_GWINDOW_KEY, _0010_name);
 				break;
 			case 3:
+				ev_code = Messages.build(CODE_GWINDOW_PEE, _0010_name);
+				break;
+			case 4:
 				ev_code = Messages.build(CODE_GWINDOW_POST, _0010_name);
 				break;
 			}
@@ -190,11 +204,11 @@ public final class DWindow extends DBase {
 			if(_0013_wmouse.length() > 0){
 				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0010_name, "this", _0013_wmouse));
 			}
-			if(_0014_wpre.length() > 0){
-				sb.append(Messages.build(ADD_PRE_HANDLER, _0010_name, "this", _0014_wpre));
+			if(_0015_wpre.length() > 0){
+				sb.append(Messages.build(ADD_PRE_HANDLER, _0010_name, "this", _0015_wpre));
 			}
-			if(_0015_wpost.length() > 0){
-				sb.append(Messages.build(ADD_POST_HANDLER, _0010_name, "this", _0015_wpost));
+			if(_0016_wpost.length() > 0){
+				sb.append(Messages.build(ADD_POST_HANDLER, _0010_name, "this", _0016_wpost));
 			}
 		}
 		return new String(sb);
