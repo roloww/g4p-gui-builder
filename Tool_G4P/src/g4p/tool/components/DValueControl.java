@@ -93,7 +93,8 @@ public class DValueControl extends DBase {
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s += Messages.build(SET_LIMITS, _0010_name, $(_0021_value), $(_0022_min), $(_0023_max));
-		s += Messages.build(SET_VALUE_TYPE, _0010_name, _0024_vtype, $(_0025_precision));
+		if(vtype_show)
+			s += Messages.build(SET_VALUE_TYPE, _0010_name, _0024_vtype, $(_0025_precision));
 		if(_0029_nticks != 2)
 			s += Messages.build(SET_NBR_TICKS, _0010_name, $(_0029_nticks));
 		if(_0028_stick_to_ticks)
