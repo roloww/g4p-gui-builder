@@ -98,6 +98,7 @@ public final class DWindow extends DBase {
 			_0011_title = "Sketch Window";
 			wdraw_edit = wdraw_show = false;
 			wmouse_edit = wmouse_show = false;
+			wkey_edit = wkey_show = false;
 			wpre_edit = wpre_show = false;
 			wpost_edit = wpost_show = false;
 		}
@@ -203,6 +204,9 @@ public final class DWindow extends DBase {
 			}
 			if(_0013_wmouse.length() > 0){
 				sb.append(Messages.build(ADD_MOUSE_HANDLER, _0010_name, "this", _0013_wmouse));
+			}
+			if(_0014_wkey.length() > 0){
+				sb.append(Messages.build(ADD_KEY_HANDLER, _0010_name, "this", _0014_wkey));
 			}
 			if(_0015_wpre.length() > 0){
 				sb.append(Messages.build(ADD_PRE_HANDLER, _0010_name, "this", _0015_wpre));
