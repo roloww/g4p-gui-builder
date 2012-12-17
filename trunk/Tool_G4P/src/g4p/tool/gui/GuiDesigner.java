@@ -138,15 +138,15 @@ public class GuiDesigner extends javax.swing.JFrame {
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
 
-		Dimension size = guiControl.getSketchSizeFromCode();
-		if(size == null){
-			final String message =
-				"The size of this sketch could not automatically be\n" +
-				"determined from your code. You'll have to set the\n" +
-				"width and height in the designer window.";
-
-			showWarning("Could not find applet size", message, null);
-		}
+//		Dimension size = guiControl.getSketchSizeFromCode();
+//		if(size == null){
+//			final String message =
+//				"The size of this sketch could not automatically be\n" +
+//				"determined from your code. You'll have to set the\n" +
+//				"width and height in the designer window.";
+//
+//			showWarning("Could not find applet size", message, null);
+//		}
 		createWindowAdapter();
 	}
 
@@ -188,7 +188,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is activated.
 			 */
 			public void windowActivated(WindowEvent e) {
-				//				System.out.println("ACTIVATED");
 				setVisible(true);
 				setExtendedState(NORMAL);
 				guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
@@ -199,7 +198,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 			 * Invoked when a window is de-activated.
 			 */
 			public void windowDeactivated(WindowEvent e) {
-				//				System.out.println("DEACTIVATED");
 				if(!stayOpen){
 					if(autoHide)
 						setExtendedState(ICONIFIED);
