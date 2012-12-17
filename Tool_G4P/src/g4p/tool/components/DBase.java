@@ -101,7 +101,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public String 		_0010_name = "APPLICATION";
 	public String 		name_label = "Variable Name";
 	public String 		name_tooltip = "Use Java naming rules";
-	public Boolean 		name_edit = false;
+	public Boolean 		name_edit = true;
 	public Boolean 		name_show = true;
 	public Validator 	name_validator = Validator.getValidator(COMPONENT_NAME);
 
