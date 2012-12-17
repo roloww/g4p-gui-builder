@@ -48,7 +48,7 @@ public interface TDataConstants {
 
 	String ADD_DRAW_HANDLER		=	"  {0}.addDrawHandler({1}, \"{2}\");\n";
 	String ADD_MOUSE_HANDLER	=	"  {0}.addMouseHandler({1}, \"{2}\");\n";
-	String ADD_KEY_HANDLER	=	"  {0}.addKeyHandler({1}, \"{2}\");\n";
+	String ADD_KEY_HANDLER		=	"  {0}.addKeyHandler({1}, \"{2}\");\n";
 	String ADD_PRE_HANDLER		=	"  {0}.addPreHandler({1}, \"{2}\");\n";
 	String ADD_POST_HANDLER		=	"  {0}.addPostHandler({1}, \"{2}\");\n";
 
