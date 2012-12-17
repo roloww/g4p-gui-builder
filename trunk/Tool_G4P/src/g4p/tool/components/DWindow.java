@@ -90,6 +90,7 @@ public final class DWindow extends DBase {
 		if(mainSketch){
 			_0010_name = "Main window";
 			name_label = "SKETCH";
+			name_edit = false;
 			x_edit = y_edit = false;
 			x_show = y_show = false;	
 			eventHandler_show = false;
