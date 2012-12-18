@@ -37,7 +37,7 @@ public class DTextIcon extends DText {
 	transient public 	EditorBase icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_2);
 	public Boolean 		icon_x_alignment_edit = true;
 	public Boolean 		icon_x_alignment_show = false;
-	public String 		icon_x_alignment_label = "Icon Y align";
+	public String 		icon_x_alignment_label = "Icon X align";
 	public String 		icon_x_alignment_updater = "iconAlignChanged";
 
 	public String 		_0038_icon_y_alignment = "MIDDLE";
@@ -125,6 +125,10 @@ public class DTextIcon extends DText {
 		if(icon != null){
 			iconWidth = icon.getWidth() / _0036_nbr_tiles;
 			iconHeight = icon.getHeight();
+			if(iconWidth > _0130_width)
+				_0130_width = _0130_width + 30;
+			if(iconHeight > _0131_height)
+				_0131_height = iconHeight + 4;
 			nbr_tiles_show = true;
 			icon_x_alignment_show = true;
 			icon_y_alignment_show = true;
