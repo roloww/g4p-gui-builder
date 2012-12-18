@@ -3,6 +3,7 @@ package g4p.tool.components;
 import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.EditorJFileChooser;
+import g4p_controls.StyledString;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -18,6 +19,7 @@ public class DButton extends DTextIcon {
 		set_name(NameGen.instance().getNext("button"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_click"));
 		_0030_text = "Face text";
+		stext = new StyledString(_0030_text, textWidth);
 		_0130_width = 80;
 		_0131_height = 30;
 		text_tooltip = "text to show on button";

@@ -22,7 +22,7 @@ public class DText extends DBase {
 	protected int textHAlign, textVAlign;
 	
 	protected int lastLength;
-	protected boolean textChanged = true;
+	protected boolean textWidthChanged = true;
 	transient public StyledString stext;
 	
 	public String 		_0030_text = "";
@@ -68,7 +68,6 @@ public class DText extends DBase {
 		selectable = true;
 		resizeable = true;
 		moveable = true;
-		stext = new StyledString(_0030_text);
 		allowsChildren = false;
 		_0130_width = 80;
 		_0131_height = 22;
@@ -109,7 +108,8 @@ public class DText extends DBase {
 
 	// Override this method if needed
 	public void textChanged(){
-		textChanged = true;
+//		textWidthChanged = true;
+		stext = new StyledString(_0030_text, textWidth);
 		if(text_x_alignment_edit || text_y_alignment_edit){
 			int currLength = _0030_text.length();
 			if(currLength != lastLength){
@@ -148,11 +148,11 @@ public class DText extends DBase {
 		textX = x_offset;
 		if(textWidth != text_width){
 			textWidth = text_width;
-			if(stext == null)
-				stext = new StyledString(_0030_text, textWidth);
-			else
-				stext.setWrapWidth(textWidth);
-			textChanged = true;
+//			if(stext == null)
+//				stext = new StyledString(_0030_text, textWidth);
+//			else
+//				stext.setWrapWidth(textWidth);
+//			textChanged = true;
 		}
 	}
 	
@@ -160,10 +160,8 @@ public class DText extends DBase {
 	 * If the width or height is changed then we need to update the text etc.
 	 */
 	public void sizeChanged(){
-		System.out.println("DText size changed");
 		textWidth = _0130_width;
-		textChanged = true;
-//		propertyModel.hasBeenChanged();
+		textWidthChanged = true;
 	}
 	
 	public String get_text(){
@@ -171,12 +169,10 @@ public class DText extends DBase {
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
-		if(textChanged || stext == null){
-			stext = new StyledString(_0030_text, textWidth);
-			textChanged = false;
-		}
-		else
+		if(textWidthChanged){
 			stext.setWrapWidth(textWidth);
+			textWidthChanged = false;
+		}
 		
 		LinkedList<TextLayoutInfo> lines = stext.getLines(g);
 

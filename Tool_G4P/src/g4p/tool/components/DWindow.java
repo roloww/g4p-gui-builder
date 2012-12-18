@@ -16,6 +16,8 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public final class DWindow extends DBase {
 
+	public static Color bgCol = new Color(200, 200, 200, 96);
+	
 	// Set to true for main skecth and false for secondary windows
 	public boolean 		mainSketch = false;
 	
@@ -261,10 +263,6 @@ public final class DWindow extends DBase {
 	{
 		in.defaultReadObject();
 		read();
-//		NameGen.instance().add(_0010_name);
-//		for(int i = 0; i < id.length; i++)
-//			IdGen.instance().add(id[i]);
-//		renderer_editor = new EditorJComboBox(RENDERER);
 	}
 
 
@@ -274,7 +272,7 @@ public final class DWindow extends DBase {
 		g.setTransform(af);
 		
 		g.setStroke(stdStroke);
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(bgCol);
 		g.fillRect(0, 0, _0130_width, _0131_height);
 		g.setColor(DBase.jpalette[14]);
 		g.drawRect(0, 0, _0130_width, _0131_height);
