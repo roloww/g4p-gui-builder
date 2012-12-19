@@ -13,15 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class ToolIcon {
 
-//	private static ToolIcon instance = null;
-//	
-//	public static ToolIcon instance(){
-//		if(instance == null){
-//			instance = new ToolIcon();
-//		}
-//		return instance;
-//	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private static HashMap<Class, Icon> classIcons = new HashMap<Class, Icon>();
 	private static HashMap<String, ImageIcon> namedIcons = new HashMap<String, ImageIcon>();
