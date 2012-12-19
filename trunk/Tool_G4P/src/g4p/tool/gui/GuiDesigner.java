@@ -220,7 +220,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DPanel.class, btnPanel.getIcon());
 		ToolIcon.addIcon(DButton.class, btnButton.getIcon());
 		ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
-		ToolIcon.addIcon(DSlider.class, btnHorzSlider.getIcon());
+		ToolIcon.addIcon(DSlider.class, btnSlider.getIcon());
 		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
 		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
 		ToolIcon.addIcon(DToggleGroup.class, btnOptGroup.getIcon());
@@ -232,7 +232,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
 		ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
 
-		ToolIcon.addIcon("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
+		ToolIcon.addIcon("DL_DIALOG_ICON", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 
 		// Load images from resource
 		try {
@@ -284,7 +284,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnLabel = new javax.swing.JButton();
         btnTextfield = new javax.swing.JButton();
         btnTextarea = new javax.swing.JButton();
-        btnHorzSlider = new javax.swing.JButton();
+        btnSlider = new javax.swing.JButton();
         btnCoolSlider = new javax.swing.JButton();
         btnKnob = new javax.swing.JButton();
         btnCheckbox = new javax.swing.JButton();
@@ -417,17 +417,17 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnTextarea);
 
-        btnHorzSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSliderH.png"))); // NOI18N
-        btnHorzSlider.setToolTipText("Slider");
-        btnHorzSlider.setFocusable(false);
-        btnHorzSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnHorzSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnHorzSlider.addActionListener(new java.awt.event.ActionListener() {
+        btnSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSlider.png"))); // NOI18N
+        btnSlider.setToolTipText("Slider");
+        btnSlider.setFocusable(false);
+        btnSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSlider.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHorzSliderActionPerformed(evt);
+                btnSliderActionPerformed(evt);
             }
         });
-        tbarComponents.add(btnHorzSlider);
+        tbarComponents.add(btnSlider);
 
         btnCoolSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCoolSlider.png"))); // NOI18N
         btnCoolSlider.setToolTipText("Cool Slider");
@@ -811,9 +811,9 @@ public class GuiDesigner extends javax.swing.JFrame {
 		guiControl.addComponent(new DTextField());
 	}//GEN-LAST:event_btnTextfieldActionPerformed
 
-	private void btnHorzSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHorzSliderActionPerformed
+	private void btnSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSliderActionPerformed
 		guiControl.addComponent(new DSlider());
-	}//GEN-LAST:event_btnHorzSliderActionPerformed
+	}//GEN-LAST:event_btnSliderActionPerformed
 
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed
 		guiControl.addComponent(new DCustomSlider());
@@ -934,7 +934,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckbox;
     private javax.swing.JButton btnCoolSlider;
     private javax.swing.JButton btnDropList;
-    private javax.swing.JButton btnHorzSlider;
     private javax.swing.JButton btnImgButton;
     private javax.swing.JButton btnKnob;
     private javax.swing.JButton btnLabel;
@@ -944,6 +943,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnScale;
     private javax.swing.JButton btnSketchPad;
+    private javax.swing.JButton btnSlider;
     private javax.swing.JButton btnTextarea;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnTimer;
