@@ -233,7 +233,6 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
 
 		ToolIcon.addIcon("CB_ICON1", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
-		ToolIcon.addIcon("CB_ICON2", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 
 		// Load images from resource
 		try {
