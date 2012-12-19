@@ -32,7 +32,6 @@ import g4p.tool.gui.tabview.CtrlTabView;
 import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
