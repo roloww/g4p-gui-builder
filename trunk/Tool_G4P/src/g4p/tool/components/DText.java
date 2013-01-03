@@ -23,7 +23,7 @@ public class DText extends DBase {
 	
 	protected int lastLength;
 	protected boolean textWidthChanged = true;
-	transient public StyledString stext;
+	transient public StyledString stext = null;
 	
 	public String 		_0030_text = "";
 	public String 		text_label = "Text";
@@ -211,6 +211,9 @@ public class DText extends DBase {
 	
 	protected void read(){
 		super.read();
+		if(stext == null){
+			stext = new StyledString(_0030_text);
+		}
 		text_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 		text_y_alignment_editor = new EditorJComboBox(V_ALIGN);
 	}
