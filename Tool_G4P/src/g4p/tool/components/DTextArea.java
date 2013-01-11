@@ -10,7 +10,7 @@ import java.io.ObjectInputStream;
 public class DTextArea extends DTextField {
 
 	public Boolean 		_0036_vert_scrollbar = false;
-	public String		vert_scrollbar_label = "Horizontal scrollbar?";
+	public String		vert_scrollbar_label = "Vertical scrollbar?";
 	public Boolean 		vert_scrollbar_edit = true;
 	public Boolean 		vert_scrollbar_show = true;
 
