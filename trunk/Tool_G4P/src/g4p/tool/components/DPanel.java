@@ -2,6 +2,8 @@ package g4p.tool.components;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.ToolImage;
+import g4p.tool.gui.propertygrid.EditorBase;
+import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
 
 import java.awt.Color;
@@ -33,7 +35,8 @@ public class DPanel extends DTextIcon {
 		text_tooltip = "text to appear in panel tab";
 		_0130_width = 100;
 		_0131_height = 60;
-//		System.out.println("ctor DPanel()   " + _0005_name);
+		text_x_alignment_edit = text_x_alignment_show = false;
+		text_y_alignment_edit = text_y_alignment_show = false;
 	}
 
 	protected String get_creator(DBase parent, String window){
