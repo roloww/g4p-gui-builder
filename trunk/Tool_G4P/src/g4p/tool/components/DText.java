@@ -170,7 +170,10 @@ public class DText extends DBase {
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		if(textWidthChanged){
-			stext.setWrapWidth(textWidth);
+			if(stext == null)
+				stext = new StyledString(_0030_text, textWidth);
+			else
+				stext.setWrapWidth(textWidth);
 			textWidthChanged = false;
 		}
 		
