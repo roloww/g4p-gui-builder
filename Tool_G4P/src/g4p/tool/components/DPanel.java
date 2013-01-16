@@ -35,6 +35,8 @@ public class DPanel extends DTextIcon {
 		text_tooltip = "text to appear in panel tab";
 		_0130_width = 100;
 		_0131_height = 60;
+		opaque_edit = opaque_show = false;
+		icon_file_edit = icon_file_show = false;
 		text_x_alignment_edit = text_x_alignment_show = false;
 		text_y_alignment_edit = text_y_alignment_show = false;
 	}
