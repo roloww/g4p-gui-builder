@@ -138,7 +138,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public String 		eventHandler_tooltip = "unique name for event handler method";
 	public Boolean 		eventHandler_edit = true;
 	public Boolean 		eventHandler_show = true;
-	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME);
+	public Validator 	eventHandler_validator = Validator.getValidator(COMPONENT_NAME_0);  // modified 09-02-2013 to allow zero length
 
 	public Boolean 		_0060_opaque  = false;
 	public Boolean 		opaque_edit = true;
@@ -241,11 +241,17 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	}
 	
 	/** 
-	 * Get the event method for this control
+	 * Get the event method for this control.
+	 * 
+	 * Used for everything except DWindow
+	 * Modified 09-02-2013 to return null if no method name
 	 * 
 	 */
 	protected String get_event_definition(){
-		return get_event_header() + get_event_code() + get_event_end(0);
+		if(_0012_eventHandler.length() > 0)
+			return get_event_header() + get_event_code() + get_event_end(0);
+		else
+			return null;
 	}
 	
 	/**

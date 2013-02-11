@@ -53,22 +53,21 @@ public interface TDataConstants {
 	String ADD_POST_HANDLER		=	"  {0}.addPostHandler({1}, \"{2}\");\n";
 
 	// 0 = event method name  :  1/2 = component name/id
-	String METHOD_START_0	=	"void {0}({1} source) [ //_CODE_:{2}:{3}:\n";
+	String METHOD_START_0	=	"public void {0}({1} source) [ //_CODE_:{2}:{3}:\n";
 	
 	// 0 = event method name  :  1/2 = parameter type/name : 3/4 =  component name/id
 
-//	String METHOD_START_1	=	"void {0}({1} {2}) [ //_CODE_:{3}:{4}:\n";
-	String METHOD_START_1	=	"void {0}({1} source, GEvent event) [ //_CODE_:{2}:{3}:\n";
+	String METHOD_START_1	=	"public void {0}({1} source, GEvent event) [ //_CODE_:{2}:{3}:\n";
 	
 	// 0 = event method name  :  1/2 = parameter type/name : 1/3 =  parameter type/name : 4/5 =  component name/id	
 //	String METHOD_START_2	=	"void {0}({1} {2}, {1} {3}) [ //_CODE_:{4}:{5}:\n";
 	
 	// 0 = event method name  :  1/2 = component name/id	
-	String WIN_DRAW			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	String WIN_MOUSE		=	"synchronized void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
-	String WIN_KEY			=	"synchronized void {0}(GWinApplet appc, GWinData data, KeyEvent kevent) [ //_CODE_:{1}:{2}:\n";
-	String WIN_PRE			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
-	String WIN_POST			=	"synchronized void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	String WIN_DRAW			=	"synchronized public void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	String WIN_MOUSE		=	"synchronized public void {0}(GWinApplet appc, GWinData data, MouseEvent mevent) [ //_CODE_:{1}:{2}:\n";
+	String WIN_KEY			=	"synchronized public void {0}(GWinApplet appc, GWinData data, KeyEvent kevent) [ //_CODE_:{1}:{2}:\n";
+	String WIN_PRE			=	"synchronized public void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
+	String WIN_POST			=	"synchronized public void {0}(GWinApplet appc, GWinData data) [ //_CODE_:{1}:{2}:\n";
 	
 	// 0 = component name  : 1 = id
 	String METHOD_END 		=	"] //_CODE_:{0}:{1}:\n\n";
