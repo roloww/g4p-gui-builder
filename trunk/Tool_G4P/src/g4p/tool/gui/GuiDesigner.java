@@ -32,6 +32,7 @@ import g4p.tool.gui.tabview.CtrlTabView;
 import g4p.tool.gui.treeview.CtrlSketchView;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -133,10 +134,10 @@ public class GuiDesigner extends javax.swing.JFrame {
 		editor = theEditor;
 		initComponents();
 		initCustomComponents();
-//		metrics = tabWindows.getGraphics().getFontMetrics();
 		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
 		guiControl.loadGuiLayout();
-
+		guiControl.getSketchSizeFromCode();
+		
 //		Dimension size = guiControl.getSketchSizeFromCode();
 //		if(size == null){
 //			final String message =
@@ -286,12 +287,15 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnTextarea = new javax.swing.JButton();
         btnSlider = new javax.swing.JButton();
         btnCoolSlider = new javax.swing.JButton();
+        btnSlider2D = new javax.swing.JButton();
+        btnStick = new javax.swing.JButton();
         btnKnob = new javax.swing.JButton();
         btnCheckbox = new javax.swing.JButton();
         btnOption = new javax.swing.JButton();
         btnOptGroup = new javax.swing.JButton();
         btnDropList = new javax.swing.JButton();
         btnSketchPad = new javax.swing.JButton();
+        btnOutput = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnScale = new javax.swing.JButton();
@@ -441,6 +445,28 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnCoolSlider);
 
+        btnSlider2D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSlider2D.png"))); // NOI18N
+        btnSlider2D.setFocusable(false);
+        btnSlider2D.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSlider2D.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSlider2D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSlider2DActionPerformed(evt);
+            }
+        });
+        tbarComponents.add(btnSlider2D);
+
+        btnStick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolStick.png"))); // NOI18N
+        btnStick.setFocusable(false);
+        btnStick.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnStick.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnStick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStickActionPerformed(evt);
+            }
+        });
+        tbarComponents.add(btnStick);
+
         btnKnob.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolKnob.png"))); // NOI18N
         btnKnob.setToolTipText("Knob");
         btnKnob.setFocusable(false);
@@ -511,6 +537,12 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnSketchPad);
+
+        btnOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolOutput.png"))); // NOI18N
+        btnOutput.setFocusable(false);
+        btnOutput.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnOutput.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        tbarComponents.add(btnOutput);
 
         btnTimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTimer.png"))); // NOI18N
         btnTimer.setToolTipText("Timer");
@@ -915,6 +947,14 @@ public class GuiDesigner extends javax.swing.JFrame {
     		guiControl.addComponent(new DSketchPad());
         }//GEN-LAST:event_btnSketchPadActionPerformed
 
+        private void btnSlider2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlider2DActionPerformed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_btnSlider2DActionPerformed
+
+        private void btnStickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStickActionPerformed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_btnStickActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -939,11 +979,14 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnLabel;
     private javax.swing.JButton btnOptGroup;
     private javax.swing.JButton btnOption;
+    private javax.swing.JButton btnOutput;
     private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnScale;
     private javax.swing.JButton btnSketchPad;
     private javax.swing.JButton btnSlider;
+    private javax.swing.JButton btnSlider2D;
+    private javax.swing.JButton btnStick;
     private javax.swing.JButton btnTextarea;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnTimer;

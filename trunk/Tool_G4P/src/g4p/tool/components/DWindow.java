@@ -125,6 +125,9 @@ public final class DWindow extends DBase {
 		eventHandler_show = false;
 	}
 
+	/**
+	 * Completely overrides version in DBase
+	 */
 	protected String get_event_definition(){
 		StringBuilder sb = new StringBuilder();
 		
