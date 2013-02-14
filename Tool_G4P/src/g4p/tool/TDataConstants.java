@@ -77,6 +77,10 @@ public interface TDataConstants {
 	 * Creator and initialisation patterns
 	 */
 	String SET_SKETCH_TITLE		=	"  if(frame != null)\n    frame.setTitle(\"{0}\");\n";
+	String SET_SKETCH_COLOR		= 	"  G4P.setGlobalColorScheme(GCScheme.{0});\n";
+	String SET_G4P_MESSAGES		=  	"  G4P.messagesEnabled({0});\n";
+	String SET_CURSOR_OFF		=	"  G4P.setCursor({0});\n";
+	String SET_MOUSE_OVER_ON	=	"  G4P.setMouseOverEnabled({0});\n";
 	
 	String SET_TEXT				=	"  {0}.setText(\"{1}\");\n";
 	String SET_DEFAULT_TEXT		=	"  {0}.setDefaultText(\"{1}\");\n";
@@ -112,8 +116,8 @@ public interface TDataConstants {
 	String FILE_LIST			=   "  new String[] [ \"{0}\", \"{1}\", \"{2}\" } ";
 
 	
-	String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
-	String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
+//	String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
+//	String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
 	
 	//		GCheckbox(PApplet theApplet, int x, int y, int width, int height)
 	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, {2}, {3}, {4}, {5});\n";
@@ -122,7 +126,7 @@ public interface TDataConstants {
 	String CTOR_GLABEL			=	"  {0} = new GLabel({1}, {2}, {3}, {4}, {5});\n";
 	String CTOR_SPAD			=	"  {0} = new GSketchPad({1}, {2}, {3}, {4}, {5});\n";
 
-	//		GOption(PApplet theApplet, String text, int x, int y, int width){
+	//		GOption(PApplet theApplet, String text, int x, int y, int width, int height){
 	String CTOR_GOPTION			=	"  {0} = new GOption({1}, {2}, {3}, {4}, {5});\n";
 	String SEL_OPTION			=	"  {0}.setSelected({1});\n";
 	
@@ -139,7 +143,7 @@ public interface TDataConstants {
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
 	String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, {2}, {3}, {4}, {5}, {6});\n";
 	String CTOR_GTEXTAREA		=	"  {0} = new GTextArea({1}, {2}, {3}, {4}, {5}, {6});\n";
-	String SBAR_POLICY			= "";
+	String SBAR_POLICY			= 	"";
 	
 	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
 	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";

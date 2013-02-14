@@ -68,14 +68,22 @@ public final class DApplication extends DBase {
 
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
-		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0910_col_scheme));
-		sb.append("  G4P.messagesEnabled(false);\n");
+		sb.append(Messages.build(SET_G4P_MESSAGES, false));
+		sb.append(Messages.build(SET_SKETCH_COLOR, _0910_col_scheme));
 		if(_0911_cursor) {
-			sb.append(Messages.build("  G4P.setCursor({0});\n", _0912_cursor_off));
+			sb.append(Messages.build(SET_CURSOR_OFF, _0912_cursor_off));
 		}
 		else {
-			sb.append("  G4P.setMouseOverEnabled(false);\n");			
+			sb.append(Messages.build(SET_MOUSE_OVER_ON, _0911_cursor));		
 		}
+//		sb.append("  G4P.messagesEnabled(false);\n");
+//		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0910_col_scheme));
+//		if(_0911_cursor) {
+//			sb.append(Messages.build("  G4P.setCursor({0});\n", _0912_cursor_off));
+//		}
+//		else {
+//			sb.append("  G4P.setMouseOverEnabled(false);\n");			
+//		}
 		return new String(sb);
 	}
 	
