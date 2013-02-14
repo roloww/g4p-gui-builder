@@ -96,8 +96,8 @@ public final class DWindow extends DBase {
 			x_edit = y_edit = false;
 			x_show = y_show = false;	
 			eventHandler_show = false;
-			_0130_width = 480;
-			_0131_height = 320;
+			_0826_width = 480;
+			_0827_height = 320;
 			_0011_title = "Sketch Window";
 			wdraw_edit = wdraw_show = false;
 			wmouse_edit = wmouse_show = false;
@@ -111,8 +111,8 @@ public final class DWindow extends DBase {
 			name_edit = true;
 			x_edit = y_edit = true;
 			x_show = y_show = true;	
-			_0130_width = 240;
-			_0131_height = 120;
+			_0826_width = 240;
+			_0827_height = 120;
 			
 			_0011_title = "Window title";
 			renderer_edit = renderer_show = true;
@@ -204,7 +204,7 @@ public final class DWindow extends DBase {
 		}
 		else {
 			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0011_title,
-					$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), false, _0021_renderer));
+					$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), false, _0021_renderer));
 			if(_0012_wdraw.length() > 0){
 				sb.append(Messages.build(ADD_DRAW_HANDLER, _0010_name, "this", _0012_wdraw));
 			}
@@ -276,9 +276,9 @@ public final class DWindow extends DBase {
 		
 		g.setStroke(stdStroke);
 		g.setColor(bgCol);
-		g.fillRect(0, 0, _0130_width, _0131_height);
+		g.fillRect(0, 0, _0826_width, _0827_height);
 		g.setColor(DBase.jpalette[14]);
-		g.drawRect(0, 0, _0130_width, _0131_height);
+		g.drawRect(0, 0, _0826_width, _0827_height);
 		if(this == selected)
 			drawSelector(g);
 		

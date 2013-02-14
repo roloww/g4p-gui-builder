@@ -11,7 +11,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 @SuppressWarnings("serial")
-public class DTextIcon extends DText {
+public class DTextIconAlign extends DTextAlign {
 
 	transient protected BufferedImage icon = null;
 
@@ -19,47 +19,47 @@ public class DTextIcon extends DText {
 	protected int iconHAlign, iconVAlign;//, iconAlignModel;;
 	public int iconNo = 0;
 	
-	public String 		_0035_icon_file = "";
+	public String 		_0150_icon_file = "";
 	transient public 	EditorJFileChooser icon_file_editor = new EditorJFileChooser();
 	public Boolean 		icon_file_edit = true;
 	public Boolean 		icon_file_show = true;
 	public String 		icon_file_label = "Icon file";
 	public String 		icon_file_updater = "iconChanged";
 
-	public int	 		_0036_nbr_tiles = 1;
+	public int	 		_0152_nbr_tiles = 1;
 	public Boolean 		nbr_tiles_edit = true;
 	public Boolean 		nbr_tiles_show = false;
 	public String 		nbr_tiles_label = "Nbr of tiles in icon";
 	public String 		nbr_tiles_updater = "nbrTilesChanged";
 	public Validator 	nbr_tiles_validator = Validator.getValidator(int.class, 1, 3);
 
-	public String 		_0037_icon_x_alignment = "RIGHT";
+	public String 		_0154_icon_x_alignment = "RIGHT";
 	transient public 	EditorBase icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_2);
 	public Boolean 		icon_x_alignment_edit = true;
 	public Boolean 		icon_x_alignment_show = false;
 	public String 		icon_x_alignment_label = "Icon X align";
 	public String 		icon_x_alignment_updater = "iconAlignChanged";
 
-	public String 		_0038_icon_y_alignment = "MIDDLE";
+	public String 		_0155_icon_y_alignment = "MIDDLE";
 	transient public 	EditorBase icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
 	public Boolean 		icon_y_alignment_edit = true;
 	public Boolean 		icon_y_alignment_show = false;
 	public String 		icon_y_alignment_label = "Icon Y align";
 	public String 		icon_y_alignment_updater = "iconAlignChanged";
 
-	public DTextIcon(){
+	public DTextIconAlign(){
 		super();
-		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0037_icon_x_alignment);
-		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0038_icon_y_alignment);
+		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0154_icon_x_alignment);
+		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0155_icon_y_alignment);
 	}
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";
-		if(_0035_icon_file.length() > 0){
-			s = Messages.build(SET_ICON, _0010_name, _0035_icon_file, _0036_nbr_tiles, _0037_icon_x_alignment, _0038_icon_y_alignment);
+		if(_0150_icon_file.length() > 0){
+			s = Messages.build(SET_ICON, _0010_name, _0150_icon_file, _0152_nbr_tiles, _0154_icon_x_alignment, _0155_icon_y_alignment);
 		}
 		else if(icon != null && !isIconAlignDefaults()){
-			s = Messages.build(SET_ICON_ALIGN, _0010_name, _0037_icon_x_alignment, _0038_icon_y_alignment);
+			s = Messages.build(SET_ICON_ALIGN, _0010_name, _0154_icon_x_alignment, _0155_icon_y_alignment);
 		}
 		s += super.get_creator(parent, window);
 		return s;
@@ -71,7 +71,7 @@ public class DTextIcon extends DText {
 	}
 	
 	public String get_text(){
-		return _0030_text;
+		return _0130_text;
 	}
 	
 	public void updatedInGUI(){
@@ -82,53 +82,53 @@ public class DTextIcon extends DText {
 	 * If the width or height is changed then we need to update the text etc.
 	 */
 	public void sizeChanged(){
-		textWidth = _0130_width;
+		textWidth = _0826_width;
 		iconAlignChanged();
 	}
 
 	public void nbrTilesChanged(){
-		iconWidth = icon.getWidth() / _0036_nbr_tiles;		
+		iconWidth = icon.getWidth() / _0152_nbr_tiles;		
 		iconAlignChanged();
 	}
 
 	public void iconAlignChanged(){
-		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0037_icon_x_alignment);
-		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0038_icon_y_alignment);
+		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0154_icon_x_alignment);
+		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0155_icon_y_alignment);
 		if(iconHAlign == LEFT){
 			iconX = 0;
-			setHorzTextBoxValues(iconWidth, _0130_width - iconWidth);
+			setHorzTextBoxValues(iconWidth, _0826_width - iconWidth);
 		}
 		else {
-			iconX = _0130_width - iconWidth;
-			setHorzTextBoxValues(0, _0130_width - iconWidth);
+			iconX = _0826_width - iconWidth;
+			setHorzTextBoxValues(0, _0826_width - iconWidth);
 		}
 		switch(iconVAlign){
 		case TOP:
 			iconY = 0;
 			break;
 		case MIDDLE:
-			iconY = (_0131_height - iconHeight)/2;
+			iconY = (_0827_height - iconHeight)/2;
 			break;
 		case BOTTOM:
-			iconY = _0131_height - iconHeight;
+			iconY = _0827_height - iconHeight;
 			break;
 		}
 //		propertyModel.hasBeenChanged();
 	}
 
 	protected boolean isIconAlignDefaults(){
-		return _0037_icon_x_alignment.equals("RIGHT") && _0038_icon_y_alignment.equals("MIDDLE");
+		return _0154_icon_x_alignment.equals("RIGHT") && _0155_icon_y_alignment.equals("MIDDLE");
 	}
 
 	public void iconChanged(){
-		icon = this.getImageFromDataFolder(_0035_icon_file);
+		icon = this.getImageFromDataFolder(_0150_icon_file);
 		if(icon != null){
-			iconWidth = icon.getWidth() / _0036_nbr_tiles;
+			iconWidth = icon.getWidth() / _0152_nbr_tiles;
 			iconHeight = icon.getHeight();
-			if(iconWidth > _0130_width)
-				_0130_width = _0130_width + 30;
-			if(iconHeight > _0131_height)
-				_0131_height = iconHeight + 4;
+			if(iconWidth > _0826_width)
+				_0826_width = _0826_width + 30;
+			if(iconHeight > _0827_height)
+				_0827_height = iconHeight + 4;
 			nbr_tiles_show = true;
 			icon_x_alignment_show = true;
 			icon_y_alignment_show = true;
@@ -151,8 +151,8 @@ public class DTextIcon extends DText {
 		icon_file_editor = new EditorJFileChooser();
 		icon_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 		icon_y_alignment_editor = new EditorJComboBox(V_ALIGN);
-		if(_0035_icon_file.length() > 0)
-			icon = getImageFromDataFolder(_0035_icon_file);
+		if(_0150_icon_file.length() > 0)
+			icon = getImageFromDataFolder(_0150_icon_file);
 	}
 	
 }

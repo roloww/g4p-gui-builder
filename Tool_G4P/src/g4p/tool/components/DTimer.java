@@ -63,7 +63,7 @@ public class DTimer extends DBase {
 	 * @return
 	 */
 	protected String get_event_header(int n){
-		return Messages.build(METHOD_START_0, _0012_eventHandler, componentClass, 
+		return Messages.build(METHOD_START_0, _0020_eventHandler, componentClass, 
 				_0010_name, $(id[n])).replace('[', '{');
 	}
 
@@ -73,7 +73,7 @@ public class DTimer extends DBase {
 	 */
 	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GTIMER, _0010_name, "this", "this", _0012_eventHandler, $(_0692_interval));
+		s = Messages.build(CTOR_GTIMER, _0010_name, "this", "this", _0020_eventHandler, $(_0692_interval));
 		if(_0691_initDelay != _0692_interval){
 			s += Messages.build(INIT_DELAY_TIMER, _0010_name, $(_0691_initDelay));			
 		}

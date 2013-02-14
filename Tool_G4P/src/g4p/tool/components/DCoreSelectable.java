@@ -2,7 +2,7 @@ package g4p.tool.components;
 
 
 @SuppressWarnings("serial")
-public class DCoreSelectable extends DTextIcon {
+public class DCoreSelectable extends DTextIconAlign {
 
 	
 	public Boolean _0101_selected  = false;
@@ -14,8 +14,8 @@ public class DCoreSelectable extends DTextIcon {
 	
 	public DCoreSelectable(){
 		super();
-		_0130_width = 120;
-		_0131_height = 20;
+		_0826_width = 120;
+		_0827_height = 20;
 		iconNo = 0;
 	}
 	

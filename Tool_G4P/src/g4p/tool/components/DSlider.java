@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 public class DSlider extends DLinearTrack {
 
 	
-	public Float 		_0018_thick = 10.0f;
+	public Float 		_0300_thick = 10.0f;
 	public String 		thick_label = "Track thickness";
 	public String 		thick_tooltip = "track thickness";
 	public Boolean 		thick_edit = true;
@@ -25,8 +25,8 @@ public class DSlider extends DLinearTrack {
 		componentClass = "GSlider";
 		set_name(NameGen.instance().getNext("slider"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_change"));
-		_0130_width = 100;
-		_0131_height = 40;
+		_0826_width = 100;
+		_0827_height = 40;
 	}
 	
 	/**
@@ -36,56 +36,54 @@ public class DSlider extends DLinearTrack {
 	protected String get_creator(DBase parent, String window){
 		String s;
 		String x, y, w, h;
-		if(_0065_vert){
-			x = $(_0120_x + _0130_width);
-			y = $(_0121_y);
-			w = $(_0131_height);
-			h = $(_0130_width);		
+		if(_0640_vert){
+			x = $(_0820_x + _0826_width);
+			y = $(_0821_y);
+			w = $(_0827_height);
+			h = $(_0826_width);		
 		}
 		else {
-			x = $(_0120_x);
-			y = $(_0121_y);
-			w = $(_0130_width);
-			h = $(_0131_height);
+			x = $(_0820_x);
+			y = $(_0821_y);
+			w = $(_0826_width);
+			h = $(_0827_height);
 		}
-//		s = Messages.build(CTOR_GSLIDER, _0010_name, window, 
-//				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), $(_0018_thick));
 		s = Messages.build(CTOR_GSLIDER, _0010_name, window, 
-				x, y, w, h, $(_0018_thick));
-		if(_0065_vert){
+				x, y, w, h, $(_0300_thick));
+		if(_0640_vert){
 			s += Messages.build(MAKE_VERT, _0010_name, "PI/2"); 
 		}
 		s += super.get_creator(parent, window);		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);		
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);		
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		if(_0060_opaque){
+		if(_0600_opaque){
 			g.setColor(DBase.jpalette[6]);
-			g.fillRect(0, 0, _0130_width, _0131_height);
+			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		int thick, topY, leftX;
 		
-		thick = Math.round(_0018_thick);
+		thick = Math.round(_0300_thick);
 		
-		if(_0065_vert){
-			leftX =  (_0130_width - thick) /2;
-			topY = (_0131_height - thick) /2;
+		if(_0640_vert){
+			leftX =  (_0826_width - thick) /2;
+			topY = (_0827_height - thick) /2;
 			// Track
 			g.setColor(DBase.jpalette[5]);
-			g.fillRect(leftX, 2, thick, _0131_height - 4);
+			g.fillRect(leftX, 2, thick, _0827_height - 4);
 		}
 		else {
-			leftX =  (_0130_width - thick) /2;
-			topY = (_0131_height - thick) /2;
+			leftX =  (_0826_width - thick) /2;
+			topY = (_0827_height - thick) /2;
 			// track
 			g.setColor(DBase.jpalette[5]);
-			g.fillRect(2, topY, _0130_width - 4, thick);
+			g.fillRect(2, topY, _0826_width - 4, thick);
 		}
 		// thumb
 		g.setColor(DBase.jpalette[0]);
@@ -96,7 +94,7 @@ public class DSlider extends DLinearTrack {
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
 	}

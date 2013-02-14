@@ -63,8 +63,8 @@ public class DImageButton extends DBase {
 		width_edit = height_edit = true;
 		width_show = height_show = true;
 		opaque_show = false;
-		_0130_width = 100;
-		_0131_height = 60;
+		_0826_width = 100;
+		_0827_height = 60;
 	}
 
 
@@ -83,34 +83,34 @@ public class DImageButton extends DBase {
 
 		if(_0049_img_mask.length() > 0){
 			if(_0048_match_image_size)
-				s += Messages.build(CTOR_IMG_BTN_XYFM, _0010_name, window, _0120_x, _0121_y, flist, _0049_img_mask);
+				s += Messages.build(CTOR_IMG_BTN_XYFM, _0010_name, window, _0820_x, _0821_y, flist, _0049_img_mask);
 			else
-				s += Messages.build(CTOR_IMG_BTN_XYWHFM, _0010_name, window, _0120_x, _0121_y, _0130_width, _0131_height, flist, _0049_img_mask);
+				s += Messages.build(CTOR_IMG_BTN_XYWHFM, _0010_name, window, _0820_x, _0821_y, _0826_width, _0827_height, flist, _0049_img_mask);
 		}
 		else {
 			if(_0048_match_image_size)
-				s += Messages.build(CTOR_IMG_BTN_XYF, _0010_name, window, _0120_x, _0121_y, flist);
+				s += Messages.build(CTOR_IMG_BTN_XYF, _0010_name, window, _0820_x, _0821_y, flist);
 			else
-				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, _0120_x, _0121_y, _0130_width, _0131_height, flist);
+				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, _0820_x, _0821_y, _0826_width, _0827_height, flist);
 			
 		}
 		s += super.get_creator(parent, window);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 	
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		if(image != null){
-			g.drawImage(image, 0, 0, _0130_width, _0131_height, 0, 0, image.getWidth(), image.getHeight() , null);
+			g.drawImage(image, 0, 0, _0826_width, _0827_height, 0, 0, image.getWidth(), image.getHeight() , null);
 		}
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		
 		if(this == selected)
@@ -138,8 +138,8 @@ public class DImageButton extends DBase {
 	
 	public void updateSize(){
 		if(_0048_match_image_size){
-			_0130_width = image.getWidth();
-			_0131_height = image.getHeight();
+			_0826_width = image.getWidth();
+			_0827_height = image.getHeight();
 			width_show = height_show = false;
 			resizeable = false;
 		}

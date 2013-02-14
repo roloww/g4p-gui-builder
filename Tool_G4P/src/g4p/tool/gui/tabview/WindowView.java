@@ -103,10 +103,10 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 		selInfo.reset();
 		window.isOver(m, sx, sy);
 		if(m.comp != null){
-			m.orgX = m.comp._0120_x;
-			m.orgY = m.comp._0121_y;
-			m.orgW = m.comp._0130_width;
-			m.orgH = m.comp._0131_height;
+			m.orgX = m.comp._0820_x;
+			m.orgY = m.comp._0821_y;
+			m.orgW = m.comp._0826_width;
+			m.orgH = m.comp._0827_height;
 		}
 	}
 
@@ -119,8 +119,8 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 	 * @param scale the scale to set
 	 */
 	public void scaleWindowToFit(int w, int h) {
-		int scale = Math.round(92.0f * Math.min(((float) w)/window._0130_width,
-				((float) h)/window._0131_height));
+		int scale = Math.round(92.0f * Math.min(((float) w)/window._0826_width,
+				((float) h)/window._0827_height));
 		((DWindow)window)._0025_Display_scale = scale;
 		repaint();
 		tabCtrl.componentChangedInGUI(window);
@@ -174,23 +174,23 @@ implements  MouseListener, MouseMotionListener, TGuiConstants {
 				switch(selInfo.selID){
 				case OVER_HORZ:
 					setCursor(Cursor.getPredefinedCursor(Cursor.E_RESIZE_CURSOR));
-					selInfo.comp._0130_width = snapValue(selInfo.orgW + deltaX);
+					selInfo.comp._0826_width = snapValue(selInfo.orgW + deltaX);
 					break;
 				case OVER_VERT:
 					setCursor(Cursor.getPredefinedCursor(Cursor.S_RESIZE_CURSOR));
-					selInfo.comp._0131_height = snapValue(selInfo.orgH + deltaY);
+					selInfo.comp._0827_height = snapValue(selInfo.orgH + deltaY);
 					break;
 				case OVER_DIAG:
 					setCursor(Cursor.getPredefinedCursor(Cursor.NW_RESIZE_CURSOR));
-					selInfo.comp._0130_width = snapValue(selInfo.orgW + deltaX);
-					selInfo.comp._0131_height = snapValue(selInfo.orgH + deltaY);
+					selInfo.comp._0826_width = snapValue(selInfo.orgW + deltaX);
+					selInfo.comp._0827_height = snapValue(selInfo.orgH + deltaY);
 					break;
 				}
 			}
 			if(selInfo.comp.isMoveable() && selInfo.selID == OVER_COMP){
 				setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-				selInfo.comp._0120_x = snapValue(selInfo.orgX + deltaX);
-				selInfo.comp._0121_y = snapValue(selInfo.orgY + deltaY);
+				selInfo.comp._0820_x = snapValue(selInfo.orgX + deltaX);
+				selInfo.comp._0821_y = snapValue(selInfo.orgY + deltaY);
 			}
 			tabCtrl.componentChangedInGUI(selInfo.comp);
 			repaint();
