@@ -191,6 +191,11 @@ public class GuiDesigner extends javax.swing.JFrame {
 				setVisible(true);
 				setExtendedState(NORMAL);
 				guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
+				if(treeSketchView != null){ // the GUI is drawn safe to repaint
+					treeSketchView.repaint();
+					tblPropView.repaint();
+					tabWindows.repaint();
+				}
 				guiControl.codeCapture();
 			}
 

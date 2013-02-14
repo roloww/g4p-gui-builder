@@ -11,17 +11,17 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DLabel extends DTextIcon {
+public class DLabel extends DTextIconAlign {
 
 	
 	public DLabel(){
 		super();
 		componentClass = "GLabel";
 		set_name(NameGen.instance().getNext("label"));
-		_0130_width = 80;
-		_0131_height = 20;
-		_0030_text = "My label";
-		stext = new StyledString(_0030_text, textWidth);
+		_0826_width = 80;
+		_0827_height = 20;
+		_0130_text = "My label";
+		stext = new StyledString(_0130_text, textWidth);
 		eventHandler_edit = eventHandler_show = false;
 	}
 	
@@ -40,19 +40,19 @@ public class DLabel extends DTextIcon {
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s = Messages.build(CTOR_GLABEL, _0010_name, window, 
-				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+				$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height));
 		s += super.get_creator(parent, window);
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		if(_0060_opaque){
+		if(_0600_opaque){
 			g.setColor(DBase.jpalette[6]);
-			g.fillRect(0, 0, _0130_width, _0131_height);
+			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		g.setStroke(stdStroke);
 
@@ -63,7 +63,7 @@ public class DLabel extends DTextIcon {
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
 	}

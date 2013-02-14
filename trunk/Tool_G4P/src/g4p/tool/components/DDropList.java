@@ -15,20 +15,20 @@ import java.io.ObjectInputStream;
 @SuppressWarnings("serial")
 public class DDropList extends DBase {
 
-	public int	 		_0053_nbr_rows = 3;
+	public int	 		_0680_nbr_rows = 3;
 	public Boolean 		nbr_rows_edit = true;
 	public Boolean 		nbr_rows_show = true;
 	public String 		nbr_rows_label = "Max rows to show";
 	public Validator 	nbr_rows_validator = Validator.getValidator(int.class, 2, 10);
 
-	public int	 		_0054_selected = 0;
+	public int	 		_0681_selected = 0;
 	public Boolean 		selected_edit = true;
 	public Boolean 		selected_show = true;
 	public String 		selected_label = "Selected row";
 	public String 		selected_tooltip = "Rows start at zero";
 	public Validator 	selected_validator = Validator.getValidator(int.class, 0, 50);
 
-	public String 		_0052_list_file;
+	public String 		_0682_list_file;
 	public Boolean 		list_file_edit = true;
 	public Boolean 		list_file_show = true;
 	public String 		list_file_label = "Option list file";
@@ -42,9 +42,9 @@ public class DDropList extends DBase {
 		set_name(NameGen.instance().getNext("dropList"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_click"));
 
-		_0052_list_file = "list_" + id[0];
-		_0130_width = 90;
-		_0131_height = 22;
+		_0682_list_file = "list_" + id[0];
+		_0826_width = 90;
+		_0827_height = 22;
 		opaque_show = false;
 		
 		width_validator = Validator.getValidator(int.class, 40, 9999);
@@ -54,27 +54,27 @@ public class DDropList extends DBase {
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
 		// Draw background for item list
-		if(this == selected && _0053_nbr_rows > 1){
+		if(this == selected && _0680_nbr_rows > 1){
 			g.setColor(Color.WHITE);
-			g.fillRect(0, _0131_height, _0130_width, _0131_height * _0053_nbr_rows);
+			g.fillRect(0, _0827_height, _0826_width, _0827_height * _0680_nbr_rows);
 			// Draw row borders
 			g.setColor(DBase.jpalette[4]);
-			for(int i = 1; i <= _0053_nbr_rows; i++)
-				g.drawRect(0, _0131_height * i, _0130_width, _0131_height);
+			for(int i = 1; i <= _0680_nbr_rows; i++)
+				g.drawRect(0, _0827_height * i, _0826_width, _0827_height);
 		}
 		// Main all text back
 		g.setColor(DBase.jpalette[6]);
-		g.fillRect(0, 0, _0130_width, _0131_height);
+		g.fillRect(0, 0, _0826_width, _0827_height);
 		// Draw thumb
 		g.setColor(DBase.jpalette[0]);
-		g.fillRect(_0130_width - _0131_height, 0, _0131_height, _0131_height);
+		g.fillRect(_0826_width - _0827_height, 0, _0827_height, _0827_height);
 		// Draw selected text
 		g.setColor(DBase.jpalette[2]);
-		g.drawRect(0, 0, _0130_width, _0131_height);
+		g.drawRect(0, 0, _0826_width, _0827_height);
 		g.drawString(this._0010_name, 4, 12 );
 
 		if(this == selected)
@@ -82,7 +82,7 @@ public class DDropList extends DBase {
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
 	}
@@ -90,11 +90,11 @@ public class DDropList extends DBase {
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s = Messages.build(CTOR_DROPLIST, _0010_name, window, 
-					 $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height * _0053_nbr_rows) , $(_0053_nbr_rows));	
-		s += Messages.build(CTOR_SET_LIST,  _0010_name, _0052_list_file, $(_0054_selected));
+					 $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height * _0680_nbr_rows) , $(_0680_nbr_rows));	
+		s += Messages.build(CTOR_SET_LIST,  _0010_name, _0682_list_file, $(_0681_selected));
 		s += super.get_creator(parent, window);
 		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 	

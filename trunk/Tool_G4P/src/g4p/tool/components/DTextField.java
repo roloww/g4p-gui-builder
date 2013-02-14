@@ -10,28 +10,28 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DTextField extends DBase {
+public class DTextField extends DTextBase {
 
-	public String 		_0030_text = "";
-	public String 		text_label = "Text";
-	public String 		text_tooltip = "initial text";
-	public Boolean 		text_edit = true;
-	public Boolean 		text_show = true;
-	public Validator 	text_validator = Validator.getDefaultValidator(String.class);
+//	public String 		_0030_text = "";
+//	public String 		text_label = "Text";
+//	public String 		text_tooltip = "initial text";
+//	public Boolean 		text_edit = true;
+//	public Boolean 		text_show = true;
+//	public Validator 	text_validator = Validator.getDefaultValidator(String.class);
 
-	public String 		_0031_dtext = "";
+	public String 		_0132_dtext = "";
 	public String 		dtext_label = "Default Text";
 	public String 		dtext_tooltip = "text to show when empty";
 	public Boolean 		dtext_edit = true;
 	public Boolean 		dtext_show = true;
 	public Validator 	dtext_validator = Validator.getDefaultValidator(String.class);
 
-	public Boolean 		_0035_horz_scrollbar = false;
+	public Boolean 		_0186_horz_scrollbar = false;
 	public String		horz_scrollbar_label = "Horizontal scrollbar?";
 	public Boolean 		horz_scrollbar_edit = true;
 	public Boolean 		horz_scrollbar_show = true;
 
-	public Boolean 		_0037_hide_scrollbar = false;
+	public Boolean 		_0188_hide_scrollbar = false;
 	public String		hide_scrollbar_label = "Auto-hide scrollbar?";
 	public Boolean 		hide_scrollbar_edit = true;
 	public Boolean 		hide_scrollbar_show = true;
@@ -42,9 +42,9 @@ public class DTextField extends DBase {
 		componentClass = "GTextField";
 		set_name(NameGen.instance().getNext("textfield"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_change"));
-		_0130_width = 160;
-		_0131_height = 30;
-		_0060_opaque  = true;
+		_0826_width = 160;
+		_0827_height = 30;
+		_0600_opaque  = true;
 	}
 	
 	/**
@@ -54,34 +54,34 @@ public class DTextField extends DBase {
 	protected String get_creator(DBase parent, String window){
 		String s;
 		String sbpolicy = "G4P.SCROLLBARS_NONE";
-		if(_0035_horz_scrollbar){
+		if(_0186_horz_scrollbar){
 			sbpolicy = "G4P.SCROLLBARS_HORIZONTAL_ONLY";
-			if(_0037_hide_scrollbar)
+			if(_0188_hide_scrollbar)
 				sbpolicy += " | G4P.SCROLLBARS_AUTOHIDE";
 		}
 		s = Messages.build(CTOR_GTEXTFIELD, _0010_name, window, 
-				_0120_x, _0121_y, _0130_width, _0131_height, sbpolicy);
-		if(_0030_text.length() > 0)
-			s += Messages.build(SET_TEXT, _0010_name, _0030_text);
-		if(_0031_dtext.length() > 0)
-			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0031_dtext);
-		if(!_0060_opaque)
-			s += Messages.build(SET_OPAQUE, _0060_opaque);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
+				_0820_x, _0821_y, _0826_width, _0827_height, sbpolicy);
+//		if(_0030_text.length() > 0)
+//			s += Messages.build(SET_TEXT, _0010_name, _0030_text);
+		if(_0132_dtext.length() > 0)
+			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
+		if(!_0600_opaque)
+			s += Messages.build(SET_OPAQUE, _0600_opaque);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		if(_0060_opaque){
+		if(_0600_opaque){
 			g.setColor(DBase.jpalette[6]);
-			g.fillRect(0, 0, _0130_width, _0131_height);
+			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		g.setColor(DBase.jpalette[6]);
-		g.fillRect(1, 1, _0130_width-2, _0131_height-2);
+		g.fillRect(1, 1, _0826_width-2, _0827_height-2);
 		g.setStroke(stdStroke);
 
 //		g.setStroke(stdStroke);
@@ -93,9 +93,9 @@ public class DTextField extends DBase {
 		g.setColor(DBase.jpalette[2]);
 		g.drawString(this._0010_name, 4, 12 );
 
-		if(_0035_horz_scrollbar){
+		if(_0186_horz_scrollbar){
 			g.setColor(DBase.jpalette[3]);
-			g.fillRect(2, _0131_height - 12, _0130_width-4, 10);
+			g.fillRect(2, _0827_height - 12, _0826_width-4, 10);
 		}
 		
 		if(this == selected)
@@ -103,7 +103,7 @@ public class DTextField extends DBase {
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 
 		g.setTransform(paf);

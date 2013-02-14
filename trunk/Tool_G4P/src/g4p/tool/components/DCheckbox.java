@@ -20,17 +20,17 @@ public class DCheckbox extends DCoreSelectable{
 		set_name(NameGen.instance().getNext("checkbox"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_clicked"));
 		// Set up text
-		_0030_text = "checkbox text";
-		_0031_text_x_alignment = "LEFT";
-		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0031_text_x_alignment);
-		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0032_text_y_alignment);
+		_0130_text = "checkbox text";
+		_0140_text_x_alignment = "LEFT";
+		textHAlign = ListGen.instance().getIndexOf(H_ALIGN_3, _0140_text_x_alignment);
+		textVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0141_text_y_alignment);
 		// Set up icon
 		icon = ToolImage.getImage("CB_ICON");
-		_0036_nbr_tiles = 2;
-		_0037_icon_x_alignment = "LEFT";
-		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0037_icon_x_alignment);
-		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0038_icon_y_alignment);
-		iconWidth = icon.getWidth() / _0036_nbr_tiles;
+		_0152_nbr_tiles = 2;
+		_0154_icon_x_alignment = "LEFT";
+		iconHAlign = ListGen.instance().getIndexOf(H_ALIGN_2, _0154_icon_x_alignment);
+		iconVAlign = ListGen.instance().getIndexOf(V_ALIGN, _0155_icon_y_alignment);
+		iconWidth = icon.getWidth() / _0152_nbr_tiles;
 		iconHeight = icon.getHeight();
 		icon_x_alignment_show = true;
 		icon_y_alignment_show = true;
@@ -46,27 +46,27 @@ public class DCheckbox extends DCoreSelectable{
 	protected String get_creator(DBase parent, String window){
 		String s;
 		s = Messages.build(CTOR_GCHECKBOX, _0010_name, window, 
-				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+				$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height));
 		s += super.get_creator(parent, window);
 		if(_0101_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);		
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);		
 		return s;
 	}
 
 
 	protected boolean isIconAlignDefaults(){
-		return _0037_icon_x_alignment.equals("LEFT") && _0038_icon_y_alignment.equals("MIDDLE");
+		return _0154_icon_x_alignment.equals("LEFT") && _0155_icon_y_alignment.equals("MIDDLE");
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		if(_0060_opaque){
+		if(_0600_opaque){
 			g.setColor(DBase.jpalette[6]);
-			g.fillRect(0, 0, _0130_width, _0131_height);
+			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		g.setStroke(stdStroke);
 
@@ -77,7 +77,7 @@ public class DCheckbox extends DCoreSelectable{
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
 	}

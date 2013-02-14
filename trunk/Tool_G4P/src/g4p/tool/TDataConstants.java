@@ -133,6 +133,8 @@ public interface TDataConstants {
 	//		GPanel(PApplet theApplet, String text, int x, int y, int width, int height){
 	String CTOR_GPANEL			=	"  {0} = new GPanel({1}, {2}, {3}, {4}, {5}, \"{6}\");\n";
 	String COLLAPSED			=	"  {0}.setCollapsed({1});\n";
+	String COLLAPSIBLE			=	"  {0}.setCollapsible({1});\n";
+	String DRAGGABLE			=	"  {0}.setDraggable({1});\n";
 
 	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
 	String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, {2}, {3}, {4}, {5}, {6});\n";

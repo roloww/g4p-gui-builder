@@ -26,24 +26,24 @@ public final class DApplication extends DBase {
 	public Boolean width_show = false;
 	public Boolean height_show = false;
 	
-	public String 		_0710_col_scheme = "BLUE_SCHEME";
+	public String 		_0910_col_scheme = "BLUE_SCHEME";
 	transient public 	EditorBase col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 	public Boolean 		col_scheme_edit = true;
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
 	public String 		col_scheme_updater = "colourSchemeChange";
 	
-	public Boolean 		_0720_cursor  = true;
+	public Boolean 		_0911_cursor  = true;
 	public Boolean 		cursor_edit = true;
 	public Boolean 		cursor_show = true;
-//	public String 		cursor_updater = "updateCursorChanger";
 	public String 		cursor_label = "Enable mouse over";
+	public String		cursor_updater = "cursorChanger";
 
-	public String 		_0722_cursor_off = "ARROW";
+	public String 		_0912_cursor_off = "ARROW";
 	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
 	public Boolean 		cursor_off_edit = true;
-	public Boolean 		cursor_off_show = false;
-	public String 		cursor_off_label = "Not over control";
+	public Boolean 		cursor_off_show = true;
+	public String 		cursor_off_label = "Cursor off image";
 
 	
 	/**
@@ -68,10 +68,10 @@ public final class DApplication extends DBase {
 
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
-		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0710_col_scheme));
+		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0910_col_scheme));
 		sb.append("  G4P.messagesEnabled(false);\n");
-		if(_0720_cursor) {
-			sb.append(Messages.build("  G4P.setCursorOff({0});\n", _0722_cursor_off));
+		if(_0911_cursor) {
+			sb.append(Messages.build("  G4P.setCursor({0});\n", _0912_cursor_off));
 		}
 		else {
 			sb.append("  G4P.setMouseOverEnabled(false);\n");			
@@ -87,8 +87,14 @@ public final class DApplication extends DBase {
 		return null;
 	}
 
+	public void cursorChanger(){
+		cursor_off_show = _0911_cursor;;
+		propertyModel.createProperties(this);
+		propertyModel.hasBeenChanged();
+	}
+
 	public void colourSchemeChange(){
-		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0710_col_scheme);
+		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0910_col_scheme);
 		DBase.jpalette = GCScheme.getJavaColor(colScheme);
 	}
 	
@@ -103,10 +109,6 @@ public final class DApplication extends DBase {
 	{
 		in.defaultReadObject();
 		read();
-//		NameGen.instance().add(_0010_name);
-//		IdGen.instance().add(id[0]);
-//		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
-//		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
 	}
 
 }

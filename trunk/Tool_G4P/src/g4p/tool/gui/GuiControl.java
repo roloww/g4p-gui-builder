@@ -115,8 +115,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	public void setSketchSize(Dimension size){
 		if(size != null){
 			DBase m = (DBase) tree.getRoot().getChildAt(0);
-			m._0130_width = size.width;
-			m._0131_height = size.height;
+			m._0826_width = size.width;
+			m._0827_height = size.height;
 		}
 	}
 
@@ -138,10 +138,10 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			try	{
 				int wide = Integer.parseInt(m.group(1));
 				int high = Integer.parseInt(m.group(2));
-				if(m.groupCount() > 3)
-					System.out.println("Renderer >>"+m.group(3)+"<<");
-				else
-					System.out.println("Can't find renderer ");
+//				if(m.groupCount() > 3)
+//					System.out.println("Renderer >>"+m.group(3)+"<<");
+//				else
+//					System.out.println("Can't find renderer ");
 				s = new Dimension(wide, high);
 			} catch (NumberFormatException e) {
 				s = null;
@@ -423,8 +423,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		CtrlSketchModel m = null;
 		DApplication app = new DApplication();
 		DWindow win1 = new DWindow(true);
-		win1._0130_width = 480;
-		win1._0131_height = 320;
+		win1._0826_width = 480;
+		win1._0827_height = 320;
 		app.add(win1);
 		m = new CtrlSketchModel(app);
 		return m;

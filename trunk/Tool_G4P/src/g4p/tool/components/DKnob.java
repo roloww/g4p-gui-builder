@@ -72,9 +72,9 @@ public class DKnob extends DValueControl {
 		componentClass = "GKnob";
 		set_name(NameGen.instance().getNext("knob"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_turn"));
-		_0130_width = 60;
-		_0131_height = 60;
-		_0060_show_ticks = true;
+		_0826_width = 60;
+		_0827_height = 60;
+		_0620_show_ticks = true;
 		vtype_show = false;
 		precision_show = false;
 	}
@@ -96,7 +96,7 @@ public class DKnob extends DValueControl {
 	 */
 	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GKNOB, _0010_name, window, $(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), $(_0046_grip_ratio));
+		s = Messages.build(CTOR_GKNOB, _0010_name, window, $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), $(_0046_grip_ratio));
 
 		s += Messages.build(SET_TURN_RANGE,_0010_name, _0041_dial_start_angle, _0042_dial_end_angle);
 		s += Messages.build(SET_CONTROLLER,_0010_name, _0043_controller);
@@ -107,27 +107,27 @@ public class DKnob extends DValueControl {
 		s += Messages.build(SET_OVER_GRIP_ONLY, _0010_name, !_0047_over_grip_only);
 		s += Messages.build(SET_SHOW_TRACK, _0010_name, _0066_show_track);
 		s += super.get_creator(parent, window);		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0012_eventHandler);
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
 		// Bezel
 		g.setColor(DBase.jpalette[5]);
-		g.fillOval(0, 0, _0130_width, _0131_height);
-		int ox = Math.round(0.16f * _0130_width);
-		int oy = Math.round(0.16f * _0131_height);
+		g.fillOval(0, 0, _0826_width, _0827_height);
+		int ox = Math.round(0.16f * _0826_width);
+		int oy = Math.round(0.16f * _0827_height);
 		g.setColor(DBase.jpalette[4]);
-		g.fillOval(ox, oy, _0130_width - 2*ox, _0131_height - 2*oy);
+		g.fillOval(ox, oy, _0826_width - 2*ox, _0827_height - 2*oy);
 		g.setColor(DBase.jpalette[14]);
 		g.setStroke(needleStroke);
-		g.drawLine(_0130_width/2, _0131_height/2, 
-				_0130_width/2 + Math.round(0.3535f*_0130_width),
-				_0131_height/2 + Math.round(0.3535f*_0131_height));
+		g.drawLine(_0826_width/2, _0827_height/2, 
+				_0826_width/2 + Math.round(0.3535f*_0826_width),
+				_0827_height/2 + Math.round(0.3535f*_0827_height));
 		if(this == selected)
 			drawSelector(g);
 		g.setTransform(paf);

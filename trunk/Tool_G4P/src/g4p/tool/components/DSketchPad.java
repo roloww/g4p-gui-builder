@@ -18,8 +18,8 @@ public class DSketchPad extends DBase {
 		super();
 		componentClass = "GSketchPad";
 		set_name(NameGen.instance().getNext("sketchPad"));
-		_0130_width = 80;
-		_0131_height = 60;
+		_0826_width = 80;
+		_0827_height = 60;
 		eventHandler_edit = eventHandler_show = false;
 		icon = ToolImage.getImage("SPAD_ICON");
 	}
@@ -39,19 +39,19 @@ public class DSketchPad extends DBase {
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s = Messages.build(CTOR_SPAD, _0010_name, window, 
-				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height));
+				$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height));
 		s += super.get_creator(parent, window);
 		return s;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0120_x, _0121_y);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
 		g.setColor(DBase.jpalette[6]);
-		g.fillRect(0, 0, _0130_width, _0131_height);
-		g.drawImage(icon, 0, 0, _0130_width, _0131_height, null);
+		g.fillRect(0, 0, _0826_width, _0827_height);
+		g.drawImage(icon, 0, 0, _0826_width, _0827_height, null);
 		g.setStroke(stdStroke);
 
 		super.draw(g, paf, selected);
@@ -61,7 +61,7 @@ public class DSketchPad extends DBase {
 		else {
 			g.setColor(DASHED_EDGE_COLOR);
 			g.setStroke(dashed);
-			g.drawRect(0, 0, _0130_width, _0131_height);		
+			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
 	}
