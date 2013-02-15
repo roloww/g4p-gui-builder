@@ -16,11 +16,7 @@ public interface TDataConstants {
 	int V_ALIGN	 			=	0x00000029;
 	int VALUE_TYPE			=	0x0000002A;
 	int TEXT_ORIENT			= 	0x0000002B;
-	
-	// Defunct
-	int IMG_BUTTON_STYLE	=	0x0000102B;
-	int BUTTON_STYLE		=	0x0000002A;
-
+	int STICK_TYPE			= 	0x0000002C;
 	
 	int VALID				=	0x00000040;
 	int INVALID_LENGTH		=	0x00000041;

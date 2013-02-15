@@ -113,8 +113,16 @@ public class DKnob extends DValue1D {
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0820_x + _0826_width/2, _0821_y + _0827_height/2);
+		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
+		
+		if(_0600_opaque){
+			g.setColor(DBase.jpalette[6]);
+			g.fillRect(0, 0, _0826_width, _0827_height);
+		}
+		af.translate(_0826_width/2, _0827_height/2);
+		g.setTransform(af);
+
 		int s = Math.min(_0826_width, _0827_height), hs = s/2;
 		// Bezel
 		g.setColor(DBase.jpalette[5]);
