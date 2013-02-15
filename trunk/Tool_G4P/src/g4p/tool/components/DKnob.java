@@ -11,57 +11,57 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DKnob extends DValueControl {
+public class DKnob extends DValue1D {
 
-	public float 			_0041_dial_start_angle = 110;
+	public float 		_0411_dial_start_angle = 110;
 	public String		dial_start_angle_label = "Dial starts at angle";
 	public String		dial_start_angle_tooltip = "0-360 degrees";
 	public Boolean 		dial_start_angle_edit = true;
 	public Boolean 		dial_start_angle_show = true;
 	public Validator 	dial_start_angle_validator = Validator.getValidator(float.class, 0, 360);
 
-	public float 			_0042_dial_end_angle = 70;
+	public float 		_0412_dial_end_angle = 70;
 	public String		dial_end_angle_label = "Dial ends at angle";
 	public String		dial_end_angle_tooltip = "0-360 degrees";
 	public Boolean 		dial_end_angle_edit = true;
 	public Boolean 		dial_end_angle_show = true;
 	public Validator 	dial_end_angle_validator = Validator.getValidator(float.class, 0, 360);
 
-	public String 		_0043_controller = "HORIZONTAL";
+	public String 		_0415_controller = "HORIZONTAL";
 	transient public 	EditorBase controller_editor = new EditorJComboBox(KNOB_CTRL);
 	public Boolean		controller_edit = true;
 	public Boolean		controller_show = true;
 	public String		controller_label = "Mouse controller scheme";
 	public String		controller_updater = "updateController";
 	
-	public Float 		_0044_sensitivity = 1.0f;
+	public Float 		_0416_sensitivity = 1.0f;
 	public String 		sensitivity_label = "Drag sensitivity";
 	public Boolean 		sensitivity_edit = true;
 	public Boolean 		sensitivity_show = true;
 	public Validator 	sensitivity_validator = Validator.getValidator(float.class, 0.2f, 5.0f);
 
-	public Float 		_0046_grip_ratio = 0.8f;
+	public Float 		_0418_grip_ratio = 0.8f;
 	public String 		grip_ratio_label = "Grip size (ratio)";
 	public Boolean 		grip_ratio_edit = true;
 	public Boolean 		grip_ratio_show = true;
 	public Validator 	grip_ratio_validator = Validator.getValidator(float.class, 0.0f, 1.0f);
 
-	public Boolean		_0047_over_arc_only  = false;
+	public Boolean		_0422_over_arc_only  = false;
 	public Boolean		over_arc_only_edit = true;
 	public Boolean		over_arc_only_show = true;
 	public String		over_arc_only_label = "Mouse over arc only";
 
-	public Boolean		_0047_over_grip_only  = true;
+	public Boolean		_0421_over_grip_only  = true;
 	public Boolean		over_grip_only_edit = true;
 	public Boolean		over_grip_only_show = true;
 	public String		over_grip_only_label = "Mouse over grip only";
 
-	public Boolean		_0063_show_arc_only  = false;
+	public Boolean		_0430_show_arc_only  = false;
 	public Boolean		show_arc_only_edit = true;
 	public Boolean		show_arc_only_show = true;
 	public String		show_arc_only_label = "Show arc only";
 
-	public Boolean		_0066_show_track  = true;
+	public Boolean		_0431_show_track  = true;
 	public Boolean		show_track_edit = true;
 	public Boolean		show_tracky_show = true;
 	public String		show_track_label = "Show track";
@@ -80,8 +80,8 @@ public class DKnob extends DValueControl {
 	}
 
 	public void updateController(){
-		if(_0043_controller.equals("ANGULAR")){
-			_0044_sensitivity = 1.0f;
+		if(_0415_controller.equals("ANGULAR")){
+			_0416_sensitivity = 1.0f;
 			sensitivity_show = false;
 		}
 		else {
@@ -96,16 +96,16 @@ public class DKnob extends DValueControl {
 	 */
 	protected String get_creator(DBase parent, String window){
 		String s;
-		s = Messages.build(CTOR_GKNOB, _0010_name, window, $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), $(_0046_grip_ratio));
+		s = Messages.build(CTOR_GKNOB, _0010_name, window, $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), $(_0418_grip_ratio));
 
-		s += Messages.build(SET_TURN_RANGE,_0010_name, _0041_dial_start_angle, _0042_dial_end_angle);
-		s += Messages.build(SET_CONTROLLER,_0010_name, _0043_controller);
+		s += Messages.build(SET_TURN_RANGE,_0010_name, _0411_dial_start_angle, _0412_dial_end_angle);
+		s += Messages.build(SET_CONTROLLER,_0010_name, _0415_controller);
 		if(sensitivity_show) // only happens when not angular
-			s += Messages.build(SET_DRAG_SENSITIVITY, _0010_name, _0044_sensitivity);	
-		s += Messages.build(SET_SHOW_ARC_ONLY, _0010_name, _0063_show_arc_only);
-		s += Messages.build(SET_OVER_ARC_ONLY, _0010_name, _0047_over_arc_only);
-		s += Messages.build(SET_OVER_GRIP_ONLY, _0010_name, !_0047_over_grip_only);
-		s += Messages.build(SET_SHOW_TRACK, _0010_name, _0066_show_track);
+			s += Messages.build(SET_DRAG_SENSITIVITY, _0010_name, _0416_sensitivity);	
+		s += Messages.build(SET_SHOW_ARC_ONLY, _0010_name, _0430_show_arc_only);
+		s += Messages.build(SET_OVER_ARC_ONLY, _0010_name, _0422_over_arc_only);
+		s += Messages.build(SET_OVER_GRIP_ONLY, _0010_name, !_0421_over_grip_only);
+		s += Messages.build(SET_SHOW_TRACK, _0010_name, _0431_show_track);
 		s += super.get_creator(parent, window);		
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
@@ -113,21 +113,24 @@ public class DKnob extends DValueControl {
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
-		af.translate(_0820_x, _0821_y);
+		af.translate(_0820_x + _0826_width/2, _0821_y + _0827_height/2);
 		g.setTransform(af);
-		
+		int s = Math.min(_0826_width, _0827_height), hs = s/2;
 		// Bezel
 		g.setColor(DBase.jpalette[5]);
-		g.fillOval(0, 0, _0826_width, _0827_height);
-		int ox = Math.round(0.16f * _0826_width);
-		int oy = Math.round(0.16f * _0827_height);
+		g.fillOval(-hs, -hs, s, s);
+		// grip
+		int gs = Math.round(0.7f * s), hgs = gs/2;
 		g.setColor(DBase.jpalette[4]);
-		g.fillOval(ox, oy, _0826_width - 2*ox, _0827_height - 2*oy);
+		g.fillOval(-hgs, -hgs, gs, gs);
 		g.setColor(DBase.jpalette[14]);
+		// Needle
 		g.setStroke(needleStroke);
-		g.drawLine(_0826_width/2, _0827_height/2, 
-				_0826_width/2 + Math.round(0.3535f*_0826_width),
-				_0827_height/2 + Math.round(0.3535f*_0827_height));
+		g.drawLine(0, 0, Math.round(0.707f*hs), Math.round(0.707f*hs));
+
+		af.translate(-_0826_width/2, -_0827_height/2);
+		g.setTransform(af);
+
 		if(this == selected)
 			drawSelector(g);
 		g.setTransform(paf);

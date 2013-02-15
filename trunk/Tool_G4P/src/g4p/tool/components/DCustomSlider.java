@@ -50,8 +50,6 @@ public class DCustomSlider extends DLinearTrack {
 		}
 		s = Messages.build(CTOR_GCUSTOMSLIDER, _0010_name, window, 
 				x, y, w, h, _0900_skin);
-		if(_0640_vert)
-			s += Messages.build(MAKE_VERT, _0010_name, "PI/2"); 		
 //		s = Messages.build(CTOR_GCUSTOMSLIDER, _0010_name, window,
 //				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), _0620_skin);
 		s += super.get_creator(parent, window);		

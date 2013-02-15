@@ -4,7 +4,7 @@ import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 
-public class DLinearTrack extends DValueControl {
+public class DLinearTrack extends DValue1D {
 	
 
 	public Boolean 		_0621_show_value  = false;
@@ -36,6 +36,8 @@ public class DLinearTrack extends DValueControl {
 			s += Messages.build(SET_SHOW_LIMITS, _0010_name, _0622_show_limits);
 		if(!_0630_text_orient.equals("ORIENT_TRACK"))
 			s += Messages.build(SET_TEXT_ORIENT, _0010_name, _0630_text_orient);
+		if(_0640_vert)
+			s += Messages.build(MAKE_VERT, _0010_name, "PI/2"); 		
 			
 		s += super.get_creator(parent, window);		
 		return s;
