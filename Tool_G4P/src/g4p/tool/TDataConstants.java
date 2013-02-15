@@ -104,16 +104,9 @@ public interface TDataConstants {
 	//																x	 y   fl
 	String CTOR_IMG_BTN_XYF		= 	"  {0} = new GImageButton({1}, {2}, {3}, {4});\n";
 
-	
-	// 		GImageButton(PApplet theApplet, String maskFile, String imgFiles[], int x, int y)
-//	String CTOR_IMG_BUTTON_9	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4} >, {5}, {6});\n";
-//	String CTOR_IMG_BUTTON_8	=	"  {0} = new GImageButton({1}, {2}, new String[] <{3}, {4}, {5} >, {6}, {7});\n";
-
-	String FILE_LIST			=   "  new String[] [ \"{0}\", \"{1}\", \"{2}\" } ";
-
-	
-//	String BTN_TEXT_ALIGN		=  	"  {0}.setTextAlign(GAlign.{1} | GAlign.{2});\n";
-//	String BTN_ICON_ALIGN		=  	"  {0}.setImageAlign(GAlign.{1});\n";
+	//		GCheckbox(PApplet theApplet, int x, int y, int width, int height)
+	String CTOR_GSTICK			=	"  {0} = new GStick({1}, {2}, {3}, {4}, {5});\n";
+	String SET_STICK_MODE		=	"  {0}.setMode(G4P.{1});\n";
 	
 	//		GCheckbox(PApplet theApplet, int x, int y, int width, int height)
 	String CTOR_GCHECKBOX		=	"  {0} = new GCheckbox({1}, {2}, {3}, {4}, {5});\n";
@@ -144,11 +137,10 @@ public interface TDataConstants {
 	//		GSlider(PApplet theApplet, int x, int y, int width, int height, track thickness){
 	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";
 	//		GSlider2D(PApplet theApplet, int x, int y, int width, int height){
-	String CTOR_GSLIDER2D			=	"  {0} = new GSlider2D({1}, {2}, {3}, {4}, {5});\n";
+	String CTOR_GSLIDER2D		=	"  {0} = new GSlider2D({1}, {2}, {3}, {4}, {5});\n";
 	
 	//											angle,  mode){	
-	String MAKE_VERT		=	"  {0}.setRotation({1}, GControlMode.CORNER);\n";
-
+	String MAKE_VERT			=	"  {0}.setRotation({1}, GControlMode.CORNER);\n";
 	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
 	String SET_X_LIMITS			=	"  {0}.setLimitsX({1}, {2}, {3});\n";
 	String SET_Y_LIMITS			=	"  {0}.setLimitsY({1}, {2}, {3});\n";
