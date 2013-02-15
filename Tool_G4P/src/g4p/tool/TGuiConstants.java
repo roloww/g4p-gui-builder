@@ -45,7 +45,7 @@ public interface TGuiConstants {
 	BasicStroke stdStroke 	= new BasicStroke(1.1f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 	
-	BasicStroke selStroke 	= new BasicStroke(1.3f,
+	BasicStroke selStroke 	= new BasicStroke(1.8f,
 			BasicStroke.CAP_ROUND,	BasicStroke.JOIN_ROUND);
 	
 	BasicStroke needleStroke 	= new BasicStroke(2.3f,

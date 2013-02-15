@@ -23,6 +23,7 @@ import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchPad;
 import g4p.tool.components.DSlider;
 import g4p.tool.components.DSlider2D;
+import g4p.tool.components.DStick;
 import g4p.tool.components.DTextArea;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
@@ -947,21 +948,21 @@ public class GuiDesigner extends javax.swing.JFrame {
 		autoHide = mitemAuto.isSelected();
 	}//GEN-LAST:event_mitemAutoActionPerformed
 
-        private void btnTextareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextareaActionPerformed
-       		guiControl.addComponent(new DTextArea());
-       	}//GEN-LAST:event_btnTextareaActionPerformed
+    private void btnTextareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextareaActionPerformed
+   		guiControl.addComponent(new DTextArea());
+   	}//GEN-LAST:event_btnTextareaActionPerformed
 
-        private void btnSketchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSketchPadActionPerformed
-    		guiControl.addComponent(new DSketchPad());
-        }//GEN-LAST:event_btnSketchPadActionPerformed
+    private void btnSketchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSketchPadActionPerformed
+		guiControl.addComponent(new DSketchPad());
+    }//GEN-LAST:event_btnSketchPadActionPerformed
 
-        private void btnSlider2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlider2DActionPerformed
-      		guiControl.addComponent(new DSlider2D());
-      	}//GEN-LAST:event_btnSlider2DActionPerformed
+    private void btnSlider2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlider2DActionPerformed
+  		guiControl.addComponent(new DSlider2D());
+  	}//GEN-LAST:event_btnSlider2DActionPerformed
 
-        private void btnStickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStickActionPerformed
-            // TODO add your handling code here:
-        }//GEN-LAST:event_btnStickActionPerformed
+    private void btnStickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStickActionPerformed
+ 		guiControl.addComponent(new DStick());
+    }//GEN-LAST:event_btnStickActionPerformed
 
 	/**
 	 * @param args the command line arguments

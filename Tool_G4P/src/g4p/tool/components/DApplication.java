@@ -19,12 +19,6 @@ import java.io.ObjectInputStream;
  */
 @SuppressWarnings("serial")
 public final class DApplication extends DBase {
-		
-	public Boolean name_edit = false;
-	public Boolean x_show = false;
-	public Boolean y_show = false;
-	public Boolean width_show = false;
-	public Boolean height_show = false;
 	
 	public String 		_0910_col_scheme = "BLUE_SCHEME";
 	transient public 	EditorBase col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);

@@ -44,21 +44,14 @@ public final class ListGen implements TDataConstants {
 		makeVertAlignSelection(V_ALIGN);
 		makeValueTypeSelection(VALUE_TYPE);	
 		makeTextOrientationSelection(TEXT_ORIENT);
-//		makeImgButtonStyleSelection(IMG_BUTTON_STYLE);
-//		makeButtonStyleSelection(BUTTON_STYLE);	
-		
+		makeStickTypeSelection(STICK_TYPE);
 	}
 	
-//	private void makeButtonStyleSelection(int type) {
-//	String[] s = new String[] {"Text only", "Icon only", "Text + Icon"};
-//	cbList.put(type,  new DefaultComboBoxModel(s));
-//}
-//
-//private void makeImgButtonStyleSelection(int type) {
-//	String[] s = new String[] {"Tiled Image", "1 Image", "2 Images", "3 Images"};
-//	cbList.put(type,  new DefaultComboBoxModel(s));
-//}
-	
+	private void makeStickTypeSelection(int type) {
+		String[] s = new String[] {"X4", "X8", "ORIENT_RIGHT"};
+		cbList.put(type,  new DefaultComboBoxModel(s));	
+	}
+
 	private void makeTextOrientationSelection(int type) {
 		String[] s = new String[] {"ORIENT_TRACK", "ORIENT_LEFT", "ORIENT_RIGHT"};
 		cbList.put(type,  new DefaultComboBoxModel(s));	
