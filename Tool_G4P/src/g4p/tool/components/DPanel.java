@@ -18,7 +18,7 @@ import java.util.Enumeration;
 public class DPanel extends DTextBase {  // was DTextIcon now DText since no icon for this control
 
 	final protected static int TAB_HEIGHT = 20;
-	
+
 	public Boolean 		_0300_collapsed = false;
 	public String 		collapsed_label = "Collapsed?";
 	public Boolean 		collapsed_edit = true;
@@ -48,9 +48,6 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 		_0826_width = 100;
 		_0827_height = 60;
 		opaque_edit = opaque_show = false;
-//		icon_file_edit = icon_file_show = false;
-//		text_x_alignment_edit = text_x_alignment_show = false;
-//		text_y_alignment_edit = text_y_alignment_show = false;
 	}
 
 	public void collapsedChange(){
@@ -68,7 +65,7 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 			propertyModel.hasBeenChanged();
 		}
 	}
-	
+
 	protected String get_creator(DBase parent, String window){
 		String s;
 		s = Messages.build(CTOR_GPANEL, _0010_name, window,
@@ -108,30 +105,28 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
-		
-		g.setStroke(stdStroke);
-//		if(_0030_collapsed)
-//			g.setColor(pnlBackClear);
-//		else
-//			g.setColor(pnlBackOpaque);
 
 		// Panel back
-		g.setColor(DBase.jpalette[5]);
-		g.fillRect(0, 0, _0826_width, _0827_height);
-		
+		if(!_0300_collapsed){
+			g.setColor(DBase.jpalette[5]);
+			g.fillRect(0, 0, _0826_width, _0827_height);
+		}
+
 		// Tab
 		g.setColor(DBase.jpalette[3]);
 		g.fillRect(0, 0, _0826_width, TAB_HEIGHT);
-		
+
 		// Text
 		g.setColor(DBase.jpalette[12]);
 		g.drawString(_0010_name, 2, 12);
 		if(this == selected)
 			drawSelector(g);
-		
-		Enumeration<?> e = children();
-		while(e.hasMoreElements()){
-			((DBase)e.nextElement()).draw(g, af, selected);
+
+		if(!_0300_collapsed){
+			Enumeration<?> e = children();
+			while(e.hasMoreElements()){
+				((DBase)e.nextElement()).draw(g, af, selected);
+			}
 		}
 		g.setTransform(paf);
 	}
@@ -140,7 +135,7 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 		g.setStroke(stdStroke);
 		g.setColor(Color.red);
 		g.drawRect(0, 0,_0826_width, _0827_height);
-		
+
 		drawHandle(g, _0826_width - HANDLE_SIZE, (_0827_height - HANDLE_SIZE)/2);
 		drawHandle(g, (_0826_width - HANDLE_SIZE) / 2, _0827_height - HANDLE_SIZE);
 		drawHandle(g, _0826_width - HANDLE_SIZE, _0827_height - HANDLE_SIZE);	
@@ -182,7 +177,7 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 	protected void read(){
 		super.read();
 	}
-	
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{

@@ -22,6 +22,7 @@ import g4p.tool.components.DOption;
 import g4p.tool.components.DPanel;
 import g4p.tool.components.DSketchPad;
 import g4p.tool.components.DSlider;
+import g4p.tool.components.DSlider2D;
 import g4p.tool.components.DTextArea;
 import g4p.tool.components.DTextField;
 import g4p.tool.components.DTimer;
@@ -237,6 +238,8 @@ public class GuiDesigner extends javax.swing.JFrame {
 		ToolIcon.addIcon(DDropList.class, btnDropList.getIcon());
 		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
 		ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
+		ToolIcon.addIcon(DSlider2D.class, btnSlider2D.getIcon());
+//		ToolIcon.addIcon(DStick.class, btnStick.getIcon());
 
 		ToolIcon.addIcon("DL_DIALOG_ICON", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 
@@ -953,8 +956,8 @@ public class GuiDesigner extends javax.swing.JFrame {
         }//GEN-LAST:event_btnSketchPadActionPerformed
 
         private void btnSlider2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlider2DActionPerformed
-            // TODO add your handling code here:
-        }//GEN-LAST:event_btnSlider2DActionPerformed
+      		guiControl.addComponent(new DSlider2D());
+      	}//GEN-LAST:event_btnSlider2DActionPerformed
 
         private void btnStickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStickActionPerformed
             // TODO add your handling code here:

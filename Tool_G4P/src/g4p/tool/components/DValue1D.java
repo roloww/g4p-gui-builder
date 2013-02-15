@@ -5,7 +5,7 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
-public class DValueControl extends DBase {
+public class DValue1D extends DValueBase {
 
 	public Float 		_0220_value = 0.5f;
 	public String 		value_label = "Value (initial)";
@@ -28,20 +28,20 @@ public class DValueControl extends DBase {
 	public Boolean 		max_show = true;
 	public String 		max_updater = "validateLimits";
 	
-	public String 		_0250_vtype = "DECIMAL";
-	transient public EditorBase vtype_editor = new EditorJComboBox(VALUE_TYPE);
-	public String 		vtype_label = "Value type to display";
-	public Boolean 		vtype_edit = true;
-	public Boolean 		vtype_show = true;
-	public String		vtype_updater = "validateType";
-	
-	public Integer 		_0251_precision = 2;
-	public String 		precision_label = "Numeric precision";
-	public String 		precision_tooltip = "precision to display";
-	public Boolean 		precision_edit = true;
-	public Boolean 		precision_show = true;
-	public Validator 	precision_validator = Validator.getValidator(int.class, 0, 4);
-	public String		precision_updater = "validateType";
+//	public String 		_0250_vtype = "DECIMAL";
+//	transient public EditorBase vtype_editor = new EditorJComboBox(VALUE_TYPE);
+//	public String 		vtype_label = "Value type to display";
+//	public Boolean 		vtype_edit = true;
+//	public Boolean 		vtype_show = true;
+//	public String		vtype_updater = "validateType";
+//	
+//	public Integer 		_0251_precision = 2;
+//	public String 		precision_label = "Numeric precision";
+//	public String 		precision_tooltip = "precision to display";
+//	public Boolean 		precision_edit = true;
+//	public Boolean 		precision_show = true;
+//	public Validator 	precision_validator = Validator.getValidator(int.class, 0, 4);
+//	public String		precision_updater = "validateType";
 
 	public Integer 		_0260_nticks = 2;
 	public String 		nticks_label = "Number of ticks";
@@ -80,21 +80,17 @@ public class DValueControl extends DBase {
 		}
 	}
 	
-	public void validateType(){
-		if(_0250_vtype.equals("INTEGER") && _0251_precision != 0 ){
-			_0251_precision = 0;
-			_0220_value = (float) Math.round(_0220_value);
-			_0221_min = (float) Math.round(_0221_min);
-			_0222_max = (float) Math.round(_0222_max);
-			propertyModel.hasBeenChanged();
-		}
+	protected void roundValueAndLimits(){
+		_0220_value = (float) Math.round(_0220_value);
+		_0221_min = (float) Math.round(_0221_min);
+		_0222_max = (float) Math.round(_0222_max);
 	}
+
+
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		s += Messages.build(SET_LIMITS, _0010_name, $(_0220_value), $(_0221_min), $(_0222_max));
-		if(vtype_show)
-			s += Messages.build(SET_VALUE_TYPE, _0010_name, _0250_vtype, $(_0251_precision));
 		if(_0260_nticks != 2)
 			s += Messages.build(SET_NBR_TICKS, _0010_name, $(_0260_nticks));
 		if(_0261_stick_to_ticks)
@@ -109,6 +105,6 @@ public class DValueControl extends DBase {
 
 	protected void read(){
 		super.read();
-		vtype_editor = new EditorJComboBox(VALUE_TYPE);
+//		vtype_editor = new EditorJComboBox(VALUE_TYPE);
 	}
 }

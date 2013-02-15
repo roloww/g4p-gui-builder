@@ -140,17 +140,22 @@ public interface TDataConstants {
 	String COLLAPSIBLE			=	"  {0}.setCollapsible({1});\n";
 	String DRAGGABLE			=	"  {0}.setDraggable({1});\n";
 
-	//		GTextField(PApplet theApplet, String text, int x, int y, int width, int height, boolean multiLine){
+	//		GTextField(PApplet theApplet, int x, int y, int width, int height, int scrollbar policy){
 	String CTOR_GTEXTFIELD		=	"  {0} = new GTextField({1}, {2}, {3}, {4}, {5}, {6});\n";
 	String CTOR_GTEXTAREA		=	"  {0} = new GTextArea({1}, {2}, {3}, {4}, {5}, {6});\n";
 	String SBAR_POLICY			= 	"";
 	
-	//		GHorzSlider(PApplet theApplet, int x, int y, int width, int height){
+	//		GSlider(PApplet theApplet, int x, int y, int width, int height, track thickness){
 	String CTOR_GSLIDER			=	"  {0} = new GSlider({1}, {2}, {3}, {4}, {5}, {6});\n";
+	//		GSlider2D(PApplet theApplet, int x, int y, int width, int height){
+	String CTOR_GSLIDER2D			=	"  {0} = new GSlider2D({1}, {2}, {3}, {4}, {5});\n";
+	
 	//											angle,  mode){	
-	String MAKE_VERT		=	"  {0}.setRotation({1}, CORNER);\n";
+	String MAKE_VERT		=	"  {0}.setRotation({1}, GControlMode.CORNER);\n";
 
 	String SET_LIMITS			=	"  {0}.setLimits({1}, {2}, {3});\n";
+	String SET_X_LIMITS			=	"  {0}.setLimitsX({1}, {2}, {3});\n";
+	String SET_Y_LIMITS			=	"  {0}.setLimitsY({1}, {2}, {3});\n";
 	String SET_VALUE_TYPE		=	"  {0}.setNumberFormat(G4P.{1}, {2});\n";
 	String SET_NBR_TICKS		=	"  {0}.setNbrTicks({1});\n";
 	String SET_STICK_TICKS		=	"  {0}.setStickToTicks({1});\n";
