@@ -19,14 +19,14 @@ import java.io.ObjectInputStream;
  */
 @SuppressWarnings("serial")
 public final class DApplication extends DBase {
-	
+
 	public String 		_0910_col_scheme = "BLUE_SCHEME";
 	transient public 	EditorBase col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 	public Boolean 		col_scheme_edit = true;
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
 	public String 		col_scheme_updater = "colourSchemeChange";
-	
+
 	public Boolean 		_0911_cursor  = true;
 	public Boolean 		cursor_edit = true;
 	public Boolean 		cursor_show = true;
@@ -39,7 +39,7 @@ public final class DApplication extends DBase {
 	public Boolean 		cursor_off_show = true;
 	public String 		cursor_off_label = "Cursor off image";
 
-	
+
 	/**
 	 * 
 	 */
@@ -70,17 +70,9 @@ public final class DApplication extends DBase {
 		else {
 			sb.append(Messages.build(SET_MOUSE_OVER_ON, _0911_cursor));		
 		}
-//		sb.append("  G4P.messagesEnabled(false);\n");
-//		sb.append(Messages.build("  G4P.setGlobalColorScheme(GCScheme.{0});\n", _0910_col_scheme));
-//		if(_0911_cursor) {
-//			sb.append(Messages.build("  G4P.setCursor({0});\n", _0912_cursor_off));
-//		}
-//		else {
-//			sb.append("  G4P.setMouseOverEnabled(false);\n");			
-//		}
 		return new String(sb);
 	}
-	
+
 	public String get_event_definition(){
 		return null;
 	}
@@ -99,13 +91,15 @@ public final class DApplication extends DBase {
 		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0910_col_scheme);
 		DBase.jpalette = GCScheme.getJavaColor(colScheme);
 	}
-	
+
 	protected void read(){
 		super.read();
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);		
+		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0910_col_scheme);
+		DBase.jpalette = GCScheme.getJavaColor(colScheme);
 	}
-	
+
 	private void readObject(ObjectInputStream in)
 	throws IOException, ClassNotFoundException
 	{

@@ -48,7 +48,7 @@ public final class ListGen implements TDataConstants {
 	}
 	
 	private void makeStickTypeSelection(int type) {
-		String[] s = new String[] {"X4", "X8", "ORIENT_RIGHT"};
+		String[] s = new String[] {"X4", "X8"};
 		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
