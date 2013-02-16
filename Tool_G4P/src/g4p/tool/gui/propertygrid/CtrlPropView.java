@@ -1,7 +1,7 @@
 package g4p.tool.gui.propertygrid;
 
 import g4p.tool.Messages;
-import g4p.tool.components.DBase;
+import g4p.tool.controls.DBase;
 import g4p.tool.gui.tabview.ITabView;
 import g4p.tool.gui.treeview.ISketchView;
 

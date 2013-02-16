@@ -3,8 +3,8 @@ package g4p.tool.gui.propertygrid;
 import java.io.Serializable;
 
 import g4p.tool.TDataConstants;
-import g4p.tool.components.ListGen;
-import g4p.tool.components.NameGen;
+import g4p.tool.controls.ListGen;
+import g4p.tool.controls.NameGen;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
