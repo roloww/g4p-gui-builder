@@ -12,6 +12,7 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p_controls.G4P;
 
+@SuppressWarnings("serial")
 public class DStick extends DBase {
 
 	protected static final float RAD90 = PApplet.radians(90);

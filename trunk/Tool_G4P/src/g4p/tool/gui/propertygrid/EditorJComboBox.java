@@ -20,6 +20,7 @@ import javax.swing.table.TableCellRenderer;
 @SuppressWarnings("serial")
 public class EditorJComboBox extends EditorBase {
 
+	@SuppressWarnings("rawtypes")
 	protected static JComboBox component = null;
 
 	protected JTable propTable = null;;
@@ -27,6 +28,7 @@ public class EditorJComboBox extends EditorBase {
 	
 	protected ItemListener listen = null;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public EditorJComboBox(int type){
 		validator = Validator.getValidator(type);
 		if(component == null)

@@ -4,6 +4,7 @@ package g4p.tool.controls;
 import g4p.tool.Messages;
 
 
+@SuppressWarnings("serial")
 public class DValue2D extends DValueBase {
 
 	public Float 		_0220_value_x = 0.5f;

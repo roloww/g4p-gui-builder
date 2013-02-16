@@ -4,6 +4,7 @@ import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 
+@SuppressWarnings("serial")
 public class DLinearTrack extends DValue1D {
 	
 

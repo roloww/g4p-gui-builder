@@ -6,6 +6,7 @@ import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p_controls.G4P;
 import g4p_controls.StyledString;
 
+@SuppressWarnings("serial")
 public class DTextAlign extends DTextBase {
 
 	public Boolean 		_0136_bold  = false;

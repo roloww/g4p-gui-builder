@@ -29,7 +29,6 @@ import processing.app.Editor;
 import processing.app.Sketch;
 import processing.app.SketchCode;
 import processing.core.PApplet;
-import processing.mode.java.preproc.PdePreprocessor;
 
 /**
  * Provides main functionality for using the tool.
@@ -66,9 +65,11 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		if(editor != null){
 			try {
 				editor.getBase();
+				editor.getBase();
 				// Get the start text for the gui tab
 				// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
-				File f = new File(editor.getBase().getSketchbookFolder() + SEP + GUI_PDE_BASE);
+				// File f = new File(editor.getBase().getSketchbookFolder() + SEP + GUI_PDE_BASE);
+				File f = new File(Base.getSketchbookFolder() + SEP + GUI_PDE_BASE);
 				guiPdeBase = Base.loadFile(f);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -260,8 +261,10 @@ public class GuiControl implements TFileConstants, TDataConstants {
 			SketchCode tab0 = sketch.getCurrentCode();
 			try {
 				editor.getBase();
+				editor.getBase();
 				// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
-				File f = new File(editor.getBase().getSketchbookFolder() + SEP + TAB0_PDE_BASE);
+				//File f = new File(editor.getBase().getSketchbookFolder() + SEP + TAB0_PDE_BASE);
+				File f = new File(Base.getSketchbookFolder() + SEP + TAB0_PDE_BASE);
 				String tab0code = Base.loadFile(f);
 				Dimension size = tree.getSketchSizeFromDesigner();
 				tab0code = tab0code.replace("WIDTH", "" + size.width);
@@ -341,7 +344,6 @@ public class GuiControl implements TFileConstants, TDataConstants {
 	 * @param tabName
 	 * @return
 	 */
-	@SuppressWarnings("unused")
 	private int getTabIndex(Sketch s, String tabName){
 		SketchCode[] tabs = s.getCode();
 		int index = -1;

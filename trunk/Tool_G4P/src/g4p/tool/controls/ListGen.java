@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
  * @author Peter Lager.
  *
  */
+@SuppressWarnings("rawtypes")
 public final class ListGen implements TDataConstants {
 
 
@@ -47,26 +48,31 @@ public final class ListGen implements TDataConstants {
 		makeStickTypeSelection(STICK_TYPE);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void makeStickTypeSelection(int type) {
 		String[] s = new String[] {"X4", "X8"};
 		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeTextOrientationSelection(int type) {
 		String[] s = new String[] {"ORIENT_TRACK", "ORIENT_LEFT", "ORIENT_RIGHT"};
 		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeValueTypeSelection(int type) {
 		String[] s = new String[] {"INTEGER", "DECIMAL", "EXPONENT"};
 		cbList.put(type,  new DefaultComboBoxModel(s));	
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeRendererSelection(int type) {
 		String[] s = new String[] {"JAVA2D", "P2D", "P3D"};		
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeColourSchemeSelection(int type){
 		String[] s = new String[] { "RED_SCHEME", "GREEN_SCHEME",  
 				"YELLOW_SCHEME", "PURPLE_SCHEME", "ORANGE_SCHEME", 
@@ -74,33 +80,39 @@ public final class ListGen implements TDataConstants {
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void makeCursorShapeSelection(int type){
 		String[] s = new String[] { "ARROW", "CROSS", 
 				"HAND", "MOVE", "TEXT", "WAIT" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeGWSliderSkinSelection(int type){
 		String[] s = new String[] { "grey_blue", "blue18px", 
 				"green_red20px", "purple18px", "red_yellow18px" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void makeKnobControllerSelection(int type){
 		String[] s = new String[] { "ANGULAR", "HORIZONTAL", "VERTICAL" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeHorzAlignSelection2(int type){
 		String[] s = new String[] { "LEFT", "RIGHT" };
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeHorzAlignSelection3(int type){
 		String[] s = new String[] { "LEFT", "RIGHT" , "CENTER"};
 		cbList.put(type,  new DefaultComboBoxModel(s));
 	}
 
+	@SuppressWarnings("unchecked")
 	private void makeVertAlignSelection(int type){
 		String[] s = new String[] { "TOP", "BOTTOM" , "MIDDLE"};
 		cbList.put(type,  new DefaultComboBoxModel(s));
