@@ -82,7 +82,7 @@ public class DStick extends DBase {
 		g.setTransform(af2);
 		
 		int delta = 2/mode;
-		for(int i = 0; i < 8; i++){
+		for(int i = 0; i < 8; i+= delta){
 			g.setStroke(selStroke);
 			g.setColor(DBase.jpalette[1]);
 			g.drawLine(0, 0, ledRingRad, 0);
