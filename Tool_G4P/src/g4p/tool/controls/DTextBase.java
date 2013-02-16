@@ -1,11 +1,7 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.EditorBase;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
-import g4p.tool.gui.propertygrid.EditorJFileChooser;
 import g4p.tool.gui.propertygrid.Validator;
-import g4p_controls.G4P;
 import g4p_controls.StyledString;
 import g4p_controls.StyledString.TextLayoutInfo;
 

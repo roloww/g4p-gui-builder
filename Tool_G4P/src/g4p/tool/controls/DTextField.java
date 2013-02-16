@@ -1,7 +1,6 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
@@ -11,13 +10,6 @@ import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
 public class DTextField extends DTextBase {
-
-//	public String 		_0030_text = "";
-//	public String 		text_label = "Text";
-//	public String 		text_tooltip = "initial text";
-//	public Boolean 		text_edit = true;
-//	public Boolean 		text_show = true;
-//	public Validator 	text_validator = Validator.getDefaultValidator(String.class);
 
 	public String 		_0132_dtext = "";
 	public String 		dtext_label = "Default Text";

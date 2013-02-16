@@ -5,6 +5,7 @@ import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
+@SuppressWarnings("serial")
 public class DValueBase extends DBase {
 
 	public String 		_0250_vtype = "DECIMAL";

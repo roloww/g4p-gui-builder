@@ -25,9 +25,8 @@
 package g4p.tool;
 
 import g4p.tool.gui.GuiDesigner;
-import g4p_controls.*;
+import g4p_controls.GCScheme;
 
-import java.awt.Color;
 import java.io.File;
 
 import javax.swing.JFrame;

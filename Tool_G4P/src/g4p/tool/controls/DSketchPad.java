@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 
+@SuppressWarnings("serial")
 public class DSketchPad extends DBase {
 
 	transient public BufferedImage icon;

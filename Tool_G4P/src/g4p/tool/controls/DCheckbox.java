@@ -2,8 +2,6 @@ package g4p.tool.controls;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.ToolImage;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
-import g4p.tool.gui.propertygrid.EditorJFileChooser;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;

@@ -1,9 +1,6 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.ToolImage;
-import g4p.tool.gui.propertygrid.EditorBase;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
 
 import java.awt.Color;

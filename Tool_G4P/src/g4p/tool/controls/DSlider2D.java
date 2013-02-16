@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+@SuppressWarnings("serial")
 public class DSlider2D extends DValue2D {
 
 	public DSlider2D(){

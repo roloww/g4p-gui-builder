@@ -1,7 +1,6 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.GuiDesigner;
 import g4p.tool.gui.propertygrid.EditorBase;
 import g4p.tool.gui.propertygrid.EditorStringList;
 import g4p.tool.gui.propertygrid.Validator;

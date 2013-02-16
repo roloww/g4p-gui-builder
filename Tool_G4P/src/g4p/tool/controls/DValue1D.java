@@ -1,10 +1,9 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
-import g4p.tool.gui.propertygrid.EditorBase;
-import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
+@SuppressWarnings("serial")
 public class DValue1D extends DValueBase {
 
 	public Float 		_0220_value = 0.5f;
@@ -28,21 +27,6 @@ public class DValue1D extends DValueBase {
 	public Boolean 		max_show = true;
 	public String 		max_updater = "validateLimits";
 	
-//	public String 		_0250_vtype = "DECIMAL";
-//	transient public EditorBase vtype_editor = new EditorJComboBox(VALUE_TYPE);
-//	public String 		vtype_label = "Value type to display";
-//	public Boolean 		vtype_edit = true;
-//	public Boolean 		vtype_show = true;
-//	public String		vtype_updater = "validateType";
-//	
-//	public Integer 		_0251_precision = 2;
-//	public String 		precision_label = "Numeric precision";
-//	public String 		precision_tooltip = "precision to display";
-//	public Boolean 		precision_edit = true;
-//	public Boolean 		precision_show = true;
-//	public Validator 	precision_validator = Validator.getValidator(int.class, 0, 4);
-//	public String		precision_updater = "validateType";
-
 	public Integer 		_0260_nticks = 2;
 	public String 		nticks_label = "Number of ticks";
 	public String 		nticks_tooltip = "must be at least 2";

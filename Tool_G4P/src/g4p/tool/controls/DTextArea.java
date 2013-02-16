@@ -7,6 +7,7 @@ import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+@SuppressWarnings("serial")
 public class DTextArea extends DTextField {
 
 	public Boolean 		_0187_vert_scrollbar = false;

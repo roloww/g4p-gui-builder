@@ -526,6 +526,7 @@ public abstract class Validator implements TDataConstants, Serializable {
 
 		// The first argument should be the combo box cell editor
 		// the second value the selected item
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public void preEditAction(Object ...args){
 			EditorJComboBox.component.setModel((ComboBoxModel) list) ;
 			EditorJComboBox.component.setSelectedItem(args[1].toString());
