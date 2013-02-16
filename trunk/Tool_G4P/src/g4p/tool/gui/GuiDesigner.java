@@ -304,7 +304,6 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnOptGroup = new javax.swing.JButton();
         btnDropList = new javax.swing.JButton();
         btnSketchPad = new javax.swing.JButton();
-        btnOutput = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnScale = new javax.swing.JButton();
@@ -443,7 +442,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnSlider);
 
         btnCoolSlider.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolCoolSlider.png"))); // NOI18N
-        btnCoolSlider.setToolTipText("Cool Slider");
+        btnCoolSlider.setToolTipText("Custom Slider");
         btnCoolSlider.setFocusable(false);
         btnCoolSlider.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCoolSlider.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -455,6 +454,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnCoolSlider);
 
         btnSlider2D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSlider2D.png"))); // NOI18N
+        btnSlider2D.setToolTipText("2D Slider");
         btnSlider2D.setFocusable(false);
         btnSlider2D.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSlider2D.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -466,6 +466,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnSlider2D);
 
         btnStick.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolStick.png"))); // NOI18N
+        btnStick.setToolTipText("Stick");
         btnStick.setFocusable(false);
         btnStick.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnStick.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -537,6 +538,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnDropList);
 
         btnSketchPad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolSketchPad.png"))); // NOI18N
+        btnSketchPad.setToolTipText("Sketchpad");
         btnSketchPad.setFocusable(false);
         btnSketchPad.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSketchPad.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -546,12 +548,6 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnSketchPad);
-
-        btnOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolOutput.png"))); // NOI18N
-        btnOutput.setFocusable(false);
-        btnOutput.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnOutput.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        tbarComponents.add(btnOutput);
 
         btnTimer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolTimer.png"))); // NOI18N
         btnTimer.setToolTipText("Timer");
@@ -988,7 +984,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnLabel;
     private javax.swing.JButton btnOptGroup;
     private javax.swing.JButton btnOption;
-    private javax.swing.JButton btnOutput;
     private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnScale;

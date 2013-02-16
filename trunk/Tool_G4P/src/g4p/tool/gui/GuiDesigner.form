@@ -336,7 +336,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/g4p/toolCoolSlider.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Cool Slider"/>
+            <Property name="toolTipText" type="java.lang.String" value="Custom Slider"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -350,6 +350,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/g4p/toolSlider2D.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="2D Slider"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -363,6 +364,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/g4p/toolStick.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Stick"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -446,6 +448,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/g4p/toolSketchPad.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Sketchpad"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
@@ -453,16 +456,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSketchPadActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnOutput">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/g4p/toolOutput.png"/>
-            </Property>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnTimer">
           <Properties>
