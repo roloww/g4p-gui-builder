@@ -1,6 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.components.DBase;
+import g4p.tool.controls.DBase;
 
 /**
  * Interface for the property view.

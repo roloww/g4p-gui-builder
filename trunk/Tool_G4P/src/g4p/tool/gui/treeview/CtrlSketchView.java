@@ -1,14 +1,14 @@
 package g4p.tool.gui.treeview;
 
-import g4p.tool.components.DApplication;
-import g4p.tool.components.DBase;
-import g4p.tool.components.DOption;
-import g4p.tool.components.DToggleGroup;
-import g4p.tool.components.DPanel;
-import g4p.tool.components.DTimer;
-import g4p.tool.components.DWindow;
-import g4p.tool.components.IdGen;
-import g4p.tool.components.NameGen;
+import g4p.tool.controls.DApplication;
+import g4p.tool.controls.DBase;
+import g4p.tool.controls.DOption;
+import g4p.tool.controls.DPanel;
+import g4p.tool.controls.DTimer;
+import g4p.tool.controls.DToggleGroup;
+import g4p.tool.controls.DWindow;
+import g4p.tool.controls.IdGen;
+import g4p.tool.controls.NameGen;
 import g4p.tool.gui.ToolIcon;
 import g4p.tool.gui.propertygrid.IPropView;
 import g4p.tool.gui.tabview.ITabView;

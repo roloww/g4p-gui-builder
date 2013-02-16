@@ -7,8 +7,8 @@ package g4p.tool.gui.tabview;
 
 import g4p.tool.Messages;
 import g4p.tool.TGuiConstants;
-import g4p.tool.components.DBase;
-import g4p.tool.components.DWindow;
+import g4p.tool.controls.DBase;
+import g4p.tool.controls.DWindow;
 
 import java.awt.Color;
 import java.awt.Cursor;

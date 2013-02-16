@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
-import g4p.tool.components.DBase;
+import g4p.tool.controls.DBase;
 
 /** 
  * 

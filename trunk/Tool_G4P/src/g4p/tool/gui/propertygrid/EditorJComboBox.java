@@ -1,6 +1,6 @@
 package g4p.tool.gui.propertygrid;
 
-import g4p.tool.components.ListGen;
+import g4p.tool.controls.ListGen;
 
 import java.awt.Component;
 import java.awt.event.ItemEvent;

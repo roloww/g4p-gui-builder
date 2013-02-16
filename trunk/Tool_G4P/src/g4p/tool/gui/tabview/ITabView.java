@@ -1,6 +1,6 @@
 package g4p.tool.gui.tabview;
 
-import g4p.tool.components.DBase;
+import g4p.tool.controls.DBase;
 
 public interface ITabView {
 
