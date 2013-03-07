@@ -60,7 +60,7 @@ public class DSlider extends DLinearTrack {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		int thick, topY, leftX;
@@ -71,18 +71,18 @@ public class DSlider extends DLinearTrack {
 			leftX =  (_0826_width - thick) /2;
 			topY = (_0827_height - thick) /2;
 			// Track
-			g.setColor(DBase.jpalette[5]);
+			g.setColor(jpalette[5]);
 			g.fillRect(leftX, 2, thick, _0827_height - 4);
 		}
 		else {
 			leftX =  (_0826_width - thick) /2;
 			topY = (_0827_height - thick) /2;
 			// track
-			g.setColor(DBase.jpalette[5]);
+			g.setColor(jpalette[5]);
 			g.fillRect(2, topY, _0826_width - 4, thick);
 		}
 		// thumb
-		g.setColor(DBase.jpalette[0]);
+		g.setColor(jpalette[0]);
 		g.fillRect(leftX, topY, thick, thick);
 		
 		if(this == selected)

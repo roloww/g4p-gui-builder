@@ -27,8 +27,14 @@ public final class DWindow extends DBase {
 	public String 		_0021_renderer = "JAVA2D";
 	public String 		renderer_label = "Renderer";
 	transient public EditorBase renderer_editor = new EditorJComboBox(RENDERER);
-	public Boolean 		renderer_edit = false;
-	public Boolean 		renderer_show = false;
+	public Boolean 		renderer_edit = true;
+	public Boolean 		renderer_show = true;
+
+	public String 		_0022_close_action = "KEEP_OPEN";
+	public String 		close_action_label = "Action on close";
+	transient public EditorBase close_action_editor = new EditorJComboBox(CLOSE_ACTION);
+	public Boolean 		close_action_edit = false;
+	public Boolean 		close_action_show = false;
 
 	public int 			_0025_Display_scale = 100;
 	public String		Display_scale_label = "Scale (%)";
@@ -111,6 +117,7 @@ public final class DWindow extends DBase {
 			name_edit = true;
 			x_edit = y_edit = true;
 			x_show = y_show = true;	
+			close_action_edit = close_action_show = true;
 			_0826_width = 240;
 			_0827_height = 120;
 			
@@ -203,8 +210,10 @@ public final class DWindow extends DBase {
 			sb.append(Messages.build(SET_SKETCH_TITLE, _0011_title));
 		}
 		else {
-			sb.append(Messages.build(CTOR_WINDOW_1, _0010_name, "this", _0011_title,
+			sb.append(Messages.build(CTOR_WINDOW, _0010_name, "this", _0011_title,
 					$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), false, _0021_renderer));
+			if(!_0022_close_action.equals("KEEP_OPEN"))
+				sb.append(Messages.build(SET_ACTION_ON_CLOSE, _0010_name, _0022_close_action));
 			if(_0012_wdraw.length() > 0){
 				sb.append(Messages.build(ADD_DRAW_HANDLER, _0010_name, "this", _0012_wdraw));
 			}
@@ -259,6 +268,7 @@ public final class DWindow extends DBase {
 	protected void read(){
 		super.read();
 		renderer_editor = new EditorJComboBox(RENDERER);
+		close_action_editor = new EditorJComboBox(CLOSE_ACTION);
 	}
 	
 	private void readObject(ObjectInputStream in)
@@ -277,7 +287,7 @@ public final class DWindow extends DBase {
 		g.setStroke(stdStroke);
 		g.setColor(bgCol);
 		g.fillRect(0, 0, _0826_width, _0827_height);
-		g.setColor(DBase.jpalette[14]);
+		g.setColor(DBase.globalJpalette[14]);
 		g.drawRect(0, 0, _0826_width, _0827_height);
 		if(this == selected)
 			drawSelector(g);

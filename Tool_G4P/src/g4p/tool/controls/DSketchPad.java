@@ -50,7 +50,7 @@ public class DSketchPad extends DBase {
 		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		g.setColor(DBase.jpalette[6]);
+		g.setColor(DBase.globalJpalette[6]);
 		g.fillRect(0, 0, _0826_width, _0827_height);
 		g.drawImage(icon, 0, 0, _0826_width, _0827_height, null);
 		g.setStroke(stdStroke);

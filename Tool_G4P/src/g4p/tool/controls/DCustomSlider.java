@@ -25,7 +25,6 @@ public class DCustomSlider extends DLinearTrack {
 		set_name(NameGen.instance().getNext("custom_slider"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_change"));
 		_0826_width = 100;
-		height_show = height_edit = false;
 		_0827_height = 40;
 	}
 
@@ -50,8 +49,6 @@ public class DCustomSlider extends DLinearTrack {
 		}
 		s = Messages.build(CTOR_GCUSTOMSLIDER, _0010_name, window, 
 				x, y, w, h, _0900_skin);
-//		s = Messages.build(CTOR_GCUSTOMSLIDER, _0010_name, window,
-//				$(_0120_x), $(_0121_y), $(_0130_width), $(_0131_height), _0620_skin);
 		s += super.get_creator(parent, window);		
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
@@ -66,12 +63,19 @@ public class DCustomSlider extends DLinearTrack {
 		int cy = _0827_height/2;
 		
 		g.setStroke(stdStroke);
-		
-		g.setColor(csdrBack);
-		g.fillRect(0, 0, _0826_width, _0827_height);
-		g.setColor(csdrBorder);
+	
+
+		if(_0600_opaque){
+			g.setColor(jpalette[6]);
+			g.fillRect(0, 0, _0826_width, _0827_height);
+		}
+		else {
+			g.setColor(csdrBack);
+			g.fillRect(0, 0, _0826_width, _0827_height);
+		}
+		g.setColor(jpalette[5]);
 		g.drawRect(0, 0, _0826_width, _0827_height);
-		
+
 		if(_0640_vert){
 			g.setColor(csdrSlideBack);
 			g.fillRect((_0826_width - 10)/2, 0, 10, _0827_height);

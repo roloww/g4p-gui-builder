@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DDropList extends DBase {
+public class DDropList extends DBaseVisual {
 
 	public int	 		_0680_nbr_rows = 3;
 	public Boolean 		nbr_rows_edit = true;
@@ -48,9 +48,20 @@ public class DDropList extends DBase {
 		
 		width_validator = Validator.getValidator(int.class, 40, 9999);
 		height_validator = Validator.getValidator(int.class, 40, 9999);
+	}
+
+	protected String get_creator(DBase parent, String window){
+		String s = "";
+		s = Messages.build(CTOR_DROPLIST, _0010_name, window, 
+					 $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height * _0680_nbr_rows) , $(_0680_nbr_rows));	
+		s += Messages.build(CTOR_SET_LIST,  _0010_name, _0682_list_file, $(_0681_selected));
+		s += super.get_creator(parent, window);
 		
+		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
+		return s;
 	}
 	
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0820_x, _0821_y);
@@ -61,18 +72,18 @@ public class DDropList extends DBase {
 			g.setColor(Color.WHITE);
 			g.fillRect(0, _0827_height, _0826_width, _0827_height * _0680_nbr_rows);
 			// Draw row borders
-			g.setColor(DBase.jpalette[4]);
+			g.setColor(jpalette[4]);
 			for(int i = 1; i <= _0680_nbr_rows; i++)
 				g.drawRect(0, _0827_height * i, _0826_width, _0827_height);
 		}
 		// Main all text back
-		g.setColor(DBase.jpalette[6]);
+		g.setColor(jpalette[6]);
 		g.fillRect(0, 0, _0826_width, _0827_height);
 		// Draw thumb
-		g.setColor(DBase.jpalette[0]);
+		g.setColor(jpalette[0]);
 		g.fillRect(_0826_width - _0827_height, 0, _0827_height, _0827_height);
 		// Draw selected text
-		g.setColor(DBase.jpalette[2]);
+		g.setColor(jpalette[2]);
 		g.drawRect(0, 0, _0826_width, _0827_height);
 		g.drawString(this._0010_name, 4, 12 );
 
@@ -84,17 +95,6 @@ public class DDropList extends DBase {
 			g.drawRect(0, 0, _0826_width, _0827_height);		
 		}
 		g.setTransform(paf);
-	}
-	
-	protected String get_creator(DBase parent, String window){
-		String s = "";
-		s = Messages.build(CTOR_DROPLIST, _0010_name, window, 
-					 $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height * _0680_nbr_rows) , $(_0680_nbr_rows));	
-		s += Messages.build(CTOR_SET_LIST,  _0010_name, _0682_list_file, $(_0681_selected));
-		s += super.get_creator(parent, window);
-		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
-		return s;
 	}
 	
 	protected void read(){

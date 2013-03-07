@@ -50,6 +50,14 @@ public class DValue2D extends DValueBase {
 	public String 		max_y_updater = "validateLimits_y";
 	
 	
+	protected String get_creator(DBase parent, String window){
+		String s = "";
+		s += Messages.build(SET_X_LIMITS, _0010_name, $(_0220_value_x), $(_0221_min_x), $(_0222_max_x));
+		s += Messages.build(SET_Y_LIMITS, _0010_name, $(_0225_value_y), $(_0226_min_y), $(_0227_max_y));
+		s += super.get_creator(parent, window);
+		return s;
+	}
+
 	
 	public void validateLimits_x(){
 		float t = (_0220_value_x - _0221_min_x)/(_0222_max_x - _0221_min_x);
@@ -74,8 +82,6 @@ public class DValue2D extends DValueBase {
 			propertyModel.hasBeenChanged();			
 		}
 	}
-	
-
 
 	protected void roundValueAndLimits(){
 		_0220_value_x = (float) Math.round(_0220_value_x);
@@ -87,11 +93,5 @@ public class DValue2D extends DValueBase {
 	}
 
 
-	protected String get_creator(DBase parent, String window){
-		String s = "";
-		s += Messages.build(SET_X_LIMITS, _0010_name, $(_0220_value_x), $(_0221_min_x), $(_0222_max_x));
-		s += Messages.build(SET_Y_LIMITS, _0010_name, $(_0225_value_y), $(_0226_min_y), $(_0227_max_y));
-		return s;
-	}
 
 }

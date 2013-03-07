@@ -49,7 +49,7 @@ public class DLabel extends DTextIconAlign {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		g.setStroke(stdStroke);

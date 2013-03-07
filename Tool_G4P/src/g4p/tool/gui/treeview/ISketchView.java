@@ -41,25 +41,27 @@ public interface ISketchView {
 	 * @return
 	 */
 	
-	public abstract DBase getRoot();
+	public DBase getRoot();
 	
-	public abstract void addComponent(DBase comp);
+	public void addComponent(DBase comp);
 	
-	public abstract void removeComponent();
+	public void removeComponent();
 	
-	public abstract void saveModel(File file);
+	public void saveModel(File file);
 	
-	public abstract DefaultTreeModel loadModel(File file);
+	public DefaultTreeModel loadModel(File file);
 
-	public abstract void setModel(TreeModel m);
+	public void setModel(TreeModel m);
 	
-	public abstract void generateDeclarations(ArrayList<String> lines);
+	public void generateDeclarations(ArrayList<String> lines);
 	
-	public abstract void generateEvtMethods(ArrayList<String> lines);
+	public void generateEvtMethods(ArrayList<String> lines);
 	
-	public abstract void generateCreator(ArrayList<String> lines);
+	public void generateCreator(ArrayList<String> lines);
 	
 	public Dimension getSketchSizeFromDesigner();
+	
+	public String getSketchRendererFromDesigner();
 	
 	
 }

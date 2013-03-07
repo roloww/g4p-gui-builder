@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 @SuppressWarnings("serial")
-public class DPanel extends DTextBase {  // was DTextIcon now DText since no icon for this control
+public class DPanel extends DTextAlign {  // was DTextIcon now DText since no icon for this control
 
 	final protected static int TAB_HEIGHT = 20;
 
@@ -39,6 +39,8 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 		set_name(NameGen.instance().getNext("panel"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		allowsChildren = true;
+		text_x_alignment_edit = text_x_alignment_show = false;
+		text_y_alignment_edit = text_y_alignment_show = false;
 		_0130_text = "Tab bar text";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
@@ -73,6 +75,8 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 			s += Messages.build(COLLAPSIBLE, _0010_name, _0301_collapsible);
 		if(!_0310_draggable)
 			s += Messages.build(DRAGGABLE, _0010_name, _0310_draggable);
+		s += super.get_creator(parent, window);		
+
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
@@ -105,16 +109,16 @@ public class DPanel extends DTextBase {  // was DTextIcon now DText since no ico
 
 		// Panel back
 		if(!_0300_collapsed){
-			g.setColor(DBase.jpalette[5]);
+			g.setColor(jpalette[5]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 
 		// Tab
-		g.setColor(DBase.jpalette[3]);
+		g.setColor(jpalette[3]);
 		g.fillRect(0, 0, _0826_width, TAB_HEIGHT);
 
 		// Text
-		g.setColor(DBase.jpalette[12]);
+		g.setColor(jpalette[12]);
 		g.drawString(_0010_name, 2, 12);
 		if(this == selected)
 			drawSelector(g);

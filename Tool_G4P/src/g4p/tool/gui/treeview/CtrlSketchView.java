@@ -143,6 +143,13 @@ public class CtrlSketchView extends JTree implements ISketchView {
 		return new Dimension(t0._0826_width, t0._0827_height);
 	}
 
+	@Override
+	public String getSketchRendererFromDesigner(){
+		DefaultTreeModel m = (DefaultTreeModel) getModel();
+		DWindow t0 = (DWindow) ((DefaultMutableTreeNode) m.getRoot()).getFirstChild();	
+		return t0._0021_renderer;
+	}
+
 	/**
 	 * Certain rules must apply
 	 * 1) All window components are added to the application node (root)
