@@ -46,8 +46,15 @@ public final class ListGen implements TDataConstants {
 		makeValueTypeSelection(VALUE_TYPE);	
 		makeTextOrientationSelection(TEXT_ORIENT);
 		makeStickTypeSelection(STICK_TYPE);
+		makeCloseActionSelection(CLOSE_ACTION);
 	}
 	
+	@SuppressWarnings("unchecked")
+	private void makeCloseActionSelection(int type) {
+		String[] s = new String[] {"KEEP_OPEN", "CLOSE_WINDOW", "EXIT_APP"};
+		cbList.put(type,  new DefaultComboBoxModel(s));	
+	}
+
 	@SuppressWarnings("unchecked")
 	private void makeStickTypeSelection(int type) {
 		String[] s = new String[] {"X4", "X8"};

@@ -17,6 +17,7 @@ public interface TDataConstants {
 	int VALUE_TYPE			=	0x0000002A;
 	int TEXT_ORIENT			= 	0x0000002B;
 	int STICK_TYPE			= 	0x0000002C;
+	int CLOSE_ACTION		= 	0x0000002D;
 	
 	int VALID				=	0x00000040;
 	int INVALID_LENGTH		=	0x00000041;
@@ -86,10 +87,12 @@ public interface TDataConstants {
 	String SET_TEXT_BOLD		=	"  {0}.setTextBold();\n";
 	String SET_TEXT_ITALIC		=	"  {0}.setTextItalic();\n";
 	String SET_OPAQUE			=	"  {0}.setOpaque({1});\n";
+	String SET_ACTION_ON_CLOSE	=	"  {0}.setActionOnClose(G4P.{1});\n";
+	String SET_LOCAL_COLOR		=	"  {0}.setLocalColorScheme(GCScheme.{1});\n";
 
 	
 	// 		GWindow(PApplet theApplet, String name, int x, int y, int w, int h, boolean noFrame, String mode)
-	String CTOR_WINDOW_1		=	"  {0} = new GWindow({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
+	String CTOR_WINDOW				=	"  {0} = new GWindow({1}, \"{2}\", {3}, {4}, {5}, {6}, {7}, {8});\n";
 	
 	//		GButton(PApplet theApplet, String text, int x, int y, int width, int height)
 	String CTOR_GBUTTON		=	"  {0} = new GButton({1}, {2}, {3}, {4}, {5});\n";

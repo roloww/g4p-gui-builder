@@ -89,9 +89,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	// The name of the equivalent class in G4P
 	public String componentClass = "";
 
-	public static int colScheme = 6; // Blue
-	
-	public static Color[] jpalette = GCScheme.getJavaColor(colScheme);
+	// Global Colour scheme
+	public static int globalColorScheme = GCScheme.BLUE_SCHEME; // Blue
+	public static Color[] globalJpalette = GCScheme.getJavaColor(globalColorScheme);
 	
 	// Unique id numbers to identify event handlers and used to capture
 	// user code.
@@ -398,10 +398,12 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	 */
 	public void isOver(MutableDBase m, int x, int y) {
 		if(selectable){
-			x -= _0820_x;
-			y -= _0821_y;
-			
-			if(getSize() < m.area && isOverRectangle(x, y, 0, 0, _0826_width, _0827_height)){			
+			if(! (this instanceof DWindow)){
+				x -= _0820_x;
+				y -= _0821_y;
+			}
+			// Pick smallest topmost
+			if(getSize() <= m.area && isOverRectangle(x, y, 0, 0, _0826_width, _0827_height)){			
 				m.selID = OVER_COMP;
 				m.comp = this;
 				m.area = getSize();

@@ -30,10 +30,10 @@ public class DButton extends DTextIconAlign {
 		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 		
-		g.setColor(DBase.jpalette[4]);
+		g.setColor(jpalette[4]);
 		g.fillRect(0, 0, _0826_width, _0827_height);
 		g.setStroke(stdStroke);
-		g.setColor(DBase.jpalette[3]);
+		g.setColor(jpalette[3]);
 		g.drawRect(0, 0, _0826_width, _0827_height);
 
 		super.draw(g, paf, selected);

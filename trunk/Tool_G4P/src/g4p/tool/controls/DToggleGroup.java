@@ -22,7 +22,7 @@ public class DToggleGroup extends DBase {
 		name_label = "Variable name";
 		name_tooltip = "Java naming rules apply";
 		name_edit = true;
-		
+		x_show = y_show = width_show = height_show = false;
 		allowsChildren = true;
 	}
 	

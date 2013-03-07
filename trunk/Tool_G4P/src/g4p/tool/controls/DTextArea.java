@@ -1,6 +1,7 @@
 package g4p.tool.controls;
 
 import g4p.tool.Messages;
+import g4p.tool.gui.propertygrid.Validator;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -8,13 +9,29 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 @SuppressWarnings("serial")
-public class DTextArea extends DTextField {
+public class DTextArea extends DTextBase {
+
+	public String 		_0132_dtext = "";
+	public String 		dtext_label = "Default Text";
+	public String 		dtext_tooltip = "text to show when empty";
+	public Boolean 		dtext_edit = true;
+	public Boolean 		dtext_show = true;
+	public Validator 	dtext_validator = Validator.getDefaultValidator(String.class);
+
+	public Boolean 		_0186_horz_scrollbar = false;
+	public String		horz_scrollbar_label = "Horizontal scrollbar?";
+	public Boolean 		horz_scrollbar_edit = true;
+	public Boolean 		horz_scrollbar_show = true;
 
 	public Boolean 		_0187_vert_scrollbar = false;
 	public String		vert_scrollbar_label = "Vertical scrollbar?";
 	public Boolean 		vert_scrollbar_edit = true;
 	public Boolean 		vert_scrollbar_show = true;
 
+	public Boolean 		_0188_hide_scrollbar = false;
+	public String		hide_scrollbar_label = "Auto-hide scrollbar?";
+	public Boolean 		hide_scrollbar_edit = true;
+	public Boolean 		hide_scrollbar_show = true;
 
 	public DTextArea(){
 		super();
@@ -45,12 +62,16 @@ public class DTextArea extends DTextField {
 		}
 		s = Messages.build(CTOR_GTEXTAREA, _0010_name, window, 
 				_0820_x, _0821_y, _0826_width, _0827_height, sbpolicy);
-		if(_0130_text.length() > 0)
-			s += Messages.build(SET_TEXT, _0010_name, _0130_text);
+//		if(_0130_text.length() > 0)
+//			s += Messages.build(SET_TEXT, _0010_name, _0130_text);
 		if(_0132_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
-		if(!_0600_opaque)
-			s += Messages.build(SET_OPAQUE, _0600_opaque);
+//		if(!_0600_opaque)
+//			s += Messages.build(SET_OPAQUE, _0600_opaque);
+//		if(colScheme != DBase.globalColorScheme)
+//			s += Messages.build(SET_LOCAL_COLOR, _0010_name, _0940_col_scheme);
+		s += super.get_creator(parent, window);		
+
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
@@ -61,29 +82,22 @@ public class DTextArea extends DTextField {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
-		g.setColor(DBase.jpalette[6]);
+		g.setColor(jpalette[6]);
 		g.fillRect(1, 1, _0826_width-2, _0827_height-2);
 		g.setStroke(stdStroke);
 
-//		g.setStroke(stdStroke);
-//		g.setColor(txfBack);
-//		g.fillRect(0, 0, _0130_width, _0131_height);
-//		g.setColor(blackEdge);
-//		g.drawRect(0, 0, _0130_width, _0131_height);
-		
-		g.setColor(DBase.jpalette[2]);
+		g.setColor(jpalette[2]);
 		g.drawString(this._0010_name, 4, 12 );
 
-		g.setColor(DBase.jpalette[3]);
+		g.setColor(jpalette[3]);
 		if(_0186_horz_scrollbar)
 			g.fillRect(2, _0827_height - 12, _0826_width-4, 10);
 		if(_0187_vert_scrollbar)
 			g.fillRect(_0826_width - 12, 2, 10, _0827_height - 12);
-		
-		
+
 		if(this == selected)
 			drawSelector(g);
 		else {

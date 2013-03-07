@@ -64,8 +64,8 @@ public class GuiControl implements TFileConstants, TDataConstants {
 		this.props = props;
 		if(editor != null){
 			try {
-				editor.getBase();
-				editor.getBase();
+//				editor.getBase();
+//				editor.getBase();
 				// Get the start text for the gui tab
 				// 1.5.1 format used here in 2.0b6 use Base.getSketchbookFolder
 				// File f = new File(editor.getBase().getSketchbookFolder() + SEP + GUI_PDE_BASE);
@@ -267,8 +267,10 @@ public class GuiControl implements TFileConstants, TDataConstants {
 				File f = new File(Base.getSketchbookFolder() + SEP + TAB0_PDE_BASE);
 				String tab0code = Base.loadFile(f);
 				Dimension size = tree.getSketchSizeFromDesigner();
+				String graphics = tree.getSketchRendererFromDesigner();
 				tab0code = tab0code.replace("WIDTH", "" + size.width);
 				tab0code = tab0code.replace("HEIGHT", "" + size.height);
+				tab0code = tab0code.replace("RENDERER", graphics);
 				editor.setText(tab0code);
 				tab0.setProgram(tab0code);
 				sketch.setModified(true);

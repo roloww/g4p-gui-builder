@@ -57,8 +57,12 @@ public class DTextField extends DTextBase {
 //			s += Messages.build(SET_TEXT, _0010_name, _0030_text);
 		if(_0132_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
-		if(!_0600_opaque)
-			s += Messages.build(SET_OPAQUE, _0600_opaque);
+//		if(!_0600_opaque)
+//			s += Messages.build(SET_OPAQUE, _0600_opaque);
+//		if(colScheme != DBase.globalColorScheme)
+//			s += Messages.build(SET_LOCAL_COLOR, _0010_name, _0940_col_scheme);
+		s += super.get_creator(parent, window);		
+
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
@@ -69,24 +73,18 @@ public class DTextField extends DTextBase {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
-		g.setColor(DBase.jpalette[6]);
+		g.setColor(jpalette[6]);
 		g.fillRect(1, 1, _0826_width-2, _0827_height-2);
 		g.setStroke(stdStroke);
 
-//		g.setStroke(stdStroke);
-//		g.setColor(txfBack);
-//		g.fillRect(0, 0, _0130_width, _0131_height);
-//		g.setColor(blackEdge);
-//		g.drawRect(0, 0, _0130_width, _0131_height);
-		
-		g.setColor(DBase.jpalette[2]);
+		g.setColor(jpalette[2]);
 		g.drawString(this._0010_name, 4, 12 );
 
 		if(_0186_horz_scrollbar){
-			g.setColor(DBase.jpalette[3]);
+			g.setColor(jpalette[3]);
 			g.fillRect(2, _0827_height - 12, _0826_width-4, 10);
 		}
 		

@@ -33,24 +33,24 @@ public class DSlider2D extends DValue2D {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 
 		int cx = _0826_width/3;
 		int cy = _0827_height/3;
 		int hs = 4, s = 8;
-		g.setColor(DBase.jpalette[15]);
+		g.setColor(jpalette[15]);
 		g.drawLine(cx, 0, cx, _0827_height);
 		g.drawLine(0, cy, _0826_width, cy);
 		
-		g.setColor(DBase.jpalette[3]);
+		g.setColor(jpalette[3]);
 		g.fillRect(cx - hs, cy - hs, s, s);
-		g.setColor(DBase.jpalette[15]);
+		g.setColor(jpalette[15]);
 		g.setStroke(stdStroke);
 		g.drawRect(cx - hs, cy - hs, s, s);
 
-		g.setColor(DBase.jpalette[2]);
+		g.setColor(jpalette[2]);
 		g.setStroke(stdStroke);
 		g.drawRect(0, 0, _0826_width, _0827_height);
 

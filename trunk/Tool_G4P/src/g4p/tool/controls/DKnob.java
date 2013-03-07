@@ -117,7 +117,7 @@ public class DKnob extends DValue1D {
 		g.setTransform(af);
 		
 		if(_0600_opaque){
-			g.setColor(DBase.jpalette[6]);
+			g.setColor(jpalette[6]);
 			g.fillRect(0, 0, _0826_width, _0827_height);
 		}
 		af.translate(_0826_width/2, _0827_height/2);
@@ -125,13 +125,13 @@ public class DKnob extends DValue1D {
 
 		int s = Math.min(_0826_width, _0827_height), hs = s/2;
 		// Bezel
-		g.setColor(DBase.jpalette[5]);
+		g.setColor(jpalette[5]);
 		g.fillOval(-hs, -hs, s, s);
 		// grip
 		int gs = Math.round(0.7f * s), hgs = gs/2;
-		g.setColor(DBase.jpalette[4]);
+		g.setColor(jpalette[4]);
 		g.fillOval(-hgs, -hgs, gs, gs);
-		g.setColor(DBase.jpalette[14]);
+		g.setColor(jpalette[14]);
 		// Needle
 		g.setStroke(needleStroke);
 		g.drawLine(0, 0, Math.round(0.707f*hs), Math.round(0.707f*hs));

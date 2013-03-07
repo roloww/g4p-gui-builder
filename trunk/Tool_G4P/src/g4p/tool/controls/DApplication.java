@@ -20,20 +20,20 @@ import java.io.ObjectInputStream;
 @SuppressWarnings("serial")
 public final class DApplication extends DBase {
 
-	public String 		_0910_col_scheme = "BLUE_SCHEME";
+	public String 		_0950_col_scheme = "BLUE_SCHEME";
 	transient public 	EditorBase col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 	public Boolean 		col_scheme_edit = true;
 	public Boolean 		col_scheme_show = true;
 	public String 		col_scheme_label = "Colour scheme";
 	public String 		col_scheme_updater = "colourSchemeChange";
 
-	public Boolean 		_0911_cursor  = true;
+	public Boolean 		_0951_cursor  = true;
 	public Boolean 		cursor_edit = true;
 	public Boolean 		cursor_show = true;
 	public String 		cursor_label = "Enable mouse over";
 	public String		cursor_updater = "cursorChanger";
 
-	public String 		_0912_cursor_off = "ARROW";
+	public String 		_0952_cursor_off = "ARROW";
 	transient public 	EditorBase cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);
 	public Boolean 		cursor_off_edit = true;
 	public Boolean 		cursor_off_show = true;
@@ -63,12 +63,12 @@ public final class DApplication extends DBase {
 	public String get_creator(DBase parent, String window){ 
 		StringBuilder sb = new StringBuilder();
 		sb.append(Messages.build(SET_G4P_MESSAGES, false));
-		sb.append(Messages.build(SET_SKETCH_COLOR, _0910_col_scheme));
-		if(_0911_cursor) {
-			sb.append(Messages.build(SET_CURSOR_OFF, _0912_cursor_off));
+		sb.append(Messages.build(SET_SKETCH_COLOR, _0950_col_scheme));
+		if(_0951_cursor) {
+			sb.append(Messages.build(SET_CURSOR_OFF, _0952_cursor_off));
 		}
 		else {
-			sb.append(Messages.build(SET_MOUSE_OVER_ON, _0911_cursor));		
+			sb.append(Messages.build(SET_MOUSE_OVER_ON, _0951_cursor));		
 		}
 		return new String(sb);
 	}
@@ -82,22 +82,22 @@ public final class DApplication extends DBase {
 	}
 
 	public void cursorChanger(){
-		cursor_off_show = _0911_cursor;;
+		cursor_off_show = _0951_cursor;;
 		propertyModel.createProperties(this);
 		propertyModel.hasBeenChanged();
 	}
 
 	public void colourSchemeChange(){
-		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0910_col_scheme);
-		DBase.jpalette = GCScheme.getJavaColor(colScheme);
+		DBase.globalColorScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
+		DBase.globalJpalette = GCScheme.getJavaColor(globalColorScheme);
 	}
 
 	protected void read(){
 		super.read();
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);		
-		DBase.colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0910_col_scheme);
-		DBase.jpalette = GCScheme.getJavaColor(colScheme);
+		DBase.globalColorScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
+		DBase.globalJpalette = GCScheme.getJavaColor(globalColorScheme);
 	}
 
 	private void readObject(ObjectInputStream in)

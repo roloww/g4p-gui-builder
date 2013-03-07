@@ -6,7 +6,7 @@ import g4p.tool.gui.propertygrid.EditorJComboBox;
 import g4p.tool.gui.propertygrid.Validator;
 
 @SuppressWarnings("serial")
-public class DValueBase extends DBase {
+public class DValueBase extends DBaseVisual {
 
 	public String 		_0250_vtype = "DECIMAL";
 	transient public EditorBase vtype_editor = new EditorJComboBox(VALUE_TYPE);
