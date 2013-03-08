@@ -2,6 +2,7 @@ package g4p.tool.controls;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
+import g4p_controls.GAlign;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -33,6 +34,8 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 	public Boolean 		draggable_edit = true;
 	public Boolean 		draggable_show = true;
 
+	public String 		opaque_updater = "opaqueChange";
+
 	public DPanel(){
 		super();
 		componentClass = "GPanel";
@@ -41,12 +44,23 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 		allowsChildren = true;
 		text_x_alignment_edit = text_x_alignment_show = false;
 		text_y_alignment_edit = text_y_alignment_show = false;
+		textHAlign = LEFT;
+		textVAlign = TOP;
 		_0130_text = "Tab bar text";
 		text_label = "Panel tab text";
 		text_tooltip = "text to appear in panel tab";
 		_0826_width = 100;
 		_0827_height = 60;
-		opaque_edit = opaque_show = false;
+		_0600_opaque = true;
+		opaque_edit = opaque_show = true;
+	}
+
+	public void opaqueChange(){
+		if(!_0600_opaque){
+			_0300_collapsed = false;
+			_0301_collapsible = false;
+			propertyModel.hasBeenChanged();
+		}
 	}
 
 	public void collapsedChange(){
@@ -107,19 +121,29 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 		af.translate(_0820_x, _0821_y);
 		g.setTransform(af);
 
-		// Panel back
-		if(!_0300_collapsed){
-			g.setColor(jpalette[5]);
-			g.fillRect(0, 0, _0826_width, _0827_height);
+		if(_0600_opaque){
+			// Panel back
+			if(!_0300_collapsed){
+				g.setColor(jpalette[5]);
+				g.fillRect(0, 0, _0826_width, _0827_height);
+			}
+
+			// Tab
+			g.setColor(jpalette[4]);
+			g.fillRect(0, 0, _0826_width, TAB_HEIGHT);
+
+			// Text
+//			g.setColor(jpalette[12]);
+//			g.drawString(_0010_name, 2, 12);
 		}
+		else {
+			g.setStroke(dashed);
+			g.setColor(jpalette[2]);
+			g.drawRect(0, 0, _0826_width, _0827_height);
+		}
+		
+		super.draw(g, paf, selected); // draw text
 
-		// Tab
-		g.setColor(jpalette[3]);
-		g.fillRect(0, 0, _0826_width, TAB_HEIGHT);
-
-		// Text
-		g.setColor(jpalette[12]);
-		g.drawString(_0010_name, 2, 12);
 		if(this == selected)
 			drawSelector(g);
 
@@ -130,6 +154,10 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 			}
 		}
 		g.setTransform(paf);
+	}
+
+	protected boolean isTextAlignDefaults(){
+		return (textHAlign == LEFT && textVAlign == TOP);
 	}
 
 	public void drawSelector(Graphics2D g){

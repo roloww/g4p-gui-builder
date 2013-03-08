@@ -53,14 +53,8 @@ public class DTextField extends DTextBase {
 		}
 		s = Messages.build(CTOR_GTEXTFIELD, _0010_name, window, 
 				_0820_x, _0821_y, _0826_width, _0827_height, sbpolicy);
-//		if(_0030_text.length() > 0)
-//			s += Messages.build(SET_TEXT, _0010_name, _0030_text);
 		if(_0132_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
-//		if(!_0600_opaque)
-//			s += Messages.build(SET_OPAQUE, _0600_opaque);
-//		if(colScheme != DBase.globalColorScheme)
-//			s += Messages.build(SET_LOCAL_COLOR, _0010_name, _0940_col_scheme);
 		s += super.get_creator(parent, window);		
 
 		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
