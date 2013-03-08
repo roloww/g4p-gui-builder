@@ -92,7 +92,7 @@ public class DTextAlign extends DTextBase {
 	}
 
 	protected boolean isTextAlignDefaults(){
-		return _0140_text_x_alignment.equals("CENTER") && _0141_text_y_alignment.equals("MIDDLE");
+		return (textHAlign == CENTER && textVAlign == MIDDLE);
 	}
 
 

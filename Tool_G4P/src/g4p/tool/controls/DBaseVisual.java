@@ -49,10 +49,10 @@ public class DBaseVisual extends DBase {
 		col_scheme_editor.setSelected(colScheme);
 	}
 
-	private void readObject(ObjectInputStream in)
-	throws IOException, ClassNotFoundException
-	{
-		in.defaultReadObject();
-		read();
-	}
+//	private void readObject(ObjectInputStream in)
+//	throws IOException, ClassNotFoundException
+//	{
+//		in.defaultReadObject();
+//		read();
+//	}
 }
