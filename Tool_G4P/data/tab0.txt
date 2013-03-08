@@ -2,21 +2,21 @@
 import g4p_controls.*;
 
 
-void setup(){
-  size(WIDTH, HEIGHT);
+public void setup(){
+  size(WIDTH, HEIGHT, RENDERER);
   createGUI();
   customGUI();
   // Place your setup code here
   
 }
 
-void draw(){
+public void draw(){
   background(230);
   
 }
 
 // Use this method to add additional statements
 // to customise the GUI controls
-void customGUI(){
+public void customGUI(){
 
 }
