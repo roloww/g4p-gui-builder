@@ -53,6 +53,8 @@ public class DTextField extends DTextBase {
 		}
 		s = Messages.build(CTOR_GTEXTFIELD, _0010_name, window, 
 				_0820_x, _0821_y, _0826_width, _0827_height, sbpolicy);
+		if(_0130_text.length() > 0)
+			s += Messages.build(SET_TEXT, _0010_name, _0130_text);
 		if(_0132_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
 		s += super.get_creator(parent, window);		

@@ -1,6 +1,5 @@
 package g4p.tool.controls;
 
-import g4p.tool.Messages;
 import g4p.tool.gui.propertygrid.Validator;
 import g4p_controls.StyledString;
 import g4p_controls.StyledString.TextLayoutInfo;
@@ -41,14 +40,6 @@ public class DTextBase extends DBaseVisual {
 		textWidth = _0826_width;
 		lastLength = _0130_text.length();
 		eventHandler_edit = eventHandler_show = true;
-	}
-
-	protected String get_creator(DBase parent, String window){
-		String s = "";
-		if(_0130_text.length() > 0)
-			s = Messages.build(SET_TEXT, _0010_name, _0130_text);
-		s += super.get_creator(parent, window);		
-		return s;
 	}
 
 	// Override this method if needed
