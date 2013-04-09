@@ -2,7 +2,6 @@ package g4p.tool.controls;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
-import g4p_controls.GAlign;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -116,6 +115,13 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 		}				
 	}
 
+	/**
+	 * Always true for a GPanel
+	 */
+	protected boolean isTextAlignDefaults(){
+		return true;
+	}
+
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
 		af.translate(_0820_x, _0821_y);
@@ -154,10 +160,6 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 			}
 		}
 		g.setTransform(paf);
-	}
-
-	protected boolean isTextAlignDefaults(){
-		return (textHAlign == LEFT && textVAlign == TOP);
 	}
 
 	public void drawSelector(Graphics2D g){

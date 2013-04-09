@@ -81,12 +81,16 @@ public class DTextAlign extends DTextBase {
 
 	protected String get_creator(DBase parent, String window){
 		String s = "";
-		if(_0136_bold)
-			s += Messages.build(SET_TEXT_BOLD, _0010_name);
-		if(_0137_italic)
-			s += Messages.build(SET_TEXT_ITALIC, _0010_name);
+		if(_0130_text.length() > 0){
+			s += Messages.build(SET_TEXT, _0010_name, _0130_text);
+			// Only need bold/italic if some text is set
+			if(_0136_bold)
+				s += Messages.build(SET_TEXT_BOLD, _0010_name);
+			if(_0137_italic)
+				s += Messages.build(SET_TEXT_ITALIC, _0010_name);
+		}
 		if(_0130_text.length() > 0 && !isTextAlignDefaults())
-				s += Messages.build(SET_TEXT_ALIGN, _0010_name, _0140_text_x_alignment, _0141_text_y_alignment);
+			s += Messages.build(SET_TEXT_ALIGN, _0010_name, _0140_text_x_alignment, _0141_text_y_alignment);
 		s += super.get_creator(parent, window);		
 		return s;
 	}
