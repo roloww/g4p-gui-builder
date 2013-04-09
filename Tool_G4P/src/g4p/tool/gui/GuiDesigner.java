@@ -525,7 +525,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         tbarComponents.add(btnOptGroup);
 
         btnDropList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolDropList.png"))); // NOI18N
-        btnDropList.setToolTipText("Combo Box");
+        btnDropList.setToolTipText("Drop List");
         btnDropList.setFocusable(false);
         btnDropList.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDropList.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
