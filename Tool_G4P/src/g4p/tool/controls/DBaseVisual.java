@@ -38,7 +38,7 @@ public class DBaseVisual extends DBase {
 	}
 
 	public void colourSchemeChange(){
-		colScheme = ((EditorJComboBox)col_scheme_editor).getSelectedIndex();
+		colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0940_col_scheme);
 		jpalette = GCScheme.getJavaColor(colScheme);
 		propertyModel.hasBeenChanged();
 	}
