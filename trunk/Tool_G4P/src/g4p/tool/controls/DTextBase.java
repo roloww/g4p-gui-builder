@@ -84,7 +84,9 @@ public class DTextBase extends DBaseVisual {
 		
 		LinkedList<TextLayoutInfo> lines = stext.getLines(g);
 
-		float deltaY = stext.getMaxLineHeight(), currY = 0, startX;
+		float deltaY = stext.getMaxLineHeight();
+		float currY = 0, startX, startY = 0;
+
 
 		for(TextLayoutInfo lineInfo : lines){
 			TextLayout layout = lineInfo.layout;
@@ -101,20 +103,22 @@ public class DTextBase extends DBaseVisual {
 			}
 			switch(textVAlign){
 			case TOP:
-				currY = deltaY;
+				startY = deltaY;
 				break;
 			case MIDDLE:
-				currY = (_0827_height - stext.getTextAreaHeight())/2 + layout.getAscent();
+				startY = (_0827_height - stext.getTextAreaHeight())/2 + layout.getAscent();
 				break;
 			case BOTTOM:
-				currY = _0827_height - stext.getTextAreaHeight() + deltaY - layout.getDescent();
+				startY = _0827_height - stext.getTextAreaHeight() + deltaY - layout.getDescent();
 			}
 
 			// display text
 			g.setColor(jpalette[2]);
-			layout.draw(g, textX + startX, currY);
+			layout.draw(g, textX + startX, startY + currY);
 			currY += deltaY;
+			System.out.print("  " + currY);
 		}
+		System.out.println();
 	}
 	
 	protected void read(){
