@@ -18,7 +18,7 @@ public class DTextBase extends DBaseVisual {
 	
 	protected int lastLength;
 	protected boolean textWidthChanged = true;
-	transient public StyledString stext = null;
+	public StyledString stext = null;
 	
 	public String 		_0130_text = "";
 	public String 		text_label = "Text";
@@ -123,9 +123,9 @@ public class DTextBase extends DBaseVisual {
 	
 	protected void read(){
 		super.read();
-		if(stext == null){
-			stext = new StyledString(_0130_text);
-		}
+//		if(stext == null){
+//			stext = new StyledString(_0130_text);
+//		}
 	}
 
 

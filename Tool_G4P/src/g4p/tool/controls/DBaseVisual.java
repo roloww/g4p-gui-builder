@@ -11,6 +11,7 @@ import g4p_controls.GCScheme;
 
 public class DBaseVisual extends DBase {
 
+	public boolean colSchemeChanged;
 	public int colScheme;
 	public Color[] jpalette;
 
@@ -25,13 +26,13 @@ public class DBaseVisual extends DBase {
 	public DBaseVisual() {
 		super();
 		colScheme = DBase.globalColorScheme;
+		colSchemeChanged = false;
 		jpalette = DBase.globalJpalette;
 	}
 	
-	
 	protected String get_creator(DBase parent, String window){
 		String s = "";
-		if(colScheme != DBase.globalColorScheme)
+		if(colSchemeChanged || colScheme != DBase.globalColorScheme)
 			s = Messages.build(SET_LOCAL_COLOR, _0010_name, _0940_col_scheme);
 		s += super.get_creator(parent, window);		
 		return s;
@@ -41,6 +42,7 @@ public class DBaseVisual extends DBase {
 		colScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0940_col_scheme);
 		jpalette = GCScheme.getJavaColor(colScheme);
 		propertyModel.hasBeenChanged();
+		colSchemeChanged = true;
 	}
 	
 	protected void read(){
@@ -49,10 +51,4 @@ public class DBaseVisual extends DBase {
 		col_scheme_editor.setSelected(colScheme);
 	}
 
-//	private void readObject(ObjectInputStream in)
-//	throws IOException, ClassNotFoundException
-//	{
-//		in.defaultReadObject();
-//		read();
-//	}
 }
