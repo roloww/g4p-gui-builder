@@ -26,6 +26,8 @@ public class DBaseVisual extends DBase {
 	public DBaseVisual() {
 		super();
 		colScheme = DBase.globalColorScheme;
+		((EditorJComboBox)col_scheme_editor).setSelectedIndex(colScheme);
+		_0940_col_scheme = ((EditorJComboBox)col_scheme_editor).getSelected();
 		colSchemeChanged = false;
 		jpalette = DBase.globalJpalette;
 	}
@@ -48,7 +50,7 @@ public class DBaseVisual extends DBase {
 	protected void read(){
 		super.read();
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
-		col_scheme_editor.setSelected(colScheme);
+		col_scheme_editor.setSelected(_0940_col_scheme);
 	}
 
 }
