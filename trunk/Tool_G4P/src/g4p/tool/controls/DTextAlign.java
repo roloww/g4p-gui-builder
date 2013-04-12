@@ -110,6 +110,8 @@ public class DTextAlign extends DTextBase {
 		super.read();
 		text_x_alignment_editor = new EditorJComboBox(H_ALIGN_3);
 		text_y_alignment_editor = new EditorJComboBox(V_ALIGN);
+		if(stext != null)
+			updateStyle();
 	}
 
 }
