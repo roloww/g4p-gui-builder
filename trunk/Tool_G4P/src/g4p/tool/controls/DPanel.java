@@ -2,6 +2,8 @@ package g4p.tool.controls;
 
 import g4p.tool.Messages;
 import g4p.tool.gui.tabview.WindowView.MutableDBase;
+import g4p_controls.StyledString;
+import g4p_controls.StyledString.TextLayoutInfo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.LinkedList;
 
 @SuppressWarnings("serial")
 public class DPanel extends DTextAlign {  // was DTextIcon now DText since no icon for this control
@@ -139,8 +142,13 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 			g.fillRect(0, 0, _0826_width, TAB_HEIGHT);
 
 			// Text
-//			g.setColor(jpalette[12]);
-//			g.drawString(_0010_name, 2, 12);
+			if(stext == null)
+				stext = new StyledString(_0130_text, textWidth);
+			stext.setWrapWidth(Integer.MAX_VALUE);
+			LinkedList<TextLayoutInfo> lines = stext.getLines(g);
+			g.setColor(jpalette[2]);
+			if(!lines.isEmpty())
+				lines.getFirst().layout.draw(g, textX,  stext.getMaxLineHeight());
 		}
 		else {
 			g.setStroke(dashed);
