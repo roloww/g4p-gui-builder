@@ -15,11 +15,11 @@ public class DTextBase extends DBaseVisual {
 
 	protected int textWidth, textX;
 	protected int textHAlign, textVAlign;
-	
+
 	protected int lastLength;
 	protected boolean textWidthChanged = true;
-	public StyledString stext = null;
-	
+	public transient StyledString stext = null;
+
 	public String 		_0130_text = "";
 	public String 		text_label = "Text";
 	public String 		text_tooltip = "component label text";
@@ -49,7 +49,7 @@ public class DTextBase extends DBaseVisual {
 	}
 
 	/**
-	 * This will be called if the text box has to me moved in a child class.
+	 * This will be called if the text box has to be moved in a child class.
 	 * e.g. if we have an icon
 	 * @param x_offset
 	 * @param text_width
@@ -60,7 +60,7 @@ public class DTextBase extends DBaseVisual {
 			textWidth = text_width;
 		}
 	}
-	
+
 	/**
 	 * If the width or height is changed then we need to update the text etc.
 	 */
@@ -68,28 +68,30 @@ public class DTextBase extends DBaseVisual {
 		textWidth = _0826_width;
 		textWidthChanged = true;
 	}
-	
+
 	public String get_text(){
 		return _0130_text;
 	}
 
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
-		if(textWidthChanged){
-			if(stext == null)
-				stext = new StyledString(_0130_text, textWidth);
-			else
-				stext.setWrapWidth(textWidth);
+		if(stext == null)
+			stext = new StyledString(_0130_text, textWidth);
+		else if(textWidthChanged){
+			stext.setWrapWidth(textWidth);
 			textWidthChanged = false;
 		}
-		
+
 		LinkedList<TextLayoutInfo> lines = stext.getLines(g);
 
 		float deltaY = stext.getMaxLineHeight();
 		float currY = 0, startX, startY = 0;
 
-
 		for(TextLayoutInfo lineInfo : lines){
 			TextLayout layout = lineInfo.layout;
+			//			if(layout == null)
+			//				System.out.println("NULL LAYOUT");
+			//			System.out.print("LAYOUT " );
+			//			System.out.println("LAYOUT " + layout.lines.size());
 			switch(textHAlign){
 			case CENTER:
 				startX = (textWidth - layout.getVisibleAdvance())/2;
@@ -111,21 +113,28 @@ public class DTextBase extends DBaseVisual {
 			case BOTTOM:
 				startY = _0827_height - stext.getTextAreaHeight() + deltaY - layout.getDescent();
 			}
-
 			// display text
-			g.setColor(jpalette[2]);
+			try{
+				g.setColor(jpalette[2]);
+			}
+			catch(Exception e) {
+				System.out.println("Can't find palette");
+			}
+			try {
 			layout.draw(g, textX + startX, startY + currY);
+			}
+			catch(Exception e){
+				System.out.println("Can't draw text layout");
+			}
 			currY += deltaY;
-			System.out.print("  " + currY);
 		}
-		System.out.println();
 	}
-	
+
 	protected void read(){
 		super.read();
-//		if(stext == null){
-//			stext = new StyledString(_0130_text);
-//		}
+		if(stext == null){
+			stext = new StyledString(_0130_text);
+		}
 	}
 
 

@@ -91,6 +91,7 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 
 	// Global Colour scheme
 	public static int globalColorScheme = GCScheme.BLUE_SCHEME; // Blue
+//	public static int globalColorScheme = GCScheme.BLUE_SCHEME; // Blue
 	public static Color[] globalJpalette = GCScheme.getJavaColor(globalColorScheme);
 	
 	// Unique id numbers to identify event handlers and used to capture
