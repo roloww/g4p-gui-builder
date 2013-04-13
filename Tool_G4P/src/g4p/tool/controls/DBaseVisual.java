@@ -25,13 +25,34 @@ public class DBaseVisual extends DBase {
 
 	public DBaseVisual() {
 		super();
-		colScheme = DBase.globalColorScheme;
-		((EditorJComboBox)col_scheme_editor).setSelectedIndex(colScheme);
-		_0940_col_scheme = ((EditorJComboBox)col_scheme_editor).getSelected();
+//		try{
+			colScheme = DBase.globalColorScheme;
+			jpalette = DBase.globalJpalette;
+			
+//			try{
+//				((EditorJComboBox)col_scheme_editor).setSelectedIndex(colScheme);
+//			}
+//			catch(Exception e){
+//				System.out.println("Error in DBaseVisual constructor " + this.getClass().getSimpleName());
+//				System.out.println("Can't select element " + colScheme);
+//				e.printStackTrace();
+//			}
+//			_0940_col_scheme = ((EditorJComboBox)col_scheme_editor).getSelected();
+//		}
+//		catch(Exception e){
+//			System.out.println("Error in DBaseVisual constructor " + this.getClass().getSimpleName());
+//			if(col_scheme_editor == null){
+//				System.out.println("No colour editor");
+//			}
+//			if(jpalette == null){
+//				System.out.println("No colour palette");
+//			}
+//			System.out.println(_0940_col_scheme);
+//			System.out.println(e.getStackTrace());
+//		}
 		colSchemeChanged = false;
-		jpalette = DBase.globalJpalette;
 	}
-	
+
 	protected String get_creator(DBase parent, String window){
 		String s = "";
 		if(colSchemeChanged || colScheme != DBase.globalColorScheme)
@@ -46,7 +67,7 @@ public class DBaseVisual extends DBase {
 		propertyModel.hasBeenChanged();
 		colSchemeChanged = true;
 	}
-	
+
 	protected void read(){
 		super.read();
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
