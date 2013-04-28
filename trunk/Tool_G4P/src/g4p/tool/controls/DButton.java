@@ -58,7 +58,6 @@ public class DButton extends DTextIconAlign {
 		s = Messages.build(CTOR_GBUTTON, _0010_name, window, 
 				$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height));
 		s += super.get_creator(parent, window);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);		
 		return s;
 	}
 

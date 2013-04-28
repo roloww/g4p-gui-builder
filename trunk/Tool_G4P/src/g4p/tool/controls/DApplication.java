@@ -88,16 +88,17 @@ public final class DApplication extends DBase {
 	}
 
 	public void colourSchemeChange(){
-		DBase.globalColorScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
-		DBase.globalJpalette = GCScheme.getJavaColor(globalColorScheme);
+		DBase.globalColorSchemeID = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
+		DBase.globalColorSchemeName = _0950_col_scheme;
+		DBase.globalJpalette = GCScheme.getJavaColor(globalColorSchemeID);
 	}
 
 	protected void read(){
 		super.read();
 		col_scheme_editor = new EditorJComboBox(COLOUR_SCHEME);
 		cursor_off_editor = new EditorJComboBox(CURSOR_CHANGER);		
-		DBase.globalColorScheme = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
-		DBase.globalJpalette = GCScheme.getJavaColor(globalColorScheme);
+		DBase.globalColorSchemeID = ListGen.instance().getIndexOf(COLOUR_SCHEME, _0950_col_scheme);
+		DBase.globalJpalette = GCScheme.getJavaColor(globalColorSchemeID);
 	}
 
 	private void readObject(ObjectInputStream in)

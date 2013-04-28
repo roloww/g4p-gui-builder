@@ -56,8 +56,6 @@ public class DDropList extends DBaseVisual {
 					 $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height * _0680_nbr_rows) , $(_0680_nbr_rows));	
 		s += Messages.build(CTOR_SET_LIST,  _0010_name, _0682_list_file, $(_0681_selected));
 		s += super.get_creator(parent, window);
-		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 	

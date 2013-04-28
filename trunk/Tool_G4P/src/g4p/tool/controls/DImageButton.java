@@ -92,7 +92,6 @@ public class DImageButton extends DBase {
 			
 		}
 		s += super.get_creator(parent, window);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 	
