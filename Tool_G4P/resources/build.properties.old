@@ -32,13 +32,14 @@ sketchbook.location=${user.home}/Documents/Processing
 classpath.local.location=${user.home}/Documents/e_workspaces/ws-java5/lib20b8(64)
 
 
+
 # For OSX users. 
 # The following path will direct you into Processing's application source code 
 # folder in case you put Processing inside your Applications folder. 
 # Uncommenting the line below will overwrite the classpath.local.location from 
 # above.
 
-#classpath.local.location=/Applications/Processing.app/Contents/Resources/Java/lib/
+#classpath.local.location=/Applications/Processing.app/Contents/Resources/Java/
 
 
 # Add all jar files that are required for compiling your project to the local 
@@ -145,26 +146,25 @@ source.host=Google Code
 source.url=http://code.google.com/p/g4p-gui-builder/
 source.repository=http://code.google.com/p/g4p-gui-builder/source/browse/
 
-
 # The current version of your tool. 
 # This number must be parsable as an int. It increments once with each release. 
 # This is used to compare different versions of the same tool, and check if an 
 # update is available.
 
-tool.version=10
+tool.version=8
 
 
 # The version as the user will see it. 
 # If blank, the tool.version attribute will be used here.
 
-tool.prettyVersion=2.2.3
+tool.prettyVersion=2.2.1
 
 
 tool.copyright=(C) 2013
-tool.dependencies=Needs Processing library G4P V3.2.3 or later 
+tool.dependencies=Needs Processing library G4P V3.2.0 or later 
 tool.keywords=GUI, G4P, guibuilder, visual, interface
 
-tested.platform=osx,windows
+tested.platform=osx, Windows Vista / 7, Ubuntu 10.04
 tested.processingVersion=2.0b8
 
 

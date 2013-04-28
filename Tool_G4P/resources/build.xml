@@ -45,6 +45,8 @@
 	<property name="project.tmp" location="tmp"/>
 	<property name="project.web" location="web"/>
 	<property name="project.data" location="data"/>
+	<!-- next line added for this tool so images are included -->
+	<property name="project.images" location="images"/>
 	<property name="project.lib" location="lib"/>
 	<property name="project.bin" location="bin"/>
 	<property name="project.bin.data" location="${project.bin}/data"/>
@@ -151,6 +153,13 @@ ${line}
 	
 	
 	<target name="generate.jar">
+		<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@   Special for G4p Tool  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+		<!-- Add the images needed by the GUI ready for jaring -->
+	    <echo message="Adding images ready for jarring"/>
+ 		<copy todir="${project.bin}/g4p">
+  			<fileset dir="${project.images}"/>
+	  	</copy>
+		<!-- Standard Tool build make jar -->
 		<jar jarfile="${project.tmp}/${project.name}/${folder}/${project.jar.name}" basedir="${project.bin}"/>
 	</target>
 	
@@ -163,11 +172,11 @@ ${line}
   		<mkdir dir="${project.tmp}/${project.name}/examples" />
 	  	<mkdir dir="${project.tmp}/${project.name}/reference" />
   		<mkdir dir="${project.tmp}/${project.name}/src" />
-  		
+ 
   		<!-- Next line added to basic script : creates a data folder -->
   		<mkdir dir="${project.tmp}/${project.name}/data" />	
-  		
-  		<copy todir="${project.tmp}/${project.name}/examples">
+ 
+ 		<copy todir="${project.tmp}/${project.name}/examples">
   			<fileset dir="${project.examples}">
 	  			<exclude name="**/*README*"/>
   			</fileset>
@@ -176,7 +185,7 @@ ${line}
   			<fileset dir="${project.src}"/>
 	  	</copy>
 	  	
-  		<!-- Next line added to basic script : copies files to tool|data folder -->
+	  	<!-- Next line added to basic script : copies files to tool|data folder -->
 	  	<copy todir="${project.tmp}/${project.name}/data">
   			<fileset dir="${project.data}" excludes="README" />
 	  	</copy>
@@ -189,9 +198,7 @@ ${line}
 	
 	<target name="generate.source" if="is.normal">
 	    <antcall target="generate.source.win"/>
-<!--
 	    <antcall target="generate.source.nix"/>
--->
 	</target>
 	
 	
@@ -202,7 +209,6 @@ ${line}
 	    <property name="src.list" refid="src.contents" />
 	    <foreach list="${src.list}" param="file" target="parse.file" delimiter=";" />
 	</target>
-	
 	<target name="generate.source.nix" unless="is.windows">
 	    <echo message="generating source (mac/linux) ..."/>
 	    <path id="src.contents"><fileset dir="${project.tmp}/${project.name}/src" includes="**/*.java" /></path>
@@ -236,12 +242,12 @@ ${line}
 			<link href="${javadoc.processing.href}" />
 			<taglet name="ExampleTaglet" path="resources/code" />
 			
-			<!-- This line has been replaced by the next line
+ 			<!-- This line has been replaced by the next line
  			<fileset dir="${project.tmp}/${project.name}/src" defaultexcludes="yes">
  			-->
  			<fileset dir="${project.tmp}/${project.name}/src" defaultexcludes="yes" excludes="**/*.form **/*.cld **/*.png **/*.jpg">
- 
-			<!-- add packages to be added to reference. -->
+						
+ 			<!-- add packages to be added to reference. -->
 				<include name="**/*"/>
 			</fileset>
 	 	</javadoc>
@@ -317,24 +323,26 @@ ${line}
 	<target name="generate.zip" if="is.normal">
 		<!-- zip the distribution of the tool -->
 		
-        <move todir="${project.dist.version}/tmp/${project.name}-${tool.version}">
+        <move todir="${project.dist.version}/tmp/${project.name}">
             <fileset dir="${project.dist.version}/${project.name}" />
         </move>
         
-        <copy file="${project.dist.version}/tmp/${project.name}-${tool.version}/tool.properties" tofile="${project.dist.version}/web/download/${project.name}-${tool.version}.txt" />
-        <copy file="${project.dist.version}/tmp/${project.name}-${tool.version}/tool.properties" tofile="${project.dist.version}/web/download/${project.name}.txt" />
+        <copy file="${project.dist.version}/tmp/${project.name}/tool.properties" tofile="${project.dist.version}/web/download/${project.name}.txt" />
                 
-        <zip destfile="${project.dist.version}/${project.name}-${tool.version}.zip"
-           basedir="${project.dist.version}/tmp/${project.name}-${tool.version}"
+        <zip destfile="${project.dist.version}/${project.name}.zip"
+           basedir="${project.dist.version}/tmp"
            excludes="**/.DS_Store"
         />
         
-        <move file="${project.dist.version}/${project.name}-${tool.version}.zip" todir="${project.dist.version}/web/download" />
-        <copy file="${project.dist.version}/web/download/${project.name}-${tool.version}.zip" tofile="${project.dist.version}/web/download/${project.name}.zip" />
-        
+        <move file="${project.dist.version}/${project.name}.zip" todir="${project.dist.version}/web/download" />
+		
+        <copy file="${project.dist.version}/web/download/${project.name}.zip" tofile="${project.dist.version}/web/download/${project.name}-${tool.version}.zip" />
+		<copy file="${project.dist.version}/web/download/${project.name}.txt" tofile="${project.dist.version}/web/download/${project.name}-${tool.version}.txt" />
+		                
         <move todir="${project.dist.version}">
             <fileset dir="${project.dist.version}/web" />
         </move>
+		
         <delete dir="${project.dist.version}/tmp" />
 	</target>
 	
@@ -347,8 +355,8 @@ ${line}
 		<foreach list="${examples.list}" target="addExamples" param="exampleDir" delimiter=";">
 		</foreach>
 	</target>
-		
-		
+	
+	
 	
 	<target name="addExamples">
 	    <echo>${exampleDir}</echo>
