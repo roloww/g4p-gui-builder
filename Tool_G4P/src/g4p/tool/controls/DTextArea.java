@@ -67,8 +67,6 @@ public class DTextArea extends DTextBase {
 		if(_0132_dtext.length() > 0)
 			s += Messages.build(SET_DEFAULT_TEXT, _0010_name, _0132_dtext);
 		s += super.get_creator(parent, window);		
-
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 

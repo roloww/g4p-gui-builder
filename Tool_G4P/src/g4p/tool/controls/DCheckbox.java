@@ -48,7 +48,6 @@ public class DCheckbox extends DCoreSelectable{
 		s += super.get_creator(parent, window);
 		if(_0101_selected)
 			s += Messages.build(SEL_OPTION, _0010_name, "true");
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);		
 		return s;
 	}
 

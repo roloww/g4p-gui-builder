@@ -76,7 +76,6 @@ public class DSlider2D extends DValue2D {
 		s = Messages.build(CTOR_GSLIDER2D, _0010_name, window, 
 				$(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height));
 		s += super.get_creator(parent, window);
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);		
 		return s;
 	}
 

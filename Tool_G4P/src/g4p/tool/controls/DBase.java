@@ -90,9 +90,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 	public String componentClass = "";
 
 	// Global Colour scheme
-	public static int globalColorScheme = GCScheme.BLUE_SCHEME; // Blue
-//	public static int globalColorScheme = GCScheme.BLUE_SCHEME; // Blue
-	public static Color[] globalJpalette = GCScheme.getJavaColor(globalColorScheme);
+	public static int globalColorSchemeID = GCScheme.BLUE_SCHEME; // Blue
+	public static String globalColorSchemeName = "BLUE_SCHEME"; // Blue
+	public static Color[] globalJpalette = GCScheme.getJavaColor(globalColorSchemeID);
 	
 	// Unique id numbers to identify event handlers and used to capture
 	// user code.
@@ -237,6 +237,9 @@ public abstract class DBase extends DefaultMutableTreeNode implements Serializab
 		String s = "";
 		if(opaque_show)
 			s = Messages.build(SET_OPAQUE, _0010_name, _0600_opaque);
+		// Finally add the event handler if appropriate
+		if(eventHandler_show && _0020_eventHandler.trim().length() > 0)
+			s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 	

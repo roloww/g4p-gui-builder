@@ -107,7 +107,6 @@ public class DKnob extends DValue1D {
 		s += Messages.build(SET_OVER_GRIP_ONLY, _0010_name, !_0421_over_grip_only);
 		s += Messages.build(SET_SHOW_TRACK, _0010_name, _0431_show_track);
 		s += super.get_creator(parent, window);		
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 

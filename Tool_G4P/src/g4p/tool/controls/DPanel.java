@@ -92,8 +92,6 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 		if(!_0310_draggable)
 			s += Messages.build(DRAGGABLE, _0010_name, _0310_draggable);
 		s += super.get_creator(parent, window);		
-
-		s += Messages.build(ADD_HANDLER, _0010_name, "this", _0020_eventHandler);
 		return s;
 	}
 
