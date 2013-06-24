@@ -61,7 +61,7 @@ public class DTextArea extends DTextBase {
 				sbpolicy += " | G4P.SCROLLBARS_AUTOHIDE";
 		}
 		s = Messages.build(CTOR_GTEXTAREA, _0010_name, window, 
-				_0820_x, _0821_y, _0826_width, _0827_height, sbpolicy);
+				$(_0820_x), $(_0821_y), _0826_width, _0827_height, sbpolicy);
 		if(_0130_text.length() > 0)
 			s += Messages.build(SET_TEXT, _0010_name, _0130_text);
 		if(_0132_dtext.length() > 0)

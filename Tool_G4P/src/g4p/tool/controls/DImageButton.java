@@ -64,8 +64,6 @@ public class DImageButton extends DBase {
 		_0827_height = 60;
 	}
 
-
-
 	
 	/**
 	 * Get the creator statement var = new Foo(...);
@@ -80,15 +78,15 @@ public class DImageButton extends DBase {
 
 		if(_0049_img_mask.length() > 0){
 			if(_0048_match_image_size)
-				s += Messages.build(CTOR_IMG_BTN_XYFM, _0010_name, window, _0820_x, _0821_y, flist, _0049_img_mask);
+				s += Messages.build(CTOR_IMG_BTN_XYFM, _0010_name, window, $(_0820_x), $(_0821_y), flist, _0049_img_mask);
 			else
-				s += Messages.build(CTOR_IMG_BTN_XYWHFM, _0010_name, window, _0820_x, _0821_y, _0826_width, _0827_height, flist, _0049_img_mask);
+				s += Messages.build(CTOR_IMG_BTN_XYWHFM, _0010_name, window, $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), flist, _0049_img_mask);
 		}
 		else {
 			if(_0048_match_image_size)
-				s += Messages.build(CTOR_IMG_BTN_XYF, _0010_name, window, _0820_x, _0821_y, flist);
+				s += Messages.build(CTOR_IMG_BTN_XYF, _0010_name, window, $(_0820_x), $(_0821_y), flist);
 			else
-				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, _0820_x, _0821_y, _0826_width, _0827_height, flist);
+				s += Messages.build(CTOR_IMG_BTN_XYWHF, _0010_name, window, $(_0820_x), $(_0821_y), $(_0826_width), $(_0827_height), flist);
 			
 		}
 		s += super.get_creator(parent, window);
