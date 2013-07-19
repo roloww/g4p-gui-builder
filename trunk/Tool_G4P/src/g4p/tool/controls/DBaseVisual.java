@@ -7,6 +7,12 @@ import g4p_controls.GCScheme;
 
 import java.awt.Color;
 
+/**
+ * 
+ * @author Peter Lager
+ *
+ */
+@SuppressWarnings("serial")
 public class DBaseVisual extends DBase {
 
 //	public boolean colSchemeChanged;
