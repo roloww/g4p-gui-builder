@@ -31,7 +31,7 @@ public class ToolIcon {
 
 	public static ImageIcon getIcon(String n){
 		ImageIcon icon = namedIcons.get(n);
-		return (ImageIcon) ((icon == null) ? null : icon);
+		return (icon == null) ? null : icon;
 	}
 
 	

@@ -107,6 +107,14 @@ public interface TDataConstants {
 	//																x	 y   fl
 	String CTOR_IMG_BTN_XYF		= 	"  {0} = new GImageButton({1}, {2}, {3}, {4});\n";
 
+	//		GImageToggleButton(PApplet theApplet, int x, int y, int w, int h, Sting[] files, String maskFile)
+	//																      x    y 
+	String CTOR_IMG_TOG_BTN_0	= 	"  {0} = new GImageToggleButton({1}, {2}, {3});\n";
+	//																      x    y     off    cols rows
+	String CTOR_IMG_TOG_BTN_1	= 	"  {0} = new GImageToggleButton({1}, {2}, {3}, \"{4}\", {5}, {6});\n";
+	//																      x    y      off    over   cols  rows
+	String CTOR_IMG_TOG_BTN_2	= 	"  {0} = new GImageToggleButton({1}, {2}, {3}, \"{4}\", \"{5}\", {6}, {7});\n";
+
 	//		GCheckbox(PApplet theApplet, int x, int y, int width, int height)
 	String CTOR_GSTICK			=	"  {0} = new GStick({1}, {2}, {3}, {4}, {5});\n";
 	String SET_STICK_MODE		=	"  {0}.setMode(G4P.{1});\n";

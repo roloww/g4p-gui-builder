@@ -16,6 +16,7 @@ import g4p.tool.controls.DCheckbox;
 import g4p.tool.controls.DCustomSlider;
 import g4p.tool.controls.DDropList;
 import g4p.tool.controls.DImageButton;
+import g4p.tool.controls.DImageToggleButton;
 import g4p.tool.controls.DKnob;
 import g4p.tool.controls.DLabel;
 import g4p.tool.controls.DOption;
@@ -248,6 +249,7 @@ public class GuiDesigner extends javax.swing.JFrame {
 			ToolImage.addImage("CB_ICON", ImageIO.read(getClass().getResource("/g4p/tick.png")));
 			ToolImage.addImage("OP_ICON", ImageIO.read(getClass().getResource("/g4p/pinhead.png")));
 			ToolImage.addImage("SPAD_ICON", ImageIO.read(getClass().getResource("/g4p/spad.jpg")));
+			ToolImage.addImage("IMG_TOG_BTN_ICON", ImageIO.read(getClass().getResource("/g4p/toggle.png")));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -290,6 +292,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnPanel = new javax.swing.JButton();
         btnButton = new javax.swing.JButton();
         btnImgButton = new javax.swing.JButton();
+        btnImgTogButton = new javax.swing.JButton();
         btnLabel = new javax.swing.JButton();
         btnTextfield = new javax.swing.JButton();
         btnTextarea = new javax.swing.JButton();
@@ -392,6 +395,18 @@ public class GuiDesigner extends javax.swing.JFrame {
             }
         });
         tbarComponents.add(btnImgButton);
+
+        btnImgTogButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolButtonImgTog.png"))); // NOI18N
+        btnImgTogButton.setToolTipText("Image Toggle Button");
+        btnImgTogButton.setFocusable(false);
+        btnImgTogButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImgTogButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImgTogButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImgTogButtonActionPerformed(evt);
+            }
+        });
+        tbarComponents.add(btnImgTogButton);
 
         btnLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolLabel.png"))); // NOI18N
         btnLabel.setToolTipText("Label");
@@ -586,7 +601,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("CONTROLS");
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jLabel2.setOpaque(true);
 
         spTop.setBackground(new java.awt.Color(255, 255, 255));
@@ -630,7 +645,7 @@ public class GuiDesigner extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PROPERTIES");
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jLabel1.setOpaque(true);
         jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
 
@@ -959,6 +974,10 @@ public class GuiDesigner extends javax.swing.JFrame {
  		guiControl.addComponent(new DStick());
     }//GEN-LAST:event_btnStickActionPerformed
 
+    private void btnImgTogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgTogButtonActionPerformed
+       guiControl.addComponent(new DImageToggleButton());
+    }//GEN-LAST:event_btnImgTogButtonActionPerformed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -979,6 +998,7 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnCoolSlider;
     private javax.swing.JButton btnDropList;
     private javax.swing.JButton btnImgButton;
+    private javax.swing.JButton btnImgTogButton;
     private javax.swing.JButton btnKnob;
     private javax.swing.JButton btnLabel;
     private javax.swing.JButton btnOptGroup;

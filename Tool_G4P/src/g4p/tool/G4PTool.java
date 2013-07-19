@@ -50,9 +50,6 @@ public class G4PTool implements Tool, TFileConstants {
 
 	private boolean g4p_error_shown = false;
 	
-//	public static int[] palette = null;
-//	public static Color[] jpalette = null;
-	
 	public String getMenuTitle() {
 		return "GUI builder";
 	}

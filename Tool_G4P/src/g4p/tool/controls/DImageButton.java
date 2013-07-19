@@ -9,6 +9,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+/**
+ * 
+ * @author Peter Lager
+ *
+ */
 @SuppressWarnings("serial")
 public class DImageButton extends DBase {
 
