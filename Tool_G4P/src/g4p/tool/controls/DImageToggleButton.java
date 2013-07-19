@@ -75,15 +75,23 @@ public class DImageToggleButton extends DBase {
 
 		String offImage = (_0042_img_off.length() == 0) ? null : _0042_img_off;
 		String overImage = (_0044_img_over.length() == 0) ? null : _0044_img_over;
-		
-		if(offImage == null)
-			s += Messages.build(CTOR_IMG_TOG_BTN_0, _0010_name, window, $(_0820_x), $(_0821_y));	
-		else 
-			s += Messages.build(CTOR_IMG_TOG_BTN_2, _0010_name, window, $(_0820_x), $(_0821_y), offImage, overImage, $(_0052_cols), $(_0053_rows) );
+
+		if(offImage == null){
+			s += Messages.build(CTOR_IMG_TOG_BTN_0, _0010_name, window, $(_0820_x), $(_0821_y));
+		}
+		else {
+			if(overImage == null){
+				s += Messages.build(CTOR_IMG_TOG_BTN_1, _0010_name, window, $(_0820_x), $(_0821_y), offImage, $(_0052_cols), $(_0053_rows) );
+			}
+			else {			
+				s += Messages.build(CTOR_IMG_TOG_BTN_2, _0010_name, window, $(_0820_x), $(_0821_y), offImage, overImage, $(_0052_cols), $(_0053_rows) );
+			}
+
+		}
 		s += super.get_creator(parent, window);
 		return s;
 	}
-	
+
 	
 	public void draw(Graphics2D g, AffineTransform paf, DBase selected){
 		AffineTransform af = new AffineTransform(paf);
