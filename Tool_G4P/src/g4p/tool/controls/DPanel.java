@@ -15,7 +15,7 @@ import java.util.Enumeration;
 import java.util.LinkedList;
 
 @SuppressWarnings("serial")
-public class DPanel extends DTextAlign {  // was DTextIcon now DText since no icon for this control
+public class DPanel extends DTextStyle {  // was DTextIcon now DText since no icon for this control
 
 	final protected static int TAB_HEIGHT = 20;
 
@@ -44,8 +44,8 @@ public class DPanel extends DTextAlign {  // was DTextIcon now DText since no ic
 		set_name(NameGen.instance().getNext("panel"));
 		set_event_name(NameGen.instance().getNext(get_name()+ "_Click"));
 		allowsChildren = true;
-		text_x_alignment_edit = text_x_alignment_show = false;
-		text_y_alignment_edit = text_y_alignment_show = false;
+//		text_x_alignment_edit = text_x_alignment_show = false;
+//		text_y_alignment_edit = text_y_alignment_show = false;
 		textHAlign = LEFT;
 		textVAlign = TOP;
 		_0130_text = "Tab bar text";
