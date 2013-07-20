@@ -18,7 +18,7 @@ public class DTextBase extends DBaseVisual {
 
 	protected int lastLength;
 	protected boolean textWidthChanged = true;
-	public transient StyledString stext = null;
+	public  StyledString stext = null;
 
 	public String 		_0130_text = "";
 	public String 		text_label = "Text";
@@ -28,6 +28,7 @@ public class DTextBase extends DBaseVisual {
 	public Validator 	text_validator = Validator.getDefaultValidator(String.class);
 	public String		text_updater = "textChanged";
 
+	
 	public DTextBase(){
 		super();
 		selectable = true;
@@ -57,17 +58,19 @@ public class DTextBase extends DBaseVisual {
 	protected void setHorzTextBoxValues(int x_offset, int text_width){
 		textX = x_offset;
 		if(textWidth != text_width){
+			System.out.println("DTextBase - setHorzTextBoxValues " + x_offset + "  " + text_width);
 			textWidth = text_width;
+			textWidthChanged = true;
 		}
 	}
 
-	/**
-	 * If the width or height is changed then we need to update the text etc.
-	 */
-	public void sizeChanged(){
-		textWidth = _0826_width;
-		textWidthChanged = true;
-	}
+//	/**
+//	 * If the width or height is changed then we need to update the text etc.
+//	 */
+//	public void sizeChanged(){
+//		textWidth = _0826_width;
+//		textWidthChanged = true;
+//	}
 
 	public String get_text(){
 		return _0130_text;
@@ -77,6 +80,7 @@ public class DTextBase extends DBaseVisual {
 		if(stext == null)
 			stext = new StyledString(_0130_text, textWidth);
 		else if(textWidthChanged){
+//			System.out.println("Set wrap width");
 			stext.setWrapWidth(textWidth);
 			textWidthChanged = false;
 		}
@@ -135,6 +139,7 @@ public class DTextBase extends DBaseVisual {
 		if(stext == null){
 			stext = new StyledString(_0130_text);
 		}
+		textWidthChanged = true;
 	}
 
 
