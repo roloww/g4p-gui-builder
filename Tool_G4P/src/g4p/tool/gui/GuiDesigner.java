@@ -42,8 +42,11 @@ import java.awt.event.WindowListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JSlider;
 
 import processing.app.Editor;
 
@@ -56,90 +59,88 @@ import processing.app.Editor;
 @SuppressWarnings("serial")
 public class GuiDesigner extends javax.swing.JFrame {
 
-	private static GuiDesigner instance = null;
-	private static Editor editor = null;
-	//private static FontMetrics metrics = null;
+    private static GuiDesigner instance = null;
+    private static Editor editor = null;
+    //private static FontMetrics metrics = null;
+    private static boolean stayOpen = false;
+    private static boolean autoHide = false;
 
-	private static boolean stayOpen = false;
-	private static boolean autoHide = false;
+    public static GuiDesigner instance() {
+        return instance;
+    }
 
-	public static GuiDesigner instance(){
-		return instance;
-	}
-
-	public static Editor editor(){
-		return editor;
-	}
+    public static Editor editor() {
+        return editor;
+    }
 
 //	public static FontMetrics metrics(){
 //		return metrics;
 //	}
+    public static void keepOpen(boolean mode) {
+        stayOpen = mode;
+    }
 
-	public static void keepOpen(boolean mode){
-		stayOpen = mode;
-	}
+    /**
+     * This is provided because the GuiDesigner window is specified as
+     * always-on-top and this conflicts with using a new Frame with
+     * JOptionPane.
+     *
+     * Use this in preference to the static method in the class
+     * processing.app.Base
+     *
+     * @param title
+     * @param message
+     * @param e option exception
+     */
+    public static void showWarning(String title, String message, Exception e) {
+        stayOpen = true;
+        if (title == null || title.equals("")) {
+            title = "Warning";
+        }
+        if (instance == null) {
+            JOptionPane.showMessageDialog(new Frame(), message, title,
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(instance, message, title,
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        stayOpen = false;
+        if (e != null) {
+            e.printStackTrace();
+        }
+    }
+    private WindowListener winAdapt;
+    private CtrlSketchView treeSketchView;
+    private CtrlPropView tblPropView;
+    private CtrlTabView tabWindows;
+    private GuiControl guiControl;
 
-	/**
-	 * This is provided because the GuiDesigner window is specified as
-	 * always-on-top and this conflicts with using a new Frame with
-	 * JOptionPane.
-	 *
-	 * Use this in preference to the static method in the class
-	 * processing.app.Base
-	 *
-	 * @param title
-	 * @param message
-	 * @param e option exception
-	 */
-	public static void showWarning(String title, String message, Exception e) {
-		stayOpen = true;
-		if (title == null || title.equals(""))
-			title = "Warning";
-		if (instance == null) {
-			JOptionPane.showMessageDialog(new Frame(), message, title,
-					JOptionPane.WARNING_MESSAGE);
-		} else {
-			JOptionPane.showMessageDialog(instance, message, title,
-					JOptionPane.WARNING_MESSAGE);
-		}
-		stayOpen = false;
-		if (e != null) e.printStackTrace();
-	}
+    /**
+     * Creates new form GuiDesignFrame
+     */
+    public GuiDesigner() {
+        instance = this;
+        initComponents();
+        initCustomComponents();
+        guiControl = new GuiControl(null, tabWindows, treeSketchView, tblPropView);
+        createWindowAdapter();
+    }
 
-	private WindowListener winAdapt;
+    /**
+     * Creates new form GuiDesignFrame <br>
+     * Keep a reference to the editor
+     * @param theEditor
+     * @param size
+     */
+    public GuiDesigner(Editor theEditor) {
+        instance = this;
+        editor = theEditor;
+        initComponents();
+        initCustomComponents();
+        guiControl = new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
+        guiControl.loadGuiLayout();
+        guiControl.getSketchSizeFromCode();
 
-	private CtrlSketchView treeSketchView;
-	private CtrlPropView tblPropView;
-	private CtrlTabView tabWindows;
-	private GuiControl guiControl;
-
-
-	/**
-	 * Creates new form GuiDesignFrame
-	 */
-	public GuiDesigner() {
-		instance = this;
-		initComponents();
-		initCustomComponents();
-		guiControl =  new GuiControl(null, tabWindows, treeSketchView, tblPropView);
-		createWindowAdapter();
-	}
-
-	/**
-	 * Creates new form GuiDesignFrame <br>
-	 * Keep a reference to the editor
-	 * @param theEditor
-	 * @param size
-	 */
-	public GuiDesigner(Editor theEditor) {
-		instance = this;
-		editor = theEditor;
-		initComponents();
-		initCustomComponents();
-		guiControl =  new GuiControl(editor, tabWindows, treeSketchView, tblPropView);
-		guiControl.loadGuiLayout();
-		guiControl.getSketchSizeFromCode();
-		
 //		Dimension size = guiControl.getSketchSizeFromCode();
 //		if(size == null){
 //			final String message =
@@ -149,144 +150,166 @@ public class GuiDesigner extends javax.swing.JFrame {
 //
 //			showWarning("Could not find applet size", message, null);
 //		}
-		createWindowAdapter();
-	}
+        createWindowAdapter();
+    }
 
-	private void createWindowAdapter(){
-		winAdapt = new WindowAdapter(){
+    private void createWindowAdapter() {
+        winAdapt = new WindowAdapter() {
 
-			/**
-			 * Invoked when a window is in the process of being closed.
-			 * The close operation can be overridden at this point.
-			 */
-			public void windowClosing(WindowEvent e) {
-				//				System.out.println("CLOSING");
-				setVisible(false);
-				setExtendedState(ICONIFIED);
-			}
+            /**
+             * Invoked when a window is in the process of being closed.
+             * The close operation can be overridden at this point.
+             */
+            public void windowClosing(WindowEvent e) {
+                //				System.out.println("CLOSING");
+                setVisible(false);
+                setExtendedState(ICONIFIED);
+            }
 
-			/**
-			 * Invoked when a window has been closed.
-			 */
-			public void windowClosed(WindowEvent e) {
-				//				System.out.println("CLOSED");
-			}
+            /**
+             * Invoked when a window has been closed.
+             */
+            public void windowClosed(WindowEvent e) {
+                //				System.out.println("CLOSED");
+            }
 
-			/**
-			 * Invoked when a window is iconified.
-			 */
-			public void windowIconified(WindowEvent e) {
-				//				System.out.println("ICONIFIED");
-			}
+            /**
+             * Invoked when a window is iconified.
+             */
+            public void windowIconified(WindowEvent e) {
+                //				System.out.println("ICONIFIED");
+            }
 
-			/**
-			 * Invoked when a window is de-iconified.
-			 */
-			public void windowDeiconified(WindowEvent e) {
-				//				System.out.println("DEICONIFIED");
-			}
+            /**
+             * Invoked when a window is de-iconified.
+             */
+            public void windowDeiconified(WindowEvent e) {
+                //				System.out.println("DEICONIFIED");
+            }
 
-			/**
-			 * Invoked when a window is activated.
-			 */
-			public void windowActivated(WindowEvent e) {
-				setVisible(true);
-				setExtendedState(NORMAL);
-				guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
-				if(treeSketchView != null){ // the GUI is drawn safe to repaint
-					treeSketchView.repaint();
-					tblPropView.repaint();
-					tabWindows.repaint();
-				}
-				guiControl.codeCapture();
-			}
+            /**
+             * Invoked when a window is activated.
+             */
+            public void windowActivated(WindowEvent e) {
+                setVisible(true);
+                setExtendedState(NORMAL);
+                guiControl.setSketchSize(guiControl.getSketchSizeFromCode());
+                if (treeSketchView != null) { // the GUI is drawn safe to repaint
+                    treeSketchView.repaint();
+                    tblPropView.repaint();
+                    tabWindows.repaint();
+                }
+                guiControl.codeCapture();
+            }
 
-			/**
-			 * Invoked when a window is de-activated.
-			 */
-			public void windowDeactivated(WindowEvent e) {
-				if(!stayOpen){
-					if(autoHide)
-						setExtendedState(ICONIFIED);
-					guiControl.saveGuiLayout();
-					guiControl.codeGeneration();
-				}
-			}
+            /**
+             * Invoked when a window is de-activated.
+             */
+            public void windowDeactivated(WindowEvent e) {
+                if (!stayOpen) {
+                    if (autoHide) {
+                        setExtendedState(ICONIFIED);
+                    }
+                    guiControl.saveGuiLayout();
+                    guiControl.codeGeneration();
+                }
+            }
+        };
+        addWindowListener(winAdapt);
+    }
 
-		};
-		addWindowListener(winAdapt);
-	}
-
-	/**
-	 * A fix since to make it work in Processing. Uses the images loaded during creation available
-	 * for the dynamic elements e.g. icons in treeview and tab icons
-	 */
-	private void getIcons(){
-		// Messy way to do it but stops error when used with Processing IDE
-		ToolIcon.addIcon(DApplication.class, btnWindow.getIcon());
-		ToolIcon.addIcon(DWindow.class, btnWindow.getIcon());
-		ToolIcon.addIcon(DPanel.class, btnPanel.getIcon());
-		ToolIcon.addIcon(DButton.class, btnButton.getIcon());
-		ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
-		ToolIcon.addIcon(DSlider.class, btnSlider.getIcon());
-		ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
-		ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
-		ToolIcon.addIcon(DToggleGroup.class, btnOptGroup.getIcon());
-		ToolIcon.addIcon(DOption.class, btnOption.getIcon());
-		ToolIcon.addIcon(DTimer.class, btnTimer.getIcon());
-		ToolIcon.addIcon(DCustomSlider.class, btnCoolSlider.getIcon());
-		ToolIcon.addIcon(DImageButton.class, btnImgButton.getIcon());
-		ToolIcon.addIcon(DDropList.class, btnDropList.getIcon());
-		ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
-		ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
-		ToolIcon.addIcon(DSlider2D.class, btnSlider2D.getIcon());
+    /**
+     * A fix since to make it work in Processing. Uses the images loaded during creation available
+     * for the dynamic elements e.g. icons in treeview and tab icons
+     */
+    private void getIcons() {
+        // Messy way to do it but stops error when used with Processing IDE
+        ToolIcon.addIcon(DApplication.class, btnWindow.getIcon());
+        ToolIcon.addIcon(DWindow.class, btnWindow.getIcon());
+        ToolIcon.addIcon(DPanel.class, btnPanel.getIcon());
+        ToolIcon.addIcon(DButton.class, btnButton.getIcon());
+        ToolIcon.addIcon(DLabel.class, btnLabel.getIcon());
+        ToolIcon.addIcon(DSlider.class, btnSlider.getIcon());
+        ToolIcon.addIcon(DTextField.class, btnTextfield.getIcon());
+        ToolIcon.addIcon(DCheckbox.class, btnCheckbox.getIcon());
+        ToolIcon.addIcon(DToggleGroup.class, btnOptGroup.getIcon());
+        ToolIcon.addIcon(DOption.class, btnOption.getIcon());
+        ToolIcon.addIcon(DTimer.class, btnTimer.getIcon());
+        ToolIcon.addIcon(DCustomSlider.class, btnCoolSlider.getIcon());
+        ToolIcon.addIcon(DImageButton.class, btnImgButton.getIcon());
+        ToolIcon.addIcon(DDropList.class, btnDropList.getIcon());
+        ToolIcon.addIcon(DKnob.class, btnKnob.getIcon());
+        ToolIcon.addIcon(DSketchPad.class, btnSketchPad.getIcon());
+        ToolIcon.addIcon(DSlider2D.class, btnSlider2D.getIcon());
 //		ToolIcon.addIcon(DStick.class, btnStick.getIcon());
 
-		ToolIcon.addIcon("DL_DIALOG_ICON", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
+        ToolIcon.addIcon("DL_DIALOG_ICON", new javax.swing.ImageIcon(getClass().getResource("/g4p/cbox_icon2.png")));
 
-		// Load images from resource
-		try {
-			ToolImage.addImage("CB_ICON", ImageIO.read(getClass().getResource("/g4p/tick.png")));
-			ToolImage.addImage("OP_ICON", ImageIO.read(getClass().getResource("/g4p/pinhead.png")));
-			ToolImage.addImage("SPAD_ICON", ImageIO.read(getClass().getResource("/g4p/spad.jpg")));
-			ToolImage.addImage("IMG_TOG_BTN_ICON", ImageIO.read(getClass().getResource("/g4p/toggle.png")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+        
+        // Load images from resource
+        try {
+            ToolImage.addImage("CB_ICON", ImageIO.read(getClass().getResource("/g4p/tick.png")));
+            ToolImage.addImage("OP_ICON", ImageIO.read(getClass().getResource("/g4p/pinhead.png")));
+            ToolImage.addImage("SPAD_ICON", ImageIO.read(getClass().getResource("/g4p/spad.jpg")));
+            ToolImage.addImage("IMG_TOG_BTN_ICON", ImageIO.read(getClass().getResource("/g4p/toggle.png")));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	private void initCustomComponents() {
-		getIcons();
+    private void initCustomComponents() {
+        getIcons();
 
-		treeSketchView = new CtrlSketchView();
-		tblPropView = new CtrlPropView();
-		tabWindows = new CtrlTabView();
+        treeSketchView = new CtrlSketchView();
+        tblPropView = new CtrlPropView();
+        tabWindows = new CtrlTabView();
 
-		spTop.setViewportView(treeSketchView);
-		spBot.setViewportView(tblPropView);
-		pnlWindowsView.setLayout(new BorderLayout());
-		pnlWindowsView.add(tabWindows, BorderLayout.CENTER);
+        spTop.setViewportView(treeSketchView);
+        spBot.setViewportView(tblPropView);
+        pnlWindowsView.setLayout(new BorderLayout());
+        pnlWindowsView.add(tabWindows, BorderLayout.CENTER);
 
-		treeSketchView.setViewLinks(tabWindows, tblPropView);
-		tabWindows.setViewLinks(treeSketchView, tblPropView);
-		tblPropView.setViewLinks(tabWindows, treeSketchView);
-		tblPropView.setFillsViewportHeight(true);
+        treeSketchView.setViewLinks(tabWindows, tblPropView);
+        tabWindows.setViewLinks(treeSketchView, tblPropView);
+        tblPropView.setViewLinks(tabWindows, treeSketchView);
+        tblPropView.setFillsViewportHeight(true);
 
-		mitemGS8.setSelected(true);
-		tabWindows.setGridSize(8);
-	}
+         tabWindows.setGridSize(10);
+    }
 
-
-	/** This method is called from within the constructor to
-	 * initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is
-	 * always regenerated by the Form Editor.
-	 */
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bgGridSize = new javax.swing.ButtonGroup();
+        splitControl = new javax.swing.JSplitPane();
+        pnlTreeView = new java.awt.Panel();
+        jLabel2 = new javax.swing.JLabel();
+        spTop = new javax.swing.JScrollPane();
+        tbarControls = new javax.swing.JToolBar();
+        btnRemove = new javax.swing.JButton();
+        pnlPropViiew = new java.awt.Panel();
+        jLabel1 = new javax.swing.JLabel();
+        spBot = new javax.swing.JScrollPane();
+        pnlWindowsView = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        tbarGrid = new javax.swing.JToolBar();
+        lblGridTitle = new javax.swing.JLabel();
+        cbxShowGrid = new javax.swing.JCheckBox();
+        spacer01 = new javax.swing.JLabel();
+        btnSnap = new javax.swing.JCheckBox();
+        lblGridSizeTitle = new javax.swing.JLabel();
+        lblGridSize = new javax.swing.JLabel();
+        sdrGridSize = new javax.swing.JSlider();
+        tbarWIndow = new javax.swing.JToolBar();
+        lblScaleTitle = new javax.swing.JLabel();
+        cbxScale = new javax.swing.JComboBox();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        cbxAutoHide = new javax.swing.JCheckBox();
         tbarComponents = new javax.swing.JToolBar();
         btnWindow = new javax.swing.JButton();
         btnPanel = new javax.swing.JButton();
@@ -307,42 +330,186 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnDropList = new javax.swing.JButton();
         btnSketchPad = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        btnScale = new javax.swing.JButton();
-        splitControl = new javax.swing.JSplitPane();
-        pnlTreeView = new java.awt.Panel();
-        jLabel2 = new javax.swing.JLabel();
-        spTop = new javax.swing.JScrollPane();
-        tbarControls = new javax.swing.JToolBar();
-        btnRemove = new javax.swing.JButton();
-        pnlPropViiew = new java.awt.Panel();
-        jLabel1 = new javax.swing.JLabel();
-        spBot = new javax.swing.JScrollPane();
-        pnlWindowsView = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        menuDisplay = new javax.swing.JMenu();
-        mitemAuto = new javax.swing.JCheckBoxMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        mitemSnapToGrid = new javax.swing.JCheckBoxMenuItem();
-        mitemShowGrid = new javax.swing.JCheckBoxMenuItem();
-        menuGridSize = new javax.swing.JMenu();
-        mitemGS4 = new javax.swing.JRadioButtonMenuItem();
-        mitemGS5 = new javax.swing.JRadioButtonMenuItem();
-        mitemGS8 = new javax.swing.JRadioButtonMenuItem();
-        mitemGS10 = new javax.swing.JRadioButtonMenuItem();
-        menuZoom = new javax.swing.JMenu();
-        mitemScaleWindow = new javax.swing.JMenuItem();
-        mitem200 = new javax.swing.JMenuItem();
-        mitem150 = new javax.swing.JMenuItem();
-        mitem100 = new javax.swing.JMenuItem();
-        mitem75 = new javax.swing.JMenuItem();
-        mitem50 = new javax.swing.JMenuItem();
-        mitem25 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("GUI Builder");
         setBackground(new java.awt.Color(255, 255, 255));
         setName("frmDesigner"); // NOI18N
+
+        splitControl.setDividerLocation(160);
+        splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitControl.setDoubleBuffered(true);
+        splitControl.setMinimumSize(new java.awt.Dimension(3, 5));
+        splitControl.setPreferredSize(new java.awt.Dimension(250, 525));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CONTROLS");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jLabel2.setOpaque(true);
+
+        spTop.setBackground(new java.awt.Color(255, 255, 255));
+
+        tbarControls.setFloatable(false);
+        tbarControls.setRollover(true);
+
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin.png"))); // NOI18N
+        btnRemove.setText("Remove");
+        btnRemove.setFocusable(false);
+        btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRemove.setMaximumSize(new java.awt.Dimension(80, 47));
+        btnRemove.setPreferredSize(new java.awt.Dimension(80, 29));
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        tbarControls.add(btnRemove);
+
+        javax.swing.GroupLayout pnlTreeViewLayout = new javax.swing.GroupLayout(pnlTreeView);
+        pnlTreeView.setLayout(pnlTreeViewLayout);
+        pnlTreeViewLayout.setHorizontalGroup(
+            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(tbarControls, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        );
+        pnlTreeViewLayout.setVerticalGroup(
+            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTreeViewLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tbarControls, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+        );
+
+        splitControl.setTopComponent(pnlTreeView);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("PROPERTIES");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
+
+        spBot.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlPropViiewLayout = new javax.swing.GroupLayout(pnlPropViiew);
+        pnlPropViiew.setLayout(pnlPropViiewLayout);
+        pnlPropViiewLayout.setHorizontalGroup(
+            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        );
+        pnlPropViiewLayout.setVerticalGroup(
+            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPropViiewLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
+        );
+
+        splitControl.setRightComponent(pnlPropViiew);
+
+        pnlWindowsView.setToolTipText("Winodws Panel");
+        pnlWindowsView.setDoubleBuffered(false);
+
+        javax.swing.GroupLayout pnlWindowsViewLayout = new javax.swing.GroupLayout(pnlWindowsView);
+        pnlWindowsView.setLayout(pnlWindowsViewLayout);
+        pnlWindowsViewLayout.setHorizontalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 552, Short.MAX_VALUE)
+        );
+        pnlWindowsViewLayout.setVerticalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 452, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(-8355712,true));
+
+        tbarGrid.setFloatable(false);
+        tbarGrid.setRollover(true);
+
+        lblGridTitle.setText("  Grid :   ");
+        tbarGrid.add(lblGridTitle);
+
+        cbxShowGrid.setText("Show");
+        cbxShowGrid.setFocusable(false);
+        cbxShowGrid.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        cbxShowGrid.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        cbxShowGrid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxShowGridActionPerformed(evt);
+            }
+        });
+        tbarGrid.add(cbxShowGrid);
+
+        spacer01.setText("     ");
+        tbarGrid.add(spacer01);
+
+        btnSnap.setText("Snap to");
+        btnSnap.setFocusable(false);
+        btnSnap.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnSnap.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSnap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSnapActionPerformed(evt);
+            }
+        });
+        tbarGrid.add(btnSnap);
+
+        lblGridSizeTitle.setText("     Size ");
+        tbarGrid.add(lblGridSizeTitle);
+
+        lblGridSize.setBackground(new java.awt.Color(-1,true));
+        lblGridSize.setFont(new java.awt.Font("Monospaced", 0, 12));
+        lblGridSize.setText(" 10 ");
+        lblGridSize.setOpaque(true);
+        tbarGrid.add(lblGridSize);
+
+        sdrGridSize.setMajorTickSpacing(2);
+        sdrGridSize.setMaximum(20);
+        sdrGridSize.setMinimum(4);
+        sdrGridSize.setMinorTickSpacing(2);
+        sdrGridSize.setPaintTicks(true);
+        sdrGridSize.setSnapToTicks(true);
+        sdrGridSize.setToolTipText("Grid size");
+        sdrGridSize.setValue(10);
+        sdrGridSize.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sdrGridSizeStateChanged(evt);
+            }
+        });
+        tbarGrid.add(sdrGridSize);
+
+        tbarWIndow.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(-16777216,true)));
+        tbarWIndow.setRollover(true);
+        tbarWIndow.setBorderPainted(false);
+
+        lblScaleTitle.setText("  Scale : ");
+        tbarWIndow.add(lblScaleTitle);
+
+        cbxScale.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Scale to fit", "200", "175", "150", "125", "100", "75", "50", "25" }));
+        cbxScale.setSelectedIndex(5);
+        cbxScale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxScaleActionPerformed(evt);
+            }
+        });
+        tbarWIndow.add(cbxScale);
+        tbarWIndow.add(jSeparator2);
+
+        cbxAutoHide.setText("Auto-hide");
+        cbxAutoHide.setFocusable(false);
+        cbxAutoHide.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cbxAutoHide.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        cbxAutoHide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxAutoHideActionPerformed(evt);
+            }
+        });
+        tbarWIndow.add(cbxAutoHide);
 
         tbarComponents.setFloatable(false);
         tbarComponents.setRollover(true);
@@ -575,245 +742,31 @@ public class GuiDesigner extends javax.swing.JFrame {
         });
         tbarComponents.add(btnTimer);
 
-        jSeparator2.setPreferredSize(new java.awt.Dimension(50, 0));
-        jSeparator2.setRequestFocusEnabled(false);
-        jSeparator2.setSeparatorSize(new java.awt.Dimension(50, 0));
-        tbarComponents.add(jSeparator2);
-
-        btnScale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize2.png"))); // NOI18N
-        btnScale.setToolTipText("Scale to fit");
-        btnScale.setFocusable(false);
-        btnScale.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnScale.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnScale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnScaleActionPerformed(evt);
-            }
-        });
-        tbarComponents.add(btnScale);
-
-        splitControl.setDividerLocation(260);
-        splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        splitControl.setDoubleBuffered(true);
-        splitControl.setMinimumSize(new java.awt.Dimension(3, 5));
-        splitControl.setPreferredSize(new java.awt.Dimension(250, 525));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CONTROLS");
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jLabel2.setOpaque(true);
-
-        spTop.setBackground(new java.awt.Color(255, 255, 255));
-
-        tbarControls.setFloatable(false);
-        tbarControls.setRollover(true);
-
-        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin.png"))); // NOI18N
-        btnRemove.setText("Remove");
-        btnRemove.setFocusable(false);
-        btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnRemove.setMaximumSize(new java.awt.Dimension(80, 47));
-        btnRemove.setPreferredSize(new java.awt.Dimension(80, 29));
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-        tbarControls.add(btnRemove);
-
-        javax.swing.GroupLayout pnlTreeViewLayout = new javax.swing.GroupLayout(pnlTreeView);
-        pnlTreeView.setLayout(pnlTreeViewLayout);
-        pnlTreeViewLayout.setHorizontalGroup(
-            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(tbarControls, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tbarComponents, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tbarGrid, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                        .addComponent(tbarWIndow, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
-        pnlTreeViewLayout.setVerticalGroup(
-            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTreeViewLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tbarControls, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tbarWIndow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tbarGrid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tbarComponents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
-
-        splitControl.setTopComponent(pnlTreeView);
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 153));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PROPERTIES");
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jLabel1.setOpaque(true);
-        jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
-
-        spBot.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlPropViiewLayout = new javax.swing.GroupLayout(pnlPropViiew);
-        pnlPropViiew.setLayout(pnlPropViiewLayout);
-        pnlPropViiewLayout.setHorizontalGroup(
-            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-        );
-        pnlPropViiewLayout.setVerticalGroup(
-            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPropViiewLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
-        );
-
-        splitControl.setRightComponent(pnlPropViiew);
-
-        pnlWindowsView.setToolTipText("Winodws Panel");
-        pnlWindowsView.setDoubleBuffered(false);
-
-        javax.swing.GroupLayout pnlWindowsViewLayout = new javax.swing.GroupLayout(pnlWindowsView);
-        pnlWindowsView.setLayout(pnlWindowsViewLayout);
-        pnlWindowsViewLayout.setHorizontalGroup(
-            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
-        pnlWindowsViewLayout.setVerticalGroup(
-            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
-        );
-
-        menuDisplay.setText("Display");
-
-        mitemAuto.setText("Auto Hide");
-        mitemAuto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemAutoActionPerformed(evt);
-            }
-        });
-        menuDisplay.add(mitemAuto);
-        menuDisplay.add(jSeparator1);
-
-        mitemSnapToGrid.setText("Snap to grid");
-        mitemSnapToGrid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemSnapToGridActionPerformed(evt);
-            }
-        });
-        menuDisplay.add(mitemSnapToGrid);
-
-        mitemShowGrid.setText("Show grid");
-        mitemShowGrid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemShowGridActionPerformed(evt);
-            }
-        });
-        menuDisplay.add(mitemShowGrid);
-
-        menuGridSize.setText("Grid Size");
-
-        bgGridSize.add(mitemGS4);
-        mitemGS4.setText("4px");
-        mitemGS4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemGS4ActionPerformed(evt);
-            }
-        });
-        menuGridSize.add(mitemGS4);
-
-        bgGridSize.add(mitemGS5);
-        mitemGS5.setText("5px");
-        mitemGS5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemGS5ActionPerformed(evt);
-            }
-        });
-        menuGridSize.add(mitemGS5);
-
-        bgGridSize.add(mitemGS8);
-        mitemGS8.setSelected(true);
-        mitemGS8.setText("8px");
-        mitemGS8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemGS8ActionPerformed(evt);
-            }
-        });
-        menuGridSize.add(mitemGS8);
-
-        bgGridSize.add(mitemGS10);
-        mitemGS10.setText("10px");
-        mitemGS10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemGS10ActionPerformed(evt);
-            }
-        });
-        menuGridSize.add(mitemGS10);
-
-        menuDisplay.add(menuGridSize);
-
-        jMenuBar1.add(menuDisplay);
-
-        menuZoom.setText("Zoom");
-
-        mitemScaleWindow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/toolResize.png"))); // NOI18N
-        mitemScaleWindow.setText("Scale window to fit");
-        mitemScaleWindow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScaleWindowActionPerformed(evt);
-            }
-        });
-        menuZoom.add(mitemScaleWindow);
-
-        mitem200.setText("200%");
-        mitem200.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale200(evt);
-            }
-        });
-        menuZoom.add(mitem200);
-
-        mitem150.setText("150%");
-        mitem150.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale150(evt);
-            }
-        });
-        menuZoom.add(mitem150);
-
-        mitem100.setText("100%");
-        mitem100.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale100(evt);
-            }
-        });
-        menuZoom.add(mitem100);
-
-        mitem75.setText("75%");
-        mitem75.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale75(evt);
-            }
-        });
-        menuZoom.add(mitem75);
-
-        mitem50.setText("50%");
-        mitem50.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale50(evt);
-            }
-        });
-        menuZoom.add(mitem50);
-
-        mitem25.setText("25%");
-        mitem25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mitemScale25(evt);
-            }
-        });
-        menuZoom.add(mitem25);
-
-        jMenuBar1.add(menuZoom);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -823,15 +776,15 @@ public class GuiDesigner extends javax.swing.JFrame {
                 .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(splitControl, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(tbarComponents, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tbarComponents, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(splitControl, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(splitControl, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -839,160 +792,154 @@ public class GuiDesigner extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void btnPanelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPanelActionPerformed
-		guiControl.addComponent(new DPanel());
+            guiControl.addComponent(new DPanel());
 	}//GEN-LAST:event_btnPanelActionPerformed
 
 	private void btnWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWindowActionPerformed
-		guiControl.addComponent(new DWindow(false));
+            guiControl.addComponent(new DWindow(false));
 	}//GEN-LAST:event_btnWindowActionPerformed
 
 	private void btnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnButtonActionPerformed
-		guiControl.addComponent(new DButton());
+            guiControl.addComponent(new DButton());
 	}//GEN-LAST:event_btnButtonActionPerformed
 
 	private void btnImgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgButtonActionPerformed
-		guiControl.addComponent(new DImageButton());
+            guiControl.addComponent(new DImageButton());
 	}//GEN-LAST:event_btnImgButtonActionPerformed
 
 	private void btnLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLabelActionPerformed
-		guiControl.addComponent(new DLabel());
+            guiControl.addComponent(new DLabel());
 	}//GEN-LAST:event_btnLabelActionPerformed
 
 	private void btnTextfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextfieldActionPerformed
-		guiControl.addComponent(new DTextField());
+            guiControl.addComponent(new DTextField());
 	}//GEN-LAST:event_btnTextfieldActionPerformed
 
 	private void btnSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSliderActionPerformed
-		guiControl.addComponent(new DSlider());
+            guiControl.addComponent(new DSlider());
 	}//GEN-LAST:event_btnSliderActionPerformed
 
 	private void btnCoolSliderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCoolSliderActionPerformed
-		guiControl.addComponent(new DCustomSlider());
+            guiControl.addComponent(new DCustomSlider());
 	}//GEN-LAST:event_btnCoolSliderActionPerformed
 
 	private void btnKnobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKnobActionPerformed
-		guiControl.addComponent(new DKnob());
+            guiControl.addComponent(new DKnob());
 	}//GEN-LAST:event_btnKnobActionPerformed
 
 	private void btnCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckboxActionPerformed
-		guiControl.addComponent(new DCheckbox());
+            guiControl.addComponent(new DCheckbox());
 	}//GEN-LAST:event_btnCheckboxActionPerformed
 
 	private void btnOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOptionActionPerformed
-		guiControl.addComponent(new DOption());
+            guiControl.addComponent(new DOption());
 	}//GEN-LAST:event_btnOptionActionPerformed
 
 	private void btnOptGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOptGroupActionPerformed
-		guiControl.addComponent(new DToggleGroup());
+            guiControl.addComponent(new DToggleGroup());
 	}//GEN-LAST:event_btnOptGroupActionPerformed
 
 	private void btnDropListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropListActionPerformed
-		guiControl.addComponent(new DDropList());
+            guiControl.addComponent(new DDropList());
 	}//GEN-LAST:event_btnDropListActionPerformed
 
 	private void btnTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimerActionPerformed
-		guiControl.addComponent(new DTimer());
+            guiControl.addComponent(new DTimer());
 	}//GEN-LAST:event_btnTimerActionPerformed
 
 	private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-		guiControl.removeComponent();
+            guiControl.removeComponent();
 	}//GEN-LAST:event_btnRemoveActionPerformed
 
-	private void mitemSnapToGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemSnapToGridActionPerformed
-		guiControl.snapGrid(((JCheckBoxMenuItem)evt.getSource()).isSelected());
-	}//GEN-LAST:event_mitemSnapToGridActionPerformed
-
-	private void mitemShowGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemShowGridActionPerformed
-		guiControl.showGrid(((JCheckBoxMenuItem)evt.getSource()).isSelected());
-	}//GEN-LAST:event_mitemShowGridActionPerformed
-
-	private void mitemGS4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS4ActionPerformed
-		guiControl.setGridSize(4);
-	}//GEN-LAST:event_mitemGS4ActionPerformed
-
-	private void mitemGS5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS5ActionPerformed
-		guiControl.setGridSize(5);
-	}//GEN-LAST:event_mitemGS5ActionPerformed
-
-	private void mitemGS8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS8ActionPerformed
-		guiControl.setGridSize(8);
-	}//GEN-LAST:event_mitemGS8ActionPerformed
-
-	private void mitemGS10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemGS10ActionPerformed
-		guiControl.setGridSize(10);
-	}//GEN-LAST:event_mitemGS10ActionPerformed
-
-	private void mitemScaleWindowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScaleWindowActionPerformed
-		guiControl.makeWindowSizeToFit();
-	}//GEN-LAST:event_mitemScaleWindowActionPerformed
-
-	private void btnScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScaleActionPerformed
-		guiControl.makeWindowSizeToFit();
-	}//GEN-LAST:event_btnScaleActionPerformed
-
-	private void mitemScale200(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale200
-		guiControl.setScale(200);
-	}//GEN-LAST:event_mitemScale200
-
-	private void mitemScale150(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale150
-		guiControl.setScale(150);
-	}//GEN-LAST:event_mitemScale150
-
-	private void mitemScale100(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale100
-		guiControl.setScale(100);
-	}//GEN-LAST:event_mitemScale100
-
-	private void mitemScale75(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale75
-		guiControl.setScale(75);
-	}//GEN-LAST:event_mitemScale75
-
-	private void mitemScale50(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale50
-		guiControl.setScale(50);
-	}//GEN-LAST:event_mitemScale50
-
-	private void mitemScale25(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemScale25
-		guiControl.setScale(25);
-	}//GEN-LAST:event_mitemScale25
-
-	private void mitemAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitemAutoActionPerformed
-		autoHide = mitemAuto.isSelected();
-	}//GEN-LAST:event_mitemAutoActionPerformed
-
     private void btnTextareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTextareaActionPerformed
-   		guiControl.addComponent(new DTextArea());
+        guiControl.addComponent(new DTextArea());
    	}//GEN-LAST:event_btnTextareaActionPerformed
 
     private void btnSketchPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSketchPadActionPerformed
-		guiControl.addComponent(new DSketchPad());
+        guiControl.addComponent(new DSketchPad());
     }//GEN-LAST:event_btnSketchPadActionPerformed
 
     private void btnSlider2DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSlider2DActionPerformed
-  		guiControl.addComponent(new DSlider2D());
+        guiControl.addComponent(new DSlider2D());
   	}//GEN-LAST:event_btnSlider2DActionPerformed
 
     private void btnStickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStickActionPerformed
- 		guiControl.addComponent(new DStick());
+        guiControl.addComponent(new DStick());
     }//GEN-LAST:event_btnStickActionPerformed
 
     private void btnImgTogButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgTogButtonActionPerformed
-       guiControl.addComponent(new DImageToggleButton());
+        guiControl.addComponent(new DImageToggleButton());
     }//GEN-LAST:event_btnImgTogButtonActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
+    private void cbxScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxScaleActionPerformed
+        JComboBox cbx = (JComboBox) evt.getSource();
+        switch (cbx.getSelectedIndex()) {
+            case 0:
+                guiControl.makeWindowSizeToFit();
+                break;
+            case 1:
+                guiControl.setScale(200);
+                break;
+            case 2:
+                guiControl.setScale(175);
+                break;
+            case 3:
+                guiControl.setScale(150);
+                break;
+            case 4:
+                guiControl.setScale(125);
+                break;
+            case 5:
+                guiControl.setScale(100);
+                break;
+            case 6:
+                guiControl.setScale(75);
+                break;
+            case 7:
+                guiControl.setScale(50);
+                break;
+            case 8:
+                guiControl.setScale(25);
+                break;
+        }
+    }//GEN-LAST:event_cbxScaleActionPerformed
 
-			public void run() {
-				new GuiDesigner().setVisible(true);
-			}
-		});
-	}
+    private void cbxShowGridActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxShowGridActionPerformed
+        guiControl.showGrid(((JCheckBox) evt.getSource()).isSelected());
+    }//GEN-LAST:event_cbxShowGridActionPerformed
 
+    private void btnSnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSnapActionPerformed
+        guiControl.snapGrid(((JCheckBox) evt.getSource()).isSelected());
+    }//GEN-LAST:event_btnSnapActionPerformed
 
+    private void sdrGridSizeStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sdrGridSizeStateChanged
+        int gs = ((JSlider) evt.getSource()).getValue();
+        if(gs % 2 == 1)
+        	gs++;
+        if (gs < 10) {
+            lblGridSize.setText("  " + gs + " ");
+        } else {
+            lblGridSize.setText(" " + gs + " ");
+        }
+        guiControl.setGridSize(gs);
+    }//GEN-LAST:event_sdrGridSizeStateChanged
+
+    private void cbxAutoHideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAutoHideActionPerformed
+            autoHide = ((JCheckBox)evt.getSource()).isSelected();
+    }//GEN-LAST:event_cbxAutoHideActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new GuiDesigner().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bgGridSize;
     private javax.swing.JButton btnButton;
     private javax.swing.JButton btnCheckbox;
     private javax.swing.JButton btnCoolSlider;
@@ -1005,45 +952,37 @@ public class GuiDesigner extends javax.swing.JFrame {
     private javax.swing.JButton btnOption;
     private javax.swing.JButton btnPanel;
     private javax.swing.JButton btnRemove;
-    private javax.swing.JButton btnScale;
     private javax.swing.JButton btnSketchPad;
     private javax.swing.JButton btnSlider;
     private javax.swing.JButton btnSlider2D;
+    private javax.swing.JCheckBox btnSnap;
     private javax.swing.JButton btnStick;
     private javax.swing.JButton btnTextarea;
     private javax.swing.JButton btnTextfield;
     private javax.swing.JButton btnTimer;
     private javax.swing.JButton btnWindow;
+    private javax.swing.JCheckBox cbxAutoHide;
+    private javax.swing.JComboBox cbxScale;
+    private javax.swing.JCheckBox cbxShowGrid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JMenu menuDisplay;
-    private javax.swing.JMenu menuGridSize;
-    private javax.swing.JMenu menuZoom;
-    private javax.swing.JMenuItem mitem100;
-    private javax.swing.JMenuItem mitem150;
-    private javax.swing.JMenuItem mitem200;
-    private javax.swing.JMenuItem mitem25;
-    private javax.swing.JMenuItem mitem50;
-    private javax.swing.JMenuItem mitem75;
-    private javax.swing.JCheckBoxMenuItem mitemAuto;
-    private javax.swing.JRadioButtonMenuItem mitemGS10;
-    private javax.swing.JRadioButtonMenuItem mitemGS4;
-    private javax.swing.JRadioButtonMenuItem mitemGS5;
-    private javax.swing.JRadioButtonMenuItem mitemGS8;
-    private javax.swing.JMenuItem mitemScaleWindow;
-    private javax.swing.JCheckBoxMenuItem mitemShowGrid;
-    private javax.swing.JCheckBoxMenuItem mitemSnapToGrid;
+    private javax.swing.JLabel lblGridSize;
+    private javax.swing.JLabel lblGridSizeTitle;
+    private javax.swing.JLabel lblGridTitle;
+    private javax.swing.JLabel lblScaleTitle;
     private java.awt.Panel pnlPropViiew;
     private java.awt.Panel pnlTreeView;
     private javax.swing.JPanel pnlWindowsView;
+    private javax.swing.JSlider sdrGridSize;
     private javax.swing.JScrollPane spBot;
     private javax.swing.JScrollPane spTop;
+    private javax.swing.JLabel spacer01;
     private javax.swing.JSplitPane splitControl;
     private javax.swing.JToolBar tbarComponents;
     private javax.swing.JToolBar tbarControls;
+    private javax.swing.JToolBar tbarGrid;
+    private javax.swing.JToolBar tbarWIndow;
     // End of variables declaration//GEN-END:variables
-
 }
