@@ -287,16 +287,6 @@ public class GuiDesigner extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        splitControl = new javax.swing.JSplitPane();
-        pnlTreeView = new java.awt.Panel();
-        jLabel2 = new javax.swing.JLabel();
-        spTop = new javax.swing.JScrollPane();
-        tbarControls = new javax.swing.JToolBar();
-        btnRemove = new javax.swing.JButton();
-        pnlPropViiew = new java.awt.Panel();
-        jLabel1 = new javax.swing.JLabel();
-        spBot = new javax.swing.JScrollPane();
-        pnlWindowsView = new javax.swing.JPanel();
         pnlToolBars = new javax.swing.JPanel();
         tbarGrid = new javax.swing.JToolBar();
         lblGridTitle = new javax.swing.JLabel();
@@ -332,104 +322,24 @@ public class GuiDesigner extends javax.swing.JFrame {
         btnDropList = new javax.swing.JButton();
         btnSketchPad = new javax.swing.JButton();
         btnTimer = new javax.swing.JButton();
+        splitControl = new javax.swing.JSplitPane();
+        pnlTreeView = new java.awt.Panel();
+        jLabel2 = new javax.swing.JLabel();
+        spTop = new javax.swing.JScrollPane();
+        tbarControls = new javax.swing.JToolBar();
+        btnRemove = new javax.swing.JButton();
+        pnlPropViiew = new java.awt.Panel();
+        jLabel1 = new javax.swing.JLabel();
+        spBot = new javax.swing.JScrollPane();
+        pnlWindowsView = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("GUI Builder");
         setBackground(new java.awt.Color(255, 255, 255));
         setName("frmDesigner"); // NOI18N
 
-        splitControl.setDividerLocation(160);
-        splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        splitControl.setDoubleBuffered(true);
-        splitControl.setMinimumSize(new java.awt.Dimension(3, 5));
-        splitControl.setPreferredSize(new java.awt.Dimension(250, 525));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CONTROLS");
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jLabel2.setOpaque(true);
-
-        spTop.setBackground(new java.awt.Color(255, 255, 255));
-
-        tbarControls.setFloatable(false);
-        tbarControls.setRollover(true);
-
-        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin.png"))); // NOI18N
-        btnRemove.setText("Remove");
-        btnRemove.setFocusable(false);
-        btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnRemove.setMaximumSize(new java.awt.Dimension(80, 47));
-        btnRemove.setPreferredSize(new java.awt.Dimension(80, 29));
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-        tbarControls.add(btnRemove);
-
-        javax.swing.GroupLayout pnlTreeViewLayout = new javax.swing.GroupLayout(pnlTreeView);
-        pnlTreeView.setLayout(pnlTreeViewLayout);
-        pnlTreeViewLayout.setHorizontalGroup(
-            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(tbarControls, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-        );
-        pnlTreeViewLayout.setVerticalGroup(
-            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTreeViewLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tbarControls, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
-        );
-
-        splitControl.setTopComponent(pnlTreeView);
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 153));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("PROPERTIES");
-        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
-        jLabel1.setOpaque(true);
-        jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
-
-        spBot.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlPropViiewLayout = new javax.swing.GroupLayout(pnlPropViiew);
-        pnlPropViiew.setLayout(pnlPropViiewLayout);
-        pnlPropViiewLayout.setHorizontalGroup(
-            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-        );
-        pnlPropViiewLayout.setVerticalGroup(
-            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPropViiewLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-        );
-
-        splitControl.setRightComponent(pnlPropViiew);
-
-        pnlWindowsView.setToolTipText("Winodws Panel");
-        pnlWindowsView.setDoubleBuffered(false);
-
-        javax.swing.GroupLayout pnlWindowsViewLayout = new javax.swing.GroupLayout(pnlWindowsView);
-        pnlWindowsView.setLayout(pnlWindowsViewLayout);
-        pnlWindowsViewLayout.setHorizontalGroup(
-            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
-        );
-        pnlWindowsViewLayout.setVerticalGroup(
-            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
-        );
-
         pnlToolBars.setBackground(new java.awt.Color(-16192,true));
-        pnlToolBars.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(-8380384,true), 3, true));
+        pnlToolBars.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(-16777216,true), 3, true));
 
         tbarGrid.setFloatable(false);
         tbarGrid.setRollover(true);
@@ -785,11 +695,11 @@ public class GuiDesigner extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlToolBarsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(tbarGrid, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
                         .addComponent(tbarWIndow, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlToolBarsLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(tbarComponents, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)))
+                        .addComponent(tbarComponents, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlToolBarsLayout.setVerticalGroup(
@@ -802,13 +712,103 @@ public class GuiDesigner extends javax.swing.JFrame {
                 .addComponent(tbarComponents, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        splitControl.setDividerLocation(160);
+        splitControl.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        splitControl.setDoubleBuffered(true);
+        splitControl.setMinimumSize(new java.awt.Dimension(3, 5));
+        splitControl.setPreferredSize(new java.awt.Dimension(250, 525));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 153));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("CONTROLS");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jLabel2.setOpaque(true);
+
+        spTop.setBackground(new java.awt.Color(255, 255, 255));
+
+        tbarControls.setFloatable(false);
+        tbarControls.setRollover(true);
+
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/g4p/bin.png"))); // NOI18N
+        btnRemove.setText("Remove");
+        btnRemove.setFocusable(false);
+        btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnRemove.setMaximumSize(new java.awt.Dimension(80, 47));
+        btnRemove.setPreferredSize(new java.awt.Dimension(80, 29));
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+        tbarControls.add(btnRemove);
+
+        javax.swing.GroupLayout pnlTreeViewLayout = new javax.swing.GroupLayout(pnlTreeView);
+        pnlTreeView.setLayout(pnlTreeViewLayout);
+        pnlTreeViewLayout.setHorizontalGroup(
+            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(tbarControls, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        );
+        pnlTreeViewLayout.setVerticalGroup(
+            pnlTreeViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTreeViewLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tbarControls, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spTop, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+        );
+
+        splitControl.setTopComponent(pnlTreeView);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("PROPERTIES");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(56, 14));
+
+        spBot.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlPropViiewLayout = new javax.swing.GroupLayout(pnlPropViiew);
+        pnlPropViiew.setLayout(pnlPropViiewLayout);
+        pnlPropViiewLayout.setHorizontalGroup(
+            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+        );
+        pnlPropViiewLayout.setVerticalGroup(
+            pnlPropViiewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPropViiewLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spBot, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE))
+        );
+
+        splitControl.setRightComponent(pnlPropViiew);
+
+        pnlWindowsView.setToolTipText("Winodws Panel");
+        pnlWindowsView.setDoubleBuffered(false);
+
+        javax.swing.GroupLayout pnlWindowsViewLayout = new javax.swing.GroupLayout(pnlWindowsView);
+        pnlWindowsView.setLayout(pnlWindowsViewLayout);
+        pnlWindowsViewLayout.setHorizontalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 527, Short.MAX_VALUE)
+        );
+        pnlWindowsViewLayout.setVerticalGroup(
+            pnlWindowsViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 432, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(splitControl, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(pnlToolBars, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -817,9 +817,9 @@ public class GuiDesigner extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(pnlToolBars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(splitControl, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                    .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlWindowsView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(splitControl, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)))
         );
 
         pack();
